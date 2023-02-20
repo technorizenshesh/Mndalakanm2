@@ -185,7 +185,7 @@
                 android:outlineProvider="background"
                 android:outlineSpotShadowColor="@color/white"
                 android:padding="@dimen/_10sdp"
-                android:text="Scan Qr code"
+                android:text="@string/scan_qr_code"
                 android:textAllCaps="true"
                 android:textColor="@color/texts"
                 android:textSize="@dimen/_14sdp"

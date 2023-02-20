@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="action_settings">mîhengên çalakiyê</string>
+    <string name="app_name">MediaProjectionDemo</string>
+    <string name="checking_please_wait">Kontrolkirin ji kerema xwe li bendê bin...</string>
+    <string name="recording">Tomarkirinê</string>
+    <string name="start_recording">Destpêkirina Tomarkirinê</string>
+    <string name="stop_recording">Rawestandina Tomarkirinê</string>
+</resources>

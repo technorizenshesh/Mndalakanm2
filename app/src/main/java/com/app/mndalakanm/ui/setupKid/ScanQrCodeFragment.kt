@@ -34,6 +34,7 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import timber.log.Timber
+import java.util.Calendar
 
 
 class ScanQrCodeFragment : Fragment() {
@@ -180,7 +181,7 @@ class ScanQrCodeFragment : Fragment() {
         map["register_id"] = sharedPref.getStringValue(Constant.FIREBASETOKEN).toString()
         map["lat"] = sharedPref.getStringValue(Constant.LATITUDE).toString()
         map["lon"] =  sharedPref.getStringValue(Constant.LONGITUDE).toString()
-
+        map["time_zone"] = Calendar.getInstance().timeZone.id.toString()
         Timber.tag(TAG).e("Login user Request = %s", map)
         apiInterface.pairing_code(map).enqueue(object : Callback<SuccessPairRes?> {
             override fun onResponse(call: Call<SuccessPairRes?>, response: Response<SuccessPairRes?>) {

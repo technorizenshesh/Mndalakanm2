@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.mtsahakis.mediaprojectiondemo" >
+
+    <uses-sdk
+        android:minSdkVersion="26"
+        android:targetSdkVersion="32" />
+
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+
+    <application android:allowBackup="true" >
+        <activity
+            android:name="com.mtsahakis.mediaprojectiondemo.MainActivity"
+            android:configChanges="orientation|screenSize"
+            android:exported="true" />
+        <activity
+            android:name="com.mtsahakis.mediaprojectiondemo.ScreenCaptureActivity"
+            android:configChanges="orientation|screenSize"
+            android:exported="true" />
+
+        <service
+            android:name="com.mtsahakis.mediaprojectiondemo.ScreenCaptureService"
+            android:exported="true"
+            android:foregroundServiceType="mediaProjection" />
+        <service
+            android:name="com.mtsahakis.mediaprojectiondemo.MainService"
+            android:exported="false" />
+    </application>
+
+</manifest>

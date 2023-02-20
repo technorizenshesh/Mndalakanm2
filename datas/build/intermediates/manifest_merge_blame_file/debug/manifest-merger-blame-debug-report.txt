@@ -1,0 +1,54 @@
+1<?xml version="1.0" encoding="utf-8"?>
+2<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+3    package="com.mtsahakis.mediaprojectiondemo" >
+4
+5    <uses-sdk
+6        android:minSdkVersion="26"
+6-->/home/shubh23/ShubhTechno/shubh_new_data/Mndalakanm/datas/src/main/AndroidManifest.xml
+7        android:targetSdkVersion="32" />
+7-->/home/shubh23/ShubhTechno/shubh_new_data/Mndalakanm/datas/src/main/AndroidManifest.xml
+8
+9    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+9-->/home/shubh23/ShubhTechno/shubh_new_data/Mndalakanm/datas/src/main/AndroidManifest.xml:4:5-77
+9-->/home/shubh23/ShubhTechno/shubh_new_data/Mndalakanm/datas/src/main/AndroidManifest.xml:4:22-74
+10    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+10-->/home/shubh23/ShubhTechno/shubh_new_data/Mndalakanm/datas/src/main/AndroidManifest.xml:5:5-78
+10-->/home/shubh23/ShubhTechno/shubh_new_data/Mndalakanm/datas/src/main/AndroidManifest.xml:5:22-75
+11
+12    <application android:allowBackup="true" >
+12-->/home/shubh23/ShubhTechno/shubh_new_data/Mndalakanm/datas/src/main/AndroidManifest.xml:7:5-27:19
+12-->/home/shubh23/ShubhTechno/shubh_new_data/Mndalakanm/datas/src/main/AndroidManifest.xml:7:18-44
+13        <activity
+13-->/home/shubh23/ShubhTechno/shubh_new_data/Mndalakanm/datas/src/main/AndroidManifest.xml:8:9-13:15
+14            android:name="com.mtsahakis.mediaprojectiondemo.MainActivity"
+14-->/home/shubh23/ShubhTechno/shubh_new_data/Mndalakanm/datas/src/main/AndroidManifest.xml:9:13-41
+15            android:configChanges="orientation|screenSize"
+15-->/home/shubh23/ShubhTechno/shubh_new_data/Mndalakanm/datas/src/main/AndroidManifest.xml:10:13-59
+16            android:exported="true" />
+16-->/home/shubh23/ShubhTechno/shubh_new_data/Mndalakanm/datas/src/main/AndroidManifest.xml:11:13-36
+17        <activity
+17-->/home/shubh23/ShubhTechno/shubh_new_data/Mndalakanm/datas/src/main/AndroidManifest.xml:14:9-17:39
+18            android:name="com.mtsahakis.mediaprojectiondemo.ScreenCaptureActivity"
+18-->/home/shubh23/ShubhTechno/shubh_new_data/Mndalakanm/datas/src/main/AndroidManifest.xml:15:13-50
+19            android:configChanges="orientation|screenSize"
+19-->/home/shubh23/ShubhTechno/shubh_new_data/Mndalakanm/datas/src/main/AndroidManifest.xml:16:13-59
+20            android:exported="true" />
+20-->/home/shubh23/ShubhTechno/shubh_new_data/Mndalakanm/datas/src/main/AndroidManifest.xml:17:13-36
+21
+22        <service
+22-->/home/shubh23/ShubhTechno/shubh_new_data/Mndalakanm/datas/src/main/AndroidManifest.xml:19:9-22:63
+23            android:name="com.mtsahakis.mediaprojectiondemo.ScreenCaptureService"
+23-->/home/shubh23/ShubhTechno/shubh_new_data/Mndalakanm/datas/src/main/AndroidManifest.xml:20:13-49
+24            android:exported="true"
+24-->/home/shubh23/ShubhTechno/shubh_new_data/Mndalakanm/datas/src/main/AndroidManifest.xml:21:13-36
+25            android:foregroundServiceType="mediaProjection" />
+25-->/home/shubh23/ShubhTechno/shubh_new_data/Mndalakanm/datas/src/main/AndroidManifest.xml:22:13-60
+26        <service
+26-->/home/shubh23/ShubhTechno/shubh_new_data/Mndalakanm/datas/src/main/AndroidManifest.xml:23:9-25:40
+27            android:name="com.mtsahakis.mediaprojectiondemo.MainService"
+27-->/home/shubh23/ShubhTechno/shubh_new_data/Mndalakanm/datas/src/main/AndroidManifest.xml:24:13-40
+28            android:exported="false" />
+28-->/home/shubh23/ShubhTechno/shubh_new_data/Mndalakanm/datas/src/main/AndroidManifest.xml:25:13-37
+29    </application>
+30
+31</manifest>

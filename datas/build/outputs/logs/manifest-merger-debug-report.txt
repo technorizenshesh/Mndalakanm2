@@ -1,0 +1,67 @@
+-- Merging decision tree log ---
+manifest
+ADDED from /home/shubh23/ShubhTechno/shubh_new_data/Mndalakanm/datas/src/main/AndroidManifest.xml:2:1-29:12
+INJECTED from /home/shubh23/ShubhTechno/shubh_new_data/Mndalakanm/datas/src/main/AndroidManifest.xml:2:1-29:12
+INJECTED from /home/shubh23/ShubhTechno/shubh_new_data/Mndalakanm/datas/src/main/AndroidManifest.xml:2:1-29:12
+	package
+		INJECTED from /home/shubh23/ShubhTechno/shubh_new_data/Mndalakanm/datas/src/main/AndroidManifest.xml
+		ADDED from /home/shubh23/ShubhTechno/shubh_new_data/Mndalakanm/datas/src/main/AndroidManifest.xml:2:1-29:12
+		INJECTED from /home/shubh23/ShubhTechno/shubh_new_data/Mndalakanm/datas/src/main/AndroidManifest.xml
+	xmlns:android
+		ADDED from /home/shubh23/ShubhTechno/shubh_new_data/Mndalakanm/datas/src/main/AndroidManifest.xml:2:11-69
+uses-permission#android.permission.FOREGROUND_SERVICE
+ADDED from /home/shubh23/ShubhTechno/shubh_new_data/Mndalakanm/datas/src/main/AndroidManifest.xml:4:5-77
+	android:name
+		ADDED from /home/shubh23/ShubhTechno/shubh_new_data/Mndalakanm/datas/src/main/AndroidManifest.xml:4:22-74
+uses-permission#android.permission.SYSTEM_ALERT_WINDOW
+ADDED from /home/shubh23/ShubhTechno/shubh_new_data/Mndalakanm/datas/src/main/AndroidManifest.xml:5:5-78
+	android:name
+		ADDED from /home/shubh23/ShubhTechno/shubh_new_data/Mndalakanm/datas/src/main/AndroidManifest.xml:5:22-75
+application
+ADDED from /home/shubh23/ShubhTechno/shubh_new_data/Mndalakanm/datas/src/main/AndroidManifest.xml:7:5-27:19
+	android:allowBackup
+		ADDED from /home/shubh23/ShubhTechno/shubh_new_data/Mndalakanm/datas/src/main/AndroidManifest.xml:7:18-44
+activity#com.mtsahakis.mediaprojectiondemo.MainActivity
+ADDED from /home/shubh23/ShubhTechno/shubh_new_data/Mndalakanm/datas/src/main/AndroidManifest.xml:8:9-13:15
+	android:exported
+		ADDED from /home/shubh23/ShubhTechno/shubh_new_data/Mndalakanm/datas/src/main/AndroidManifest.xml:11:13-36
+	android:configChanges
+		ADDED from /home/shubh23/ShubhTechno/shubh_new_data/Mndalakanm/datas/src/main/AndroidManifest.xml:10:13-59
+	android:name
+		ADDED from /home/shubh23/ShubhTechno/shubh_new_data/Mndalakanm/datas/src/main/AndroidManifest.xml:9:13-41
+activity#com.mtsahakis.mediaprojectiondemo.ScreenCaptureActivity
+ADDED from /home/shubh23/ShubhTechno/shubh_new_data/Mndalakanm/datas/src/main/AndroidManifest.xml:14:9-17:39
+	android:exported
+		ADDED from /home/shubh23/ShubhTechno/shubh_new_data/Mndalakanm/datas/src/main/AndroidManifest.xml:17:13-36
+	android:configChanges
+		ADDED from /home/shubh23/ShubhTechno/shubh_new_data/Mndalakanm/datas/src/main/AndroidManifest.xml:16:13-59
+	android:name
+		ADDED from /home/shubh23/ShubhTechno/shubh_new_data/Mndalakanm/datas/src/main/AndroidManifest.xml:15:13-50
+service#com.mtsahakis.mediaprojectiondemo.ScreenCaptureService
+ADDED from /home/shubh23/ShubhTechno/shubh_new_data/Mndalakanm/datas/src/main/AndroidManifest.xml:19:9-22:63
+	android:exported
+		ADDED from /home/shubh23/ShubhTechno/shubh_new_data/Mndalakanm/datas/src/main/AndroidManifest.xml:21:13-36
+	android:foregroundServiceType
+		ADDED from /home/shubh23/ShubhTechno/shubh_new_data/Mndalakanm/datas/src/main/AndroidManifest.xml:22:13-60
+	android:name
+		ADDED from /home/shubh23/ShubhTechno/shubh_new_data/Mndalakanm/datas/src/main/AndroidManifest.xml:20:13-49
+service#com.mtsahakis.mediaprojectiondemo.MainService
+ADDED from /home/shubh23/ShubhTechno/shubh_new_data/Mndalakanm/datas/src/main/AndroidManifest.xml:23:9-25:40
+	android:exported
+		ADDED from /home/shubh23/ShubhTechno/shubh_new_data/Mndalakanm/datas/src/main/AndroidManifest.xml:25:13-37
+	android:name
+		ADDED from /home/shubh23/ShubhTechno/shubh_new_data/Mndalakanm/datas/src/main/AndroidManifest.xml:24:13-40
+uses-sdk
+INJECTED from /home/shubh23/ShubhTechno/shubh_new_data/Mndalakanm/datas/src/main/AndroidManifest.xml reason: use-sdk injection requested
+INJECTED from /home/shubh23/ShubhTechno/shubh_new_data/Mndalakanm/datas/src/main/AndroidManifest.xml
+INJECTED from /home/shubh23/ShubhTechno/shubh_new_data/Mndalakanm/datas/src/main/AndroidManifest.xml
+INJECTED from /home/shubh23/ShubhTechno/shubh_new_data/Mndalakanm/datas/src/main/AndroidManifest.xml
+INJECTED from /home/shubh23/ShubhTechno/shubh_new_data/Mndalakanm/datas/src/main/AndroidManifest.xml
+	android:targetSdkVersion
+		INJECTED from /home/shubh23/ShubhTechno/shubh_new_data/Mndalakanm/datas/src/main/AndroidManifest.xml
+		ADDED from /home/shubh23/ShubhTechno/shubh_new_data/Mndalakanm/datas/src/main/AndroidManifest.xml
+		INJECTED from /home/shubh23/ShubhTechno/shubh_new_data/Mndalakanm/datas/src/main/AndroidManifest.xml
+	android:minSdkVersion
+		INJECTED from /home/shubh23/ShubhTechno/shubh_new_data/Mndalakanm/datas/src/main/AndroidManifest.xml
+		ADDED from /home/shubh23/ShubhTechno/shubh_new_data/Mndalakanm/datas/src/main/AndroidManifest.xml
+		INJECTED from /home/shubh23/ShubhTechno/shubh_new_data/Mndalakanm/datas/src/main/AndroidManifest.xml
