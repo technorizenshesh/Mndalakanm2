@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/home_navigation"
+    app:startDestination="@id/home_nav">
+    <fragment
+        android:id="@+id/home_nav"
+        android:name="com.app.mndalakanm.ui.Home.HomeFragment"
+        android:label="HomeFragment"
+        tools:layout="@layout/fragment_home">
+
+    </fragment>
+    <fragment
+        android:id="@+id/statistics_nav"
+        android:name="com.app.mndalakanm.ui.Home.Statistics.StatisticsFragment"
+        android:label="StatisticsFragment"
+        tools:layout="@layout/fragment_statistics">
+
+    </fragment>
+    <fragment
+        android:id="@+id/modes_nav"
+        android:name="com.app.mndalakanm.ui.Home.Modes.ModesFragment"
+        android:label="ModesFragment"
+        tools:layout="@layout/fragment_modes">
+
+    </fragment>
+    <fragment
+        android:id="@+id/apps_nav"
+        android:name="com.app.mndalakanm.ui.Home.Apps.AppsFragment"
+        android:label="AppsFragment"
+        tools:layout="@layout/fragment_apps">
+        <action
+            android:id="@+id/apps_to_block"
+            app:destination="@+id/blocked_apps" />
+        <action
+            android:id="@+id/apps_to_system"
+            app:destination="@+id/system_apps" />
+        <action
+            android:id="@+id/apps_to_web_filtering"
+            app:destination="@+id/web_filtering" />
+
+
+    </fragment>
+    <fragment
+        android:id="@+id/time_nav"
+        android:name="com.app.mndalakanm.ui.Home.Time.TimeFragment"
+        android:label="TimeFragment"
+        tools:layout="@layout/fragment_time">
+        <action
+            android:id="@+id/time_nav_to_daily"
+            app:destination="@+id/daily_time" />
+        <action
+            android:id="@+id/time_nav_to_time_reward"
+            app:destination="@+id/time_reward" />
+        <action
+            android:id="@+id/time_nav_to_time_scheduleg"
+            app:destination="@+id/time_schedule" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/time_schedule"
+        android:name="com.app.mndalakanm.ui.Home.Time.Schedule.TimeScheduleFragment"
+        android:label="TimeScheduleFragment"
+        tools:layout="@layout/fragment_time_schedule">
+        <action
+            android:id="@+id/time_nav_to_add_time_scheduleg"
+            app:destination="@+id/add_time_schedule" />
+    </fragment>
+    <fragment
+        android:id="@+id/add_time_schedule"
+        android:name="com.app.mndalakanm.ui.Home.Time.Schedule.AddScheduleFragment"
+        android:label="AddScheduleFragment"
+        tools:layout="@layout/fragment_add_schedule">
+
+    </fragment>
+    <fragment
+        android:id="@+id/time_reward"
+        android:name="com.app.mndalakanm.ui.Home.Time.Rewards.TimeRewardFragment"
+        android:label="TimeRewardFragment"
+        tools:layout="@layout/fragment_time_reward">
+
+    </fragment>
+    <fragment
+        android:id="@+id/daily_time"
+        android:name="com.app.mndalakanm.ui.Home.Time.Daily.DailyTimeFragment"
+        android:label="DailyTimeFragment"
+        tools:layout="@layout/fragment_daily_time">
+        <action
+            android:id="@+id/time_nav_to_add_time"
+            app:destination="@+id/add_time" />
+    </fragment>
+    <fragment
+        android:id="@+id/add_time"
+        android:name="com.app.mndalakanm.ui.Home.Time.Daily.AddDailyTimeFragment"
+        android:label="AddDailyTimeFragment"
+        tools:layout="@layout/fragment_add_daily_time">
+
+    </fragment>
+    <fragment
+        android:id="@+id/geo_nav"
+        android:name="com.app.mndalakanm.ui.Home.Geo.GeoFragment"
+        android:label="GeoFragment"
+        tools:layout="@layout/fragment_geo">
+
+    </fragment>
+    <fragment
+        android:id="@+id/blocked_apps"
+        android:name="com.app.mndalakanm.ui.Home.Apps.BockedAppsFragment"
+        android:label="BockedAppsFragment"
+        tools:layout="@layout/fragment_bocked_apps" />
+    <fragment
+        android:id="@+id/un_blocked_apps"
+        android:name="com.app.mndalakanm.ui.Home.Apps.UnblockedAppsFragment"
+        android:label="UnblockedAppsFragment"
+        tools:layout="@layout/fragment_unblocked_apps" />
+    <fragment
+        android:id="@+id/system_apps"
+        android:name="com.app.mndalakanm.ui.Home.Apps.SystemAppsFragment"
+        android:label="SystemAppsFragment"
+        tools:layout="@layout/fragment_system_apps" />
+    <fragment
+        android:id="@+id/web_filtering"
+        android:name="com.app.mndalakanm.ui.Home.Apps.WebFilteringFragment"
+        android:label="WebFilteringFragment"
+        tools:layout="@layout/fragment_web_filtering" />
+<!--
+    <include app:graph="@navigation/navigation" />
+-->
+</navigation>

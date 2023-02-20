@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    >
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".ui.Home.Apps.AppsFragment">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            >
+            <LinearLayout
+                android:layout_marginTop="@dimen/_10sdp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_alignParentTop="true"
+                >
+                <RelativeLayout
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_alignParentTop="true"
+                    >
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentStart="true"
+                        android:layout_marginStart="@dimen/_5sdp"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:layout_marginEnd="@dimen/_5sdp"
+                        android:layout_marginBottom="@dimen/_10sdp"
+                        android:fontFamily="@font/poppins_bold"
+                        android:gravity="start"
+                        android:text="System apps for Child Mode"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_16sdp" />
+
+                    <ImageView
+                        android:layout_width="@dimen/_40sdp"
+                        android:layout_height="@dimen/_40sdp"
+                        android:layout_alignParentEnd="true"
+                        android:layout_marginStart="@dimen/_2sdp"
+                        android:layout_marginTop="@dimen/_2sdp"
+                        android:layout_marginEnd="@dimen/_12sdp"
+                        android:layout_marginBottom="@dimen/_2sdp"
+                        android:padding="@dimen/_2sdp"
+                        android:src="@drawable/child_icon" />
+                </RelativeLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_20sdp"
+                    android:layout_marginStart="@dimen/_5sdp"
+                    android:layout_marginEnd="@dimen/_5sdp"
+                    android:orientation="vertical">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:orientation="vertical"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_2sdp"
+                        android:gravity="center_vertical"
+
+                        >
+                        <TextView
+
+                            android:drawableRight="@drawable/locked"
+                            android:drawableLeft="@drawable/device_settings"
+                            android:drawablePadding="@dimen/_25sdp"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/_5sdp"
+                            android:layout_marginTop="@dimen/_5sdp"
+                            android:layout_marginEnd="@dimen/_15sdp"
+                            android:layout_marginBottom="@dimen/_5sdp"
+                            android:fontFamily="@font/poppins_bold"
+                            android:gravity="center_vertical"
+                            android:maxLines="1"
+                            android:text="App Setting"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/_14sdp" />
+                        <TextView
+                          android:background="@null"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/_30sdp"
+                            android:fontFamily="@font/poppinsregular"
+                            android:hint="Block access to device settings to stop your child removing Mndalakanm from their device "
+                            android:padding="@dimen/_5sdp"
+                            android:textColor="@color/texts"
+                            android:textSize="@dimen/_10sdp" />
+
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:orientation="vertical"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_2sdp"
+                        android:gravity="center_vertical"
+
+                        >
+                        <TextView
+
+                            android:drawableRight="@drawable/locked"
+                            android:drawableLeft="@drawable/app_stores"
+                            android:drawablePadding="@dimen/_25sdp"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/_5sdp"
+                            android:layout_marginTop="@dimen/_5sdp"
+                            android:layout_marginEnd="@dimen/_15sdp"
+                            android:layout_marginBottom="@dimen/_5sdp"
+                            android:fontFamily="@font/poppins_bold"
+                            android:gravity="center_vertical"
+                            android:maxLines="1"
+                            android:text="App Store "
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/_14sdp" />
+                        <TextView
+                          android:background="@null"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/_30sdp"
+                            android:fontFamily="@font/poppinsregular"
+                            android:hint="Block access to device settings to stop your child removing Mndalakanm from their device "
+                            android:padding="@dimen/_5sdp"
+                            android:textColor="@color/texts"
+                            android:textSize="@dimen/_10sdp" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+
+        </RelativeLayout>
+
+
+    </androidx.core.widget.NestedScrollView>
+</layout>

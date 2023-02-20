@@ -1,0 +1,268 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <include
+            android:layout_alignParentTop="true"
+            android:id="@+id/header"
+            layout="@layout/header_layout"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_50sdp" />
+
+
+        <ScrollView
+            android:layout_below="@id/header"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            >
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                >
+
+                <ImageView
+                    android:layout_marginTop="@dimen/_25sdp"
+                    android:padding="@dimen/_5sdp"
+                    android:layout_below="@+id/txt"
+                    android:layout_centerHorizontal="true"
+                    android:layout_gravity="center"
+                    android:layout_width="@dimen/_120sdp"
+                    android:layout_height="@dimen/_120sdp"
+                    android:src="@drawable/permission_image"
+                    />
+                <TextView
+                    android:layout_gravity="center"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/_10sdp"
+                    android:text="@string/mndalakanm_needs_these_permissions"
+                    android:textAlignment="center"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_14sdp"
+                    android:fontFamily="@font/poppins_bold" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:layout_marginBottom="@dimen/_5sdp"
+                    >
+                    <TextView
+
+                        android:padding="@dimen/_5sdp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_10sdp"
+                        android:text="Device admin"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_14sdp"
+                        android:fontFamily="@font/poppins_bold" />
+                    <TextView
+                        android:padding="@dimen/_5sdp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_10sdp"
+                        android:text="@string/first_off_mndalakanm_needs_administrator_access_so_you_can_use_it_to_lock_your_child_s_device_and_disable_access_to_the_camera_grant_access_on_the_next_page"
+                        android:textColor="@color/texts"
+                        android:textSize="@dimen/_10sdp"
+                        android:fontFamily="@font/poppins_medium" />
+
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:layout_marginBottom="@dimen/_5sdp"
+                    >
+                    <TextView
+
+                        android:padding="@dimen/_5sdp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_10sdp"
+                        android:text="Overlays"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_14sdp"
+                        android:fontFamily="@font/poppins_bold" />
+                    <TextView
+                        android:padding="@dimen/_5sdp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_10sdp"
+                        android:text="@string/make_app_blocking_extra_effective_by_allowing_overlays_on_the_following_screen"
+                        android:textColor="@color/texts"
+                        android:textSize="@dimen/_10sdp"
+                        android:fontFamily="@font/poppins_medium" />
+
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:layout_marginBottom="@dimen/_5sdp"
+                    >
+                    <TextView
+
+                        android:padding="@dimen/_5sdp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_10sdp"
+                        android:text="Device admin"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_14sdp"
+                        android:fontFamily="@font/poppins_bold" />
+                    <TextView
+                        android:padding="@dimen/_5sdp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_10sdp"
+                        android:text="@string/first_off_mndalakanm_needs_administrator_access_so_you_can_use_it_to_lock_your_child_s_device_and_disable_access_to_the_camera_grant_access_on_the_next_page"
+                        android:textColor="@color/texts"
+                        android:textSize="@dimen/_10sdp"
+                        android:fontFamily="@font/poppins_medium" />
+
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:layout_marginBottom="@dimen/_5sdp"
+                    >
+                    <TextView
+
+                        android:padding="@dimen/_5sdp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_10sdp"
+                        android:text="Device admin"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_14sdp"
+                        android:fontFamily="@font/poppins_bold" />
+                    <TextView
+                        android:padding="@dimen/_5sdp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_10sdp"
+                        android:text="@string/first_off_mndalakanm_needs_administrator_access_so_you_can_use_it_to_lock_your_child_s_device_and_disable_access_to_the_camera_grant_access_on_the_next_page"
+                        android:textColor="@color/texts"
+                        android:textSize="@dimen/_10sdp"
+                        android:fontFamily="@font/poppins_medium" />
+
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:layout_marginBottom="@dimen/_5sdp"
+                    >
+                    <TextView
+
+                        android:padding="@dimen/_5sdp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_10sdp"
+                        android:text="Device admin"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_14sdp"
+                        android:fontFamily="@font/poppins_bold" />
+                    <TextView
+                        android:padding="@dimen/_5sdp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_10sdp"
+                        android:text="@string/first_off_mndalakanm_needs_administrator_access_so_you_can_use_it_to_lock_your_child_s_device_and_disable_access_to_the_camera_grant_access_on_the_next_page"
+                        android:textColor="@color/texts"
+                        android:textSize="@dimen/_10sdp"
+                        android:fontFamily="@font/poppins_medium" />
+
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:layout_marginBottom="@dimen/_5sdp"
+                    >
+                    <TextView
+
+                        android:padding="@dimen/_5sdp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_10sdp"
+                        android:text="Device admin"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_14sdp"
+                        android:fontFamily="@font/poppins_bold" />
+                    <TextView
+                        android:padding="@dimen/_5sdp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_10sdp"
+                        android:text="@string/first_off_mndalakanm_needs_administrator_access_so_you_can_use_it_to_lock_your_child_s_device_and_disable_access_to_the_camera_grant_access_on_the_next_page"
+                        android:textColor="@color/texts"
+                        android:textSize="@dimen/_10sdp"
+                        android:fontFamily="@font/poppins_medium" />
+
+                </LinearLayout>
+
+
+                <TextView
+                    android:padding="@dimen/_5sdp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/_10sdp"
+                    android:text="You can cancel your subscription at any time. Lifetime is a one-off payment."
+                    android:textColor="@color/texts"
+                    android:gravity="center"
+                    android:textSize="@dimen/_10sdp"
+                    android:fontFamily="@font/poppins_bold" />
+                <TextView
+                    android:padding="@dimen/_5sdp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/_1sdp"
+                    android:text="Privacy"
+                    android:textColor="@color/texts"
+                    android:gravity="center"
+                    android:textSize="@dimen/_10sdp"
+                    android:fontFamily="@font/poppins_bold" />
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btn_sign_in"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginStart="@dimen/_10sdp"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:layout_marginEnd="@dimen/_10sdp"
+                    android:layout_marginBottom="@dimen/_10sdp"
+                    android:elevation="@dimen/_3sdp"
+                    android:fontFamily="@font/poppins_bold"
+                    android:outlineProvider="background"
+                    android:outlineSpotShadowColor="@color/white"
+                    android:padding="@dimen/_10sdp"
+                    android:text="Continue"
+                    android:textAllCaps="true"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/_12sdp"
+                    android:textStyle="bold"
+                    app:backgroundTint="@color/colorPrimary"
+                    app:cornerRadius="@dimen/_10sdp"
+                    app:rippleColor="@color/black" />
+
+            </LinearLayout>
+        </ScrollView>
+
+
+    </RelativeLayout>
+
+</layout>

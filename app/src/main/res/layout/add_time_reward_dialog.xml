@@ -1,0 +1,281 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart=".5dp"
+            android:layout_marginTop=".5dp"
+            android:layout_marginEnd=".5dp"
+            android:layout_marginBottom=".5dp"
+            android:background="@drawable/border_btn_white"
+            android:orientation="vertical"
+            android:padding="@dimen/_5sdp">
+
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/_15sdp"
+                android:fontFamily="@font/poppins_bold"
+                android:padding="@dimen/_10sdp"
+                android:text="@string/add_time_rewards"
+                android:textAlignment="center"
+                android:textColor="@color/texts"
+                android:textSize="@dimen/_14sdp" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/_5sdp"
+                android:background="@drawable/background_edit"
+                android:orientation="horizontal"
+                android:weightSum="2">
+
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:layout_weight=".75"
+                    android:background="@null"
+                    android:fontFamily="@font/poppinsregular"
+                    android:hint="@string/name_of_reward"
+                    android:inputType="text"
+                    android:padding="@dimen/_10sdp"
+                    android:textColor="@color/texts"
+                    android:textSize="@dimen/_12sdp" />
+
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/_5sdp"
+                android:fontFamily="@font/poppins_bold"
+                android:padding="@dimen/_10sdp"
+                android:text="@string/choose_reward_time"
+                android:textAlignment="textStart"
+                android:textColor="@color/hint_text_color"
+                android:textSize="@dimen/_12sdp" />
+
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:layout_margin="@dimen/_10sdp"
+                android:layout_gravity="center"
+                >
+
+            <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+                android:orientation="vertical"
+            android:layout_gravity="center"
+            >
+
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:weightSum="2"
+                    >
+
+                    <LinearLayout
+                        android:layout_weight="1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:layout_marginStart="@dimen/_10sdp"
+                        android:layout_marginEnd="@dimen/_10sdp"
+                        android:background="@drawable/background_edit"
+                        android:orientation="horizontal"
+                       >
+
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textAlignment="center"
+                            android:fontFamily="@font/poppins_medium"
+                            android:text="  +15 min "
+                            android:inputType="phone"
+                            android:padding="@dimen/_10sdp"
+                            android:textColor="@color/colorPrimary"
+                            android:textSize="@dimen/_16sdp" />
+
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_weight="1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:layout_marginStart="@dimen/_10sdp"
+                        android:layout_marginEnd="@dimen/_10sdp"
+                        android:background="@drawable/background_edit"
+
+                        android:orientation="horizontal"
+                       >
+
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="@dimen/_5sdp"
+                            android:textAlignment="center"
+                            android:fontFamily="@font/poppins_medium"
+                            android:text="  +30 min "
+                            android:inputType="phone"
+                            android:padding="@dimen/_10sdp"
+                            android:textColor="@color/hint_text_color"
+                            android:textSize="@dimen/_16sdp" />
+
+                    </LinearLayout>
+
+
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:weightSum="2"
+                    >
+
+                    <LinearLayout
+                        android:layout_weight="1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:orientation="horizontal"
+                        android:layout_marginStart="@dimen/_10sdp"
+                        android:layout_marginEnd="@dimen/_10sdp"
+                        android:background="@drawable/background_edit"
+                       >
+
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="@dimen/_5sdp"
+                            android:textAlignment="center"
+                            android:fontFamily="@font/poppins_medium"
+                            android:text="  +45 min "
+                            android:inputType="phone"
+                            android:padding="@dimen/_10sdp"
+                            android:textColor="@color/hint_text_color"
+                            android:textSize="@dimen/_16sdp" />
+
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_weight="1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:orientation="horizontal"
+                        android:layout_marginStart="@dimen/_10sdp"
+                        android:layout_marginEnd="@dimen/_10sdp"
+                        android:background="@drawable/background_edit"
+                       >
+
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="@dimen/_5sdp"
+                            android:textAlignment="center"
+                            android:fontFamily="@font/poppins_medium"
+                            android:text="  +50 min "
+                            android:inputType="phone"
+                            android:padding="@dimen/_10sdp"
+                            android:textColor="@color/hint_text_color"
+                            android:textSize="@dimen/_16sdp" />
+
+                    </LinearLayout>
+
+
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:orientation="horizontal"
+                    android:layout_margin="@dimen/_10sdp"
+                    android:background="@drawable/background_edit"
+                    >
+
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/_5sdp"
+                        android:textAlignment="center"
+                        android:fontFamily="@font/poppins_medium"
+                        android:text="@string/custom_time"
+                        android:inputType="phone"
+                        android:padding="@dimen/_10sdp"
+                        android:textColor="@color/hint_text_color"
+                        android:textSize="@dimen/_16sdp" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+            </RelativeLayout>
+
+        </LinearLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="@dimen/_5sdp"
+            android:layout_marginTop="@dimen/_5sdp"
+            android:layout_marginEnd="@dimen/_5sdp"
+            android:layout_marginBottom="@dimen/_5sdp">
+
+            <TextView
+                android:id="@+id/no_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_marginStart="@dimen/_5sdp"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:layout_marginEnd="@dimen/_5sdp"
+                android:layout_marginBottom="@dimen/_5sdp"
+                android:fontFamily="@font/poppins_medium"
+                android:padding="@dimen/_10sdp"
+                android:text="@string/cancel"
+                android:textColor="@color/colorPrimary"
+                android:textSize="@dimen/_12sdp" />
+
+
+            <TextView
+                android:id="@+id/yes_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_marginStart="@dimen/_5sdp"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:layout_marginEnd="@dimen/_5sdp"
+                android:layout_marginBottom="@dimen/_5sdp"
+                android:fontFamily="@font/poppins_medium"
+                android:padding="@dimen/_10sdp"
+                android:text="Save"
+                android:textColor="@color/colorPrimary"
+                android:textSize="@dimen/_12sdp" />
+
+        </RelativeLayout>
+
+    </RelativeLayout>
+</ScrollView>

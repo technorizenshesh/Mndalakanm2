@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    >
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        >
+        <include
+            layout="@layout/header_layout"
+            android:id="@+id/header" />
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fillViewport="true"
+            >
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                >
+
+                <LinearLayout
+                    android:layout_margin="@dimen/_10sdp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/white"
+                    android:orientation="vertical"
+                    >
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/_2sdp"
+                        android:fontFamily="@font/poppins_bold"
+                        android:text="Account"
+                        android:gravity="start"
+                        android:textColor="@color/texts"
+                        android:textSize="@dimen/_16sdp" />
+                    <TextView
+                        android:id="@+id/tvName"
+                        android:layout_marginStart="@dimen/_10sdp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_15sdp"
+                        android:fontFamily="@font/poppins_bold"
+                        android:text="Mahir Jain"
+                        android:gravity="start"
+                        android:textColor="@color/texts"
+                        android:textSize="@dimen/_13sdp" />
+
+                    <TextView
+                        android:id="@+id/tvEmail"
+                        android:layout_marginStart="@dimen/_10sdp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_5sdp"
+                        android:gravity="start"
+                        android:layout_below="@id/tvName"
+                        android:fontFamily="@font/poppinsregular"
+                        android:textColor="@color/texts"
+                        android:textSize="@dimen/_12sdp"
+                        android:layout_marginBottom="@dimen/_15sdp"
+                        android:text="jainmahir@321gmail.com" />
+                </LinearLayout>
+
+                <androidx.core.widget.NestedScrollView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:fillViewport="true"
+                    >
+
+                    <LinearLayout
+                        android:orientation="vertical"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_margin="@dimen/_5sdp">
+
+                        <TextView
+                            android:id="@+id/subscription"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:drawableLeft="@drawable/subscription"
+                            android:drawableRight="@drawable/next_arrow"
+                            android:drawablePadding="@dimen/_15sdp"
+                            android:fontFamily="@font/poppins_medium"
+                            android:padding="@dimen/_10sdp"
+                            android:text="Subscription"
+                            android:textColor="@color/texts"
+                            android:textSize="@dimen/_14sdp" />
+
+                        <TextView
+                            android:id="@+id/support"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:drawableLeft="@drawable/support"
+                            android:drawableRight="@drawable/next_arrow"
+                            android:drawablePadding="@dimen/_15sdp"
+                            android:fontFamily="@font/poppins_medium"
+                            android:padding="@dimen/_10sdp"
+                            android:text="Support"
+                            android:textColor="@color/texts"
+                            android:textSize="@dimen/_14sdp" />
+                        <TextView
+                            android:id="@+id/about"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:drawableLeft="@drawable/about"
+                            android:drawableRight="@drawable/next_arrow"
+                            android:drawablePadding="@dimen/_15sdp"
+                            android:fontFamily="@font/poppins_medium"
+                            android:padding="@dimen/_10sdp"
+                            android:text="About"
+                            android:textColor="@color/texts"
+                            android:textSize="@dimen/_14sdp" />
+                        <TextView
+                            android:id="@+id/setting"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:drawableLeft="@drawable/settings_filled"
+                            android:drawableRight="@drawable/next_arrow"
+                            android:drawablePadding="@dimen/_15sdp"
+                            android:fontFamily="@font/poppins_medium"
+                            android:padding="@dimen/_10sdp"
+                            android:text="Settings"
+                            android:textColor="@color/texts"
+                            android:textSize="@dimen/_14sdp" />
+                        <TextView
+
+                            android:id="@+id/logout_btn"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:drawableLeft="@drawable/logout"
+                            android:drawableRight="@drawable/next_arrow"
+                            android:drawablePadding="@dimen/_15sdp"
+                            android:fontFamily="@font/poppins_medium"
+                            android:padding="@dimen/_10sdp"
+                            android:text="Logout"
+                            android:textColor="@color/texts"
+                            android:textSize="@dimen/_14sdp" />
+
+                    </LinearLayout>
+
+                </androidx.core.widget.NestedScrollView>
+
+            </LinearLayout>
+        </androidx.core.widget.NestedScrollView>
+
+
+
+
+    </LinearLayout>
+
+</layout>

@@ -1,0 +1,234 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    >
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".ui.Home.Apps.AppsFragment">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            >
+            <LinearLayout
+                android:layout_marginTop="@dimen/_10sdp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_alignParentTop="true"
+                >
+            <RelativeLayout
+                android:layout_marginTop="@dimen/_10sdp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_alignParentTop="true"
+                >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_marginStart="@dimen/_5sdp"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:layout_marginEnd="@dimen/_5sdp"
+                    android:layout_marginBottom="@dimen/_10sdp"
+                    android:fontFamily="@font/poppins_bold"
+                    android:gravity="start"
+                    android:text="Block apps in Child Mode"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_16sdp" />
+
+                <ImageView
+                    android:layout_width="@dimen/_40sdp"
+                    android:layout_height="@dimen/_40sdp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginStart="@dimen/_2sdp"
+                    android:layout_marginTop="@dimen/_2sdp"
+                    android:layout_marginEnd="@dimen/_12sdp"
+                    android:layout_marginBottom="@dimen/_2sdp"
+                    android:padding="@dimen/_2sdp"
+                    android:src="@drawable/child_icon" />
+            </RelativeLayout>
+                <EditText
+                    android:id="@+id/txt_title"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:layout_margin="@dimen/_10sdp"
+                    android:background="@drawable/border_btn"
+                    android:drawableLeft="@drawable/search_dr"
+                    android:drawablePadding="@dimen/_15sdp"
+                    android:drawableTint="@color/colorPrimary"
+                    android:fontFamily="@font/poppins_bold"
+                    android:hint="search here"
+                    android:imeOptions="actionSearch"
+                    android:padding="@dimen/_10sdp"
+                    android:singleLine="true"
+                    android:textColor="@color/texts"
+                    android:textColorHint="@color/colorPrimary"
+                    android:textSize="@dimen/_12sdp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_20sdp"
+                    android:layout_marginStart="@dimen/_5sdp"
+                    android:layout_marginEnd="@dimen/_5sdp"
+                    android:orientation="vertical">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:orientation="vertical"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_2sdp"
+                        android:gravity="center_vertical"
+
+                        >
+                        <TextView
+                            android:drawableLeft="@drawable/sown_arroww"
+                            android:drawablePadding="@dimen/_15sdp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/_5sdp"
+                            android:layout_marginTop="@dimen/_5sdp"
+                            android:layout_marginEnd="@dimen/_5sdp"
+                            android:layout_marginBottom="@dimen/_5sdp"
+                            android:fontFamily="@font/poppins_bold"
+                            android:gravity="center_vertical"
+                            android:maxLines="1"
+                            android:text="Games  ( 1 )"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/_14sdp" />
+                        <TextView
+                            android:drawableLeft="@drawable/modes"
+                            android:drawablePadding="@dimen/_15sdp"
+                            android:background="@null"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/poppinsregular"
+                            android:hint="All Apps Locked "
+                            android:padding="@dimen/_5sdp"
+                            android:textColor="@color/texts"
+                            android:textSize="@dimen/_10sdp" />
+
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:orientation="vertical"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_2sdp"
+                        android:gravity="center_vertical"
+
+                        >
+                        <TextView
+                            android:drawableLeft="@drawable/sown_arroww"
+                            android:drawablePadding="@dimen/_15sdp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/_5sdp"
+                            android:layout_marginTop="@dimen/_5sdp"
+                            android:layout_marginEnd="@dimen/_5sdp"
+                            android:layout_marginBottom="@dimen/_5sdp"
+                            android:fontFamily="@font/poppins_bold"
+                            android:gravity="center_vertical"
+                            android:maxLines="1"
+                            android:text="Utility  ( 1 )"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/_14sdp" />
+                        <TextView
+                            android:drawableLeft="@drawable/modes"
+                            android:drawablePadding="@dimen/_15sdp"
+                            android:background="@null"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/poppinsregular"
+                            android:hint="All Apps Locked "
+                            android:padding="@dimen/_5sdp"
+                            android:textColor="@color/texts"
+                            android:textSize="@dimen/_10sdp" />
+
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:orientation="vertical"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_2sdp"
+                        android:gravity="center_vertical"
+
+                        >
+                        <TextView
+                            android:drawableLeft="@drawable/sown_arroww"
+                            android:drawablePadding="@dimen/_15sdp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/_5sdp"
+                            android:layout_marginTop="@dimen/_5sdp"
+                            android:layout_marginEnd="@dimen/_5sdp"
+                            android:layout_marginBottom="@dimen/_5sdp"
+                            android:fontFamily="@font/poppins_bold"
+                            android:gravity="center_vertical"
+                            android:maxLines="1"
+                            android:text="Social  ( 5 )"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/_14sdp" />
+                        <TextView
+                            android:drawableLeft="@drawable/modes"
+                            android:drawablePadding="@dimen/_15sdp"
+                            android:background="@null"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/poppinsregular"
+                            android:hint="All Apps Locked "
+                            android:padding="@dimen/_5sdp"
+                            android:textColor="@color/texts"
+                            android:textSize="@dimen/_10sdp" />
+
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:orientation="vertical"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_2sdp"
+                        android:gravity="center_vertical"
+
+                        >
+                        <TextView
+                            android:drawableLeft="@drawable/sown_arroww"
+                            android:drawablePadding="@dimen/_15sdp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/_5sdp"
+                            android:layout_marginTop="@dimen/_5sdp"
+                            android:layout_marginEnd="@dimen/_5sdp"
+                            android:layout_marginBottom="@dimen/_5sdp"
+                            android:fontFamily="@font/poppins_bold"
+                            android:gravity="center_vertical"
+                            android:maxLines="1"
+                            android:text="ENTERTAINMENT (13)"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/_14sdp" />
+                        <TextView
+                            android:drawableLeft="@drawable/modes"
+                            android:drawablePadding="@dimen/_15sdp"
+                            android:background="@null"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/poppinsregular"
+                            android:hint="All Apps Locked "
+                            android:padding="@dimen/_5sdp"
+                            android:textColor="@color/texts"
+                            android:textSize="@dimen/_10sdp" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+
+        </RelativeLayout>
+
+
+    </androidx.core.widget.NestedScrollView>
+</layout>

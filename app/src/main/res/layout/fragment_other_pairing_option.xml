@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <LinearLayout
+        android:background="@color/white"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <include
+            layout="@layout/header_layout"
+            android:id="@+id/header" />
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fillViewport="true">
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                >
+                <LinearLayout
+                    android:layout_alignParentTop="true"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+
+                        <LinearLayout
+                            android:id="@+id/qr_code"
+                            android:background="@drawable/border_btn"
+                            android:layout_marginStart="@dimen/_40sdp"
+                            android:layout_marginEnd="@dimen/_40sdp"
+                            android:layout_marginTop="@dimen/_40sdp"
+                            android:padding="@dimen/_10sdp"
+                            android:gravity="center"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
+                            <ImageView
+                                android:id="@+id/ivAddPost"
+                                android:layout_margin="@dimen/_10sdp"
+                                android:layout_centerHorizontal="true"
+                                android:layout_width="@dimen/_45sdp"
+                                android:layout_height="@dimen/_45sdp"
+                                android:layout_marginRight="@dimen/_10sdp"
+                                android:src="@drawable/qr_codes"/>
+                            <TextView
+                                android:gravity="center"
+                                android:layout_margin="@dimen/_5sdp"
+                                android:paddingLeft="5sp"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="Pair via QR-Code"
+                                android:textColor="@color/black"
+                                android:fontFamily="@font/poppins_bold"
+                                android:textSize="@dimen/_14sdp" />
+
+
+
+
+
+
+                        </LinearLayout>
+
+
+                        <LinearLayout
+                            android:id="@+id/link"
+                            android:background="@drawable/border_btn"
+                            android:layout_marginStart="@dimen/_40sdp"
+                            android:layout_marginEnd="@dimen/_40sdp"
+                            android:layout_marginTop="@dimen/_20sdp"
+                            android:padding="@dimen/_10sdp"
+                            android:gravity="center"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
+                            <ImageView
+                                android:layout_margin="@dimen/_10sdp"
+                                android:layout_centerHorizontal="true"
+                                android:layout_width="@dimen/_45sdp"
+                                android:layout_height="@dimen/_45sdp"
+                                android:layout_marginRight="@dimen/_10sdp"
+                                android:src="@drawable/by_link"/>
+                            <TextView
+                                android:gravity="center"
+                                android:layout_margin="@dimen/_5sdp"
+                                android:paddingLeft="5sp"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="Pair via link"
+                                android:textColor="@color/black"
+                                android:fontFamily="@font/poppins_bold"
+                                android:textSize="@dimen/_14sdp" />
+
+
+
+
+
+
+                        </LinearLayout>
+
+
+
+                    <LinearLayout
+                        android:visibility="gone"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_alignParentBottom="true"
+                        android:weightSum="2"
+                        >
+                        <com.google.android.material.button.MaterialButton
+                            android:id="@+id/btn_no"
+                            android:layout_weight="1"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentBottom="true"
+                            android:layout_marginStart="@dimen/_10sdp"
+                            android:layout_marginTop="@dimen/_10sdp"
+                            android:layout_marginEnd="@dimen/_10sdp"
+                            android:layout_marginBottom="@dimen/_10sdp"
+                            android:elevation="@dimen/_3sdp"
+                            android:fontFamily="@font/poppins_bold"
+                            android:outlineProvider="background"
+                            android:outlineSpotShadowColor="@color/white"
+                            android:padding="@dimen/_10sdp"
+                            android:text="No"
+                            android:textAllCaps="true"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/_12sdp"
+                            android:textStyle="bold"
+                            app:backgroundTint="@color/gray_two"
+                            app:cornerRadius="@dimen/_10sdp"
+                            app:rippleColor="@color/black" />
+                        <com.google.android.material.button.MaterialButton
+                            android:id="@+id/btn_yes"
+                            android:layout_weight="1"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentBottom="true"
+                            android:layout_marginStart="@dimen/_10sdp"
+                            android:layout_marginTop="@dimen/_10sdp"
+                            android:layout_marginEnd="@dimen/_10sdp"
+                            android:layout_marginBottom="@dimen/_10sdp"
+                            android:elevation="@dimen/_3sdp"
+                            android:fontFamily="@font/poppins_bold"
+                            android:outlineProvider="background"
+                            android:outlineSpotShadowColor="@color/white"
+                            android:padding="@dimen/_10sdp"
+                            android:text="Yes"
+                            android:textAllCaps="true"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/_12sdp"
+                            android:textStyle="bold"
+                            app:backgroundTint="@color/colorPrimary"
+                            app:cornerRadius="@dimen/_10sdp"
+                            app:rippleColor="@color/black" />
+
+
+
+                    </LinearLayout>
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/need_help"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:fontFamily="@font/poppins_bold"
+                    android:gravity="center"
+                    android:padding="@dimen/_15sdp"
+                    android:text="Need Help ?"
+                    android:textAlignment="center"
+                    android:textColor="@color/colorPrimaryYellow"
+                    android:textSize="@dimen/_12sdp" />
+            </RelativeLayout>
+        </ScrollView>
+
+
+    </LinearLayout>
+
+</layout>

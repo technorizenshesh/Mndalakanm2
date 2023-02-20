@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    >
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:context=".ui.setupParent.Menu.AboutFragment">
+
+        <include
+            layout="@layout/header_layout"
+            android:id="@+id/header" />
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fillViewport="true"
+            >
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                >
+
+                <LinearLayout
+                    android:layout_margin="@dimen/_10sdp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/white"
+                    android:orientation="vertical"
+                    >
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/_2sdp"
+                        android:fontFamily="@font/poppins_bold"
+                        android:text="Setting"
+                        android:gravity="start"
+                        android:textColor="@color/texts"
+                        android:textSize="@dimen/_16sdp" />
+
+                </LinearLayout>
+
+                <androidx.core.widget.NestedScrollView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:fillViewport="true"
+                    >
+
+                    <LinearLayout
+                        android:orientation="vertical"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_margin="@dimen/_5sdp">
+
+                        <TextView
+                            android:id="@+id/profile"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:drawableLeft="@drawable/personal_info"
+                            android:drawableRight="@drawable/next_arrow"
+                            android:drawablePadding="@dimen/_15sdp"
+                            android:fontFamily="@font/poppins_medium"
+                            android:padding="@dimen/_10sdp"
+                            android:text="Personal Info"
+                            android:textColor="@color/texts"
+                            android:textSize="@dimen/_14sdp" />
+
+                        <TextView
+                            android:id="@+id/change_pin"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:drawableLeft="@drawable/change_mndalakanm_pin"
+                            android:drawableRight="@drawable/next_arrow"
+                            android:drawablePadding="@dimen/_15sdp"
+                            android:fontFamily="@font/poppins_medium"
+                            android:padding="@dimen/_10sdp"
+                            android:text="Change Mndalakanm PIN"
+                            android:textColor="@color/texts"
+                            android:textSize="@dimen/_14sdp" />
+                        <TextView
+                            android:id="@+id/delete_ac"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:drawableLeft="@drawable/delete_ac"
+                            android:drawableRight="@drawable/next_arrow"
+                            android:drawablePadding="@dimen/_15sdp"
+                            android:fontFamily="@font/poppins_medium"
+                            android:padding="@dimen/_10sdp"
+                            android:text="Delete account"
+                            android:textColor="@color/texts"
+                            android:textSize="@dimen/_14sdp" />
+
+                    </LinearLayout>
+
+                </androidx.core.widget.NestedScrollView>
+
+            </LinearLayout>
+        </androidx.core.widget.NestedScrollView>
+
+    </LinearLayout>
+</layout>

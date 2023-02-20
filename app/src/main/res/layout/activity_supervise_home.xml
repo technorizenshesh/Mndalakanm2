@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".ui.Home.SuperviseHomeActivity">
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:padding="@dimen/_5sdp"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_40sdp"
+            android:visibility="visible"
+            android:background="@color/white"
+            >
+            <ImageView
+                android:id="@+id/img_header"
+                android:layout_width="@dimen/_25sdp"
+                android:layout_height="@dimen/_25sdp"
+                android:src="@drawable/back_arrow"
+                android:padding="@dimen/_2sdp"
+                android:layout_centerVertical="true"
+                android:scaleType="centerInside" />
+            <TextView
+                android:layout_gravity="center"
+                android:id="@+id/tv_logo"
+                android:padding="@dimen/_5sdp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+               android:text="@string/app_name"
+                android:textSize="@dimen/_14sdp"
+                android:fontFamily="@font/poppins_bold"
+                android:textColor="@color/colorPrimary"
+                android:layout_marginEnd="@dimen/_20sdp"
+                />
+            <ImageView
+                android:visibility="visible"
+                android:id="@+id/img_menu"
+                android:layout_width="@dimen/_25sdp"
+                android:layout_height="@dimen/_25sdp"
+                android:src="@drawable/info"
+                android:padding="@dimen/_2sdp"
+                android:layout_marginEnd="@dimen/_10sdp"
+                android:scaleType="centerInside"
+                android:layout_gravity="end"/>
+
+        </androidx.appcompat.widget.Toolbar>
+
+        <fragment
+            android:layout_below="@id/toolbar"
+            android:id="@+id/nav_host_home_fragment_container"
+            android:name="androidx.navigation.fragment.NavHostFragment"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:defaultNavHost="true"
+            android:layout_above="@+id/nav_view"
+            app:navGraph="@navigation/home_navigation" />
+        <com.google.android.material.bottomnavigation.BottomNavigationView
+            android:id="@+id/nav_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:background="?android:attr/windowBackground"
+            app:itemBackground="@drawable/activity_main__tab_background"
+            app:itemIconTint="@drawable/bottom_nav_icon_color_selector"
+            app:itemTextColor="@drawable/bottom_nav_icon_color_selector"
+            app:labelVisibilityMode="labeled"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:menu="@menu/bottom_nav_menu"
+            />
+    </RelativeLayout>
+
+</layout>
+

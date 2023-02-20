@@ -1,0 +1,397 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigation"
+    app:startDestination="@id/splash_nav">
+    <fragment
+        android:id="@+id/splash_nav"
+        android:name="com.app.mndalakanm.ui.LoginSignup.SplashFragment"
+        android:label="LoginTypeFragment"
+        tools:layout="@layout/fragment_splash">
+        <action
+            android:id="@+id/action_splash_to_login_type"
+            app:destination="@id/login_type_nav"
+            app:popUpTo="@id/navigation"
+        app:launchSingleTop="true"
+            app:popUpToInclusive="true"
+            />
+        <action
+            android:id="@+id/action_splash_to_pin"
+            app:destination="@id/pin_nav"
+            app:popUpToInclusive="true"
+            app:popUpTo="@id/navigation"
+            app:launchSingleTop="true" />
+        <action
+            app:popUpTo="@id/splash_nav"
+            android:id="@+id/action_splash_to_child_details_fragment"
+            app:destination="@id/child_details_fragment"
+            app:launchSingleTop="true"
+            app:popUpToInclusive="true"/>
+        <action
+            android:id="@+id/action_login_no_to_set_pin"
+            app:popUpToInclusive="true"
+            app:popUpTo="@+id/navigation"
+            app:destination="@id/set_pin"
+            app:launchSingleTop="true" />
+
+    </fragment>
+    <fragment
+        android:id="@+id/pin_nav"
+        android:name="com.app.mndalakanm.ui.setupParent.Menu.Setting.EnterPinFragment"
+        android:label="EnterFragment"
+        tools:layout="@layout/fragment_enter_pin">
+        <action
+            android:id="@+id/action_splash_to_provider"
+            app:destination="@id/NodeviceParentFragment"
+            app:popUpToInclusive="true"
+            app:popUpTo="@id/navigation"
+            app:launchSingleTop="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/login_type_nav"
+        android:name="com.app.mndalakanm.ui.LoginSignup.LoginTypeFragment"
+        android:label="LoginTypeFragment"
+        tools:layout="@layout/fragment_login_type">
+        <action
+            android:id="@+id/action_splash_to_login_by"
+            app:destination="@id/login_by"
+            app:launchSingleTop="true" />
+        <action
+            android:id="@+id/action_splash_to_login_by_child"
+            app:destination="@id/old_new_nav"
+            app:launchSingleTop="true" />
+
+    </fragment>
+    <fragment
+        android:id="@+id/old_new_nav"
+        android:name="com.app.mndalakanm.ui.LoginSignup.OldAcOrNotFragment"
+        android:label="OldAcOrNotFragment"
+        tools:layout="@layout/fragment_old_ac_or_not">
+        <action
+            android:id="@+id/action_splash_to_login_by"
+            app:destination="@id/login_by"
+            app:launchSingleTop="true" />
+        <action
+            android:id="@+id/action_splash_to_login_by_child"
+            app:destination="@id/enter_pairing_code_fragment"
+            app:launchSingleTop="true" />
+
+    </fragment>
+    <fragment
+        android:id="@+id/login_by"
+        android:name="com.app.mndalakanm.ui.LoginSignup.LoginByFragment"
+        android:label="LoginByFragment"
+        tools:layout="@layout/fragment_login_by">
+        <action
+            android:id="@+id/action_splash_to_login_no"
+            app:destination="@id/login_no"
+            app:launchSingleTop="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/login_no"
+        android:name="com.app.mndalakanm.ui.LoginSignup.LoginNoFragment"
+        android:label="LoginNoFragment"
+        tools:layout="@layout/fragment_login_no">
+        <!--<action
+            android:id="@+id/action_splash_to_plans"
+            app:popUpToInclusive="true"
+            app:popUpTo="@+id/navigation"
+            app:destination="@id/plans"
+            app:launchSingleTop="true" />-->
+        <action
+            android:id="@+id/action_login_no_to_set_pin"
+            app:popUpToInclusive="true"
+            app:popUpTo="@+id/navigation"
+            app:destination="@id/set_pin"
+            app:launchSingleTop="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/set_pin"
+        android:name="com.app.mndalakanm.ui.setupParent.Menu.Setting.SetPinFragment"
+        android:label="SetPinFragment"
+        tools:layout="@layout/fragment_set_pin">
+        <action
+            android:id="@+id/action_splash_to_plans"
+            app:popUpToInclusive="true"
+            app:popUpTo="@+id/navigation"
+            app:destination="@id/plans"
+            app:launchSingleTop="true" />
+
+    </fragment>
+    <fragment
+        android:id="@+id/plans"
+        android:name="com.app.mndalakanm.ui.LoginSignup.PlansFragment"
+        android:label="PlansFragment"
+        tools:layout="@layout/fragment_plans">
+        <action
+            android:id="@+id/action_splash_to_phone"
+            app:destination="@id/is_phone"
+            app:popUpTo="@+id/navigation"
+            app:launchSingleTop="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/is_phone"
+        android:name="com.app.mndalakanm.ui.setupParent.PhoneFragment"
+        android:label="PhoneFragment"
+        tools:layout="@layout/fragment_phone">
+        <action
+            android:id="@+id/action_splash_to_code_generated"
+            app:destination="@id/code_generated"
+            app:launchSingleTop="true"
+            />
+        <action
+            android:id="@+id/action_splash_to_NodeviceParentFragment"
+            app:destination="@id/NodeviceParentFragment"
+            app:popUpToInclusive="true"
+            app:popUpTo="@id/navigation"
+            app:launchSingleTop="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/code_generated"
+        android:name="com.app.mndalakanm.ui.setupParent.PairingCodeGenerateFragment"
+        android:label="PairingCodeGenerateFragment"
+        tools:layout="@layout/fragment_pairing_code_generate">
+        <action
+            android:id="@+id/action_splash_to_other_pairing_options"
+            app:destination="@id/other_pairing_options"
+            app:launchSingleTop="true" />
+        <action
+            android:id="@+id/action_code_to_no_connect"
+            app:destination="@id/NodeviceParentFragment"
+            app:launchSingleTop="true"
+            app:popUpTo="@id/navigation"
+            app:popUpToInclusive="true"/>
+    </fragment>
+    <fragment
+        android:id="@+id/other_pairing_options"
+        android:name="com.app.mndalakanm.ui.setupParent.OtherPairingOptionFragment"
+        android:label="OtherPairingOptionFragment"
+        tools:layout="@layout/fragment_other_pairing_option">
+        <action
+            android:id="@+id/action_splash_to_other_pairing_options_qr"
+            app:destination="@id/other_pairing_options_qr"
+            app:launchSingleTop="true" />
+        <action
+            android:id="@+id/action_splash_to_other_pairing_options_link"
+            app:destination="@id/other_pairing_options_link"
+            app:launchSingleTop="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/other_pairing_options_qr"
+        android:name="com.app.mndalakanm.ui.setupParent.ShowQRFragment"
+        android:label="ShowQRFragment"
+        tools:layout="@layout/fragment_show_q_r">
+        <action
+            android:id="@+id/action_splash_to_NodeviceParentFragment"
+            app:destination="@id/NodeviceParentFragment"
+            app:popUpTo="@id/navigation"
+            app:launchSingleTop="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/other_pairing_options_link"
+        android:name="com.app.mndalakanm.ui.setupParent.SharePairLinkFragment"
+        android:label="SharePairLinkFragment"
+        tools:layout="@layout/fragment_share_pair_link">
+        <action
+            android:id="@+id/action_splash_to_NodeviceParentFragment"
+            app:destination="@id/NodeviceParentFragment"
+            app:popUpTo="@id/navigation"
+            app:launchSingleTop="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/NodeviceParentFragment"
+        android:name="com.app.mndalakanm.ui.setupParent.NodeviceParentFragment"
+        android:label="NodeviceParentFragment"
+        tools:layout="@layout/fragment_nodevice_parent">
+
+        <action
+            android:id="@+id/action_splash_to_code_generated"
+            app:destination="@id/code_generated"
+            app:launchSingleTop="true" />
+        <action
+            android:id="@+id/action_splash_to_menu_fragment"
+            app:destination="@id/menu_fragment"
+            app:launchSingleTop="true" />
+        <action
+            android:id="@+id/action_splash_to_support_fragment"
+            app:destination="@id/support_fragment"
+            app:launchSingleTop="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/menu_fragment"
+        android:name="com.app.mndalakanm.ui.setupParent.MenuFragment"
+        android:label="fragment_menu"
+        tools:layout="@layout/fragment_menu">
+        <action
+            android:id="@+id/action_menu_to_login_type"
+            app:destination="@id/login_type_nav"
+            app:popUpTo="@+id/navigation"
+            app:launchSingleTop="true"
+            app:popUpToInclusive="true"
+            />
+        <action
+            android:id="@+id/action_splash_to_subscr_fragment"
+            app:destination="@id/plans"
+            app:launchSingleTop="true" />
+        <action
+            android:id="@+id/action_splash_to_support_fragment"
+            app:destination="@id/support_fragment"
+            app:launchSingleTop="true" />
+        <action
+            android:id="@+id/action_splash_to_about_fragment"
+            app:destination="@id/about_fragment"
+            app:launchSingleTop="true" />
+        <action
+            android:id="@+id/action_splash_to_setting_fragment"
+            app:destination="@id/setting_fragment"
+            app:launchSingleTop="true" />
+
+    </fragment>
+    <fragment
+        android:id="@+id/support_fragment"
+        android:name="com.app.mndalakanm.ui.setupParent.Menu.SupportFragment"
+        android:label="support"
+        tools:layout="@layout/fragment_support">
+        <action
+            android:id="@+id/action_splash_to_support_chat_fragment"
+            app:destination="@id/support_chat_fragment"
+            app:launchSingleTop="true" />
+
+    </fragment>
+    <fragment
+        android:id="@+id/subscr_fragment"
+        android:name="com.app.mndalakanm.ui.setupParent.Menu.SubscriptionSelectedFragment"
+        android:label="SubscriptionSelectedFragment"
+        tools:layout="@layout/fragment_subscription_selected" />
+    <fragment
+        android:id="@+id/about_fragment"
+        android:name="com.app.mndalakanm.ui.setupParent.Menu.AboutFragment"
+        android:label="AboutFragment"
+        tools:layout="@layout/fragment_about">
+
+        <action
+            android:id="@+id/action_splash_to_privacy_fragment"
+            app:destination="@id/privacy_fragment"
+            app:launchSingleTop="true" />
+        <action
+            android:id="@+id/action_splash_to_terms_fragment"
+            app:destination="@id/terms_fragment"
+            app:launchSingleTop="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/setting_fragment"
+        android:name="com.app.mndalakanm.ui.setupParent.Menu.SettingFragment"
+        android:label="SettingFragment"
+        tools:layout="@layout/fragment_setting">
+        <action
+            android:id="@+id/action_splash_to_ac_fragment"
+            app:destination="@id/ac_fragment"
+            app:launchSingleTop="true" />
+        <action
+            android:id="@+id/action_splash_to_delete_ac_fragment"
+            app:destination="@id/delete_ac_fragment"
+            app:launchSingleTop="true" />
+        <action
+            android:id="@+id/action_splash_to_change_pin_fragment"
+            app:destination="@id/change_pin_fragment"
+            app:launchSingleTop="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/ac_fragment"
+        android:name="com.app.mndalakanm.ui.setupParent.Menu.Setting.AcInfoFragment"
+        android:label="AcInfoFragment"
+        tools:layout="@layout/fragment_ac_info" />
+    <fragment
+        android:id="@+id/delete_ac_fragment"
+        android:name="com.app.mndalakanm.ui.setupParent.Menu.Setting.DeleteAcFragment"
+        android:label="DeleteAcFragment"
+        tools:layout="@layout/fragment_delete_ac" />
+    <fragment
+        android:id="@+id/change_pin_fragment"
+        android:name="com.app.mndalakanm.ui.setupParent.Menu.Setting.ChangePinFragment"
+        android:label="ChangePinFragment"
+        tools:layout="@layout/fragment_change_pin" />
+    <fragment
+        android:id="@+id/privacy_fragment"
+        android:name="com.app.mndalakanm.ui.setupParent.Menu.About.privacyFragment"
+        android:label="privacyFragment"
+        tools:layout="@layout/fragment_privacy" />
+    <fragment
+        android:id="@+id/terms_fragment"
+        android:name="com.app.mndalakanm.ui.setupParent.Menu.About.TermsFragment"
+        android:label="TermsFragment"
+        tools:layout="@layout/fragment_terms" />
+    <fragment
+        android:id="@+id/support_chat_fragment"
+        android:name="com.app.mndalakanm.ui.setupParent.Menu.SupportChatFragment"
+        android:label="SupportChatFragment"
+        tools:layout="@layout/fragment_support_chat" />
+    <fragment
+        android:id="@+id/enter_pairing_code_fragment"
+        android:name="com.app.mndalakanm.ui.setupKid.EnterPairingCodeFragment"
+        android:label="EnterPairingCodeFragment"
+        tools:layout="@layout/fragment_enter_pairing_code"
+
+        >
+        <action
+            android:id="@+id/action_splash_to_child_details_fragment"
+            app:destination="@id/child_details_fragment"
+            app:popUpTo="@+id/navigation"
+            app:launchSingleTop="true" />
+        <action
+            android:id="@+id/action_splash_to_scan_qr_fragment"
+            app:destination="@id/scan_qr_fragment"
+            app:launchSingleTop="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/scan_qr_fragment"
+        android:name="com.app.mndalakanm.ui.setupKid.ScanQrCodeFragment"
+        android:label="ScanQrCodeFragment"
+        tools:layout="@layout/fragment_scan_qr">
+        <action
+            android:id="@+id/action_splash_to_child_details_fragment"
+            app:destination="@id/child_details_fragment"
+            app:popUpTo="@+id/navigation"
+            app:launchSingleTop="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/child_details_fragment"
+        android:name="com.app.mndalakanm.ui.setupKid.ChildDetailsFragment"
+        android:label="ChildDetailsFragment"
+        tools:layout="@layout/fragment_child_details">
+        <action
+            android:id="@+id/action_menu_to_login_type"
+            app:destination="@id/login_type_nav"
+            app:popUpTo="@+id/navigation"
+            app:launchSingleTop="true"
+            app:popUpToInclusive="true"
+            />
+        <action
+            android:id="@+id/action_splash_to_child_permission_fragment"
+            app:destination="@id/child_permission_fragment"
+            app:launchSingleTop="true" />
+
+    </fragment>
+    <fragment
+        android:id="@+id/child_permission_fragment"
+        android:name="com.app.mndalakanm.ui.setupKid.ChildPermissionFragment"
+        android:label="ChildPermissionFragment"
+        tools:layout="@layout/fragment_child_permission">
+        <action
+            android:id="@+id/action_splash_to_request_all_permissions_fragment"
+            app:destination="@id/request_all_permissions_fragment"
+            app:launchSingleTop="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/request_all_permissions_fragment"
+        android:name="com.app.mndalakanm.ui.setupKid.RequestAllPermissionsFragment"
+        android:label="RequestAllPermissionsFragment"
+        tools:layout="@layout/fragment_request_all_permissions">
+
+    </fragment>
+<!--
+    <include app:graph="@navigation/home_navigation" />
+-->
+
+</navigation>

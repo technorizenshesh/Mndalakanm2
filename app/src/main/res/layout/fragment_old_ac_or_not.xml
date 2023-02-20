@@ -1,0 +1,230 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fillViewport="true"
+            tools:context=".ui.LoginSignup.OldAcOrNotFragment">
+
+            <LinearLayout
+                android:layout_marginTop="@dimen/_15sdp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="@dimen/_10sdp"
+
+                >
+                <TextView
+                    android:padding="@dimen/_10sdp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textAlignment="center"
+                    android:gravity="center"
+                    android:text="@string/setup_account"
+                    android:fontFamily="@font/poppins_bold"
+                    android:textColor="@color/texts"
+                    android:textSize="@dimen/_14sdp"
+                    />
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/old_card"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/_2sdp"
+                    app:cardElevation="@dimen/_3sdp"
+                    app:cardUseCompatPadding="true"
+                    app:cardBackgroundColor="@color/primary"
+                    app:cardCornerRadius="@dimen/_5sdp">
+
+                    <LinearLayout
+                        android:layout_marginStart="@dimen/_2sdp"
+                        android:layout_marginEnd="@dimen/_2sdp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginLeft="@dimen/_5sdp"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:visibility="gone"
+                                android:padding="@dimen/_5sdp"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_centerVertical="true"
+                                android:text="Haylie Aminoff"
+                                android:fontFamily="@font/poppins_bold"
+                                android:textColor="@color/colorPrimary"
+                                android:textSize="@dimen/_12sdp"
+                                android:textStyle="bold" />
+
+                            <LinearLayout
+                                android:gravity="center"
+                                android:padding="@dimen/_5sdp"
+                                android:layout_marginStart="@dimen/_5sdp"
+                                android:layout_weight=".7"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical">
+
+                                <TextView
+                                    android:gravity="center"
+                                    android:layout_marginTop="@dimen/_5sdp"
+                                    android:paddingLeft="5sp"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="@string/old_ac"
+                                    android:textColor="@color/white"
+                                    android:fontFamily="@font/poppins_bold"
+                                    android:textSize="@dimen/_15sdp" />
+                                <View
+                                    android:layout_width="match_parent"
+                                    android:layout_height="@dimen/_2sdp"
+                                    android:background="@color/white"
+                                    />
+
+                                <RelativeLayout
+                                    android:layout_margin="@dimen/_5sdp"
+                                    android:padding="@dimen/_5sdp"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content">
+
+                                    <TextView
+                                        android:layout_marginEnd="@dimen/_10sdp"
+                                        android:layout_marginStart="@dimen/_10sdp"
+                                        android:gravity="center"
+                                        android:textAlignment="center"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:text="@string/already_have_a_parent_account_just_need_user_setup"
+                                        android:maxLines="2"
+                                        android:fontFamily="@font/poppins_bold"
+                                        android:textColor="@color/white"
+                                        android:textSize="@dimen/_10sdp" />
+
+                                </RelativeLayout>
+
+                                <ImageView
+                                    android:visibility="gone"
+                                    android:layout_margin="@dimen/_5sdp"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="@dimen/_50sdp"
+                                    android:src="@drawable/type_a"
+                                    />
+
+                            </LinearLayout>
+
+                        </LinearLayout>
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/new_card"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/_2sdp"
+                    app:cardElevation="@dimen/_3sdp"
+                    app:cardUseCompatPadding="true"
+                    app:cardBackgroundColor="@color/colorPrimaryYellow"
+                    app:cardCornerRadius="@dimen/_5sdp">
+
+                    <LinearLayout
+                        android:layout_marginStart="@dimen/_2sdp"
+                        android:layout_marginEnd="@dimen/_2sdp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginLeft="@dimen/_5sdp"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:visibility="gone"
+                                android:padding="@dimen/_5sdp"
+                                android:id="@+id/tvUserName"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_centerVertical="true"
+                                android:text="Haylie Aminoff"
+                                android:fontFamily="@font/poppins_bold"
+                                android:textColor="@color/colorPrimary"
+                                android:textSize="@dimen/_12sdp"
+                                android:textStyle="bold" />
+
+                            <LinearLayout
+                                android:gravity="center"
+                                android:padding="@dimen/_5sdp"
+                                android:layout_marginStart="@dimen/_5sdp"
+                                android:layout_weight=".7"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical">
+
+                                <TextView
+                                    android:gravity="center"
+                                    android:layout_marginTop="@dimen/_5sdp"
+                                    android:id="@+id/tvName"
+                                    android:paddingLeft="5sp"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="@string/create_new_account"
+                                    android:textColor="@color/white"
+                                    android:fontFamily="@font/poppins_bold"
+                                    android:textSize="@dimen/_15sdp" />
+                                <View
+                                    android:layout_width="match_parent"
+                                    android:layout_height="@dimen/_2sdp"
+                                    android:background="@color/white"
+                                    />
+                                <RelativeLayout
+                                    android:layout_margin="@dimen/_5sdp"
+                                    android:padding="@dimen/_5sdp"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content">
+
+                                    <TextView
+                                        android:gravity="center"
+                                        android:textAlignment="center"
+                                        android:id="@+id/tv_Address_"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginStart="@dimen/_10sdp"
+                                        android:layout_marginEnd="@dimen/_10sdp"
+                                        android:text="@string/don_t_have_parent_ac_setup"
+                                        android:maxLines="2"
+                                        android:fontFamily="@font/poppins_bold"
+                                        android:textColor="@color/white"
+                                        android:textSize="@dimen/_10sdp" />
+
+                                </RelativeLayout>
+
+                                <ImageView
+                                    android:visibility="gone"
+                                    android:layout_margin="@dimen/_5sdp"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:src="@drawable/type_2"
+                                    />
+
+                            </LinearLayout>
+
+                        </LinearLayout>
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
+
+            </LinearLayout>
+
+        </ScrollView>
+</layout>

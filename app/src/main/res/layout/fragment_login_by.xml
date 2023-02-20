@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+       >
+
+        <LinearLayout
+            android:layout_marginTop="@dimen/_15sdp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="@dimen/_10sdp"
+
+            >
+            <ImageView
+                android:layout_gravity="center"
+                android:layout_width="160dp"
+                android:layout_height="140dp"
+                android:src="@drawable/logo_inside"
+
+                />
+            <TextView
+                android:padding="@dimen/_5sdp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAlignment="center"
+                android:gravity="center"
+                android:text="Protects children online"
+                android:fontFamily="@font/poppins_bold"
+                android:textColor="@color/texts"
+                android:textSize="@dimen/_12sdp"
+                />
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn_sign_in"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/_10sdp"
+                android:elevation="@dimen/_3sdp"
+                android:drawablePadding="@dimen/_50sdp"
+                android:drawableLeft="@drawable/phone_login"
+                android:fontFamily="@font/poppins_bold"
+                android:outlineProvider="background"
+                android:outlineSpotShadowColor="@color/white"
+                android:padding="@dimen/_10sdp"
+                android:text="sign in with Phone no."
+                android:textAllCaps="true"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_12sdp"
+                android:textStyle="bold"
+                app:backgroundTint="@color/colorPrimaryYellow"
+                app:cornerRadius="@dimen/_10sdp"
+                app:rippleColor="@color/black"
+                android:layout_alignParentBottom="true" />
+            <TextView
+                android:layout_margin="@dimen/_5sdp"
+                android:id="@+id/prvc"
+                android:padding="@dimen/_10sdp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAlignment="center"
+                android:gravity="center"
+                android:fontFamily="@font/poppins_bold"
+                android:textColor="@color/texts"
+                android:textSize="@dimen/_8sdp"
+
+                />
+        </LinearLayout>
+
+    </RelativeLayout>
+</layout>

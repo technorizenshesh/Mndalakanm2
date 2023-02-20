@@ -1,0 +1,624 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".ui.Home.Time.Schedule.AddScheduleFragment">
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fillViewport="true">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <LinearLayout
+                    android:visibility="gone"
+                     android:id="@+id/secdu_type"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    >
+
+                    <LinearLayout
+                        android:layout_margin="@dimen/_10sdp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@color/white"
+                        android:orientation="vertical"
+                        >
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="@dimen/_2sdp"
+                            android:fontFamily="@font/poppins_bold"
+                            android:text="Add Schedule"
+                            android:gravity="start"
+                            android:textColor="@color/texts"
+                            android:textSize="@dimen/_16sdp" />
+
+                    </LinearLayout>
+
+
+                        <LinearLayout
+                            android:orientation="vertical"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_margin="@dimen/_5sdp">
+
+                            <TextView
+                                android:id="@+id/subscription"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:drawableLeft="@drawable/homework"
+                                android:drawableRight="@drawable/next_arrow"
+                                android:drawablePadding="@dimen/_15sdp"
+                                android:fontFamily="@font/poppins_medium"
+                                android:padding="@dimen/_10sdp"
+                                android:text="Homework"
+                                android:textColor="@color/texts"
+                                android:textSize="@dimen/_14sdp" />
+
+                            <TextView
+                                android:id="@+id/support"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:drawableLeft="@drawable/dinner"
+                                android:drawableRight="@drawable/next_arrow"
+                                android:drawablePadding="@dimen/_15sdp"
+                                android:fontFamily="@font/poppins_medium"
+                                android:padding="@dimen/_10sdp"
+                                android:text="Dinner"
+                                android:textColor="@color/texts"
+                                android:textSize="@dimen/_14sdp" />
+                            <TextView
+                                android:id="@+id/about"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:drawableLeft="@drawable/bed_time"
+                                android:drawableRight="@drawable/next_arrow"
+                                android:drawablePadding="@dimen/_15sdp"
+                                android:fontFamily="@font/poppins_medium"
+                                android:padding="@dimen/_10sdp"
+                                android:text="BedTime"
+                                android:textColor="@color/texts"
+                                android:textSize="@dimen/_14sdp" />
+                            <TextView
+                                android:id="@+id/setting"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:drawableLeft="@drawable/settings_filled"
+                                android:drawableRight="@drawable/next_arrow"
+                                android:drawablePadding="@dimen/_15sdp"
+                                android:fontFamily="@font/poppins_medium"
+                                android:padding="@dimen/_10sdp"
+                                android:text="send_logs"
+                                android:textColor="@color/texts"
+                                android:textSize="@dimen/_14sdp" />
+                            <TextView
+                                android:visibility="gone"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:drawableLeft="@drawable/logout"
+                                android:drawableRight="@drawable/next_arrow"
+                                android:drawablePadding="@dimen/_15sdp"
+                                android:fontFamily="@font/poppins_medium"
+                                android:padding="@dimen/_10sdp"
+                                android:text="Logout"
+                                android:textColor="@color/texts"
+                                android:textSize="@dimen/_14sdp" />
+
+                        </LinearLayout>
+
+
+                </LinearLayout>
+                <LinearLayout
+                    android:visibility="visible"
+                     android:id="@+id/secdu_time"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    >
+
+                    <LinearLayout
+                        android:layout_margin="@dimen/_10sdp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@color/white"
+                        android:orientation="vertical"
+                        >
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="@dimen/_2sdp"
+                            android:fontFamily="@font/poppins_bold"
+                            android:text="@string/bed_time"
+                            android:gravity="start"
+                            android:textColor="@color/texts"
+                            android:textSize="@dimen/_16sdp" />
+
+                    </LinearLayout>
+
+
+                        <LinearLayout
+                            android:orientation="vertical"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="@dimen/_5sdp">
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/poppins_medium"
+                                android:padding="@dimen/_1sdp"
+                                android:text="@string/set_the_schedule_start_and_end_time"
+                                android:textColor="@color/hint_text_color"
+                                android:textSize="@dimen/_12sdp" />
+
+
+
+                        </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_marginTop="@dimen/_15sdp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:orientation="vertical"
+                        android:layout_gravity="center"
+                        >
+
+
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:weightSum="2"
+                            >
+
+                            <LinearLayout
+                                android:layout_weight="1"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:gravity="center"
+                                android:layout_marginStart="@dimen/_10sdp"
+                                android:layout_marginEnd="@dimen/_10sdp"
+                                android:orientation="vertical"
+                                >
+
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:textAlignment="center"
+                                    android:fontFamily="@font/poppins_bold"
+                                    android:text="@string/start_time"
+                                    android:textAllCaps="true"
+                                    android:inputType="phone"
+                                    android:padding="@dimen/_10sdp"
+                                    android:textColor="@color/hint_text_color"
+                                    android:textSize="@dimen/_12sdp" />
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:textAlignment="center"
+                                    android:fontFamily="@font/poppins_bold"
+                                    android:text=" 20:00 "
+                                    android:textAllCaps="true"
+                                    android:inputType="phone"
+                                    android:padding="@dimen/_10sdp"
+                                    android:textColor="@color/hint_text_color"
+                                    android:textSize="@dimen/_16sdp" />
+
+                            </LinearLayout>
+                            <LinearLayout
+                                android:layout_weight="1"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:gravity="center"
+                                android:layout_marginStart="@dimen/_10sdp"
+                                android:layout_marginEnd="@dimen/_10sdp"
+                                android:orientation="vertical"
+                                >
+
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:textAlignment="center"
+                                    android:fontFamily="@font/poppins_bold"
+                                    android:text="@string/end_time"
+                                    android:textAllCaps="true"
+                                    android:inputType="phone"
+                                    android:padding="@dimen/_10sdp"
+                                    android:textColor="@color/hint_text_color"
+                                    android:textSize="@dimen/_12sdp" />
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:textAlignment="center"
+                                    android:fontFamily="@font/poppins_bold"
+                                    android:text=" 4:00 "
+                                    android:textAllCaps="true"
+                                    android:inputType="phone"
+                                    android:padding="@dimen/_10sdp"
+                                    android:textColor="@color/hint_text_color"
+                                    android:textSize="@dimen/_16sdp" />
+
+                            </LinearLayout>
+
+
+                        </LinearLayout>
+
+
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:orientation="vertical"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_15sdp">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/poppins_medium"
+                            android:padding="@dimen/_1sdp"
+                            android:text="@string/finaly_select_days_for_schedule_to_be_active"
+                            android:textColor="@color/hint_text_color"
+                            android:textSize="@dimen/_12sdp" />
+
+                        
+                        
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:layout_marginTop="@dimen/_10sdp"
+                            android:padding="@dimen/_1sdp"
+                            >
+                            
+                 
+                        <LinearLayout
+                            android:id="@+id/monday"
+                            android:background="@drawable/border_btn_square"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/_10sdp"
+                            android:orientation="vertical">
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:orientation="vertical"
+                                android:layout_height="wrap_content"
+                                android:gravity="center_vertical"
+
+                                >
+                                <RelativeLayout
+                                    android:layout_margin="@dimen/_5sdp"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    >
+                                    <TextView
+                                        android:layout_alignParentStart="true"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginStart="@dimen/_15sdp"
+                                        android:layout_marginTop="@dimen/_2sdp"
+                                        android:fontFamily="@font/poppins_medium"
+                                        android:gravity="center_vertical"
+                                        android:maxLines="1"
+                                        android:text="@string/monday"
+                                        android:textColor="@color/hint_text_color"
+                                        android:textSize="@dimen/_14sdp" />
+
+                                    
+                                </RelativeLayout>
+
+
+                            </LinearLayout>
+
+                            <View
+                                android:layout_width="match_parent"
+                                android:layout_height="1dp"
+                                android:background="@color/gray_two"/>
+                        </LinearLayout>
+                        <LinearLayout
+                            android:background="@drawable/border_btn_white"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/_1sdp"
+                            android:orientation="vertical">
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:orientation="vertical"
+                                android:layout_height="wrap_content"
+                                android:gravity="center_vertical"
+
+                                >
+                                <RelativeLayout
+                                    android:layout_margin="@dimen/_5sdp"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    >
+                                    <TextView
+                                        android:layout_alignParentStart="true"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginStart="@dimen/_15sdp"
+                                        android:layout_marginTop="@dimen/_2sdp"
+                                        android:fontFamily="@font/poppins_medium"
+                                        android:gravity="center_vertical"
+                                        android:maxLines="1"
+                                        android:text="@string/tuesday"
+                                        android:textColor="@color/hint_text_color"
+                                        android:textSize="@dimen/_14sdp" />
+
+                                   
+                                </RelativeLayout>
+
+
+                            </LinearLayout>
+
+                            <View
+                                android:layout_width="match_parent"
+                                android:layout_height="1dp"
+                                android:background="@color/gray_two"/>
+                        </LinearLayout>
+                        <LinearLayout
+                            android:background="@drawable/border_btn_white"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/_1sdp"
+                            android:orientation="vertical">
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:orientation="vertical"
+                                android:layout_height="wrap_content"
+                                android:gravity="center_vertical"
+
+                                >
+                                <RelativeLayout
+                                    android:layout_margin="@dimen/_5sdp"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    >
+                                    <TextView
+                                        android:layout_alignParentStart="true"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginStart="@dimen/_15sdp"
+                                        android:layout_marginTop="@dimen/_2sdp"
+                                        android:fontFamily="@font/poppins_medium"
+                                        android:gravity="center_vertical"
+                                        android:maxLines="1"
+                                        android:text="@string/wednesday"
+                                        android:textColor="@color/hint_text_color"
+                                        android:textSize="@dimen/_14sdp" />
+
+                                   
+                                </RelativeLayout>
+                                 
+
+
+                            </LinearLayout>
+
+                            <View
+                                android:layout_width="match_parent"
+                                android:layout_height="1dp"
+                                android:background="@color/gray_two"/>
+                        </LinearLayout>
+                        <LinearLayout
+                            android:background="@drawable/border_btn_white"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/_1sdp"
+                            android:orientation="vertical">
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:orientation="vertical"
+                                android:layout_height="wrap_content"
+                                android:gravity="center_vertical"
+
+                                >
+                                <RelativeLayout
+                                    android:layout_margin="@dimen/_5sdp"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    >
+                                    <TextView
+                                        android:layout_alignParentStart="true"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginStart="@dimen/_15sdp"
+                                        android:layout_marginTop="@dimen/_2sdp"
+                                        android:fontFamily="@font/poppins_medium"
+                                        android:gravity="center_vertical"
+                                        android:maxLines="1"
+                                        android:text="@string/thursday"
+                                        android:textColor="@color/hint_text_color"
+                                        android:textSize="@dimen/_14sdp" />
+
+                                   
+                                </RelativeLayout>
+                                 
+
+
+                            </LinearLayout>
+
+                            <View
+                                android:layout_width="match_parent"
+                                android:layout_height="1dp"
+                                android:background="@color/gray_two"/>
+                        </LinearLayout>
+                        <LinearLayout
+                            android:background="@drawable/border_btn_white"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/_1sdp"
+                            android:orientation="vertical">
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:orientation="vertical"
+                                android:layout_height="wrap_content"
+                                android:gravity="center_vertical"
+
+                                >
+                                <RelativeLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_margin="@dimen/_5sdp"
+                                    >
+                                    <TextView
+
+                                        android:layout_alignParentStart="true"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginStart="@dimen/_15sdp"
+                                        android:layout_marginTop="@dimen/_2sdp"
+                                        android:fontFamily="@font/poppins_medium"
+                                        android:gravity="center_vertical"
+                                        android:maxLines="1"
+                                        android:text="@string/friday"
+                                        android:textColor="@color/hint_text_color"
+                                        android:textSize="@dimen/_14sdp" />
+
+                                   
+                                </RelativeLayout>
+                                 
+
+
+                            </LinearLayout>
+
+                            <View
+                                android:layout_width="match_parent"
+                                android:layout_height="1dp"
+                                android:background="@color/gray_two"/>
+                        </LinearLayout>
+                        <LinearLayout
+                            android:background="@drawable/border_btn_white"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/_1sdp"
+                            android:orientation="vertical">
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:orientation="vertical"
+                                android:layout_height="wrap_content"
+                                android:gravity="center_vertical"
+
+                                >
+                                <RelativeLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_margin="@dimen/_5sdp"
+                                    android:layout_height="wrap_content"
+                                    >
+                                    <TextView
+                                        android:layout_alignParentStart="true"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginStart="@dimen/_15sdp"
+                                        android:layout_marginTop="@dimen/_2sdp"
+                                        android:fontFamily="@font/poppins_medium"
+                                        android:gravity="center_vertical"
+                                        android:maxLines="1"
+                                        android:text="@string/saturday"
+                                        android:textColor="@color/hint_text_color"
+                                        android:textSize="@dimen/_14sdp" />
+
+                                   
+                                </RelativeLayout>
+                                 
+
+
+                            </LinearLayout>
+
+                            <View
+                                android:layout_width="match_parent"
+                                android:layout_height="1dp"
+                                android:background="@color/gray_two"/>
+                        </LinearLayout>
+                        <LinearLayout
+                            android:background="@drawable/border_btn_white"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/_1sdp"
+                            android:orientation="vertical">
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:orientation="vertical"
+                                android:layout_height="wrap_content"
+                                android:gravity="center_vertical"
+
+                                >
+                                <RelativeLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_margin="@dimen/_5sdp"
+                                    >
+                                    <TextView
+                                        android:layout_alignParentStart="true"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginStart="@dimen/_15sdp"
+                                        android:layout_marginTop="@dimen/_2sdp"
+                                        android:fontFamily="@font/poppins_medium"
+                                        android:gravity="center_vertical"
+                                        android:maxLines="1"
+                                        android:text="@string/sunday"
+                                        android:textColor="@color/hint_text_color"
+                                        android:textSize="@dimen/_14sdp" />
+
+                                   
+                                </RelativeLayout>
+                                 
+
+
+                            </LinearLayout>
+
+                            <View
+                                android:layout_width="match_parent"
+                                android:layout_height="1dp"
+                                android:background="@color/gray_two"/>
+                        </LinearLayout>
+                        </LinearLayout>
+                        <com.google.android.material.button.MaterialButton
+                            android:id="@+id/btn_yes"
+                            android:layout_weight="1"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentBottom="true"
+                            android:layout_marginStart="@dimen/_20sdp"
+                            android:layout_marginTop="@dimen/_50sdp"
+                            android:layout_marginEnd="@dimen/_20sdp"
+                            android:layout_marginBottom="@dimen/_5sdp"
+                            android:elevation="@dimen/_3sdp"
+                            android:fontFamily="@font/poppins_bold"
+                            android:outlineProvider="background"
+                            android:outlineSpotShadowColor="@color/white"
+                            android:padding="@dimen/_10sdp"
+                            android:text="@string/add_schedule"
+                            android:textAllCaps="true"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/_12sdp"
+                            android:textStyle="bold"
+                            app:backgroundTint="@color/colorPrimary"
+                            app:cornerRadius="@dimen/_12sdp"
+                            app:rippleColor="@color/black" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+
+
+            </RelativeLayout>
+
+        </androidx.core.widget.NestedScrollView>
+
+    </FrameLayout>
+</layout>
