@@ -46,7 +46,7 @@
                         android:fontFamily="@font/poppins_bold"
                         android:gravity="center"
                         android:padding="@dimen/_5sdp"
-                        android:text="Scan this QR code from your child's device"
+                        android:text="@string/scan_this_qr_code_from_your_child_s_device"
                         android:textAlignment="center"
                         android:textColor="@color/black"
                         android:textSize="@dimen/_16sdp" />

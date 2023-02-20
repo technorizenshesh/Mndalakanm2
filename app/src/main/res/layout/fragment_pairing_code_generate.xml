@@ -36,7 +36,7 @@
             android:fontFamily="@font/poppins_bold"
             android:gravity="center"
             android:padding="@dimen/_5sdp"
-            android:text="On your child's device:"
+            android:text="@string/on_your_child_s_device"
             android:textAlignment="center"
             android:textColor="@color/black"
             android:textSize="@dimen/_16sdp" />
@@ -52,7 +52,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/_10sdp"
-                android:text="1. Install Mndalakanm"
+                android:text="@string/_1_install_mndalakanm"
                 android:textColor="@color/texts"
                 android:textSize="@dimen/_10sdp"
                 android:fontFamily="@font/poppins_bold" />
@@ -61,7 +61,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/_10sdp"
-                android:text="2. Open Mndalakanm and select Child"
+                android:text="@string/_2_open_mndalakanm_and_select_child"
                 android:textColor="@color/texts"
                 android:textSize="@dimen/_10sdp"
                 android:fontFamily="@font/poppins_bold" />
@@ -70,7 +70,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/_10sdp"
-                android:text="3. Enter the pairing code below"
+                android:text="@string/_3_enter_the_pairing_code_below"
                 android:textColor="@color/texts"
                 android:textSize="@dimen/_10sdp"
                 android:fontFamily="@font/poppins_bold" />
@@ -92,7 +92,7 @@
                 android:paddingLeft="5sp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Your pairing code"
+                android:text="@string/your_pairing_code"
                 android:textColor="@color/black"
                 android:fontFamily="@font/poppinsregular"
                 android:textSize="@dimen/_14sdp" />
@@ -133,7 +133,7 @@
                 android:layout_marginTop="@dimen/_10sdp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Code valid for 01:00:00"
+                android:text="@string/code_valid_for_01_00_00"
                 android:textColor="#FFB800"
                 android:fontFamily="@font/poppins_medium"
                 android:textSize="@dimen/_10sdp" />
@@ -208,7 +208,7 @@
         android:layout_alignParentBottom="true"
         android:fontFamily="@font/poppins_bold"
         android:padding="@dimen/_15sdp"
-        android:text="Other pairing methods"
+        android:text="@string/other_pairing_methods"
         android:textAlignment="center"
         android:textColor="@color/primary"
         android:textSize="@dimen/_12sdp" />

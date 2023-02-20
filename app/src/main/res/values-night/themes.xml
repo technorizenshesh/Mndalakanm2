@@ -45,7 +45,38 @@
         <item name="android:textStyle">bold</item>
 
     </style>
+    <style name="NumberPickerTheme_secdule" parent="Theme.AppCompat.Light">
+        <item name="colorAccent">@color/texts</item>
+        <!-- Edit this colorControlNormal value as you need -->
+        <item name="colorControlNormal">@color/texts</item>
+
+        <item name="android:textColorPrimary">@color/texts</item>
+        <item name="android:background">@android:color/white</item>
+        <item name="android:textSize">25dp</item>
+        <item name="fontFamily">@font/poppins_bold</item>
+        <item name="font">@font/poppins_bold</item>
+        <item name="android:textStyle">bold</item>
+
+    </style>
     <style name="WhiteAccent">
         <item name="colorAccent">@color/white</item> <!-- Whatever color you want-->
+    </style>
+    <style name="Theme.App" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <item name="bottomNavigationStyle">@style/Widget.App.BottomNavigationView</item>
+    </style>
+
+    <style name="Widget.App.BottomNavigationView"
+        parent="Widget.MaterialComponents.BottomNavigationView.Colored">
+        <item name="materialThemeOverlay">@style/ThemeOverlay.App.BottomNavigationView</item>
+    </style>
+
+    <style name="ThemeOverlay.App.BottomNavigationView" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <item name="colorPrimary">@color/white</item>
+        <item name="colorOnPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryVariant">@color/gray_two</item>
+    </style>
+    <style name="TopSheet_DialogAnimation">
+        <item name="android:windowEnterAnimation">@anim/slide_out_from_top</item>
+        <item name="android:windowExitAnimation">@anim/slide_back_to_top</item>
     </style>
 </resources>

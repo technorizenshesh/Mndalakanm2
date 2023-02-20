@@ -35,7 +35,6 @@
 
    <style name="NumberPickerTheme_home" parent="Theme.AppCompat.Light">
         <item name="colorAccent">@android:color/white</item>
-
         <!-- Edit this colorControlNormal value as you need -->
         <item name="colorControlNormal">@color/colorPrimary</item>
 
@@ -48,7 +47,96 @@
 
    </style>
 
+    <style name="NumberPickerTheme_secdule" parent="Theme.AppCompat.Light">
+        <item name="colorAccent">@color/texts</item>
+        <!-- Edit this colorControlNormal value as you need -->
+        <item name="colorControlNormal">@color/texts</item>
+
+        <item name="android:textColorPrimary">@color/texts</item>
+        <item name="android:background">@android:color/white</item>
+        <item name="android:textSize">25dp</item>
+        <item name="fontFamily">@font/poppins_bold</item>
+        <item name="font">@font/poppins_bold</item>
+        <item name="android:textStyle">bold</item>
+
+    </style>
     <style name="WhiteAccent">
         <item name="colorAccent">@color/white</item> <!-- Whatever color you want-->
+    </style>
+
+    <style name="Theme.App" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <item name="bottomNavigationStyle">@style/Widget.App.BottomNavigationView</item>
+    </style>
+
+    <style name="Widget.App.BottomNavigationView"
+        parent="Widget.MaterialComponents.BottomNavigationView.Colored">
+        <item name="materialThemeOverlay">@style/ThemeOverlay.App.BottomNavigationView</item>
+    </style>
+
+    <style name="ThemeOverlay.App.BottomNavigationView" parent="">
+        <item name="colorPrimary">@color/white</item>
+        <item name="colorOnPrimary">@color/colorPrimary</item>
+       <item name="colorPrimaryVariant">@color/gray_two</item>
+    </style>
+    <style name="TopSheet_DialogAnimation">
+        <item name="android:windowEnterAnimation">@anim/slide_out_from_top</item>
+        <item name="android:windowExitAnimation">@anim/slide_back_to_top</item>
+    </style>
+    <style name="DialogFadeAnimation">
+        <item name="android:windowEnterAnimation">@android:anim/fade_in</item>
+        <item name="android:windowExitAnimation">@android:anim/fade_out</item>
+    </style>
+    <style name="txt_black_normal">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textSize">@dimen/_16sdp</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:textAppearance">@style/TextAppearance_open_sans_semibold</item>
+    </style>
+    <style name="TextAppearance_open_sans_semibold" parent="android:TextAppearance">
+        <item name="android:fontFamily">@font/poppins_medium</item>
+    </style>
+    <style name="Separator_View">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">@dimen/_1sdp</item>
+        <item name="android:background">@color/gray_two</item>
+    </style>
+    <style name="ThemeOverlay.MyNoTitleActivity" parent="AppTheme">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <!-- Dark Buttons -->
+    <style name="ThemeOverlay.MyDarkButton" parent="ThemeOverlay.AppCompat.Dark">
+        <item name="colorButtonNormal">@color/gray_two</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:layout_marginRight">4dp</item>
+        <item name="android:layout_marginLeft">4dp</item>
+        <item name="android:textColor">@android:color/white</item>
+    </style>
+
+    <!-- Light EditTexts -->
+    <style name="ThemeOverlay.MyLightEditText" parent="ThemeOverlay.AppCompat.Dark"/>
+
+    <style name="ThemeOverlay.MyTextDetail" parent="AppTheme">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:fadeScrollbars">true</item>
+        <item name="android:gravity">center</item>
+        <item name="android:maxLines">5</item>
+        <item name="android:padding">4dp</item>
+        <item name="android:scrollbars">vertical</item>
+        <item name="android:textSize">14sp</item>
+    </style>
+
+    <style name="ThemeOverlay.FirebaseIcon" parent="AppTheme">
+        <item name="android:layout_marginTop">@dimen/_24sdp</item>
+        <item name="android:layout_marginBottom">@dimen/_24sdp</item>
+    </style>
+
+    <style name="ThemeOverlay.MyTitleText" parent="AppTheme">
+        <item name="android:gravity">center</item>
+        <item name="android:textSize">36sp</item>
     </style>
 </resources>

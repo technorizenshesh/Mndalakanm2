@@ -1,13 +1,15 @@
 package com.app.mndalakanm.model
 
+import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
-import java.io.Serializable
+import kotlinx.parcelize.Parcelize
 
 
 /**
  * Created by Ravindra Birla on 09,February,2023
  */
-  public  data class ChildData  (
+@Parcelize
+data class ChildData(
     @SerializedName("id") var id: String? = null,
     @SerializedName("parent_id") var parentId: String? = null,
     @SerializedName("pairing_code") var pairingCode: String? = null,
@@ -23,4 +25,4 @@ import java.io.Serializable
     @SerializedName("time_ago") var timeAgo: String? = null,
     @SerializedName("address") var address: String? = null
 
-) : Serializable
+) : Parcelable

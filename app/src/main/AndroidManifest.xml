@@ -1,23 +1,54 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.app.mndalakanm">
+   >
+    <uses-feature
+        android:name="android.hardware.camera"
+        android:required="false" />
+    <uses-feature
+        android:name="android.hardware.camera.front"
+        android:required="false" />
+    <uses-feature
+        android:name="android.hardware.camera.autofocus"
+        android:required="false" />
+    <uses-feature
+        android:name="android.hardware.camera.flash"
+        android:required="false" />
+    <uses-feature
+        android:name="android.hardware.screen.landscape"
+        android:required="false" />
+    <uses-feature
+        android:name="android.hardware.wifi"
+        android:required="false" />
     <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"
+    <uses-permission
+        android:name="android.permission.WRITE_EXTERNAL_STORAGE"
         tools:ignore="ScopedStorage" />
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.VIBRATE" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
-    <!-- add required permission -->
-    <uses-permission android:name="android.permission.FOREGROUND_SERVICE"/>
-    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW"/>
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <uses-permission android:name="android.permission.REQUEST_DELETE_PACKAGES" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_BACKGROUND_LOCATION" />
+    <uses-permission android:name="android.permission.USE_FULL_SCREEN_INTENT" />
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+    <uses-permission android:name="android.permission.WAKE_LOCK"/>
+    <uses-permission
+        android:name="android.permission.QUERY_ALL_PACKAGES"
+        tools:ignore="QueryAllPackagesPermission" />
+    <uses-permission
+        android:name="android.permission.PACKAGE_USAGE_STATS"
+        tools:ignore="ProtectedPermissions" />
 
     <application
-        android:name="com.app.mndalakanm.Mndalakanm"
+        android:name=".Mndalakanm"
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
@@ -26,50 +57,49 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Mndalakanm"
+        android:requestLegacyExternalStorage="true"
         tools:targetApi="32">
         <service
-            android:name=".service.GPSTracker"
+            android:name=".service.SensorService"
+            android:enabled="true" >
+        </service>
+
+        <receiver
+            android:name=".service.SensorRestarterBroadcastReceiver"
             android:enabled="true"
             android:exported="true"
-            tools:ignore="Instantiatable" />
-        <service
-            android:name=".utils.ForegroundService"
-            android:enabled="true"
-            android:exported="true"/>
+            android:label="RestartServiceWhenStopped">
+        </receiver>
+        <activity android:name="com.app.mndalakanm.LockscreenActivity"
+            android:exported="true"
+            android:showOnLockScreen="true"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait"
 
-        <service android:name=".utils.ScreenshotService"
-            android:enabled="true"
-            android:exported="true"/>
-        <service
-            android:name=".utils.MyService"
-            android:enabled="true"
-            android:exported="true" />
+            >
+          </activity>
         <activity
-            android:windowSoftInputMode="adjustPan"
-            android:name="com.app.mndalakanm.ui.Home.SuperviseHomeActivity"
-            android:exported="false">
+            android:name=".ui.Home.SuperviseHomeActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan">
+
         </activity>
+
         <activity
-            android:name="com.app.mndalakanm.MainActivity"
-            android:windowSoftInputMode="adjustPan"
-            android:exported="true">
+            android:name=".MainActivity"
+            android:exported="true"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan">
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
             <intent-filter>
-                <!-- below line is to set the action to our intent to view -->
                 <action android:name="android.intent.action.VIEW" />
-
-                <!-- on below line we are adding a default category to our intent -->
                 <category android:name="android.intent.category.DEFAULT" />
-
-                <!-- on below line we are adding a category to make our app browsable -->
                 <category android:name="android.intent.category.BROWSABLE" />
-
-                <!-- on below line we are specifying the host name and
-                    the scheme type from which we will be calling our app -->
                 <data
                     android:host="www.mndalakanm.com"
                     android:scheme="https" />
@@ -82,34 +112,22 @@
 
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
+
                 <data
                     android:host="www.mndalakanm.com"
                     android:scheme="http" />
             </intent-filter>
         </activity>
+
+
+
         <meta-data
             android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version" />
 
         <meta-data
             android:name="com.google.android.maps.v2.API_KEY"
-            android:value="@string/api_key" />
-
-        <receiver
-            android:name="com.app.mndalakanm.utils.DeviceAdmin"
-            android:description="@string/device_description"
-            android:label="@string/device_admin_label"
-            android:permission="android.permission.BIND_DEVICE_ADMIN"
-            android:exported="false">
-            <meta-data
-                android:name="android.app.device_admin"
-                android:resource="@xml/my_admin" />
-
-            <intent-filter>
-                <action android:name="android.app.action.DEVICE_ADMIN_ENABLED" />
-            </intent-filter>
-        </receiver>
-
+            android:value="@string/google_maps_key" />
         <meta-data
             android:name="com.google.firebase.messaging.default_notification_icon"
             android:resource="@drawable/logo" />
@@ -117,16 +135,53 @@
         <meta-data
             android:name="com.google.firebase.messaging.default_notification_color"
             android:resource="@color/colorPrimary" />
+
         <meta-data
             android:name="com.google.firebase.messaging.default_notification_channel_id"
             android:value="@string/default_notification_channel_id" />
+
+        <receiver
+            android:name=".service.BootDeviceReceivers"
+            android:enabled="true"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+            </intent-filter>
+        </receiver>
+
+        <receiver
+            android:name=".utils.DeviceAdmin"
+            android:description="@string/device_description"
+            android:exported="false"
+            android:label="@string/device_admin_label"
+            android:permission="android.permission.BIND_DEVICE_ADMIN">
+            <intent-filter>
+                <action android:name="android.app.action.DEVICE_ADMIN_ENABLED" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.app.device_admin"
+                android:resource="@xml/my_admin" />
+        </receiver>
+<!--        <service
+            android:name=".MainService"
+            android:exported="false" />-->
         <service
-            android:name="com.app.mndalakanm.notification.MyFirebaseMessagingService"
+            android:name=".service.GPSTracker"
+            android:enabled="true"
+            android:exported="true"
+            tools:ignore="Instantiatable" />
+
+        <service
+            android:name=".notification.MyFirebaseMessagingService"
             android:exported="false">
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />
             </intent-filter>
         </service>
     </application>
+
+
+
 
 </manifest>

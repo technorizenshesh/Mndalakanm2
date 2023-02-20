@@ -1,14 +1,15 @@
 package com.app.mndalakanm.ui.setupParent.Menu
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.Fragment
 import androidx.navigation.Navigation
-import  com.techno.mndalakanm.R
-import com.techno.mndalakanm.databinding.FragmentSupportBinding
+import com.app.mndalakanm.R
+import com.app.mndalakanm
+.databinding.FragmentSupportBinding
 
 
 class SupportFragment : Fragment() {
@@ -27,6 +28,14 @@ class SupportFragment : Fragment() {
         binding.supportChat.setOnClickListener {
             Navigation.findNavController(binding.root)
                 .navigate(R.id.action_splash_to_support_chat_fragment)
+        }
+        binding.faq.setOnClickListener {
+            Navigation.findNavController(binding.root)
+                .navigate(R.id.action_splash_to_support_faq_fragment)
+        }
+        binding.deleteAc.setOnClickListener {
+            Navigation.findNavController(binding.root)
+                .navigate(R.id.action_splash_to_delete_ac_fragment)
         }
         return binding.root
     }

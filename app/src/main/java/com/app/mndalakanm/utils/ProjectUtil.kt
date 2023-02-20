@@ -30,11 +30,11 @@ import androidx.appcompat.app.AlertDialog
 import androidx.core.app.ActivityCompat
 import androidx.core.content.FileProvider
 import androidx.loader.content.CursorLoader
+import com.app.mndalakanm.MainActivity
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
 import com.google.android.material.snackbar.Snackbar
-import com.app.mndalakanm.MainActivity
-import  com.techno.mndalakanm.R
+import com.app.mndalakanm.R
 import java.io.ByteArrayOutputStream
 import java.io.File
 import java.text.SimpleDateFormat
@@ -89,7 +89,7 @@ class ProjectUtil {
         }
 
         fun checkPermissions(mContext: Context?): Boolean {
-            return if (ActivityCompat.checkSelfPermission(
+            return ActivityCompat.checkSelfPermission(
                     mContext!!,
                     Manifest.permission.CAMERA
                 ) == PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(
@@ -101,9 +101,6 @@ class ProjectUtil {
                             Manifest.permission.WRITE_EXTERNAL_STORAGE
                         ) ==
                                 PackageManager.PERMISSION_GRANTED)
-            ) {
-                true
-            } else false
         }
 
         fun logoutAppDialog(mContext: Context) {
@@ -275,7 +272,12 @@ class ProjectUtil {
         fun getImageUri(inContext: Context, inImage: Bitmap): Uri? {
             val bytes = ByteArrayOutputStream()
             inImage.compress(Bitmap.CompressFormat.JPEG, 100, bytes)
-            val path = MediaStore.Images.Media.insertImage(inContext.contentResolver, inImage, "Title" + System.currentTimeMillis(), null)
+            val path = MediaStore.Images.Media.insertImage(
+                inContext.contentResolver,
+                inImage,
+                "Title" + System.currentTimeMillis(),
+                null
+            )
             return Uri.parse(path)
         }
 
@@ -296,7 +298,7 @@ class ProjectUtil {
             val str_dest = "destination=" + dest.latitude + "," + dest.longitude
             val sensor = "sensor=false"
             val parameters =
-                str_origin + "&" + str_dest + "&" + sensor + "&key=" + context.resources.getString(R.string.api_key)
+                str_origin + "&" + str_dest + "&" + sensor + "&key=" + context.resources.getString(R.string.google_app_id)
             val output = "json"
             val url = "https://maps.googleapis.com/maps/api/directions/$output?$parameters"
             Log.e("PathURL", "====>$url")
@@ -335,8 +337,9 @@ class ProjectUtil {
             return dateFormat.format(Date())
         }
 
+
         fun getCurrentTime(): String? {
-            val dateFormat = SimpleDateFormat("HH:mm:ss")
+            val dateFormat = SimpleDateFormat("mm")
             return dateFormat.format(Date())
         }
 
@@ -359,7 +362,7 @@ class ProjectUtil {
             context: Context?,
             LATITUDE: Double,
             LONGITUDE: Double
-        ): String? {
+        ): String {
             var strAdd = "getting address..."
             if (context != null) {
                 val geocoder = Geocoder(context.applicationContext, Locale.getDefault())
@@ -387,7 +390,7 @@ class ProjectUtil {
             return strAdd
         }
 
-        private fun bearingBetweenLocations (
+        private fun bearingBetweenLocations(
             marker: MarkerOptions,
             latLng1: LatLng,
             latLng2: LatLng
@@ -430,6 +433,34 @@ class ProjectUtil {
                     }
                 })
             }
+        }
+
+        fun getCompleteAddressString(context: Context,LATITUDE:String,LONGITUDE:String): String {
+            var strAdd = "getting address..."
+            if (context != null) {
+                val geocoder = Geocoder(context.applicationContext, Locale.getDefault())
+                try {
+                    val addresses = geocoder.getFromLocation(LATITUDE.toDouble(), LONGITUDE.toDouble(), 1)
+                    if (addresses != null) {
+                        val returnedAddress = addresses[0]
+                        val strReturnedAddress = StringBuilder("")
+                        for (i in 0..returnedAddress.maxAddressLineIndex) {
+                            strReturnedAddress.append(returnedAddress.getAddressLine(i))
+                                .append("\n")
+                        }
+                        strAdd = strReturnedAddress.toString()
+                        Log.w("My Current address", strReturnedAddress.toString())
+                    } else {
+                        strAdd = "No Address Found"
+                        Log.w("My Current address", "No Address returned!")
+                    }
+                } catch (e: Exception) {
+                    e.printStackTrace()
+                    strAdd = "Cant get Address"
+                    Log.w("My Current address", "Canont get Address!")
+                }
+            }
+            return strAdd
         }
 
     }

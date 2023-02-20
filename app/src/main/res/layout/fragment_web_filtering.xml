@@ -40,7 +40,7 @@
                                 android:layout_marginBottom="@dimen/_10sdp"
                                 android:fontFamily="@font/poppins_bold"
                                 android:gravity="start"
-                                android:text="Web filtering for Child Mode"
+                                android:text="@string/web_filtering_for_child_mode"
                                 android:textColor="@color/black"
                                 android:textSize="@dimen/_16sdp" />
 

@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:tools="http://schemas.android.com/tools"
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    >
+    xmlns:tools="http://schemas.android.com/tools">
+
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:fillViewport="true"
-        >
+        android:fillViewport="true">
+
         <RelativeLayout
+            android:id="@+id/background"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/background"
-            android:orientation="vertical"
+            android:background="@color/white"
             android:gravity="bottom"
-            android:background="@color/white">
+            android:orientation="vertical">
 
             <LinearLayout
                 style="@style/Widget.Design.BottomNavigationView"
@@ -22,22 +22,24 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
                 android:padding="@dimen/_5sdp">
+
                 <RelativeLayout
-                    android:layout_marginTop="@dimen/_5sdp"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    >
+                    android:layout_marginTop="@dimen/_5sdp">
+
                     <LinearLayout
                         android:layout_width="wrap_content"
-                        android:orientation="vertical"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="@dimen/_5sdp"
                         android:layout_marginTop="@dimen/_5sdp"
                         android:layout_marginEnd="@dimen/_5sdp"
                         android:layout_marginBottom="@dimen/_5sdp"
                         android:gravity="center_vertical"
+                        android:orientation="vertical"
 
                         >
+
                         <TextView
                             android:id="@+id/tv_Address"
                             android:layout_width="wrap_content"
@@ -52,10 +54,11 @@
                             android:text="@string/add_place"
                             android:textColor="@color/black"
                             android:textSize="@dimen/_14sdp" />
+
                         <TextView
-                            android:background="@null"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:background="@null"
                             android:fontFamily="@font/poppinsregular"
                             android:hint="@string/selecttype"
                             android:padding="@dimen/_5sdp"
@@ -67,30 +70,30 @@
 
                     <de.hdodenhof.circleimageview.CircleImageView
                         android:id="@+id/btn_submit"
-                        android:layout_margin="@dimen/_5sdp"
                         android:layout_width="@dimen/_35sdp"
                         android:layout_height="@dimen/_35sdp"
-                        android:src="@drawable/down_arrow"
-                        android:layout_marginStart="@dimen/_5sdp"
                         android:layout_alignParentEnd="true"
-                        />
+                        android:layout_margin="@dimen/_5sdp"
+                        android:layout_marginStart="@dimen/_5sdp"
+                        android:src="@drawable/down_arrow" />
 
                 </RelativeLayout>
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:orientation="vertical"
                     android:layout_margin="@dimen/_5sdp"
+                    android:orientation="vertical"
 
                     >
+
                     <LinearLayout
-                        android:layout_marginBottom="@dimen/_10sdp"
-                        android:layout_alignParentTop="true"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
+                        android:layout_alignParentTop="true"
+                        android:layout_marginBottom="@dimen/_10sdp"
                         android:background="@color/white"
-                        android:orientation="vertical"
-                        >
+                        android:orientation="vertical">
 
                         <LinearLayout
                             android:layout_width="match_parent"
@@ -98,19 +101,20 @@
                             android:orientation="horizontal">
 
                             <TextView
+                                android:id="@+id/txt_home"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_margin="@dimen/_5sdp"
-                                android:background="@drawable/border_btn_white"
+                                android:background="@drawable/border_btn_primary"
                                 android:fontFamily="@font/poppins_bold"
                                 android:gravity="start"
                                 android:padding="@dimen/_5sdp"
                                 android:text="@string/home"
-                                android:backgroundTint="@color/colorPrimary"
                                 android:textColor="@color/white"
                                 android:textSize="@dimen/_12sdp" />
 
                             <TextView
+                                android:id="@+id/txt_work"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_margin="@dimen/_5sdp"
@@ -123,6 +127,7 @@
                                 android:textSize="@dimen/_12sdp" />
 
                             <TextView
+                                android:id="@+id/txt_school"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_margin="@dimen/_5sdp"
@@ -136,152 +141,165 @@
                         </LinearLayout>
 
 
-
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_margin="@dimen/_5sdp"
-                            android:orientation="horizontal"
-                            android:weightSum="2"
                             android:background="@drawable/background_edit"
-                            >
+                            android:orientation="horizontal"
+                            android:weightSum="2">
 
 
                             <EditText
+                                android:id="@+id/edit_name"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/_5sdp"
+                                android:layout_weight=".75"
                                 android:background="@null"
                                 android:drawableLeft="@drawable/profile"
                                 android:drawablePadding="@dimen/_15sdp"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="@dimen/_5sdp"
-                                android:layout_weight=".75"
                                 android:fontFamily="@font/poppinsregular"
                                 android:hint="@string/name"
-                                android:inputType="phone"
+                                android:inputType="text"
                                 android:padding="@dimen/_10sdp"
                                 android:textColor="@color/texts"
                                 android:textSize="@dimen/_12sdp" />
 
                         </LinearLayout>
+
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_margin="@dimen/_5sdp"
-                            android:orientation="horizontal"
-                            android:weightSum="2"
                             android:background="@drawable/background_edit"
-                            >
+                            android:orientation="horizontal"
+                            android:weightSum="2">
 
 
                             <EditText
-                                android:background="@null"
-                                android:drawableLeft="@drawable/geo"
-                                android:drawablePadding="@dimen/_15sdp"
+                                android:id="@+id/edt_address"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="@dimen/_5sdp"
                                 android:layout_weight=".75"
+                                android:background="@null"
+                                android:drawableLeft="@drawable/geo"
+                                android:drawablePadding="@dimen/_15sdp"
                                 android:fontFamily="@font/poppinsregular"
                                 android:hint="@string/address"
-                                android:inputType="phone"
+                                android:inputType="textPostalAddress"
                                 android:padding="@dimen/_10sdp"
                                 android:textColor="@color/texts"
                                 android:textSize="@dimen/_12sdp" />
 
 
                         </LinearLayout>
+
                         <LinearLayout
-                            android:padding="@dimen/_5sdp"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:orientation="horizontal"
-                            >
+                            android:padding="@dimen/_5sdp">
+
                             <TextView
-                                android:layout_margin="@dimen/_5sdp"
-                                android:background="@null"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
+                                android:layout_margin="@dimen/_5sdp"
+                                android:background="@null"
                                 android:fontFamily="@font/poppinsregular"
                                 android:hint="@string/radius"
                                 android:padding="@dimen/_5sdp"
                                 android:textColor="@color/texts"
                                 android:textSize="@dimen/_10sdp" />
+
                             <TextView
-                                android:textAlignment="textEnd"
-                                android:layout_margin="@dimen/_5sdp"
-                                android:background="@null"
+                                android:id="@+id/edit_radious"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
+                                android:layout_margin="@dimen/_5sdp"
+                                android:background="@null"
+                                android:digits="0123456789"
                                 android:fontFamily="@font/poppinsregular"
-                                android:hint="50 M"
+                                android:hint="@string/in_meters"
                                 android:padding="@dimen/_5sdp"
+                                android:textAlignment="textEnd"
                                 android:textColor="@color/black"
                                 android:textSize="@dimen/_10sdp" />
 
                         </LinearLayout>
+
                         <LinearLayout
-                            android:padding="@dimen/_5sdp"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:orientation="horizontal"
-                            >
+                            android:padding="@dimen/_5sdp"
+                            android:visibility="gone">
+
                             <TextView
-                                android:layout_margin="@dimen/_5sdp"
-                                android:background="@null"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
+                                android:layout_margin="@dimen/_5sdp"
+                                android:background="@null"
                                 android:fontFamily="@font/poppinsregular"
                                 android:hint="@string/range"
                                 android:padding="@dimen/_5sdp"
                                 android:textColor="@color/texts"
                                 android:textSize="@dimen/_10sdp" />
+
                             <TextView
-                                android:textAlignment="textEnd"
-                                android:layout_margin="@dimen/_5sdp"
-                                android:background="@null"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
+                                android:layout_margin="@dimen/_5sdp"
+                                android:background="@null"
                                 android:fontFamily="@font/poppinsregular"
                                 android:hint=""
                                 android:padding="@dimen/_5sdp"
+                                android:textAlignment="textEnd"
                                 android:textColor="@color/black"
                                 android:textSize="@dimen/_10sdp" />
 
                         </LinearLayout>
+
                         <com.google.android.material.slider.RangeSlider
+                            android:id="@+id/range_bar"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:padding="@dimen/_5sdp"
                             android:layout_marginStart="@dimen/_20sdp"
                             android:layout_marginEnd="@dimen/_20sdp"
-
                             android:foregroundTint="@color/colorPrimaryYellow"
-                            />
-                        <LinearLayout
                             android:padding="@dimen/_5sdp"
+                            android:value="50.0"
+                            android:valueFrom="0.0"
+                            android:valueTo="100.0"
+                            />
+
+                        <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:orientation="horizontal"
-                            >
+                            android:padding="@dimen/_5sdp">
+
                             <TextView
-                                android:layout_margin="@dimen/_5sdp"
-                                android:background="@null"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
+                                android:layout_margin="@dimen/_5sdp"
+                                android:background="@null"
                                 android:fontFamily="@font/poppinsregular"
                                 android:hint="@string/notifications"
                                 android:padding="@dimen/_5sdp"
                                 android:textColor="@color/texts"
                                 android:textSize="@dimen/_10sdp" />
+
                             <TextView
-                                android:textAlignment="textEnd"
-                                android:layout_margin="@dimen/_5sdp"
-                                android:background="@null"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
+                                android:layout_margin="@dimen/_5sdp"
+                                android:background="@null"
                                 android:fontFamily="@font/poppinsregular"
                                 android:hint=""
                                 android:padding="@dimen/_5sdp"
+                                android:textAlignment="textEnd"
                                 android:textColor="@color/black"
                                 android:textSize="@dimen/_10sdp" />
 
@@ -290,23 +308,24 @@
                         <Switch
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="@string/on_enter"
-                            android:fontFamily="@font/poppins_bold"
                             android:layout_margin="@dimen/_15sdp"
-
+                            android:fontFamily="@font/poppins_bold"
+                            android:text="@string/on_enter"
+android:id="@+id/on_enter"
                             tools:ignore="UseSwitchCompatOrMaterialXml" />
+
                         <Switch
+                            android:id="@+id/on_exit"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="On Exit"
-                            android:fontFamily="@font/poppins_bold"
                             android:layout_margin="@dimen/_15sdp"
+                            android:fontFamily="@font/poppins_bold"
+                            android:text="@string/on_exit"
 
                             tools:ignore="UseSwitchCompatOrMaterialXml" />
 
                         <com.google.android.material.button.MaterialButton
-                            android:id="@+id/btn"
-                            android:layout_weight="1"
+                            android:id="@+id/btn_save"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_alignParentBottom="true"
@@ -314,6 +333,7 @@
                             android:layout_marginTop="@dimen/_5sdp"
                             android:layout_marginEnd="@dimen/_50sdp"
                             android:layout_marginBottom="@dimen/_5sdp"
+                            android:layout_weight="1"
                             android:elevation="@dimen/_3sdp"
                             android:fontFamily="@font/poppins_bold"
                             android:outlineProvider="background"
@@ -332,7 +352,6 @@
 
 
                 </LinearLayout>
-
 
 
             </LinearLayout>

@@ -59,7 +59,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="@dimen/_10sdp"
-                        android:text="Device admin"
+                        android:text="@string/device_admin"
                         android:textColor="@color/black"
                         android:textSize="@dimen/_14sdp"
                         android:fontFamily="@font/poppins_bold" />

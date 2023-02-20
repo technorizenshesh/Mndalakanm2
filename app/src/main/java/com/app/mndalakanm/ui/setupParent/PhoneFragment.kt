@@ -1,15 +1,16 @@
 package com.app.mndalakanm.ui.setupParent
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.Fragment
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
-import  com.techno.mndalakanm.R
-import com.techno.mndalakanm.databinding.FragmentPhoneBinding
+import com.app.mndalakanm.R
+import com.app.mndalakanm
+.databinding.FragmentPhoneBinding
 
 class PhoneFragment : Fragment() {
 
@@ -28,10 +29,10 @@ class PhoneFragment : Fragment() {
         if (container != null) {
             navController = container.findNavController()
         }
-        if (getArguments() != null) {
+        if (arguments != null) {
             type = arguments?.getString("type").toString()
         }
-        binding.header.imgHeader.setOnClickListener{
+        binding.header.imgHeader.setOnClickListener {
             val bundle = Bundle()
             bundle.putString("type", "parent")
             navController.navigate(R.id.action_splash_to_NodeviceParentFragment, bundle)
@@ -40,7 +41,7 @@ class PhoneFragment : Fragment() {
         binding.btnYes.setOnClickListener {
             val bundle = Bundle()
             bundle.putString("type", "parent")
-            navController.navigate(R.id.action_splash_to_code_generated,bundle)
+            navController.navigate(R.id.action_splash_to_code_generated, bundle)
 
         }
         binding.btnNo.setOnClickListener {

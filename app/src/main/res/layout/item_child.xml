@@ -110,6 +110,23 @@
         android:paddingVertical="@dimen/_3sdp"
         android:textColor="@color/colorPrimary"
         android:textSize="@dimen/_10sdp" />
+    <TextView
+        android:id="@+id/delete_child"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginStart="@dimen/_5sdp"
+        android:layout_marginEnd="@dimen/_5sdp"
+        android:gravity="center"
+        android:padding="@dimen/_5sdp"
+        android:text="@string/delete_child"
+         android:drawablePadding="@dimen/_10sdp"
+        android:drawableRight="@drawable/ic_baseline_delete_forever"
+        android:fontFamily="@font/poppins_bold"
+        android:paddingHorizontal="@dimen/_8sdp"
+        android:paddingVertical="@dimen/_3sdp"
+        android:textColor="@color/red"
+        android:textSize="@dimen/_10sdp" />
 </LinearLayout>
 
         </androidx.cardview.widget.CardView>

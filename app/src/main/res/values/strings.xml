@@ -1,13 +1,10 @@
 <resources>
+    <string name="google_maps_key" translatable="false">AIzaSyBGvnIEFWolt-X2U21OhWwFxBs3o_oSA_8</string>
     <string name="app_name">Mndalakanm</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="api_key">AIzaSyB90Ml5dpDCKI5-WuAGnkT-EHyCJrUR7ao</string>
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="permission_denied">Permission Denied</string>
     <string name="parent_phone">Parent Phone</string>
-    <string name="datal"><![CDATA[<p><font color=#666666>Continue if you agree to our</font><font color=#5856F2>  <b><u>Terms & Conditions</u></b></font><font color=#666666> and the <u></font><b><font color=#5856F2>Privacy Policy</font></u></b></font></p>]]></string>
     <string name="protect_your_child_s_device_now">Protect your Child\'s device Now!</string>
-    <string name="terms_conditions"><![CDATA[Terms & Conditions]]></string>
+    <string name="terms_conditions">Terms and Conditions></string>
     <string name="mndalakanm_needs_these_permissions">Mndalakanm needs these permissions</string>
     <string name="first_off_mndalakanm_needs_administrator_access_so_you_can_use_it_to_lock_your_child_s_device_and_disable_access_to_the_camera_grant_access_on_the_next_page">First off, Mndalakanm needs administrator access so you can use it to lock your child\'s device and disable access to the camera. Grant access on the next page.</string>
     <string name="make_app_blocking_extra_effective_by_allowing_overlays_on_the_following_screen">Make app blocking extra effective by allowing overlays on the following screen.</string>
@@ -22,7 +19,7 @@
     <string name="already_have_a_parent_account_just_need_user_setup">Already have a Parent Account just need user Setup</string>
     <string name="create_new_account">Create New  Parent Account</string>
     <string name="please_check_internet">Please Check  Your Internet</string>
-    <string name="ok">Ok</string>
+    <string name="ok">OK</string>
     <string name="please_enter_phone_no">please enter  phone no</string>
     <string name="yes">Yes</string>
     <string name="logout_text">Logout</string>
@@ -88,7 +85,7 @@
     <string name="set_the_schedule_start_and_end_time">Set the Schedule Start and End Time</string>
     <string name="start_time">START TIME</string>
     <string name="end_time">END TIME</string>
-    <string name="finaly_select_days_for_schedule_to_be_active">Finaly, Select days for schedule to be active</string>
+    <string name="finaly_select_days_for_schedule_to_be_active">Finally, Select days for schedule to be active</string>
     <string name="tuesday">Tuesday</string>
     <string name="wednesday">Wednesday</string>
     <string name="thursday">Thursday</string>
@@ -103,5 +100,120 @@
     <string name="change">Change</string>
     <string name="enter">Enter</string>
     <string name="set">set</string>
-
+    <string name="select_action">Select Action</string>
+    <string name="recording">recording</string>
+    <string name="payment_methode">Payment Methode</string>
+    <string name="ccontinue">Continue</string>
+    <string name="charge_code">Charge code</string>
+    <string name="enter_redeem_code">  Enter redeem code</string>
+    <string name="purchase_redeem_code">Purchase Redeem Code</string>
+    <string name="redeem">Redeem</string>
+    <string name="purchase_desc"> When you purchase the code we will send it through an email and SMS to your registered mobile no and email address. you can also see the purchased code\'s list in redeem section </string>
+    <string name="purchase">Purchase</string>
+    <string name="purchase_note">Note :- We will send the code once we verify the purchase details</string>
+    <string name="e_mail_for_code">Enter email Address</string>
+    <string name="privacy">Privacy</string>
+    <string name="you_can_cancel_your_subscription_at_any_time_lifetime_is_a_one_off_payment">You can cancel your subscription at any time. Lifetime is a one-off payment.</string>
+    <string name="success_payment">Purchase Successful </string>
+    <string name="screenshot_requested">ScreenShot Requested</string>
+    <string name="request_time_from_parent">Request time from parent</string>
+    <string name="send_request">Send Request</string>
+    <string name="requested_screenshot_s">Requested ScreenShot\'s</string>
+    <string name="time_request_s">Time Request\'s</string>
+    <string name="no_data_found">No Data Found</string>
+    <string name="approved">Approved</string>
+    <string name="ignore">Ignore</string>
+    <string name="refresh">Refresh</string>
+    <string name="min">" Min"</string>
+    <string name="reward_requests">Reward Requests</string>
+    <string name="time_rewards">Time Rewards</string>
+    <string name="in_meters">in Meters</string>
+    <string name="on_exit">On Exit</string>
+    <string name="name_of_sechdule">name of schedule</string>
+    <string name="to">" to "</string>
+    <string name="delete_child">Delete Child</string>
+    <string name="are_you_sure_you_want_to_delete_this_child">Are you sure you want to delete this child?</string>
+    <string name="sechdule_type">Sechdule Type</string>
+    <string name="take_photo">Take Photo</string>
+    <string name="photo_library">Photo library</string>
+    <string name="empty_message">Empty Message</string>
+    <string name="_1_install_mndalakanm">1. Install Mndalakanm</string>
+    <string name="_2_open_mndalakanm_and_select_child">2. Open Mndalakanm and select Child</string>
+    <string name="_3_enter_the_pairing_code_below">3. Enter the pairing code below</string>
+    <string name="your_pairing_code">Your pairing code</string>
+    <string name="code_valid_for_01_00_00">Code valid for 01:00:00</string>
+    <string name="other_pairing_methods">Other pairing methods</string>
+    <string name="to_set_up_you_need_your_child_s_device_here_in_your_hand_have_you_got_it">To set up you need your child\'s device here in your hand. Have you got it?</string>
+    <string name="filter_bad_websites">Filter bad websites</string>
+    <string name="block_inappropriate_apps">Block inappropriate apps</string>
+    <string name="see_online_activity">See online activity</string>
+    <string name="continue_without_an_plan">Continue Without an Plan</string>
+    <string name="no_payment_for_now">NO payment for now</string>
+    <string name="do_you_already_have_mndalakanm_installed_on_another_device">Do you already have Mndalakanm installed on another device?</string>
+    <string name="_1_open_mndalakanm_on_another_device">1. Open Mndalakanm on another device</string>
+    <string name="_2_tap_mndalakanm_qr_code_scanner_top_right_of_screen">2. Tap Mndalakanm QR code scanner (top right of screen)</string>
+    <string name="_3_scan_the_qr_code">3. Scan the QR code</string>
+    <string name="personal_info">Personal Info</string>
+    <string name="change_mndalakanm_pin">Change Mndalakanm PIN</string>
+    <string name="delete_account">Delete account</string>
+    <string name="only_share_the_link_with_family_members_you_want_to_add_to_kidslox">Only share the link with family members you want to add to Kidslox</string>
+    <string name="scan_this_qr_code_from_your_child_s_device">Scan this QR code from your child\'s device</string>
+    <string name="faq">FAQ</string>
+    <string name="emergency_mndalakanm_removal">Emergency Mndalakanm Removal</string>
+    <string name="contact_us">Contact Us</string>
+    <string name="send_logs">Send logs</string>
+    <string name="support">Support</string>
+    <string name="enter_message">enter message</string>
+    <string name="system_apps_for_child_mode">System apps for Child Mode</string>
+    <string name="time_management_of_child">Time Management of Child</string>
+    <string name="time_schedules">Time Schedules</string>
+    <string name="web_filtering_for_child_mode">Web filtering for Child Mode</string>
+    <string name="datal"><![CDATA[<p><font color=#666666> Continue if you agree </font><font color=#5856F2>  <b><u>Terms and Conditions</u></b></font><font color=#666666>and the <u></font><b><font color=#5856F2>privacy policy</font></u></b></font></p>]]></string>
+    <string name="by_tapping_redeem_you_agree_to_the_gift_card_promotional_code_terms_and_condition_as_aplicable">
+        <![CDATA[By clicking "Redeem", you agree to the Gift Card and Promo Code Terms and Conditions as applicable.]]></string>
+    <string name="logout">Logout</string>
+    <string name="settings">Settings</string>
+    <string name="subscription">Subscription</string>
+    <string name="account">Account</string>
+    <string name="whose_phone_is_this">Whose phone is this ?</string>
+    <string name="i_like_to_monitor_from_this_device">I like to monitor from this device</string>
+    <string name="child_phone">Child phone</string>
+    <string name="i_like_to_monitor_this_device">I like to monitor this device</string>
+    <string name="enter_your_mobile_number">enter your mobile number</string>
+    <string name="next">Next</string>
+    <string name="phone_no">phone no</string>
+    <string name="pair_via_qr_code">Pair via QR-Code</string>
+    <string name="pair_via_link">Pair via link</string>
+    <string name="need_help">Need Help ?</string>
+    <string name="on_your_child_s_device">On your child\'s device:</string>
+    <string name="overlays">Overlays</string>
+    <string name="continueem">Continue</string>
+    <string name="share_link">Share Link</string>
+    <string name="protects_children_online">Protects children online</string>
+    <string name="sign_in_with_phone_no">sign in with Phone no.</string>
+    <string name="child_phone_lockdown">Child Phone LockDown</string>
+    <string name="limit_remaining">LIMIT REMAINING</string>
+    <string name="adjust_time">ADJUST TIME</string>
+    <string name="take_a_picture_of_your_child_s_screen">Take a picture of your child\'s screen</string>
+    <string name="telescope">Telescope</string>
+    <string name="take_a_snapshot">TAKE A SNAPSHOT</string>
+    <string name="enter_pairing_code">Enter Pairing Code</string>
+    <string name="or">Or</string>
+    <string name="are_you_sure_you_ll_miss_out_on_these_features_if_you_leave">Are you sure? You\'ll miss out on these features if you leave:</string>
+    <string name="continue_anyway">Continue Anyway</string>
+    <string name="daily_limit">Daily Limit</string>
+    <string name="device_admin">Device admin</string>
+    <string name="child_apps">Child Apps</string>
+    <string name="blocked_apps">Blocked Apps</string>
+    <string name="web_filtering">Web Filtering</string>
+    <string name="doyou_want">Do you want to Restrict child form using this app</string>
+    <string name="firebase_status_fmt">Firebase UID: %s</string>
+    <string-array name="image_loader">
+        <item>app_logo</item><!--app logo 0 -->
+        <item>flag</item><!--flag  1 -->
+        <item>girl</item><!--flag  2 -->
+        <item>man</item><!--flag  3 -->
+        <item>user</item><!--flag  4 -->
+        <item>other image</item><!--other image-->
+    </string-array>
 </resources>

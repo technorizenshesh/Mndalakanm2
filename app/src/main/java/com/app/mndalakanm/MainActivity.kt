@@ -1,9 +1,17 @@
 package com.app.mndalakanm
 
 import android.Manifest
+import android.Manifest.permission.POST_NOTIFICATIONS
 import android.content.pm.PackageManager
+import android.content.pm.PackageManager.PERMISSION_GRANTED
 import android.content.res.Configuration
+import android.os.Build.VERSION.SDK_INT
+import android.os.Build.VERSION_CODES.TIRAMISU
 import android.os.Bundle
+import android.util.Log
+import android.widget.Toast.LENGTH_LONG
+import androidx.activity.result.ActivityResultLauncher
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.databinding.DataBindingUtil
@@ -11,43 +19,142 @@ import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupWithNavController
-import com.google.android.material.navigation.NavigationView
+import androidx.work.Data
+import androidx.work.ExistingWorkPolicy
+import androidx.work.OneTimeWorkRequest
+import androidx.work.WorkManager
+import com.app.mndalakanm.databinding.ActivityMainBinding
 import com.app.mndalakanm.utils.SharedPref
-import com.techno.mndalakanm.R
-import com.techno.mndalakanm.databinding.ActivityMainBinding
-import com.vilborgtower.user.utils.Constant
+import com.google.android.material.navigation.NavigationView
+import com.google.firebase.FirebaseApp
+import com.google.firebase.appcheck.FirebaseAppCheck
+import com.app.mndalakanm.utils.Constant
+import com.app.mndalakanm.utils.work.NotifyWork
+import com.app.mndalakanm.utils.work.NotifyWork.Companion.NOTIFICATION_WORK
+import java.nio.charset.CodingErrorAction.REPLACE
 import java.util.*
+import java.util.concurrent.TimeUnit
+import kotlin.time.DurationUnit
 
 class MainActivity : AppCompatActivity() {
     lateinit var binding: ActivityMainBinding
     lateinit var sharedPref: SharedPref
- //   lateinit var utils: Utils
+    private lateinit var checkNotificationPermission: ActivityResultLauncher<String>
+    private var isPermission = false
+    //   lateinit var utils: Utils
     private lateinit var appBarConfiguration: AppBarConfiguration
-    lateinit var navController:  NavController
+    lateinit var navController: NavController
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
-      //  utils = Utils(get)
-     //   utils?.getFirebaseRegisterId()
-      appBarConfiguration = AppBarConfiguration(
+        //  utils = Utils(get)
+        //   utils?.getFirebaseRegisterId()
+        appBarConfiguration = AppBarConfiguration(
             setOf(
                 R.id.splash_nav, R.id.login_type_nav
             )
         )
         val host: NavHostFragment = supportFragmentManager
             .findFragmentById(R.id.nav_host_fragment_container) as NavHostFragment? ?: return
-
         // Set up Action Bar
-        sharedPref= SharedPref(this@MainActivity)
-         navController = host.navController
+        sharedPref = SharedPref(this@MainActivity)
+        navController = host.navController
         appBarConfiguration = AppBarConfiguration(navController.graph)
         setupNavigationMenu(navController)
+        FirebaseApp.initializeApp(/*context=*/this)
+        val firebaseAppCheck = FirebaseAppCheck.getInstance()
+
+        /*FirebaseApp.initializeApp(*//*context=*//*this)
+        val firebaseAppCheck = FirebaseAppCheck.getInstance()
+        firebaseAppCheck.installAppCheckProviderFactory(
+            PlayIntegrityAppCheckProviderFactory.getInstance()
+        )*/
         if (sharedPref.getStringValue(Constant.LANGUAGE).equals("")) {
             sharedPref.setStringValue(Constant.LANGUAGE, "en")
         }
         setLocale(sharedPref.getStringValue(Constant.LANGUAGE))
         //checkForPermission()
+        Log.e(
+            "TAG",
+            "FIREBASETOKENFIREBASETOKENFIREBASETOKEN: -----   " + sharedPref.getStringValue(Constant.FIREBASETOKEN))
+
+        checkNotificationPermission = registerForActivityResult(
+            ActivityResultContracts.RequestPermission()
+        ) { isGranted: Boolean ->
+            isPermission = isGranted
+        }
+
+        userInterface()
+
+        checkPermission()
+
+    }
+
+    private fun checkPermission() {
+        if (SDK_INT >= TIRAMISU) {
+            if (checkSelfPermission( POST_NOTIFICATIONS) == PERMISSION_GRANTED) {
+                isPermission = true
+            } else {
+                isPermission = false
+
+                checkNotificationPermission.launch(POST_NOTIFICATIONS)
+            }
+        } else {
+            isPermission = true
+        }
+    }
+
+    private fun userInterface() {
+        //setSupportActionBar(binding.toolbar)
+
+       // val titleNotification = getString(R.string.notification_title)
+       // binding.collapsingToolbarLayout.title = titleNotification
+
+        binding.root.setOnClickListener {
+            if (isPermission) {
+             /*   val customCalendar = Calendar.getInstance()
+                customCalendar.set(
+                    binding.datePicker.year,
+                    binding.datePicker.month,
+                    binding.datePicker.dayOfMonth,
+                    binding.timePicker.hour,
+                    binding.timePicker.minute, 0
+                )
+                val customTime = customCalendar.timeInMillis
+                val currentTime = currentTimeMillis()
+                if (customTime > currentTime) {
+                    val data = Data.Builder().putInt(NOTIFICATION_ID, 0).build()
+                    val delay = customTime - currentTime
+                    scheduleNotification(delay, data)
+
+                    val titleNotificationSchedule = getString(R.string.notification_schedule_title)
+                    val patternNotificationSchedule = getString(R.string.notification_schedule_pattern)
+                    make(
+                        binding.coordinatorLayout,
+                        titleNotificationSchedule + SimpleDateFormat(
+                            patternNotificationSchedule, getDefault()
+                        ).format(customCalendar.time).toString(),
+                        LENGTH_LONG
+                    ).show()
+                } else {
+                    val errorNotificationSchedule = getString(R.string.notifications)
+                    make(binding.coordinatorLayout, errorNotificationSchedule, LENGTH_LONG).show()
+                }*/
+            } else {
+                if (SDK_INT >= TIRAMISU) {
+                    checkNotificationPermission.launch(POST_NOTIFICATIONS)
+                }
+            }
+        }
+    }
+
+    private fun scheduleNotification(delay: Long, data: Data) {
+        val notificationWork = OneTimeWorkRequest.Builder(NotifyWork::class.java)
+            .setInitialDelay(delay, TimeUnit.MILLISECONDS).setInputData(data).build()
+
+        val instanceWorkManager = WorkManager.getInstance(this)
+        instanceWorkManager.beginUniqueWork(NOTIFICATION_WORK,ExistingWorkPolicy.REPLACE, notificationWork).enqueue()
     }
 
 
@@ -86,7 +193,7 @@ class MainActivity : AppCompatActivity() {
             )
         } else {
             // already permission granted
-           // handlerMethod()
+            // handlerMethod()
         }
     }
 
@@ -106,10 +213,10 @@ class MainActivity : AppCompatActivity() {
         }
     }*/
 
-   /* fun handlerMethod() {
-        Handler(Looper.getMainLooper()).postDelayed({
-            if (PrefManager.getBoolean(Constant.IS_LOGIN)) {
-                *//* val intent = Intent(applicationContext, HomeActivity::class.java)
+    /* fun handlerMethod() {
+         Handler(Looper.getMainLooper()).postDelayed({
+             if (PrefManager.getBoolean(Constant.IS_LOGIN)) {
+                 *//* val intent = Intent(applicationContext, HomeActivity::class.java)
                  startActivity(intent)
                  finish()*//*
             } else {

@@ -4,6 +4,8 @@ import android.content.ContentValues
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextUtils
+import android.text.TextWatcher
+import android.view.KeyEvent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -17,9 +19,10 @@ import com.app.mndalakanm.retrofit.ApiClient
 import com.app.mndalakanm.retrofit.ProviderInterface
 import com.app.mndalakanm.utils.DataManager
 import com.app.mndalakanm.utils.SharedPref
-import com.techno.mndalakanm.R
-import com.techno.mndalakanm.databinding.FragmentSetPinBinding
-import com.vilborgtower.user.utils.Constant
+import com.app.mndalakanm.R
+import com.app.mndalakanm
+.databinding.FragmentSetPinBinding
+import com.app.mndalakanm.utils.Constant
 import okhttp3.ResponseBody
 import org.json.JSONObject
 import retrofit2.Call
@@ -32,8 +35,9 @@ class SetPinFragment : Fragment() {
 
     lateinit var binding: FragmentSetPinBinding
     lateinit var sharedPref: SharedPref
-    private val editTexts: Array<EditText>? = null
     private lateinit var apiInterface: ProviderInterface
+
+    private val editTexts: Array<EditText>? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -46,6 +50,7 @@ class SetPinFragment : Fragment() {
 
         binding.header.imgHeader.setOnClickListener {
             activity?.onBackPressed()
+            sharedPref.clearAllPreferences()
         }
         configOtpEditText(
             binding.et1,
@@ -53,7 +58,19 @@ class SetPinFragment : Fragment() {
             binding.et3,
             binding.et4
         )
+        binding.et4.addTextChangedListener(object : TextWatcher {
+            override fun afterTextChanged(s: Editable?) {
+                if (!s.toString().equals("", true)) {
+                    binding.btnSignIn.performClick()
+                }
+            }
 
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+            }
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+            }
+        })
         binding.btnSignIn.setOnClickListener {
             val et1txt = binding.et1.text.toString()
             val et2txt = binding.et2.text.toString()
@@ -72,7 +89,25 @@ class SetPinFragment : Fragment() {
                 pairCode(otp)
             }
         }
+        binding.et4.setOnKeyListener { v, keyCode, event ->
 
+            when {
+
+                //Check if it is the Enter-Key,      Check if the Enter Key was pressed down
+                ((keyCode == KeyEvent.KEYCODE_ENTER) && (event.action == KeyEvent.ACTION_DOWN)) -> {
+
+
+                    //perform an action here e.g. a send message button click
+                    //   sendButton.performClick()
+                    binding.btnSignIn.performClick()
+                    //return true
+                    return@setOnKeyListener true
+                }
+                else -> false
+            }
+
+
+        }
         return binding.root
     }
 
@@ -92,13 +127,47 @@ class SetPinFragment : Fragment() {
                     val message = jsonObject.getString("message")
                     val status = jsonObject.getString("status")
                     if (status.equals("1")) {
-                      //  val result = jsonObject.getJSONObject("result")
+                        //  val result = jsonObject.getJSONObject("result")
                         val bundle = Bundle()
                         sharedPref.setStringValue(Constant.LOCK, "1")
                         sharedPref.setStringValue(Constant.CODE, otp)
                         bundle.putString("type", "parent")
-                        Navigation.findNavController(binding.root)
-                            .navigate(R.id.action_splash_to_plans, bundle)
+                        if (!sharedPref.getStringValue(Constant.USER_TYPE).toString()
+                                .equals("provider", true)
+                        ) {
+                            val bundle = Bundle()
+                            bundle.putString("type", "child")
+                            bundle.putString("from", "splash")
+                            Navigation.findNavController(binding.root).navigate(
+                                R.id.action_splash_to_child_details_fragment, bundle
+                            )
+                        } else {
+
+                            Navigation.findNavController(binding.root)
+                                .navigate(R.id.action_splash_to_plans, bundle)
+                            /*     if (sharedPref.getStringValue(Constant.CHILD_NAME).equals("", true)) {
+
+                       val bundle = Bundle()
+                       bundle.putString("type", "child")
+                       bundle.putString("from", "splash")
+                       Navigation.findNavController(binding.root).navigate(
+                           R.id.action_splash_to_child_details_fragment, bundle
+                       )
+                       //  navController.navigate(R.id.action_splash_to_provider)
+
+                   } else {
+                       // navController.navigate(R.id.action_splash_to_provider)
+                       requireActivity().startActivity(
+                           Intent(
+                               requireContext(),
+                               SuperviseHomeActivity::class.java
+                           )
+                       )
+                       requireActivity().finish()
+
+                   }*/
+                        }
+
                     } else {
                         Toast.makeText(context, message, Toast.LENGTH_SHORT).show()
 

@@ -8,8 +8,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.app.mndalakanm.model.SuccessSubsRes
 import com.app.mndalakanm.utils.SharedPref
 import com.app.mndalakanm.utils.SubClickListener
-import com.techno.mndalakanm.R
-import com.techno.mndalakanm.databinding.ItemSubscriptionBinding
+import com.app.mndalakanm.R
+import com.app.mndalakanm
+.databinding.ItemSubscriptionBinding
 
 
 class AdapterSubscriptionList(
@@ -22,7 +23,7 @@ class AdapterSubscriptionList(
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TransViewHolder {
-        var binding: ItemSubscriptionBinding = DataBindingUtil.inflate (
+        var binding: ItemSubscriptionBinding = DataBindingUtil.inflate(
             LayoutInflater.from(mContext), R.layout.item_subscription, parent, false
         )
         sharedPref = SharedPref(mContext)
@@ -54,6 +55,6 @@ class AdapterSubscriptionList(
     }
 
     class TransViewHolder(var binding: ItemSubscriptionBinding) :
-        RecyclerView.ViewHolder(binding.root) {}
+        RecyclerView.ViewHolder(binding.root)
 
 }

@@ -15,8 +15,10 @@ import android.webkit.WebView
 import android.webkit.WebViewClient
 import android.widget.Toast
 import androidx.core.content.ContextCompat
-import com.techno.mndalakanm.BuildConfig
-import  com.techno.mndalakanm.R
+import com.app.mndalakanm
+.BuildConfig
+import com.app.mndalakanm
+.R
 import java.text.DateFormat
 import java.text.NumberFormat
 import java.text.ParseException
@@ -39,6 +41,7 @@ class Utils(context: Context) {
             s
         }
     }
+
     fun removeLastChars(str: String, chars: Int): String? {
         return str.substring(0, str.length - chars)
     }
@@ -46,7 +49,7 @@ class Utils(context: Context) {
 
     fun shareAd(title: String) {
         val share = Intent(Intent.ACTION_SEND)
-        share.setType("text/plain")
+        share.type = "text/plain"
         share.addFlags(Intent.FLAG_ACTIVITY_CLEAR_WHEN_TASK_RESET)
 
         // Add data to the intent, the receiving app will decide
@@ -117,9 +120,9 @@ class Utils(context: Context) {
         mProgressDialog = Dialog(context, R.style.FullScreenDialog)
         mProgressDialog!!.requestWindowFeature(Window.FEATURE_NO_TITLE)
         val layoutParams: WindowManager.LayoutParams? =
-            mProgressDialog!!.getWindow()?.getAttributes()
-        mProgressDialog!!.getWindow()?.setAttributes(layoutParams)
-        mProgressDialog!!.getWindow()?.setLayout(
+            mProgressDialog!!.window?.attributes
+        mProgressDialog!!.window?.attributes = layoutParams
+        mProgressDialog!!.window?.setLayout(
             WindowManager.LayoutParams.MATCH_PARENT,
             WindowManager.LayoutParams.MATCH_PARENT
         )
@@ -140,7 +143,6 @@ class Utils(context: Context) {
             ex.printStackTrace()
         }
     }
-
 
 
     companion object {
@@ -191,7 +193,14 @@ class Utils(context: Context) {
         }
 
         fun capitalize(str: String): String {
-            return if (str == "") str else str.substring(0, 1).toUpperCase() + str.substring(1)
+            return if (str == "") str else str.substring(0, 1).uppercase(Locale.getDefault()) + str.substring(1)
+        }
+
+        fun getStringToDate(str: String): Date {
+
+            val format = SimpleDateFormat("yyyy-MM-dd hh:mm:ss")
+            val date = format.parse(str)
+            return date
         }
 
         fun changeDateFormat(date: String): String {
@@ -216,7 +225,7 @@ class Utils(context: Context) {
             var outputDateStr = ""
             outputDateStr = try {
                 val inputFormat: DateFormat = SimpleDateFormat("yyyy-MM-dd HH:mm:ss")
-                val outputFormat: DateFormat = SimpleDateFormat("EEE, MMM d, h:mm a")
+                val outputFormat: DateFormat = SimpleDateFormat("yyyy-MM-dd HH:mm:ss")
                 val date = inputFormat.parse(inputDateStr)
                 outputFormat.format(date)
             } catch (e: Exception) {
@@ -249,24 +258,22 @@ class Utils(context: Context) {
 
         fun loadWebView(value: String?, webView: WebView) {
             webView.requestFocus()
-            webView.getSettings().setLightTouchEnabled(true)
-            webView.getSettings().setJavaScriptEnabled(true)
-            webView.getSettings().setGeolocationEnabled(true)
-            webView.setSoundEffectsEnabled(true)
+            webView.settings.lightTouchEnabled = true
+            webView.settings.javaScriptEnabled = true
+            webView.settings.setGeolocationEnabled(true)
+            webView.isSoundEffectsEnabled = true
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-                webView.getSettings()
-                    .setLayoutAlgorithm(WebSettings.LayoutAlgorithm.TEXT_AUTOSIZING)
+                webView.settings.layoutAlgorithm = WebSettings.LayoutAlgorithm.TEXT_AUTOSIZING
             } else {
-                webView.getSettings().setLayoutAlgorithm(WebSettings.LayoutAlgorithm.NORMAL)
+                webView.settings.layoutAlgorithm = WebSettings.LayoutAlgorithm.NORMAL
             }
-            webView.getSettings()
-                .setBlockNetworkImage(false) //false); // Solve the image does not display
+            webView.settings.blockNetworkImage = false //false); // Solve the image does not display
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                webView.getSettings().setMixedContentMode(WebSettings.MIXED_CONTENT_ALWAYS_ALLOW)
+                webView.settings.mixedContentMode = WebSettings.MIXED_CONTENT_ALWAYS_ALLOW
             }
             //        webView.getSettings().setLoadWithOverviewMode(true);
-            webView.getSettings().setUseWideViewPort(false)
-            webView.getSettings().setLayoutAlgorithm(WebSettings.LayoutAlgorithm.SINGLE_COLUMN)
+            webView.settings.useWideViewPort = false
+            webView.settings.layoutAlgorithm = WebSettings.LayoutAlgorithm.SINGLE_COLUMN
             //        webView.setBackgroundColor(Color.TRANSPARENT);
             webView.setBackgroundColor(ContextCompat.getColor(context, R.color.transparent))
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
@@ -274,13 +281,13 @@ class Utils(context: Context) {
             } else {
                 webView.setLayerType(View.LAYER_TYPE_SOFTWARE, null)
             }
-            webView.getSettings().setCacheMode(WebSettings.LOAD_NO_CACHE)
+            webView.settings.cacheMode = WebSettings.LOAD_NO_CACHE
             //        webView.setLayerType(WebView.LAYER_TYPE_SOFTWARE, null);
-            webView.getSettings().setDefaultZoom(WebSettings.ZoomDensity.MEDIUM)
-            webView.setScrollBarStyle(View.SCROLLBARS_INSIDE_OVERLAY)
-            webView.getSettings().setLoadsImagesAutomatically(true)
-            webView.getSettings().setDomStorageEnabled(true)
-            webView.setWebViewClient(object : WebViewClient() {
+            webView.settings.defaultZoom = WebSettings.ZoomDensity.MEDIUM
+            webView.scrollBarStyle = View.SCROLLBARS_INSIDE_OVERLAY
+            webView.settings.loadsImagesAutomatically = true
+            webView.settings.domStorageEnabled = true
+            webView.webViewClient = object : WebViewClient() {
                 override fun shouldOverrideUrlLoading(
                     view: WebView,
                     request: WebResourceRequest
@@ -291,7 +298,7 @@ class Utils(context: Context) {
                 override fun shouldOverrideUrlLoading(view: WebView, url: String): Boolean {
                     return super.shouldOverrideUrlLoading(view, url)
                 }
-            })
+            }
             //        webView.loadDataWithBaseURL(null, "<style>img{display: inline;height: auto;max-width: 100%;}iframe{display: inline;height: auto;max-width: 100%;}</style>" + value, "text/html", "UTF-8", null);
 //        webView.loadData(value, "text/html", "UTF-8");
             webView.loadUrl(value!!)

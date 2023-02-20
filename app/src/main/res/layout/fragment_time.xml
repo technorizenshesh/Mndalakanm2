@@ -24,7 +24,7 @@
                     android:layout_height="wrap_content"
                     android:layout_margin="@dimen/_2sdp"
                     android:fontFamily="@font/poppins_bold"
-                    android:text="Time Management of Child "
+                    android:text="@string/time_management_of_child"
                     android:gravity="start"
                     android:textColor="@color/black"
                     android:textSize="@dimen/_16sdp" />

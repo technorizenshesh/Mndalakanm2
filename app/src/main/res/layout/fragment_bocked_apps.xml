@@ -1,56 +1,57 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    >
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".ui.Home.Apps.AppsFragment">
+
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            >
+            android:layout_height="match_parent">
+
             <LinearLayout
-                android:layout_marginTop="@dimen/_10sdp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
                 android:layout_alignParentTop="true"
-                >
-            <RelativeLayout
                 android:layout_marginTop="@dimen/_10sdp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_alignParentTop="true"
-                >
+                android:orientation="vertical">
 
-                <TextView
-                    android:layout_width="wrap_content"
+                <RelativeLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_alignParentStart="true"
-                    android:layout_marginStart="@dimen/_5sdp"
+                    android:layout_alignParentTop="true"
                     android:layout_marginTop="@dimen/_10sdp"
-                    android:layout_marginEnd="@dimen/_5sdp"
-                    android:layout_marginBottom="@dimen/_10sdp"
-                    android:fontFamily="@font/poppins_bold"
-                    android:gravity="start"
-                    android:text="Block apps in Child Mode"
-                    android:textColor="@color/black"
-                    android:textSize="@dimen/_16sdp" />
+                    android:orientation="horizontal">
 
-                <ImageView
-                    android:layout_width="@dimen/_40sdp"
-                    android:layout_height="@dimen/_40sdp"
-                    android:layout_alignParentEnd="true"
-                    android:layout_marginStart="@dimen/_2sdp"
-                    android:layout_marginTop="@dimen/_2sdp"
-                    android:layout_marginEnd="@dimen/_12sdp"
-                    android:layout_marginBottom="@dimen/_2sdp"
-                    android:padding="@dimen/_2sdp"
-                    android:src="@drawable/child_icon" />
-            </RelativeLayout>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentStart="true"
+                        android:layout_marginStart="@dimen/_5sdp"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:layout_marginEnd="@dimen/_5sdp"
+                        android:layout_marginBottom="@dimen/_10sdp"
+                        android:fontFamily="@font/poppins_bold"
+                        android:gravity="start"
+                        android:text="Block apps in Child Mode"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_16sdp" />
+
+                    <ImageView
+                        android:layout_width="@dimen/_40sdp"
+                        android:layout_height="@dimen/_40sdp"
+                        android:layout_alignParentEnd="true"
+                        android:layout_marginStart="@dimen/_2sdp"
+                        android:layout_marginTop="@dimen/_2sdp"
+                        android:layout_marginEnd="@dimen/_12sdp"
+                        android:layout_marginBottom="@dimen/_2sdp"
+                        android:padding="@dimen/_2sdp"
+                        android:src="@drawable/child_icon" />
+                </RelativeLayout>
+
                 <EditText
                     android:id="@+id/txt_title"
                     android:layout_width="match_parent"
@@ -70,42 +71,61 @@
                     android:textColorHint="@color/colorPrimary"
                     android:textSize="@dimen/_12sdp" />
 
+                <ProgressBar
+                    android:id="@+id/progress_bar"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_40sdp"
+                    android:layout_margin="@dimen/_10sdp"
+                    android:progressTint="@color/colorPrimaryYellow" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/child_list"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/_2sdp"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/_20sdp"
                     android:layout_marginStart="@dimen/_5sdp"
+                    android:layout_marginTop="@dimen/_20sdp"
                     android:layout_marginEnd="@dimen/_5sdp"
-                    android:orientation="vertical">
+                    android:orientation="vertical"
+                    android:visibility="gone">
+
                     <LinearLayout
                         android:layout_width="match_parent"
-                        android:orientation="vertical"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="@dimen/_2sdp"
                         android:gravity="center_vertical"
+                        android:orientation="vertical"
 
                         >
+
                         <TextView
-                            android:drawableLeft="@drawable/sown_arroww"
-                            android:drawablePadding="@dimen/_15sdp"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="@dimen/_5sdp"
                             android:layout_marginTop="@dimen/_5sdp"
                             android:layout_marginEnd="@dimen/_5sdp"
                             android:layout_marginBottom="@dimen/_5sdp"
+                            android:drawableLeft="@drawable/sown_arroww"
+                            android:drawablePadding="@dimen/_15sdp"
                             android:fontFamily="@font/poppins_bold"
                             android:gravity="center_vertical"
                             android:maxLines="1"
                             android:text="Games  ( 1 )"
                             android:textColor="@color/black"
                             android:textSize="@dimen/_14sdp" />
+
                         <TextView
-                            android:drawableLeft="@drawable/modes"
-                            android:drawablePadding="@dimen/_15sdp"
-                            android:background="@null"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:background="@null"
+                            android:drawableLeft="@drawable/modes"
+                            android:drawablePadding="@dimen/_15sdp"
                             android:fontFamily="@font/poppinsregular"
                             android:hint="All Apps Locked "
                             android:padding="@dimen/_5sdp"
@@ -113,35 +133,38 @@
                             android:textSize="@dimen/_10sdp" />
 
                     </LinearLayout>
+
                     <LinearLayout
                         android:layout_width="match_parent"
-                        android:orientation="vertical"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="@dimen/_2sdp"
                         android:gravity="center_vertical"
+                        android:orientation="vertical"
 
                         >
+
                         <TextView
-                            android:drawableLeft="@drawable/sown_arroww"
-                            android:drawablePadding="@dimen/_15sdp"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="@dimen/_5sdp"
                             android:layout_marginTop="@dimen/_5sdp"
                             android:layout_marginEnd="@dimen/_5sdp"
                             android:layout_marginBottom="@dimen/_5sdp"
+                            android:drawableLeft="@drawable/sown_arroww"
+                            android:drawablePadding="@dimen/_15sdp"
                             android:fontFamily="@font/poppins_bold"
                             android:gravity="center_vertical"
                             android:maxLines="1"
                             android:text="Utility  ( 1 )"
                             android:textColor="@color/black"
                             android:textSize="@dimen/_14sdp" />
+
                         <TextView
-                            android:drawableLeft="@drawable/modes"
-                            android:drawablePadding="@dimen/_15sdp"
-                            android:background="@null"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:background="@null"
+                            android:drawableLeft="@drawable/modes"
+                            android:drawablePadding="@dimen/_15sdp"
                             android:fontFamily="@font/poppinsregular"
                             android:hint="All Apps Locked "
                             android:padding="@dimen/_5sdp"
@@ -149,35 +172,38 @@
                             android:textSize="@dimen/_10sdp" />
 
                     </LinearLayout>
+
                     <LinearLayout
                         android:layout_width="match_parent"
-                        android:orientation="vertical"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="@dimen/_2sdp"
                         android:gravity="center_vertical"
+                        android:orientation="vertical"
 
                         >
+
                         <TextView
-                            android:drawableLeft="@drawable/sown_arroww"
-                            android:drawablePadding="@dimen/_15sdp"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="@dimen/_5sdp"
                             android:layout_marginTop="@dimen/_5sdp"
                             android:layout_marginEnd="@dimen/_5sdp"
                             android:layout_marginBottom="@dimen/_5sdp"
+                            android:drawableLeft="@drawable/sown_arroww"
+                            android:drawablePadding="@dimen/_15sdp"
                             android:fontFamily="@font/poppins_bold"
                             android:gravity="center_vertical"
                             android:maxLines="1"
                             android:text="Social  ( 5 )"
                             android:textColor="@color/black"
                             android:textSize="@dimen/_14sdp" />
+
                         <TextView
-                            android:drawableLeft="@drawable/modes"
-                            android:drawablePadding="@dimen/_15sdp"
-                            android:background="@null"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:background="@null"
+                            android:drawableLeft="@drawable/modes"
+                            android:drawablePadding="@dimen/_15sdp"
                             android:fontFamily="@font/poppinsregular"
                             android:hint="All Apps Locked "
                             android:padding="@dimen/_5sdp"
@@ -185,35 +211,38 @@
                             android:textSize="@dimen/_10sdp" />
 
                     </LinearLayout>
+
                     <LinearLayout
                         android:layout_width="match_parent"
-                        android:orientation="vertical"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="@dimen/_2sdp"
                         android:gravity="center_vertical"
+                        android:orientation="vertical"
 
                         >
+
                         <TextView
-                            android:drawableLeft="@drawable/sown_arroww"
-                            android:drawablePadding="@dimen/_15sdp"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="@dimen/_5sdp"
                             android:layout_marginTop="@dimen/_5sdp"
                             android:layout_marginEnd="@dimen/_5sdp"
                             android:layout_marginBottom="@dimen/_5sdp"
+                            android:drawableLeft="@drawable/sown_arroww"
+                            android:drawablePadding="@dimen/_15sdp"
                             android:fontFamily="@font/poppins_bold"
                             android:gravity="center_vertical"
                             android:maxLines="1"
                             android:text="ENTERTAINMENT (13)"
                             android:textColor="@color/black"
                             android:textSize="@dimen/_14sdp" />
+
                         <TextView
-                            android:drawableLeft="@drawable/modes"
-                            android:drawablePadding="@dimen/_15sdp"
-                            android:background="@null"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:background="@null"
+                            android:drawableLeft="@drawable/modes"
+                            android:drawablePadding="@dimen/_15sdp"
                             android:fontFamily="@font/poppinsregular"
                             android:hint="All Apps Locked "
                             android:padding="@dimen/_5sdp"
