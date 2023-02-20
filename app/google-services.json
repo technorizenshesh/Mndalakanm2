@@ -1,0 +1,56 @@
+{
+  "project_info": {
+    "project_number": "457370420588",
+    "firebase_url": "https://techno-c8af7-default-rtdb.firebaseio.com",
+    "project_id": "techno-c8af7",
+    "storage_bucket": "techno-c8af7.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:457370420588:android:d7361acbf96bfc3c139f49",
+        "android_client_info": {
+          "package_name": "com.app.mndalakanm"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "457370420588-jojccdeu6u0cmpgdafdjh08h67bo16ls.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.app.mndalakanm",
+            "certificate_hash": "204fbd0b6c8cc76384e1c5a3ebcd5a4342589162"
+          }
+        },
+        {
+          "client_id": "457370420588-uan7si0fjus15b17qp7t8h17gop85osb.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.app.mndalakanm",
+            "certificate_hash": "be053cf6e79e8a61ba7f5be6681e8978782d7b5e"
+          }
+        },
+        {
+          "client_id": "457370420588-t2knrh16v18k6rh22d1ajr62ar30h4lh.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDnOwEaM8mfPZy7mBNN_FTUhOd5gFn-bWQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "457370420588-t2knrh16v18k6rh22d1ajr62ar30h4lh.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

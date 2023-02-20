@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:context=".ui.setupParent.Menu.SupportChatFragment">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+            <include
+                android:id="@+id/header"
+                layout="@layout/header_layout" />
+
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginBottom="@dimen/_50sdp"
+                        android:gravity="bottom">
+
+                        <RelativeLayout
+                            android:id="@+id/top"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="right">
+
+                            <LinearLayout
+
+                                android:id="@+id/friendmessagelayout"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="5dp"
+                                android:layout_marginRight="@dimen/_90sdp"
+                                android:background="@drawable/left_message_background"
+                                android:orientation="vertical">
+
+
+                                <TextView
+
+                                    android:id="@+id/friendTextShow"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center"
+                                    android:layout_marginLeft="@dimen/_15sdp"
+                                    android:layout_marginTop="5dp"
+                                    android:layout_marginRight="@dimen/_15sdp"
+                                    android:layout_marginBottom="5dp"
+                                    android:paddingLeft="@dimen/_5sdp"
+                                    android:fontFamily="@font/poppins_medium"
+                                    android:paddingRight="@dimen/_5sdp"
+                                    android:text="Hi, I'm the Mndalakanm support bot. What can I help you with?"
+                                    android:textColor="@color/white"
+                                    android:textSize="@dimen/_12sdp" />
+
+
+                            </LinearLayout>
+
+
+                        </RelativeLayout>
+                        <RelativeLayout
+                            android:layout_marginTop="@dimen/_5sdp"
+                            android:layout_below="@+id/top"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+                            <LinearLayout
+                                android:id="@+id/usermessagelayout"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+
+                                android:gravity="end"
+                                android:orientation="vertical"
+                                >
+
+
+                                <TextView
+                                    android:background="@drawable/right_message_background"
+
+                                    android:id="@+id/userTextSHow"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="@dimen/_15sdp"
+                                    android:layout_marginTop="5dp"
+                                    android:layout_marginRight="@dimen/_15sdp"
+                                    android:layout_marginBottom="5dp"
+                                    android:layout_weight="1"
+                                    android:padding="@dimen/_5sdp"
+                                    android:fontFamily="@font/poppins_medium"
+
+                                    android:text="  Help with my account  "
+                                    android:textColor="@color/white"
+                                    android:textSize="@dimen/_12sdp" />
+
+
+                            </LinearLayout>
+                            <RelativeLayout
+                                android:layout_below="@+id/usermessagelayout"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+
+                                android:layout_alignParentRight="true"
+
+                                android:layout_marginRight="3dp"
+                                android:layout_weight="1"
+                                android:gravity="left">
+
+                                <TextView
+                                    android:visibility="gone"
+                                    android:layout_marginRight="@dimen/_25sdp"
+                                    android:id="@+id/usertime"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:gravity="right"
+                                    android:text="2pm"
+                                    android:textSize="6dp"
+                                    />
+                            </RelativeLayout>
+
+                            <ImageView
+                                android:layout_width="@dimen/_18sdp"
+
+                                android:layout_height="@dimen/_18sdp"
+                                android:layout_alignParentRight="true"
+                                android:layout_centerVertical="true"
+
+                                android:layout_marginRight="@dimen/_5sdp"
+
+
+                                />
+                        </RelativeLayout>
+
+
+                    </RelativeLayout>
+
+
+
+        </LinearLayout>
+        <RelativeLayout
+            android:id="@+id/rlBottom"
+            android:layout_alignParentBottom="true"
+            android:background="@color/white"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_45sdp"
+            >
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_50sdp"
+                android:layout_marginStart="@dimen/_5sdp"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:layout_marginBottom="@dimen/_5sdp"
+                android:layout_marginRight="@dimen/_5sdp"
+                android:layout_toLeftOf="@+id/img"
+                android:background="@drawable/border_btn">
+
+                <EditText
+                    android:id="@+id/etText"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_toLeftOf="@id/llRight"
+                    android:background="@android:color/transparent"
+                    android:gravity="center_vertical"
+                    android:hint="enter_message"
+                    android:padding="@dimen/_10sdp"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_10sdp"
+                    android:textStyle="bold"
+                    tools:ignore="TouchTargetSizeCheck" />
+
+                <LinearLayout
+                    android:id="@+id/llRight"
+                    android:orientation="horizontal"
+                    android:layout_alignParentRight="true"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent">
+                </LinearLayout>
+
+            </RelativeLayout>
+
+            <ImageView
+                android:id="@+id/img"
+                android:layout_width="@dimen/_45sdp"
+                android:layout_height="@dimen/_45sdp"
+                android:layout_alignParentRight="true"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:layout_marginEnd="@dimen/_5sdp"
+                android:layout_marginBottom="@dimen/_5sdp"
+                android:src="@drawable/send">
+
+            </ImageView>
+
+        </RelativeLayout>
+
+    </RelativeLayout>
+</layout>

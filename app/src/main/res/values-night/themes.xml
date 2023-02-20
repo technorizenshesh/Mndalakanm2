@@ -1,0 +1,51 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Theme.Mndalakanm" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <!-- Primary brand color. -->
+        <item name="colorPrimary">@color/primary</item>
+        <item name="colorPrimaryVariant">@color/purple_700</item>
+        <item name="colorOnPrimary">@color/black</item>
+        <!-- Secondary brand color. -->
+        <item name="colorSecondary">@color/teal_200</item>
+        <item name="colorSecondaryVariant">@color/teal_200</item>
+        <item name="colorOnSecondary">@color/black</item>
+        <!-- Status bar color. -->
+        <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
+        <!-- Customize your theme here. -->
+    </style>
+    <style name="FullScreenDialog" parent="Theme.AppCompat.Dialog">
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowFullscreen">true</item>
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:colorBackgroundCacheHint">@null</item>
+        <item name="android:backgroundDimEnabled">true</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+    </style>
+    <style name="NumberPickerTheme" parent="Theme.AppCompat.Light">
+        <item name="colorAccent">@android:color/white</item>
+
+        <!-- Edit this colorControlNormal value as you need -->
+        <item name="colorControlNormal">@color/colorPrimary</item>
+        <item name="android:textColorPrimary">@color/texts</item>
+        <item name="android:background">@android:color/white</item>
+        <item name="android:textSize">14sp</item>
+    </style>
+    <style name="NumberPickerTheme_home" parent="Theme.AppCompat.Light">
+        <item name="colorAccent">@android:color/white</item>
+
+        <!-- Edit this colorControlNormal value as you need -->
+        <item name="colorControlNormal">@color/colorPrimary</item>
+
+        <item name="android:textColorPrimary">@color/colorPrimaryYellow</item>
+        <item name="android:background">@android:color/white</item>
+        <item name="android:textSize">25dp</item>
+        <item name="fontFamily">@font/poppins_bold</item>
+        <item name="font">@font/poppins_bold</item>
+        <item name="android:textStyle">bold</item>
+
+    </style>
+    <style name="WhiteAccent">
+        <item name="colorAccent">@color/white</item> <!-- Whatever color you want-->
+    </style>
+</resources>

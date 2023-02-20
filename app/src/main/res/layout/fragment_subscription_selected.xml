@@ -1,0 +1,487 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <include
+            android:layout_alignParentTop="true"
+            android:id="@+id/header"
+            layout="@layout/header_layout"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_50sdp" />
+        <androidx.core.widget.NestedScrollView
+            android:layout_below="@id/header"
+            android:visibility="gone"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fillViewport="true">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/_5sdp"
+                    android:background="@color/white"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/_2sdp"
+                        android:fontFamily="@font/poppins_bold"
+                        android:gravity="start"
+                        android:text="Mndalakanm Free Trial"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_16sdp" />
+
+
+                </LinearLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/_10sdp"
+                    android:background="@drawable/border_btn"
+                    android:orientation="horizontal"
+                    android:padding="@dimen/_5sdp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentStart="true"
+                        android:layout_marginStart="@dimen/_10sdp"
+                        android:fontFamily="@font/poppins_bold"
+                        android:gravity="center"
+                        android:padding="@dimen/_5sdp"
+                        android:text="Ends"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_12sdp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:layout_marginStart="@dimen/_10sdp"
+                        android:fontFamily="@font/poppins_bold"
+                        android:gravity="center"
+                        android:padding="@dimen/_5sdp"
+                        android:text="10 Jan 2023"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_12sdp" />
+
+
+                </RelativeLayout>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/_10sdp"
+                    android:fontFamily="@font/poppins_bold"
+                    android:gravity="start"
+                    android:text="Your plan includes:"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_12sdp" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_margin="@dimen/_5sdp"
+                    android:padding="@dimen/_5sdp"
+                    >
+                    <TextView
+                        android:drawableRight="@drawable/right"
+                        android:drawablePadding="@dimen/_10sdp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_5sdp"
+                        android:padding="@dimen/_5sdp"
+                        android:fontFamily="@font/poppins_bold"
+                        android:gravity="start"
+                        android:text="1 parent and 1 kid  = 3$ monthly"
+                        android:textColor="@color/texts"
+                        android:textSize="@dimen/_10sdp" />
+                    <TextView
+                        android:drawableRight="@drawable/right"
+                        android:drawablePadding="@dimen/_10sdp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_5sdp"
+                        android:padding="@dimen/_5sdp"
+                        android:fontFamily="@font/poppins_bold"
+                        android:gravity="start"
+                        android:text="1 parent 3 kid 9 $ monthly "
+                        android:textColor="@color/texts"
+                        android:textSize="@dimen/_10sdp" />
+                    <TextView
+                        android:drawableRight="@drawable/right"
+                        android:drawablePadding="@dimen/_10sdp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_5sdp"
+                        android:padding="@dimen/_5sdp"
+                        android:fontFamily="@font/poppins_bold"
+                        android:gravity="start"
+                        android:text="1 parent 2 kid 6$ monthly"
+                        android:textColor="@color/texts"
+                        android:textSize="@dimen/_10sdp" />
+
+                </LinearLayout>
+            </LinearLayout>
+        </androidx.core.widget.NestedScrollView>
+
+        <ScrollView
+            android:layout_below="@id/header"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            >
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                >
+                <TextView
+                    android:layout_gravity="center"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/_10sdp"
+                    android:text="@string/protect_your_child_s_device_now"
+                    android:textAlignment="center"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_14sdp"
+                    android:fontFamily="@font/poppins_medium" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_marginTop="@dimen/_20sdp"
+                    android:layout_marginBottom="@dimen/_20sdp"
+                    >
+                    <TextView
+                        android:drawableLeft="@drawable/ic_baseline_star_rate"
+                        android:drawablePadding="@dimen/_15sdp"
+                        android:padding="@dimen/_5sdp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_10sdp"
+                        android:text="Filter bad websites"
+                        android:textColor="@color/texts"
+                        android:textSize="@dimen/_10sdp"
+                        android:fontFamily="@font/poppins_bold" />
+                    <TextView
+                        android:drawableLeft="@drawable/ic_baseline_star_rate"
+                        android:drawablePadding="@dimen/_15sdp"
+                        android:padding="@dimen/_5sdp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_10sdp"
+                        android:text="Block inappropriate apps"
+                        android:textColor="@color/texts"
+                        android:textSize="@dimen/_10sdp"
+                        android:fontFamily="@font/poppins_bold" />
+                    <TextView
+                        android:drawableLeft="@drawable/ic_baseline_star_rate"
+                        android:drawablePadding="@dimen/_15sdp"
+                        android:padding="@dimen/_5sdp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_10sdp"
+                        android:text="See online activity"
+                        android:textColor="@color/texts"
+                        android:textSize="@dimen/_10sdp"
+                        android:fontFamily="@font/poppins_bold" />
+
+                </LinearLayout>
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/parent_card"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:cardElevation="@dimen/_3sdp"
+                    app:cardUseCompatPadding="true"
+                    app:cardBackgroundColor="@color/secondery"
+                    app:cardCornerRadius="@dimen/_5sdp">
+                    <LinearLayout
+                        android:gravity="center"
+                        android:padding="@dimen/_5sdp"
+                        android:layout_marginStart="@dimen/_5sdp"
+                        android:layout_weight=".7"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:gravity="center"
+                            android:layout_marginTop="@dimen/_5sdp"
+                            android:paddingLeft="5sp"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="LIFETIME"
+                            android:textColor="@color/black"
+                            android:fontFamily="@font/poppins_bold"
+                            android:textSize="@dimen/_14sdp" />
+
+                        <RelativeLayout
+                            android:padding="@dimen/_5sdp"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                            <TextView
+                                android:gravity="center"
+                                android:textAlignment="center"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="€4,900.00 /One-off payment"
+                                android:maxLines="1"
+                                android:fontFamily="@font/poppinsregular"
+                                android:textColor="@color/black"
+                                android:textSize="@dimen/_10sdp" />
+
+                        </RelativeLayout>
+
+
+
+                    </LinearLayout>
+
+
+                </androidx.cardview.widget.CardView>
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/selected_card"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:cardElevation="@dimen/_3sdp"
+                    app:cardUseCompatPadding="true"
+                    app:cardBackgroundColor="@color/colorPrimary"
+                    app:cardCornerRadius="@dimen/_5sdp">
+                    <LinearLayout
+                        android:gravity="center"
+                        android:padding="@dimen/_5sdp"
+                        android:layout_marginStart="@dimen/_5sdp"
+                        android:layout_weight=".7"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:gravity="center"
+                            android:layout_marginTop="@dimen/_5sdp"
+                            android:paddingLeft="5sp"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="ANNUAL - 254.17 per month"
+                            android:textColor="@color/white"
+                            android:fontFamily="@font/poppins_bold"
+                            android:textSize="@dimen/_14sdp" />
+
+                        <RelativeLayout
+                            android:padding="@dimen/_5sdp"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                            <TextView
+                                android:gravity="center"
+                                android:textAlignment="center"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="billed anually @ ₹3,050.00 / year"
+                                android:maxLines="1"
+                                android:fontFamily="@font/poppinsregular"
+                                android:textColor="@color/white"
+                                android:textSize="@dimen/_10sdp" />
+
+                        </RelativeLayout>
+
+
+
+                    </LinearLayout>
+
+
+                </androidx.cardview.widget.CardView>
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:cardElevation="@dimen/_3sdp"
+                    app:cardUseCompatPadding="true"
+                    app:cardBackgroundColor="@color/secondery"
+                    app:cardCornerRadius="@dimen/_5sdp">
+                    <LinearLayout
+                        android:gravity="center"
+                        android:padding="@dimen/_5sdp"
+                        android:layout_marginStart="@dimen/_5sdp"
+                        android:layout_weight=".7"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:gravity="center"
+                            android:layout_marginTop="@dimen/_5sdp"
+                            android:paddingLeft="5sp"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="6 MONTHS - ₹300 per month"
+                            android:textColor="@color/black"
+                            android:fontFamily="@font/poppins_bold"
+                            android:textSize="@dimen/_14sdp" />
+
+                        <RelativeLayout
+                            android:padding="@dimen/_5sdp"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                            <TextView
+                                android:gravity="center"
+                                android:textAlignment="center"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="€4,900.00 /One-off payment"
+                                android:maxLines="1"
+                                android:fontFamily="@font/poppinsregular"
+                                android:textColor="@color/black"
+                                android:textSize="@dimen/_10sdp" />
+
+                        </RelativeLayout>
+
+
+
+                    </LinearLayout>
+
+
+                </androidx.cardview.widget.CardView>
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:cardElevation="@dimen/_3sdp"
+                    app:cardUseCompatPadding="true"
+                    app:cardBackgroundColor="@color/secondery"
+                    app:cardCornerRadius="@dimen/_5sdp">
+                    <LinearLayout
+                        android:gravity="center"
+                        android:padding="@dimen/_5sdp"
+                        android:layout_marginStart="@dimen/_5sdp"
+                        android:layout_weight=".7"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:gravity="center"
+                            android:layout_marginTop="@dimen/_5sdp"
+                            android:paddingLeft="5sp"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="3 MONTHS - ₹300 per month"
+                            android:textColor="@color/black"
+                            android:fontFamily="@font/poppins_bold"
+                            android:textSize="@dimen/_14sdp" />
+
+                        <RelativeLayout
+                            android:padding="@dimen/_5sdp"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                            <TextView
+                                android:gravity="center"
+                                android:textAlignment="center"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="€4,900.00 /One-off payment"
+                                android:maxLines="1"
+                                android:fontFamily="@font/poppinsregular"
+                                android:textColor="@color/black"
+                                android:textSize="@dimen/_10sdp" />
+
+                        </RelativeLayout>
+
+
+
+                    </LinearLayout>
+
+
+                </androidx.cardview.widget.CardView>
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:cardElevation="@dimen/_3sdp"
+                    app:cardUseCompatPadding="true"
+                    app:cardBackgroundColor="@color/secondery"
+                    app:cardCornerRadius="@dimen/_5sdp">
+                    <LinearLayout
+                        android:gravity="center"
+                        android:padding="@dimen/_5sdp"
+                        android:layout_marginStart="@dimen/_5sdp"
+                        android:layout_weight=".7"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:gravity="center"
+                            android:layout_marginTop="@dimen/_5sdp"
+                            android:paddingLeft="5sp"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="MONTHLY"
+                            android:textColor="@color/black"
+                            android:fontFamily="@font/poppins_bold"
+                            android:textSize="@dimen/_14sdp" />
+
+                        <RelativeLayout
+                            android:padding="@dimen/_5sdp"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                            <TextView
+                                android:gravity="center"
+                                android:textAlignment="center"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="€4,900.00 "
+                                android:maxLines="1"
+                                android:fontFamily="@font/poppinsregular"
+                                android:textColor="@color/black"
+                                android:textSize="@dimen/_10sdp" />
+
+                        </RelativeLayout>
+
+
+
+                    </LinearLayout>
+
+
+                </androidx.cardview.widget.CardView>
+                <TextView
+                    android:padding="@dimen/_5sdp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/_10sdp"
+                    android:text="You can cancel your subscription at any time. Lifetime is a one-off payment."
+                    android:textColor="@color/texts"
+                    android:gravity="center"
+                    android:textSize="@dimen/_10sdp"
+                    android:fontFamily="@font/poppins_bold" />
+                <TextView
+                    android:padding="@dimen/_5sdp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/_1sdp"
+                    android:text="Privacy"
+                    android:textColor="@color/texts"
+                    android:gravity="center"
+                    android:textSize="@dimen/_10sdp"
+                    android:fontFamily="@font/poppins_bold" />
+
+            </LinearLayout>
+        </ScrollView>
+
+
+    </RelativeLayout>
+
+</layout>

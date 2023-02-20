@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:context=".ui.setupParent.Menu.Setting.ChangePinFragment">
+    <LinearLayout
+        android:layout_alignParentTop="true"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+
+        <include
+            layout="@layout/header_layout"
+            android:id="@+id/header" />
+
+        <TextView
+            android:padding="@dimen/_5sdp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/_5sdp"
+            android:fontFamily="@font/poppins_bold"
+            android:text="@string/enter_current_mndalakanm_pin"
+            android:gravity="start"
+            android:textColor="@color/texts"
+            android:textSize="@dimen/_16sdp" />
+
+
+        <LinearLayout
+            android:layout_gravity="center"
+            android:layout_margin="@dimen/_10sdp"
+            android:weightSum="4"
+            android:padding="@dimen/_5sdp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            >
+
+            <EditText
+                android:id="@+id/et1"
+                android:maxLength="1"
+                android:gravity="center"
+                android:digits="1234567890"
+                android:inputType="numberPassword"
+                android:background="@drawable/onsideboarder"
+                android:layout_weight="1"
+                android:layout_width="@dimen/_50sdp"
+                android:layout_height="@dimen/_45sdp"
+                >
+
+            </EditText>
+
+            <EditText
+                android:maxLength="1"
+
+                android:id="@+id/et2"
+                android:gravity="center"
+                android:digits="1234567890"
+                android:inputType="numberPassword"
+                android:layout_marginLeft="@dimen/_10sdp"
+                android:background="@drawable/onsideboarder"
+                android:layout_weight="1"
+                android:layout_width="@dimen/_50sdp"
+                android:layout_height="@dimen/_45sdp"
+                >
+
+            </EditText>
+
+
+            <EditText
+                android:maxLength="1"
+
+                android:id="@+id/et3"
+                android:gravity="center"
+                android:digits="1234567890"
+                android:inputType="numberPassword"
+                android:layout_marginLeft="@dimen/_10sdp"
+                android:background="@drawable/onsideboarder"
+                android:layout_weight="1"
+                android:layout_width="@dimen/_50sdp"
+                android:layout_height="@dimen/_45sdp"
+                >
+            </EditText>
+            <EditText
+                android:maxLength="1"
+
+                android:id="@+id/et4"
+                android:digits="1234567890"
+                android:inputType="numberPassword"
+                android:layout_marginLeft="@dimen/_10sdp"
+                android:background="@drawable/onsideboarder"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:layout_width="@dimen/_50sdp"
+                android:layout_height="@dimen/_45sdp"
+                >
+
+            </EditText>
+
+
+        </LinearLayout>
+
+    </LinearLayout>
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_sign_in"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="@dimen/_10sdp"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:layout_marginEnd="@dimen/_10sdp"
+            android:layout_marginBottom="@dimen/_10sdp"
+            android:elevation="@dimen/_3sdp"
+            android:fontFamily="@font/poppins_bold"
+            android:outlineProvider="background"
+            android:outlineSpotShadowColor="@color/white"
+            android:padding="@dimen/_10sdp"
+            android:text="Change"
+            android:textAllCaps="true"
+            android:textColor="@color/white"
+            android:textSize="@dimen/_12sdp"
+            android:textStyle="bold"
+            app:backgroundTint="@color/colorPrimary"
+            app:cornerRadius="@dimen/_10sdp"
+            app:rippleColor="@color/black" />
+
+    </RelativeLayout>
+</layout>
