@@ -28,6 +28,7 @@ import retrofit2.Callback
 import retrofit2.Response
 import timber.log.Timber
 import java.util.HashMap
+import java.util.concurrent.TimeUnit
 
 
 class GpsWork (context: Context, params: WorkerParameters) : Worker(context, params) {
@@ -36,7 +37,7 @@ class GpsWork (context: Context, params: WorkerParameters) : Worker(context, par
         sharedPref = SharedPref(applicationContext)
         Thread.sleep(20000)
         sendLetLong(sharedPref, applicationContext)
-        scheduleRecurringFetchWeatherSyncUsingWorker()
+     //   scheduleRecurringFetchWeatherSyncUsingWorker()
 
         return Result.success()
     }
@@ -59,6 +60,7 @@ class GpsWork (context: Context, params: WorkerParameters) : Worker(context, par
         val workRequest = OneTimeWorkRequestBuilder<GpsWork>()
             .setInputData(data)
             .setConstraints(constraints)
+            .keepResultsForAtLeast(5,TimeUnit.HOURS)
             .build()
         /*  val workRequest = PeriodicWorkRequestBuilder<GpsWork>(2, TimeUnit.SECONDS)
               .setInputData(data)

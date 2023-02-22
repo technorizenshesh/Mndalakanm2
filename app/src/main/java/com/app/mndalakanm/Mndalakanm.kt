@@ -19,6 +19,7 @@ import com.app.mndalakanm.utils.CrashReportingTree
 import com.techno.mndalakanm.BuildConfig
 import com.vilborgtower.user.utils.Utils
 import timber.log.Timber
+import java.util.concurrent.TimeUnit
 
 class Mndalakanm :Application(){
     var manager: SharedPref? = null
@@ -56,14 +57,14 @@ class Mndalakanm :Application(){
 
         val data = workDataOf("WORK_DATA" to "YOUR MESSAGE.")
 
-           val workRequest = OneTimeWorkRequestBuilder<GpsWork>()
+        /*   val workRequest = OneTimeWorkRequestBuilder<GpsWork>()
                 .setInputData(data)
                 .setConstraints(constraints)
-                .build()
-      /*  val workRequest = PeriodicWorkRequestBuilder<GpsWork>(2, TimeUnit.SECONDS)
+                .build()*/
+        val workRequest = PeriodicWorkRequestBuilder<GpsWork>(10, TimeUnit.MINUTES)
             .setInputData(data)
             .setConstraints(constraints)
-            .build()*/
+            .build()
         workInstance.enqueue(workRequest)
     }
     companion object {

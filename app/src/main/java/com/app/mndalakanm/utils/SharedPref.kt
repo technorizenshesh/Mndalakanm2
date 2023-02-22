@@ -7,7 +7,7 @@ import com.google.gson.Gson
 import com.app.mndalakanm.model.ModelLogin
 import com.app.mndalakanm.model.SuccessChildsListRes
 
-class SharedPref(context: Context) {
+ public class SharedPref(context: Context) {
 
     private val PREFS_NAME = "mndalakanm"
     val sharedPref: SharedPreferences = context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE)

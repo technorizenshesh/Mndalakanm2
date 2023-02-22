@@ -65,7 +65,7 @@ class HomeFragment : Fragment(), ScreenShotClickListener {
     lateinit var binding: FragmentHomeBinding
     lateinit var sharedPref: SharedPref
     private lateinit var apiInterface: ProviderInterface
-    private lateinit var mProjectionManager :MediaProjectionManager
+    private lateinit var mProjectionManager: MediaProjectionManager
     var profileImage: File? = null
     private var screenshotRes: ArrayList<SuccessScreenshotRes.ScreenshotList>? = null
     val selct: Long = 0
@@ -93,14 +93,17 @@ class HomeFragment : Fragment(), ScreenShotClickListener {
             arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE), 1
         )
         binding.btn.setOnClickListener {
-           /* val bitmap =
-                getScreenShotFromView(requireActivity().getWindow().getDecorView().getRootView())
-            if (bitmap != null) {
-                saveMediaToStorage(bitmap)
-            }*/
+            /* val bitmap =
+                 getScreenShotFromView(requireActivity().getWindow().getDecorView().getRootView())
+             if (bitmap != null) {
+                 saveMediaToStorage(bitmap)
+             }*/
             //startProjection()
             val i = Intent(requireActivity(), ScreenCaptureActivity::class.java)
+            i.putExtra("parent_id", sharedPref.getStringValue(Constant.USER_ID).toString())
+            i.putExtra("child_id" , sharedPref.getStringValue(Constant.CHILD_ID).toString())
             startActivity(i)
+
             //     finish()
         }
 
@@ -173,7 +176,7 @@ class HomeFragment : Fragment(), ScreenShotClickListener {
             val formatter = SimpleDateFormat("dd-MM-yyyy hh:mm:ss.SSS")
             // Create a calendar object that will convert the date and time value in milliseconds to date.
             val calendar = Calendar.getInstance()
-            calendar.timeInMillis =System.currentTimeMillis()+ milliSeconds
+            calendar.timeInMillis = System.currentTimeMillis() + milliSeconds
             data = formatter.format(calendar.time)
         } catch (e: Exception) {
 
@@ -187,7 +190,8 @@ class HomeFragment : Fragment(), ScreenShotClickListener {
             val formatter: DateTimeFormatter =
                 DateTimeFormatter.ofPattern("dd-MM-yyyy hh:mm:ss.SSS", Locale.ENGLISH)
             val localDate: LocalDateTime = LocalDateTime.parse(milliSeconds, formatter)
-            data = System.currentTimeMillis()+localDate.atOffset(ZoneOffset.UTC).toInstant().toEpochMilli()
+            data = System.currentTimeMillis() + localDate.atOffset(ZoneOffset.UTC).toInstant()
+                .toEpochMilli()
             Log.d(TAG, "Date in milli :: FOR API >= 26 >>> $data")
         } catch (e: Exception) {
 
@@ -213,7 +217,10 @@ class HomeFragment : Fragment(), ScreenShotClickListener {
                         Timber.tag(TAG)
                             .e("final_timefinal_timefinal_time: %s", response.body()!!.final_time)
                         Timber.tag(TAG)
-                            .e("final_timefinal_timefinal_time: %s", getTimeDate(response.body()!!.final_time)!!)
+                            .e(
+                                "final_timefinal_timefinal_time: %s",
+                                getTimeDate(response.body()!!.final_time)!!
+                            )
 
                         startTime = getTimeDate(response.body()!!.final_time)!!
                         first = true
@@ -265,20 +272,20 @@ class HomeFragment : Fragment(), ScreenShotClickListener {
             } else {
                 val currentTime = System.currentTimeMillis().toLong()
                 //Log.e(TAG, "onCreateView: startTime" + startTime)
-               // Log.e(TAG, "onCreateView: currentTime" + currentTime)
-                if (startTime< currentTime) {
-                    var time: Long = ( currentTime-startTime)
+                // Log.e(TAG, "onCreateView: currentTime" + currentTime)
+                if (startTime < currentTime) {
+                    var time: Long = (currentTime - startTime)
                     binding.timechils.text = "" + differenceResult(time)
                     val progress = (time / 1000).toInt()
                     binding.progressBar.setProgress(binding.progressBar.getMax() - progress)
 
                 } else {
-                    first= false
-                        binding.timechils.text = "00:00"
+                    first = false
+                    binding.timechils.text = "00:00"
 
+                }
             }
-        }
-        }catch (e: Exception) {
+        } catch (e: Exception) {
 
         }
     }
@@ -372,7 +379,7 @@ class HomeFragment : Fragment(), ScreenShotClickListener {
 
 
     private fun stopProjection() {
-      // requireActivity().startService(ScreenCaptureService.getStopIntent(requireContext()))
+        // requireActivity().startService(ScreenCaptureService.getStopIntent(requireContext()))
 
     }
 
