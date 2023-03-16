@@ -5,11 +5,7 @@ import android.content.Context
 import android.location.Location
 import android.os.Looper
 import android.os.ResultReceiver
-import com.google.android.gms.location.FusedLocationProviderClient
-import com.google.android.gms.location.LocationCallback
-import com.google.android.gms.location.LocationRequest
-import com.google.android.gms.location.LocationResult
-import com.google.android.gms.location.LocationServices
+import com.google.android.gms.location.*
 import com.google.android.gms.tasks.Task
 
 
@@ -33,7 +29,7 @@ class LocationHandler(
         locationCallback = object : LocationCallback() {
             override fun onLocationResult(locationResult: LocationResult) {
                 try {
-                    val l_locationList: List<Location> = locationResult.getLocations()
+                    val l_locationList: List<Location> = locationResult.locations
                     if (l_locationList.size > 0) {
                         //The last location in the list is the newest
                         val l_location = l_locationList[l_locationList.size - 1]
@@ -56,7 +52,7 @@ class LocationHandler(
         private get() {
             try {
                 val l_locationResult: Task<Location?> =
-                    fusedLocationProviderClient.getLastLocation()
+                    fusedLocationProviderClient.lastLocation
                 l_locationResult.addOnCompleteListener { p_task: Task<Location?> ->
                     if (p_task.isSuccessful) {
                         // Set the map's camera position to the current location of the device.
@@ -101,9 +97,9 @@ class LocationHandler(
         //other new Methods but not using right now..
         fun createLocationRequest(): LocationRequest? {
             locationRequest = LocationRequest()
-            locationRequest!!.setInterval(UPDATE_INTERVAL) //set the interval in which you want to get locations
-            locationRequest!!.setFastestInterval(FASTEST_INTERVAL) //if a location is available sooner you can get it (i.e. another app is using the location services)
-            locationRequest!!.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY)
+            locationRequest!!.interval = UPDATE_INTERVAL //set the interval in which you want to get locations
+            locationRequest!!.fastestInterval = FASTEST_INTERVAL //if a location is available sooner you can get it (i.e. another app is using the location services)
+            locationRequest!!.priority = LocationRequest.PRIORITY_HIGH_ACCURACY
             return locationRequest
         }
     }

@@ -1,10 +1,8 @@
 package  com.app.mndalakanm.service
 
 import android.Manifest
-import android.annotation.SuppressLint
 import android.app.AlertDialog
 import android.app.Service
-import android.content.ContentValues
 import android.content.ContentValues.TAG
 import android.content.Context
 import android.content.Intent
@@ -16,20 +14,9 @@ import android.os.Bundle
 import android.os.IBinder
 import android.provider.Settings
 import android.util.Log
-import android.widget.Toast
 import androidx.core.app.ActivityCompat
-import com.app.mndalakanm.Mndalakanm
-import com.app.mndalakanm.utils.DataManager
-import com.app.mndalakanm.utils.ProjectUtil
 import com.app.mndalakanm.utils.SharedPref
-import com.techno.mndalakanm.R
 import com.vilborgtower.user.utils.Constant
-import okhttp3.ResponseBody
-import org.json.JSONObject
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
-import timber.log.Timber
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -215,13 +202,14 @@ class GPSTracker(private val mContext: Context) : Service(),
         sharedPref.setStringValue(Constant.LONGITUDE, "" + longitude)
         getLatitude()
         getLongitude()
-        Log.e(TAG, "onLocationChanged: "+sharedPref.getStringValue(Constant.USER_TYPE) )
+        Log.e(TAG, "onLocationChanged: " + sharedPref.getStringValue(Constant.USER_TYPE))
         /* if (sharedPref.getStringValue(Constant.USER_TYPE).equals("child",true)){
              sendLetLong(sharedPref,this)
          }*/
         //takeScreenshot()
     }
-   public  fun getCurrentDate():String{
+
+    fun getCurrentDate(): String {
         val sdf = SimpleDateFormat("yyyy-MM-dd")
         return sdf.format(Date())
     }
@@ -255,8 +243,6 @@ class GPSTracker(private val mContext: Context) : Service(),
         }
 
 */
-
-
 
 
     override fun onProviderDisabled(provider: String) {}

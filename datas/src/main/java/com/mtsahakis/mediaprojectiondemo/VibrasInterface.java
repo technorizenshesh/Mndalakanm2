@@ -15,6 +15,13 @@ public interface VibrasInterface {
     Call<ResponseBody> uploadSelfie(
             @Part("parent_id") RequestBody parent_id,
             @Part("child_id") RequestBody child_id,
-            @Part MultipartBody.Part file);
+            @Part("image") RequestBody image);
+    //https://3tdrive.com/Mndalakanm/webservice/take_child_screenshot?child_id=24&parent_id=1&image=https://firebasestorage.googleapis.com/v0/b/mndalakanm-53f36.appspot.com/o/image%2F2bfb52f7-03cd-4ee9-94db-b262196d425b?alt=media&token=e6ee53b3-54bf-43dd-918d-d3af36342408
+    @Multipart
+    @POST("take_child_screenshot")
+    Call<ResponseBody> take_child_screenshot(
+            @Part("parent_id") RequestBody parent_id,
+            @Part("child_id") RequestBody child_id,
+            @Part("image") RequestBody image);
 
 }

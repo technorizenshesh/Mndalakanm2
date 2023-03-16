@@ -3,14 +3,14 @@ package com.app.mndalakanm.utils
 import android.content.Context
 import android.content.SharedPreferences
 import com.app.mndalakanm.model.ChildData
-import com.google.gson.Gson
 import com.app.mndalakanm.model.ModelLogin
-import com.app.mndalakanm.model.SuccessChildsListRes
+import com.google.gson.Gson
 
- public class SharedPref(context: Context) {
+class SharedPref(context: Context) {
 
     private val PREFS_NAME = "mndalakanm"
-    val sharedPref: SharedPreferences = context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE)
+    val sharedPref: SharedPreferences =
+        context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE)
 
     fun setUserDetails(Key: String, loginModel: ModelLogin) {
         val gson = Gson()
@@ -49,7 +49,8 @@ import com.app.mndalakanm.model.SuccessChildsListRes
     fun getBooleanValue(key: String?): Boolean {
         return sharedPref.getBoolean(key, false)
     }
- fun setStringValue(key: String?, value: String) {
+
+    fun setStringValue(key: String?, value: String) {
         val myPrefEditor: SharedPreferences.Editor = sharedPref.edit()
         myPrefEditor.putString(key, value)
         myPrefEditor.apply()

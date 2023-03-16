@@ -14,6 +14,7 @@ xmlns:app="http://schemas.android.com/apk/res-auto">
         >
 
         <LinearLayout
+            android:layout_above="@id/add_btn"
             android:layout_marginTop="@dimen/_10sdp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -54,8 +55,18 @@ xmlns:app="http://schemas.android.com/apk/res-auto">
                     android:padding="@dimen/_2sdp"
                     android:src="@drawable/child_icon" />
             </RelativeLayout>
-
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/child_list"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_3sdp"
+                android:layout_marginEnd="@dimen/_3sdp"
+                android:layout_marginTop="@dimen/_3sdp"
+                android:layout_marginBottom="@dimen/_3sdp"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                />
             <LinearLayout
+                android:visibility="gone"
                 android:background="@drawable/normal_bg"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -186,6 +197,7 @@ xmlns:app="http://schemas.android.com/apk/res-auto">
 
             </LinearLayout>
             <LinearLayout
+                android:visibility="gone"
                 android:background="@drawable/desible_bg"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -319,7 +331,7 @@ xmlns:app="http://schemas.android.com/apk/res-auto">
         </LinearLayout>
 
         <com.google.android.material.button.MaterialButton
-            android:id="@+id/btn"
+            android:id="@+id/add_btn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"

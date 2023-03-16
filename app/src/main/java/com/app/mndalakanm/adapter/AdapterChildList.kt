@@ -6,7 +6,6 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.app.mndalakanm.model.ChildData
-import com.app.mndalakanm.model.SuccessChildsListRes
 import com.app.mndalakanm.utils.ChildClickListener
 import com.app.mndalakanm.utils.SharedPref
 import com.techno.mndalakanm.R
@@ -23,7 +22,7 @@ class AdapterChildList(
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TransViewHolder {
-        var binding: ItemChildBinding = DataBindingUtil.inflate (
+        var binding: ItemChildBinding = DataBindingUtil.inflate(
             LayoutInflater.from(mContext), R.layout.item_child, parent, false
         )
         sharedPref = SharedPref(mContext)
@@ -43,7 +42,17 @@ class AdapterChildList(
             .into(holder.binding.ivCar)*/
 
         holder.binding.viewDetails.setOnClickListener {
-            listener.onClick(position, data)
+            listener.onClick(position, data,"1")
+            /*  for (i in 0 until transList!!.size){
+                transList?.get(i)?.isSelected=false
+            }
+            transList?.get(position)?.isSelected=true
+            notifyDataSetChanged()
+
+        }*/
+        }
+        holder.binding.deleteChild.setOnClickListener {
+            listener.onClick(position, data,"2")
             /*  for (i in 0 until transList!!.size){
                 transList?.get(i)?.isSelected=false
             }
@@ -59,6 +68,6 @@ class AdapterChildList(
     }
 
     class TransViewHolder(var binding: ItemChildBinding) :
-        RecyclerView.ViewHolder(binding.root) {}
+        RecyclerView.ViewHolder(binding.root)
 
 }

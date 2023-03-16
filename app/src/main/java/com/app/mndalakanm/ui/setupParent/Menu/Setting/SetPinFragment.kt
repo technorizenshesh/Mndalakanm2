@@ -4,6 +4,7 @@ import android.content.ContentValues
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextUtils
+import android.text.TextWatcher
 import android.view.KeyEvent
 import android.view.LayoutInflater
 import android.view.View
@@ -47,6 +48,7 @@ class SetPinFragment : Fragment() {
 
         binding.header.imgHeader.setOnClickListener {
             activity?.onBackPressed()
+            sharedPref.clearAllPreferences()
         }
         configOtpEditText(
             binding.et1,
@@ -54,7 +56,19 @@ class SetPinFragment : Fragment() {
             binding.et3,
             binding.et4
         )
+        binding.et4.addTextChangedListener(object : TextWatcher {
+            override fun afterTextChanged(s: Editable?) {
+                if (!s.toString().equals("", true)) {
+                    binding.btnSignIn.performClick()
+                }
+            }
 
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+            }
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+            }
+        })
         binding.btnSignIn.setOnClickListener {
             val et1txt = binding.et1.text.toString()
             val et2txt = binding.et2.text.toString()
@@ -82,7 +96,7 @@ class SetPinFragment : Fragment() {
 
 
                     //perform an action here e.g. a send message button click
-                 //   sendButton.performClick()
+                    //   sendButton.performClick()
                     binding.btnSignIn.performClick()
                     //return true
                     return@setOnKeyListener true
@@ -111,13 +125,47 @@ class SetPinFragment : Fragment() {
                     val message = jsonObject.getString("message")
                     val status = jsonObject.getString("status")
                     if (status.equals("1")) {
-                      //  val result = jsonObject.getJSONObject("result")
+                        //  val result = jsonObject.getJSONObject("result")
                         val bundle = Bundle()
                         sharedPref.setStringValue(Constant.LOCK, "1")
                         sharedPref.setStringValue(Constant.CODE, otp)
                         bundle.putString("type", "parent")
-                        Navigation.findNavController(binding.root)
-                            .navigate(R.id.action_splash_to_plans, bundle)
+                        if (!sharedPref.getStringValue(Constant.USER_TYPE).toString()
+                                .equals("provider", true)
+                        ) {
+                            val bundle = Bundle()
+                            bundle.putString("type", "child")
+                            bundle.putString("from", "splash")
+                            Navigation.findNavController(binding.root).navigate(
+                                R.id.action_splash_to_child_details_fragment, bundle
+                            )
+                        } else {
+
+                            Navigation.findNavController(binding.root)
+                                .navigate(R.id.action_splash_to_plans, bundle)
+                            /*     if (sharedPref.getStringValue(Constant.CHILD_NAME).equals("", true)) {
+
+                       val bundle = Bundle()
+                       bundle.putString("type", "child")
+                       bundle.putString("from", "splash")
+                       Navigation.findNavController(binding.root).navigate(
+                           R.id.action_splash_to_child_details_fragment, bundle
+                       )
+                       //  navController.navigate(R.id.action_splash_to_provider)
+
+                   } else {
+                       // navController.navigate(R.id.action_splash_to_provider)
+                       requireActivity().startActivity(
+                           Intent(
+                               requireContext(),
+                               SuperviseHomeActivity::class.java
+                           )
+                       )
+                       requireActivity().finish()
+
+                   }*/
+                        }
+
                     } else {
                         Toast.makeText(context, message, Toast.LENGTH_SHORT).show()
 

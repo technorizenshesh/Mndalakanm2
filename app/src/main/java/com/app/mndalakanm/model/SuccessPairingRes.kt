@@ -3,7 +3,7 @@ package  com.app.mndalakanm.model
 import com.google.gson.annotations.SerializedName
 
 
- data class SuccessPairingRes(
+data class SuccessPairingRes(
 
     @SerializedName("result") var result: Result? = Result(),
     @SerializedName("message") var message: String? = null,

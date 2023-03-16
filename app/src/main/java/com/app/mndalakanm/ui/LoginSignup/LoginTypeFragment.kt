@@ -17,19 +17,19 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
+import com.app.mndalakanm.utils.LocationHandler
+import com.app.mndalakanm.utils.SharedPref
 import com.google.android.gms.common.api.ResolvableApiException
 import com.google.android.gms.location.LocationServices
 import com.google.android.gms.location.LocationSettingsRequest
 import com.google.android.gms.location.LocationSettingsResponse
+import com.google.android.gms.tasks.OnCompleteListener
 import com.google.android.gms.tasks.OnFailureListener
 import com.google.android.gms.tasks.OnSuccessListener
-import  com.techno.mndalakanm.R
-import com.techno.mndalakanm.databinding.FragmentLoginTypeBinding
-import com.app.mndalakanm.utils.LocationHandler
-import com.app.mndalakanm.utils.SharedPref
-import com.google.android.gms.tasks.OnCompleteListener
 import com.google.firebase.FirebaseApp
 import com.google.firebase.messaging.FirebaseMessaging
+import com.techno.mndalakanm.R
+import com.techno.mndalakanm.databinding.FragmentLoginTypeBinding
 import com.vilborgtower.user.utils.Constant
 import timber.log.Timber
 
@@ -104,7 +104,7 @@ class LoginTypeFragment : Fragment() {
         permissions: Array<out String>,
         grantResults: IntArray
     ) {
-        super.onRequestPermissionsResult(requestCode, permissions!!, grantResults)
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
         when (requestCode) {
             REQUEST_LOCATION_PERMISSION -> if (grantResults.size > 0) {
                 val coareAccepted = grantResults[0] == PackageManager.PERMISSION_GRANTED
@@ -185,10 +185,10 @@ class LoginTypeFragment : Fragment() {
                 override fun onLocationChange(location: Location?) {
                     try {
                         mLocation = location
-                        if (mLocation!!.getLatitude() != 0.0 && mLocation!!.getLongitude() != 0.0) {
+                        if (mLocation!!.latitude != 0.0 && mLocation!!.longitude != 0.0) {
                             try {
-                                val lat: Double = mLocation!!.getLatitude()
-                                val longitude: Double = mLocation!!.getLongitude()
+                                val lat: Double = mLocation!!.latitude
+                                val longitude: Double = mLocation!!.longitude
                                 sharedPref.setStringValue(Constant.LATITUDE, "" + lat)
                                 sharedPref.setStringValue(Constant.LONGITUDE, "" + longitude)
 

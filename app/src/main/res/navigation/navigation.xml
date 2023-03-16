@@ -47,6 +47,12 @@
             app:popUpToInclusive="true"
             app:popUpTo="@id/navigation"
             app:launchSingleTop="true" />
+        <action
+            app:popUpTo="@id/splash_nav"
+            android:id="@+id/action_splash_to_child_details_fragment"
+            app:destination="@id/child_details_fragment"
+            app:launchSingleTop="true"
+            app:popUpToInclusive="true"/>
     </fragment>
     <fragment
         android:id="@+id/login_type_nav"
@@ -117,7 +123,11 @@
             app:popUpTo="@+id/navigation"
             app:destination="@id/plans"
             app:launchSingleTop="true" />
-
+        <action
+            android:id="@+id/action_splash_to_child_details_fragment"
+            app:destination="@id/child_details_fragment"
+            app:popUpTo="@+id/navigation"
+            app:launchSingleTop="true" />
     </fragment>
     <fragment
         android:id="@+id/plans"
@@ -127,8 +137,38 @@
         <action
             android:id="@+id/action_splash_to_phone"
             app:destination="@id/is_phone"
+            />
+        <action
+            android:id="@+id/action_plans_to_code"
+            app:destination="@id/is_code"
+            />
+    </fragment>
+    <fragment
+        android:id="@+id/is_code"
+        android:name="com.app.mndalakanm.ui.LoginSignup.EnterPurchaseCodeFragment"
+        android:label="EnterPurchaseCodeFragment"
+        tools:layout="@layout/fragment_enter_purchase_code">
+        <action
+            android:id="@+id/action_splash_to_purchase_redeem_code"
+            app:destination="@id/purchase_redeem_code"
+            />
+        <action
+            android:id="@+id/action_splash_to_phone"
+            app:destination="@id/is_phone"
             app:popUpTo="@+id/navigation"
             app:launchSingleTop="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/purchase_redeem_code"
+        android:name="com.app.mndalakanm.ui.LoginSignup.PurchaseCodeFragment"
+        android:label="PurchaseCodeFragment"
+        tools:layout="@layout/fragment_purchase_code">
+        <action
+            android:id="@+id/action_splash_to_code_generated"
+            app:destination="@id/code_generated"
+            app:launchSingleTop="true"
+            />
+
     </fragment>
     <fragment
         android:id="@+id/is_phone"
@@ -336,7 +376,7 @@
         >
         <action
             android:id="@+id/action_splash_to_child_details_fragment"
-            app:destination="@id/child_details_fragment"
+            app:destination="@id/set_pin"
             app:popUpTo="@+id/navigation"
             app:launchSingleTop="true" />
         <action
@@ -351,7 +391,7 @@
         tools:layout="@layout/fragment_scan_qr">
         <action
             android:id="@+id/action_splash_to_child_details_fragment"
-            app:destination="@id/child_details_fragment"
+            app:destination="@id/set_pin"
             app:popUpTo="@+id/navigation"
             app:launchSingleTop="true" />
     </fragment>

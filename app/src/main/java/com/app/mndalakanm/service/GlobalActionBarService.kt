@@ -21,11 +21,12 @@ import java.util.*
 import kotlin.collections.ArrayDeque
 
 
-  public  class GlobalActionBarService : AccessibilityService() {
+class GlobalActionBarService : AccessibilityService() {
     var mLayout: FrameLayout? = null
 
     override fun onAccessibilityEvent(event: AccessibilityEvent) {}
     override fun onInterrupt() {}
+
     @RequiresApi(Build.VERSION_CODES.N)
     override fun onServiceConnected() {
         // Create an overlay and display the action bar
@@ -46,10 +47,11 @@ import kotlin.collections.ArrayDeque
         configureScrollButton()
         configureSwipeButton()
     }
+
     private fun configurePowerButton() {
         val powerButton: Button = mLayout!!.findViewById<View>(R.id.power) as Button
-        powerButton.setOnClickListener{
-                performGlobalAction(GLOBAL_ACTION_POWER_DIALOG)
+        powerButton.setOnClickListener {
+            performGlobalAction(GLOBAL_ACTION_POWER_DIALOG)
         }
     }
 

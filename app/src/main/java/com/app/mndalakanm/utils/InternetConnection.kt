@@ -7,7 +7,8 @@ class InternetConnection {
 
     companion object {
         fun checkConnection(context: Context): Boolean {
-            val connMgr = context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+            val connMgr =
+                context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
             if (connMgr != null) {
                 val activeNetworkInfo = connMgr.activeNetworkInfo
                 if (activeNetworkInfo != null) { // connected to the internet

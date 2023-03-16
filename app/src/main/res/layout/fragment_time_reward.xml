@@ -14,6 +14,7 @@
             >
 
             <LinearLayout
+                android:layout_above="@+id/btn_add"
                 android:layout_marginTop="@dimen/_10sdp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -38,24 +39,32 @@
                         android:layout_marginBottom="@dimen/_10sdp"
                         android:fontFamily="@font/poppins_bold"
                         android:gravity="start"
-                        android:text="Time Rewards"
+                        android:text="@string/time_rewards"
                         android:textColor="@color/black"
                         android:textSize="@dimen/_16sdp" />
-
-                    <ImageView
-                        android:visibility="gone"
-                        android:layout_width="@dimen/_40sdp"
-                        android:layout_height="@dimen/_40sdp"
+                    <TextView
+                        android:id="@+id/requests_txt"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
                         android:layout_alignParentEnd="true"
-                        android:layout_marginStart="@dimen/_2sdp"
-                        android:layout_marginTop="@dimen/_2sdp"
-                        android:layout_marginEnd="@dimen/_12sdp"
-                        android:layout_marginBottom="@dimen/_2sdp"
-                        android:padding="@dimen/_2sdp"
-                        android:src="@drawable/child_icon" />
-                </RelativeLayout>
+                        android:layout_marginStart="@dimen/_5sdp"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:layout_marginEnd="@dimen/_5sdp"
+                        android:layout_marginBottom="@dimen/_10sdp"
+                        android:fontFamily="@font/poppins_medium"
+                        android:gravity="start"
+                        android:padding="@dimen/_5sdp"
+                        android:text="@string/reward_requests"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_12sdp"
+                         android:drawablePadding="@dimen/_15sdp"
+                        app:drawableRightCompat="@drawable/time"
+                        app:drawableTint="@color/colorPrimaryYellow" />
 
+
+                </RelativeLayout>
                 <LinearLayout
+                    android:visibility="gone"
                     android:background="@drawable/night_bg"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -166,6 +175,7 @@
 
                 </LinearLayout>
                 <LinearLayout
+                    android:visibility="gone"
                     android:background="@drawable/night_bg"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -275,7 +285,16 @@
 
 
                 </LinearLayout>
-
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/child_list"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_3sdp"
+                    android:layout_marginEnd="@dimen/_3sdp"
+                    android:layout_marginTop="@dimen/_3sdp"
+                    android:layout_marginBottom="@dimen/_3sdp"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    />
             </LinearLayout>
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btn_add"

@@ -4,6 +4,7 @@ import android.Manifest
 import android.content.pm.PackageManager
 import android.content.res.Configuration
 import android.os.Bundle
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.databinding.DataBindingUtil
@@ -11,8 +12,12 @@ import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupWithNavController
-import com.google.android.material.navigation.NavigationView
+import com.airbnb.lottie.utils.Logger.debug
 import com.app.mndalakanm.utils.SharedPref
+import com.google.android.material.navigation.NavigationView
+import com.google.firebase.FirebaseApp
+import com.google.firebase.appcheck.FirebaseAppCheck
+import com.google.firebase.appcheck.debug.DebugAppCheckProviderFactory
 import com.techno.mndalakanm.R
 import com.techno.mndalakanm.databinding.ActivityMainBinding
 import com.vilborgtower.user.utils.Constant
@@ -21,33 +26,47 @@ import java.util.*
 class MainActivity : AppCompatActivity() {
     lateinit var binding: ActivityMainBinding
     lateinit var sharedPref: SharedPref
- //   lateinit var utils: Utils
+
+    //   lateinit var utils: Utils
     private lateinit var appBarConfiguration: AppBarConfiguration
-    lateinit var navController:  NavController
+    lateinit var navController: NavController
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
-      //  utils = Utils(get)
-     //   utils?.getFirebaseRegisterId()
-      appBarConfiguration = AppBarConfiguration(
+        //  utils = Utils(get)
+        //   utils?.getFirebaseRegisterId()
+        appBarConfiguration = AppBarConfiguration(
             setOf(
                 R.id.splash_nav, R.id.login_type_nav
             )
         )
         val host: NavHostFragment = supportFragmentManager
             .findFragmentById(R.id.nav_host_fragment_container) as NavHostFragment? ?: return
-
         // Set up Action Bar
-        sharedPref= SharedPref(this@MainActivity)
-         navController = host.navController
+        sharedPref = SharedPref(this@MainActivity)
+        navController = host.navController
         appBarConfiguration = AppBarConfiguration(navController.graph)
         setupNavigationMenu(navController)
+        FirebaseApp.initializeApp(/*context=*/this)
+        val firebaseAppCheck = FirebaseAppCheck.getInstance()
+        firebaseAppCheck.installAppCheckProviderFactory(
+            DebugAppCheckProviderFactory.getInstance()
+        )
+        /*FirebaseApp.initializeApp(*//*context=*//*this)
+        val firebaseAppCheck = FirebaseAppCheck.getInstance()
+        firebaseAppCheck.installAppCheckProviderFactory(
+            PlayIntegrityAppCheckProviderFactory.getInstance()
+        )*/
         if (sharedPref.getStringValue(Constant.LANGUAGE).equals("")) {
             sharedPref.setStringValue(Constant.LANGUAGE, "en")
         }
         setLocale(sharedPref.getStringValue(Constant.LANGUAGE))
         //checkForPermission()
+        Log.e(
+            "TAG",
+            "FIREBASETOKENFIREBASETOKENFIREBASETOKEN: -----   " + sharedPref.getStringValue(Constant.FIREBASETOKEN)
+        )
     }
 
 
@@ -86,7 +105,7 @@ class MainActivity : AppCompatActivity() {
             )
         } else {
             // already permission granted
-           // handlerMethod()
+            // handlerMethod()
         }
     }
 
@@ -106,10 +125,10 @@ class MainActivity : AppCompatActivity() {
         }
     }*/
 
-   /* fun handlerMethod() {
-        Handler(Looper.getMainLooper()).postDelayed({
-            if (PrefManager.getBoolean(Constant.IS_LOGIN)) {
-                *//* val intent = Intent(applicationContext, HomeActivity::class.java)
+    /* fun handlerMethod() {
+         Handler(Looper.getMainLooper()).postDelayed({
+             if (PrefManager.getBoolean(Constant.IS_LOGIN)) {
+                 *//* val intent = Intent(applicationContext, HomeActivity::class.java)
                  startActivity(intent)
                  finish()*//*
             } else {

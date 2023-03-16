@@ -3,6 +3,7 @@ package com.mtsahakis.mediaprojectiondemo;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.Notification;
+import android.app.ProgressDialog;
 import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
@@ -27,6 +28,7 @@ import android.util.Log;
 import android.view.Display;
 import android.view.OrientationEventListener;
 import android.view.WindowManager;
+import android.widget.Toast;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -36,7 +38,9 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.nio.ByteBuffer;
 import java.util.Objects;
+import java.util.UUID;
 
+import androidx.annotation.NonNull;
 import androidx.core.util.Pair;
 
 import okhttp3.MediaType;
@@ -46,9 +50,13 @@ import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-
 import static android.content.ContentValues.TAG;
 
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.Task;
 public class ScreenCaptureService extends Service {
 
     private static final String TAG = "ScreenCaptureService";
@@ -58,7 +66,8 @@ public class ScreenCaptureService extends Service {
     private static final String START = "START";
     private static final String STOP = "STOP";
     private static final String SCREENCAP_NAME = "screencap";
-
+    FirebaseStorage storage;
+    StorageReference storageReference;
     private static int IMAGES_PRODUCED;
     private MediaProjection mMediaProjection;
     private String mStoreDir;
@@ -127,8 +136,11 @@ public class ScreenCaptureService extends Service {
                     Uri tempUri = getImageUri(getApplicationContext(), bitmap);
 
                     String imagess = getRealPathFromURI(tempUri);
-                    updateCoverPhoto(imagess);
-                    Thread.sleep(100000);
+                    uploadImage(tempUri);
+
+
+
+                    Thread.sleep(1000*120);
                     Log.e(TAG, "captured image: " + IMAGES_PRODUCED);
                 }
 
@@ -152,14 +164,102 @@ public class ScreenCaptureService extends Service {
             }
         }
     }
+    // UploadImage method
+    private void uploadImage(Uri filePath) {
+        if (filePath != null) {
+            String request = SharedPreferenceUtility.getInstance(getApplicationContext())
+                    .getString("request");
+            if (request.equalsIgnoreCase("1")){
+                SharedPreferenceUtility.getInstance(getApplicationContext()).putString("request","0");
+                String parent_id = SharedPreferenceUtility.getInstance(getApplicationContext()).getString("parent_id");
+                String child_id =  SharedPreferenceUtility.getInstance(getApplicationContext()).getString("child_id");
+                storage = FirebaseStorage.getInstance();
+                storageReference = storage.getReference();
+                StorageReference ref
+                        = storageReference
+                        .child("image/"+parent_id+"/"+child_id+"/"+"Requested/" + UUID.randomUUID().toString());
+                ref.putFile(filePath)
+                        .addOnSuccessListener(
+                                taskSnapshot -> {
+                                    Toast.makeText(getApplicationContext(), "Image Uploaded!!", Toast.LENGTH_SHORT).show();
+                                    Task<Uri> uri = taskSnapshot.getStorage().getDownloadUrl();
+                                    while(!uri.isComplete());
+                                    Uri url = uri.getResult();
+                                    Log.e("FBApp1 URL ", url.toString());
+                                    String sendImg = url.toString();
+                                    if (!sendImg.equals("")) {
+                                        updateCoverPhoto2(sendImg);
+                                    }
 
-    public void updateCoverPhoto(String str_image_path )
-    {
+                                })
+
+                        .addOnFailureListener(new OnFailureListener() {
+                            @Override
+                            public void onFailure(@NonNull Exception e) {
+
+                                // Error, Image not uploaded
+                                Toast
+                                        .makeText(getApplicationContext(),
+                                                "Failed " + e.getMessage(),
+                                                Toast.LENGTH_SHORT)
+                                        .show();
+                            }
+                        })
+                        .addOnProgressListener(taskSnapshot -> {
+
+
+                        });
+            }else {
+                String parent_id = SharedPreferenceUtility.getInstance(getApplicationContext()).getString("parent_id");
+                String child_id =  SharedPreferenceUtility.getInstance(getApplicationContext()).getString("child_id");
+                storage = FirebaseStorage.getInstance();
+                storageReference = storage.getReference();
+                StorageReference ref
+                        = storageReference
+                        .child("image/"+parent_id+"/"+child_id+"/" + UUID.randomUUID().toString());
+                ref.putFile(filePath)
+                        .addOnSuccessListener(
+                                taskSnapshot -> {
+                                    Toast.makeText(getApplicationContext(), "Image Uploaded!!", Toast.LENGTH_SHORT).show();
+                                    Task<Uri> uri = taskSnapshot.getStorage().getDownloadUrl();
+                                    while(!uri.isComplete());
+                                    Uri url = uri.getResult();
+                                    Log.e("FBApp1 URL ", url.toString());
+                                    String sendImg = url.toString();
+                                    if (!sendImg.equals("")) {
+                                        updateCoverPhoto(sendImg);
+                                    }
+
+                                })
+                        .addOnFailureListener(new OnFailureListener() {
+                            @Override
+                            public void onFailure(@NonNull Exception e) {
+
+                                // Error, Image not uploaded
+                                Toast
+                                        .makeText(getApplicationContext(),
+                                                "Failed " + e.getMessage(),
+                                                Toast.LENGTH_SHORT)
+                                        .show();
+                            }
+                        })
+                        .addOnProgressListener(taskSnapshot -> {
+
+
+                        });
+            }
+
+
+
+        }
+    }
+
+    private void updateCoverPhoto2(String sendImg) {
         try {
             VibrasInterface apiInterface = ApiClient.getClient().create(VibrasInterface.class);
             String parent_id = SharedPreferenceUtility.getInstance(getApplicationContext()).getString("parent_id");
             String child_id =  SharedPreferenceUtility.getInstance(getApplicationContext()).getString("child_id");
-            MultipartBody.Part filePart;
+          /*  MultipartBody.Part filePart;
             if (!str_image_path.equalsIgnoreCase("")) {
                 File file = saveBitmapToFile(new File(str_image_path));
                 if (file != null) {
@@ -170,11 +270,52 @@ public class ScreenCaptureService extends Service {
             } else {
                 RequestBody attachmentEmpty = RequestBody.create(MediaType.parse("text/plain"), "");
                 filePart = MultipartBody.Part.createFormData("attachment", "", attachmentEmpty);
-            }
+            }*/
             RequestBody userId = RequestBody.create(MediaType.parse("text/plain"), parent_id);
             RequestBody chld_id = RequestBody.create(MediaType.parse("text/plain"), child_id);
+            RequestBody image = RequestBody.create(MediaType.parse("text/plain"), sendImg);
 
-            Call<ResponseBody> loginCall = apiInterface.uploadSelfie(userId, chld_id, filePart);
+            Call<ResponseBody> loginCall = apiInterface.take_child_screenshot(userId, chld_id, image);
+            loginCall.enqueue(new Callback<ResponseBody>() {
+                @Override
+                public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                    try {
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                }
+                @Override
+                public void onFailure(Call<ResponseBody> call, Throwable t) {
+                    call.cancel();
+                }
+            });
+        }catch (Exception e){
+
+        }
+    }
+    public void updateCoverPhoto(String str_image_path )
+    {
+        try {
+            VibrasInterface apiInterface = ApiClient.getClient().create(VibrasInterface.class);
+            String parent_id = SharedPreferenceUtility.getInstance(getApplicationContext()).getString("parent_id");
+            String child_id =  SharedPreferenceUtility.getInstance(getApplicationContext()).getString("child_id");
+          /*  MultipartBody.Part filePart;
+            if (!str_image_path.equalsIgnoreCase("")) {
+                File file = saveBitmapToFile(new File(str_image_path));
+                if (file != null) {
+                    filePart = MultipartBody.Part.createFormData("image", file.getName(), RequestBody.create(MediaType.parse("image/*"), file));
+                } else {
+                    filePart = null;
+                }
+            } else {
+                RequestBody attachmentEmpty = RequestBody.create(MediaType.parse("text/plain"), "");
+                filePart = MultipartBody.Part.createFormData("attachment", "", attachmentEmpty);
+            }*/
+            RequestBody userId = RequestBody.create(MediaType.parse("text/plain"), parent_id);
+            RequestBody chld_id = RequestBody.create(MediaType.parse("text/plain"), child_id);
+            RequestBody image = RequestBody.create(MediaType.parse("text/plain"), str_image_path);
+
+            Call<ResponseBody> loginCall = apiInterface.uploadSelfie(userId, chld_id, image);
             loginCall.enqueue(new Callback<ResponseBody>() {
                 @Override
                 public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
@@ -360,7 +501,6 @@ public class ScreenCaptureService extends Service {
 
                 // create virtual display depending on device width / height
                 createVirtualDisplay();
-
                 // register orientation change callback
                 mOrientationChangeCallback = new OrientationChangeCallback(this);
                 if (mOrientationChangeCallback.canDetectOrientation()) {

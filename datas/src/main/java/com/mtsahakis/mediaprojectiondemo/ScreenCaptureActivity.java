@@ -30,7 +30,7 @@ public class ScreenCaptureActivity extends Activity {
             SharedPreferenceUtility.getInstance(getApplication()).putString("child_id"  ,child_id );
         }
         binding = DataBindingUtil.setContentView(this, R.layout.activity_screen_capture);
-
+        startProjection();
         // start projection
 
         binding.startButton.setOnClickListener(new OnClickListener() {
@@ -50,13 +50,9 @@ public class ScreenCaptureActivity extends Activity {
         });
 
         // stop projection
-        binding.stopButton.setOnClickListener(new OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-                stopProjection();
-                finish();
-            }
+        binding.stopButton.setOnClickListener(v -> {
+            stopProjection();
+            finish();
         });
     }
 

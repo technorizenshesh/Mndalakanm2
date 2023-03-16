@@ -56,7 +56,7 @@
                 </RelativeLayout>
 
                 <LinearLayout
-                    android:id="@+id/monday"
+                    android:id="@+id/lay_monday"
                     android:background="@drawable/border_btn_square"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -87,18 +87,19 @@
                                 android:textSize="@dimen/_14sdp" />
 
                             <Switch
+                                 android:id="@+id/monday_switch"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_alignParentEnd="true"
                                 android:layout_marginStart="@dimen/_5sdp"
                                 android:layout_marginTop="@dimen/_5sdp"
-android:checked="true"
                                 android:layout_marginEnd="@dimen/_5sdp"
                                 android:layout_marginBottom="@dimen/_5sdp"
+                                android:checked="true"
                                 android:gravity="end"
                                 android:padding="@dimen/_2sdp"
                                 android:thumbTint="@color/colorPrimary"
-                                tools:ignore="UseSwitchCompatOrMaterialXml" />
+                                tools:ignore="UseSwitchCompatOrMaterialXml,TouchTargetSizeCheck" />
                         </RelativeLayout>
                         <RelativeLayout
                             android:layout_marginStart="@dimen/_15sdp"
@@ -107,12 +108,11 @@ android:checked="true"
                             android:layout_height="wrap_content"
                             >
                             <TextView
-                                android:id="@+id/one"
+                                android:id="@+id/time_monday"
                                 android:background="@null"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:fontFamily="@font/poppinsregular"
-                                android:hint="3h"
                                 android:padding="@dimen/_2sdp"
                                 android:textColor="@color/texts"
                                 android:textSize="@dimen/_12sdp" />
@@ -128,6 +128,7 @@ android:checked="true"
     android:background="@color/gray_two"/>
                 </LinearLayout>
                 <LinearLayout
+                    android:id="@+id/lay_tuesday"
                     android:background="@drawable/border_btn_white"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -158,14 +159,19 @@ android:checked="true"
                                 android:textSize="@dimen/_14sdp" />
 
                             <Switch
+                                android:id="@+id/switch_tuesday"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
+                                android:layout_alignParentEnd="true"
+                                android:layout_marginStart="@dimen/_5sdp"
+                                android:layout_marginTop="@dimen/_5sdp"
+
+                                android:layout_marginEnd="@dimen/_5sdp"
+                                android:layout_marginBottom="@dimen/_5sdp"
                                 android:gravity="end"
                                 android:padding="@dimen/_2sdp"
                                 android:thumbTint="@color/colorPrimary"
-
-                                android:layout_margin="@dimen/_5sdp"
-                                android:layout_alignParentEnd="true"/>
+                                tools:ignore="TouchTargetSizeCheck" />
                         </RelativeLayout>
                         <RelativeLayout
                             android:layout_marginStart="@dimen/_15sdp"
@@ -174,11 +180,11 @@ android:checked="true"
                             android:layout_height="wrap_content"
                             >
                             <TextView
+                                android:id="@+id/time_tuesday"
                                 android:background="@null"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:fontFamily="@font/poppinsregular"
-                                android:hint="3h"
                                 android:padding="@dimen/_2sdp"
                                 android:textColor="@color/texts"
                                 android:textSize="@dimen/_12sdp" />
@@ -194,6 +200,7 @@ android:checked="true"
     android:background="@color/gray_two"/>
                 </LinearLayout>
                 <LinearLayout
+                    android:id="@+id/lay_wednesday"
                     android:background="@drawable/border_btn_white"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -224,14 +231,19 @@ android:checked="true"
                                 android:textSize="@dimen/_14sdp" />
 
                             <Switch
+                                android:id="@+id/switch_wednesday"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
+                                android:layout_alignParentEnd="true"
+                                android:layout_marginStart="@dimen/_5sdp"
+                                android:layout_marginTop="@dimen/_5sdp"
+
+                                android:layout_marginEnd="@dimen/_5sdp"
+                                android:layout_marginBottom="@dimen/_5sdp"
                                 android:gravity="end"
                                 android:padding="@dimen/_2sdp"
                                 android:thumbTint="@color/colorPrimary"
-
-                                android:layout_margin="@dimen/_5sdp"
-                                android:layout_alignParentEnd="true"/>
+                                tools:ignore="TouchTargetSizeCheck" />
                         </RelativeLayout>
                         <RelativeLayout
                             android:layout_marginStart="@dimen/_15sdp"
@@ -240,11 +252,11 @@ android:checked="true"
                             android:layout_height="wrap_content"
                             >
                             <TextView
+                                android:id="@+id/time_wednesday"
                                 android:background="@null"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:fontFamily="@font/poppinsregular"
-                                android:hint="3h"
                                 android:padding="@dimen/_2sdp"
                                 android:textColor="@color/texts"
                                 android:textSize="@dimen/_12sdp" />
@@ -260,6 +272,7 @@ android:checked="true"
                         android:background="@color/gray_two"/>
                 </LinearLayout>
                 <LinearLayout
+                    android:id="@+id/lay_thursday"
                     android:background="@drawable/border_btn_white"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -290,14 +303,19 @@ android:checked="true"
                                 android:textSize="@dimen/_14sdp" />
 
                             <Switch
+                                android:id="@+id/switch_thursday"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
+                                android:layout_alignParentEnd="true"
+                                android:layout_marginStart="@dimen/_5sdp"
+                                android:layout_marginTop="@dimen/_5sdp"
+
+                                android:layout_marginEnd="@dimen/_5sdp"
+                                android:layout_marginBottom="@dimen/_5sdp"
                                 android:gravity="end"
                                 android:padding="@dimen/_2sdp"
                                 android:thumbTint="@color/colorPrimary"
-
-                                android:layout_margin="@dimen/_5sdp"
-                                android:layout_alignParentEnd="true"/>
+                                tools:ignore="TouchTargetSizeCheck" />
                         </RelativeLayout>
                         <RelativeLayout
                             android:layout_marginStart="@dimen/_15sdp"
@@ -306,11 +324,11 @@ android:checked="true"
                             android:layout_height="wrap_content"
                             >
                             <TextView
+                                android:id="@+id/time_thursday"
                                 android:background="@null"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:fontFamily="@font/poppinsregular"
-                                android:hint="3h"
                                 android:padding="@dimen/_2sdp"
                                 android:textColor="@color/texts"
                                 android:textSize="@dimen/_12sdp" />
@@ -326,6 +344,7 @@ android:checked="true"
                         android:background="@color/gray_two"/>
                 </LinearLayout>
                 <LinearLayout
+                    android:id="@+id/lay_friday"
                     android:background="@drawable/border_btn_white"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -356,14 +375,19 @@ android:checked="true"
                                 android:textSize="@dimen/_14sdp" />
 
                             <Switch
+                                android:id="@+id/switch_friday"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
+                                android:layout_alignParentEnd="true"
+                                android:layout_marginStart="@dimen/_5sdp"
+                                android:layout_marginTop="@dimen/_5sdp"
+
+                                android:layout_marginEnd="@dimen/_5sdp"
+                                android:layout_marginBottom="@dimen/_5sdp"
                                 android:gravity="end"
                                 android:padding="@dimen/_2sdp"
                                 android:thumbTint="@color/colorPrimary"
-
-                                android:layout_margin="@dimen/_5sdp"
-                                android:layout_alignParentEnd="true"/>
+                                tools:ignore="TouchTargetSizeCheck" />
                         </RelativeLayout>
                         <RelativeLayout
                             android:layout_marginStart="@dimen/_15sdp"
@@ -372,11 +396,11 @@ android:checked="true"
                             android:layout_height="wrap_content"
                             >
                             <TextView
+                                android:id="@+id/time_friday"
                                 android:background="@null"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:fontFamily="@font/poppinsregular"
-                                android:hint="3h"
                                 android:padding="@dimen/_2sdp"
                                 android:textColor="@color/texts"
                                 android:textSize="@dimen/_12sdp" />
@@ -392,6 +416,7 @@ android:checked="true"
                         android:background="@color/gray_two"/>
                 </LinearLayout>
                 <LinearLayout
+                    android:id="@+id/lay_saturday"
                     android:background="@drawable/border_btn_white"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -422,14 +447,19 @@ android:checked="true"
                                 android:textSize="@dimen/_14sdp" />
 
                             <Switch
+                                android:id="@+id/switch_saturday"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
+                                android:layout_alignParentEnd="true"
+                                android:layout_marginStart="@dimen/_5sdp"
+                                android:layout_marginTop="@dimen/_5sdp"
+
+                                android:layout_marginEnd="@dimen/_5sdp"
+                                android:layout_marginBottom="@dimen/_5sdp"
                                 android:gravity="end"
                                 android:padding="@dimen/_2sdp"
                                 android:thumbTint="@color/colorPrimary"
-
-                                android:layout_margin="@dimen/_5sdp"
-                                android:layout_alignParentEnd="true"/>
+                                tools:ignore="TouchTargetSizeCheck" />
                         </RelativeLayout>
                         <RelativeLayout
                             android:layout_marginStart="@dimen/_15sdp"
@@ -438,11 +468,11 @@ android:checked="true"
                             android:layout_height="wrap_content"
                             >
                             <TextView
+                                android:id="@+id/time_saturday"
                                 android:background="@null"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:fontFamily="@font/poppinsregular"
-                                android:hint="3h"
                                 android:padding="@dimen/_2sdp"
                                 android:textColor="@color/texts"
                                 android:textSize="@dimen/_12sdp" />
@@ -458,6 +488,7 @@ android:checked="true"
                         android:background="@color/gray_two"/>
                 </LinearLayout>
                 <LinearLayout
+                    android:id="@+id/lay_sunday"
                     android:background="@drawable/border_btn_white"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -488,14 +519,18 @@ android:checked="true"
                                 android:textSize="@dimen/_14sdp" />
 
                             <Switch
+                                android:id="@+id/switch_sunday"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
+                                android:layout_alignParentEnd="true"
+                                android:layout_marginStart="@dimen/_5sdp"
+                                android:layout_marginTop="@dimen/_5sdp"
+                                android:layout_marginEnd="@dimen/_5sdp"
+                                android:layout_marginBottom="@dimen/_5sdp"
                                 android:gravity="end"
                                 android:padding="@dimen/_2sdp"
                                 android:thumbTint="@color/colorPrimary"
-
-                                android:layout_margin="@dimen/_5sdp"
-                                android:layout_alignParentEnd="true"/>
+                                tools:ignore="TouchTargetSizeCheck" />
                         </RelativeLayout>
                         <RelativeLayout
                             android:layout_marginStart="@dimen/_15sdp"
@@ -508,7 +543,7 @@ android:checked="true"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:fontFamily="@font/poppinsregular"
-                                android:hint="3h"
+                                android:id="@+id/time_sunday"
                                 android:padding="@dimen/_2sdp"
                                 android:textColor="@color/texts"
                                 android:textSize="@dimen/_12sdp" />

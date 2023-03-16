@@ -14,25 +14,19 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
-import com.google.zxing.WriterException
-import  com.techno.mndalakanm.R
-import com.techno.mndalakanm.databinding.FragmentShowQRBinding
 import com.app.mndalakanm.utils.SharedPref
+import com.google.zxing.WriterException
+import com.techno.mndalakanm.R
+import com.techno.mndalakanm.databinding.FragmentShowQRBinding
 import com.vilborgtower.user.utils.Constant
 
 
 class ShowQRFragment : Fragment() {
-
     private lateinit var binding: FragmentShowQRBinding
     lateinit var navController: NavController
     var type = ""
-    // on below line we are creating
-    // a variable for bitmap
     lateinit var bitmap: Bitmap
     lateinit var sharedPref: SharedPref
-
-    // on below line we are creating
-    // a variable for qr encoder.
     lateinit var qrEncoder: QRGEncoder
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -45,10 +39,10 @@ class ShowQRFragment : Fragment() {
         if (container != null) {
             navController = container.findNavController()
         }
-        if (getArguments() != null) {
+        if (arguments != null) {
             type = arguments?.getString("type").toString()
         }
-        sharedPref= SharedPref(requireContext())
+        sharedPref = SharedPref(requireContext())
         binding.header.imgHeader.setOnClickListener {
             activity?.onBackPressed()
         }
@@ -64,7 +58,7 @@ class ShowQRFragment : Fragment() {
         }
 // Initializing the QR Encoder with your value to be encoded, type you required and Dimension
         // Initializing the QR Encoder with your value to be encoded, type you required and Dimension
-        val qrgEncoder = QRGEncoder(requireActivity().getString(R.string.app_name)+" Code:- ~~"+sharedPref.getStringValue(Constant.PAIRINGCODE), null, QRGContents.Type.TEXT, 2048   )
+        val qrgEncoder = QRGEncoder(requireActivity().getString(R.string.app_name) + " Code:- ~~" + sharedPref.getStringValue(Constant.PAIRINGCODE), null, QRGContents.Type.TEXT, 2048)
         qrgEncoder.colorBlack = Color.BLACK
         qrgEncoder.colorWhite = Color.WHITE
         try {

@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.os.CountDownTimer
 import android.text.Editable
 import android.text.TextUtils
+import android.text.TextWatcher
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -21,13 +22,15 @@ import com.app.mndalakanm.Mndalakanm
 import com.app.mndalakanm.model.SuccessLoginRes
 import com.app.mndalakanm.model.SuccessVerifyOtpRes
 import com.app.mndalakanm.retrofit.ApiClient
+import com.app.mndalakanm.retrofit.ProviderInterface
 import com.app.mndalakanm.utils.DataManager
 import com.app.mndalakanm.utils.InternetConnection
 import com.app.mndalakanm.utils.SharedPref
-import com.app.mndalakanm.retrofit.ProviderInterface
 import com.deishelon.roundedbottomsheet.RoundedBottomSheetDialog
 import com.google.firebase.FirebaseApp
 import com.google.firebase.FirebaseException
+import com.google.firebase.appcheck.FirebaseAppCheck
+import com.google.firebase.appcheck.playintegrity.PlayIntegrityAppCheckProviderFactory
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.PhoneAuthCredential
 import com.google.firebase.auth.PhoneAuthOptions
@@ -53,26 +56,27 @@ class LoginNoFragment : Fragment() {
     private var time_in_milliseconds = 60000L
     private var pauseOffSet = 0L
     private lateinit var mAuth: FirebaseAuth
-    private lateinit var count : CountDownTimer
-    private lateinit var mBottomSheetDialog :RoundedBottomSheetDialog
+    private lateinit var count: CountDownTimer
+    private lateinit var mBottomSheetDialog: RoundedBottomSheetDialog
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        binding = DataBindingUtil.inflate(
-            inflater, R.layout.fragment_login_no,
-            container, false
-        )
-        if (getArguments() != null) {
+    ): View {
+        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_login_no, container, false)
+        if (arguments != null) {
             type = arguments?.getString("type").toString()
         }
-
         FirebaseApp.initializeApp(requireActivity())
         mAuth = FirebaseAuth.getInstance()
+        val firebaseAppCheck = FirebaseAppCheck.getInstance()
+        firebaseAppCheck.installAppCheckProviderFactory(
+            PlayIntegrityAppCheckProviderFactory.getInstance()
+        )
+        //   mAuth.getFirebaseAuthSettings().setAppVerificationDisabledForTesting(true);
         mAuth.setLanguageCode("en")
 
-        sharedPref= SharedPref(requireContext())
+        sharedPref = SharedPref(requireContext())
         apiInterface = ApiClient.getClient(requireContext())!!.create(ProviderInterface::class.java)
 
 
@@ -81,7 +85,7 @@ class LoginNoFragment : Fragment() {
 
         binding.btnSignIn.setOnClickListener {
             var code = binding.ccp.selectedCountryCode.toString()
-            var no   = binding.editNo.text.toString()
+            var no = binding.editNo.text.toString()
             if (TextUtils.isEmpty(no)) {
                 Mndalakanm.showToast(requireContext(), getString(R.string.please_enter_phone_no))
             } else {
@@ -193,20 +197,20 @@ class LoginNoFragment : Fragment() {
                 if (task.isSuccessful) {
                     // if the code is correct and the task is successful
                     // we are sending our user to new activity.
-                  //  val i = Intent(this@MainActivity, HomeActivity::class.java)
-                  //  startActivity(i)
-               //     finish()
+                    //  val i = Intent(this@MainActivity, HomeActivity::class.java)
+                    //  startActivity(i)
+                    //     finish()
 
                     DataManager.instance.hideProgressMessage()
-                    LoginSignupByUser(task.result.user?.uid.toString() )
+                    LoginSignupByUser(task.result.user?.uid.toString())
                     Toast.makeText(
                         requireContext(),
-                       "Verification Successfull",
+                        "Verification Successfull",
                         Toast.LENGTH_LONG
                     )
                         .show()
 
-                    Log.e(TAG, "signInWithCredential: uiddd "+task.result.user?.uid )
+                    Log.e(TAG, "signInWithCredential: uiddd " + task.result.user?.uid)
                 } else {
                     DataManager.instance.hideProgressMessage()
 
@@ -221,8 +225,9 @@ class LoginNoFragment : Fragment() {
                 }
             }
     }
-    private fun LoginSignupByUser(ud_id:String) {
-     DataManager.instance
+
+    private fun LoginSignupByUser(ud_id: String) {
+        DataManager.instance
             .showProgressMessage(requireActivity(), getString(R.string.getting_user))
         var map = HashMap<String, String>()
         map.put("mobile", phoneNum)
@@ -234,15 +239,15 @@ class LoginNoFragment : Fragment() {
                 call: Call<SuccessLoginRes?>,
                 response: Response<SuccessLoginRes?>
             ) {
-             DataManager.instance.hideProgressMessage()
+                DataManager.instance.hideProgressMessage()
                 try {
                     if (response.body() != null && response.body()!!.getStatus().equals("1")) {
-
-                        response.body()!!.getResult()?.id?.let {
-                            sharedPref.setStringValue(Constant.USER_ID,
-                                it
-                            )
-                        }
+                        val res: SuccessLoginRes = response.body()!!
+                        Log.e(
+                            TAG,
+                            "res.getResult()?.id .toString(): " + res.getResult()?.id.toString()
+                        )
+                        sharedPref.setStringValue(Constant.USER_ID, res.getResult()?.id.toString())
                         sharedPref.setStringValue(Constant.USER_TYPE, "provider")
                         sharedPref.setBooleanValue(Constant.IS_LOGIN, true)
                         sharedPref.setStringValue(Constant.LOCK, "0")
@@ -252,18 +257,19 @@ class LoginNoFragment : Fragment() {
                             .navigate(R.id.action_login_no_to_set_pin, bundle)
 
 
-                    /* Navigation.findNavController(binding.root)
-                            .navigate(R.id.action_splash_to_plans, bundle)
-                   */ }
+                        /* Navigation.findNavController(binding.root)
+                                .navigate(R.id.action_splash_to_plans, bundle)
+                       */
+                    }
                 } catch (e: Exception) {
-                 DataManager.instance.hideProgressMessage()
+                    DataManager.instance.hideProgressMessage()
                     Toast.makeText(context, "Exception = " + e.message, Toast.LENGTH_SHORT).show()
                     Log.e("Exception", "Exception = " + e.message)
                 }
             }
 
             override fun onFailure(call: Call<SuccessLoginRes?>, t: Throwable) {
-             DataManager.instance.hideProgressMessage()
+                DataManager.instance.hideProgressMessage()
                 Log.e(TAG, "onFailure: " + t.localizedMessage)
                 Log.e(TAG, "onFailure: " + t.cause.toString())
                 Log.e(TAG, "onFailure: " + t.message.toString())
@@ -275,32 +281,33 @@ class LoginNoFragment : Fragment() {
 
     private fun showDialog(otp: String?, mobile: String?) {
 
-         mBottomSheetDialog = RoundedBottomSheetDialog(requireActivity())
+        mBottomSheetDialog = RoundedBottomSheetDialog(requireActivity())
         val sheetView: View = mBottomSheetDialog.layoutInflater.inflate(R.layout.otp_bottam, null)
         mBottomSheetDialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-        mBottomSheetDialog.window?.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_VISIBLE );
+        mBottomSheetDialog.window?.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_VISIBLE)
         mBottomSheetDialog.setContentView(sheetView)
         mBottomSheetDialog.setCancelable(false)
         val close = mBottomSheetDialog.findViewById<ImageView>(R.id.close)
         val btn_sign_in = mBottomSheetDialog.findViewById<Button>(R.id.btn_sign_in)
         val tv_timer = mBottomSheetDialog.findViewById<TextView>(R.id.tv_timer)
         tv_timer!!.isClickable = false
-        tv_timer!!.text ="00:"+ "${(time_in_milliseconds / 1000).toString()}"
-        count= object : CountDownTimer(60000, 1000) {
+        tv_timer.text = "00:" + "${(time_in_milliseconds / 1000)}"
+        count = object : CountDownTimer(60000, 1000) {
             override fun onTick(millisUntilFinished: Long) {
                 tv_timer.text = "" + millisUntilFinished / 1000
                 tv_timer.isEnabled = false
             }
 
             override fun onFinish() {
-                if (tv_timer!=null){
-                tv_timer.text = getString(R.string.resend)
-                tv_timer.isEnabled = true}
+                if (tv_timer != null) {
+                    tv_timer.text = getString(R.string.resend)
+                    tv_timer.isEnabled = true
+                }
             }
         }.start()
 
 
-        tv_timer!!.setOnClickListener {
+        tv_timer.setOnClickListener {
             mBottomSheetDialog.dismiss()
             binding.btnSignIn.performClick()
         }
@@ -323,7 +330,19 @@ class LoginNoFragment : Fragment() {
                 }
             }
         }
+        et6?.addTextChangedListener(object : TextWatcher {
+            override fun afterTextChanged(s: Editable?) {
+                if (!s.toString().equals("", true)) {
+                    btn_sign_in?.performClick()
+                }
+            }
 
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+            }
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+            }
+        })
         close!!.setOnClickListener {
             mBottomSheetDialog.dismiss()
         }
@@ -348,70 +367,76 @@ class LoginNoFragment : Fragment() {
                 et6.error = getString(R.string.empty)
             } else {
                 val otp = et1txt + et2txt + et3txt + et4txt + et5txt + et6txt
-               // VerifyOTP(otp, mobile,mBottomSheetDialog)
-                verifyCode(otp,mBottomSheetDialog)
+                // VerifyOTP(otp, mobile,mBottomSheetDialog)
+                verifyCode(otp, mBottomSheetDialog)
 
             }
         }
         mBottomSheetDialog.show()
     }
 
-    private fun VerifyOTP(otp: String, mobile: String?, mBottomSheetDialog: RoundedBottomSheetDialog) {
+    private fun VerifyOTP(
+        otp: String,
+        mobile: String?,
+        mBottomSheetDialog: RoundedBottomSheetDialog
+    ) {
 
-             DataManager.instance
-                    .showProgressMessage(requireActivity(), getString(R.string.please_wait))
-                var map = HashMap<String, String>()
-                map.put("otp", otp)
+        DataManager.instance
+            .showProgressMessage(requireActivity(), getString(R.string.please_wait))
+        var map = HashMap<String, String>()
+        map.put("otp", otp)
         if (mobile != null) {
             map.put("mobile", mobile)
         }
-                Log.e(TAG, "Login user Request = $map")
-                apiInterface.verify_otp(map).enqueue(object : Callback<SuccessVerifyOtpRes?> {
-                    override fun onResponse(
-                        call: Call<SuccessVerifyOtpRes?>,
-                        response: Response<SuccessVerifyOtpRes?>
-                    ) {
-                     DataManager.instance.hideProgressMessage()
-                        try {
-                            if (response.body() != null && response.body()!!.getStatus().equals("1")) {
-                                response.body()!!.getMessage()?.let {
-                                    Mndalakanm.showToast(
-                                        requireContext(),
-                                        it
-                                    )
-                                }
-                                mBottomSheetDialog.dismiss()
-
-                                response.body()!!.getResult()?.id?.let {
-                                    sharedPref.setStringValue(Constant.USER_ID,
-                                        it
-                                    )
-                                }
-                                sharedPref.setStringValue(Constant.USER_TYPE, "provider")
-                                sharedPref.setBooleanValue(Constant.IS_LOGIN, true)
-                                val bundle = Bundle()
-                                bundle.putString("type", type)
-                                Navigation.findNavController(binding.root)
-                                    .navigate(R.id.action_splash_to_plans, bundle)
-                            }else{
-                                Toast.makeText(context,  response.body()!!.getMessage(), Toast.LENGTH_SHORT).show()
-
-                            }
-                        } catch (e: Exception) {
-                         DataManager.instance.hideProgressMessage()
-                            Toast.makeText(context, "Exception = " + e.message, Toast.LENGTH_SHORT).show()
-                            Log.e("Exception", "Exception = " + e.message)
+        Log.e(TAG, "Login user Request = $map")
+        apiInterface.verify_otp(map).enqueue(object : Callback<SuccessVerifyOtpRes?> {
+            override fun onResponse(
+                call: Call<SuccessVerifyOtpRes?>,
+                response: Response<SuccessVerifyOtpRes?>
+            ) {
+                DataManager.instance.hideProgressMessage()
+                try {
+                    if (response.body() != null && response.body()!!.getStatus().equals("1")) {
+                        response.body()!!.getMessage()?.let {
+                            Mndalakanm.showToast(
+                                requireContext(),
+                                it
+                            )
                         }
-                    }
+                        mBottomSheetDialog.dismiss()
 
-                    override fun onFailure(call: Call<SuccessVerifyOtpRes?>, t: Throwable) {
-                     DataManager.instance.hideProgressMessage()
-                        Log.e(TAG, "onFailure: " + t.localizedMessage)
-                        Log.e(TAG, "onFailure: " + t.cause.toString())
-                        Log.e(TAG, "onFailure: " + t.message.toString())
-                    }
+                        response.body()!!.getResult()?.id?.let {
+                            sharedPref.setStringValue(
+                                Constant.USER_ID,
+                                it
+                            )
+                        }
+                        sharedPref.setStringValue(Constant.USER_TYPE, "provider")
+                        sharedPref.setBooleanValue(Constant.IS_LOGIN, true)
+                        val bundle = Bundle()
+                        bundle.putString("type", type)
+                        Navigation.findNavController(binding.root)
+                            .navigate(R.id.action_splash_to_plans, bundle)
+                    } else {
+                        Toast.makeText(context, response.body()!!.getMessage(), Toast.LENGTH_SHORT)
+                            .show()
 
-                })
+                    }
+                } catch (e: Exception) {
+                    DataManager.instance.hideProgressMessage()
+                    Toast.makeText(context, "Exception = " + e.message, Toast.LENGTH_SHORT).show()
+                    Log.e("Exception", "Exception = " + e.message)
+                }
+            }
+
+            override fun onFailure(call: Call<SuccessVerifyOtpRes?>, t: Throwable) {
+                DataManager.instance.hideProgressMessage()
+                Log.e(TAG, "onFailure: " + t.localizedMessage)
+                Log.e(TAG, "onFailure: " + t.cause.toString())
+                Log.e(TAG, "onFailure: " + t.message.toString())
+            }
+
+        })
 
 
     }
@@ -440,14 +465,16 @@ class LoginNoFragment : Fragment() {
     }
 
     override fun onDetach() {
-        if (count!=null){
-        count.cancel()}
+        if (count != null) {
+            count.cancel()
+        }
         super.onDetach()
     }
 
     override fun onDestroy() {
-        if (count!=null){
-            count.cancel()}
+        if (count != null) {
+            count.cancel()
+        }
 
         super.onDestroy()
     }

@@ -12,10 +12,11 @@ class ApiClient {
         var BASE_URL: String = ApiConstant.BASE_URL
         private var retrofit: Retrofit? = null
         private val httpClient = OkHttpClient.Builder()
+        val interceptor = HttpLoggingInterceptor()
 
         fun getClient(context: Context): Retrofit? {
-            val interceptor = HttpLoggingInterceptor()
             interceptor.level = HttpLoggingInterceptor.Level.BODY
+
             val client = httpClient.addInterceptor(interceptor)
                 .connectTimeout(50, TimeUnit.SECONDS)
                 .readTimeout(220, TimeUnit.SECONDS)

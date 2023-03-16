@@ -12,8 +12,21 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:visibility="visible">
-
             <LinearLayout
+                android:id="@+id/top"
+                android:orientation="horizontal"
+                android:background="@color/white"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                >
+                <androidx.recyclerview.widget.RecyclerView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    tools:itemCount="7"
+                    android:id="@+id/recycle_days"
+                    />
+            </LinearLayout>
+          <!--  <LinearLayout
                 android:id="@+id/top"
                 android:background="@color/white"
                 android:layout_width="match_parent"
@@ -241,7 +254,7 @@ android:layout_margin="@dimen/_3sdp"
                 </LinearLayout>
 
 
-            </LinearLayout>
+            </LinearLayout>-->
 
             <fragment
                 android:layout_below="@+id/top"
@@ -256,7 +269,8 @@ android:layout_margin="@dimen/_3sdp"
                 android:gravity="end"
                 >
                 <ImageView
-                    android:id="@+id/menu1"
+                    android:visibility="gone"
+                    android:id="@+id/nev_location"
                     android:layout_width="@dimen/_45sdp"
                     android:layout_height="@dimen/_45sdp"
                     android:layout_marginStart="@dimen/_5sdp"
@@ -265,15 +279,23 @@ android:layout_margin="@dimen/_3sdp"
                     android:padding="@dimen/_2sdp"
                     android:src="@drawable/direction" />
                 <ImageView
-                    android:id="@+id/menu2"
-                    android:layout_below="@+id/menu1"
+                    android:id="@+id/self_location"
+                    android:layout_below="@+id/nev_location"
                     android:layout_width="@dimen/_45sdp"
                     android:layout_height="@dimen/_45sdp"
                     android:layout_marginEnd="@dimen/_15sdp"
                     android:layout_marginStart="@dimen/_5sdp"
                     android:padding="@dimen/_2sdp"
                     android:src="@drawable/center_location" />
-
+                <ImageView
+                    android:id="@+id/add_new_place"
+                    android:layout_below="@+id/self_location"
+                    android:layout_width="@dimen/_45sdp"
+                    android:layout_height="@dimen/_45sdp"
+                    android:layout_marginEnd="@dimen/_15sdp"
+                    android:layout_marginStart="@dimen/_5sdp"
+                    android:padding="@dimen/_2sdp"
+                    android:src="@drawable/add_place" />
             </RelativeLayout>
             <include
                 android:id="@+id/mrker_clicked"

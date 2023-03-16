@@ -3,6 +3,7 @@ plugins {
     id 'org.jetbrains.kotlin.android'
     id 'kotlin-kapt'
     id 'com.google.gms.google-services'
+    id "kotlin-parcelize"
 
 
 }
@@ -17,7 +18,7 @@ android {
         targetSdk 32
         versionCode 1
         versionName "1.0"
-      //  multiDexEnabled true
+      //multiDexEnabled true
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -26,7 +27,12 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.debug
+            ndk {
+                abiFilters 'armeabi-v7a','arm64-v8a','x86_64', 'x86'
+            }
         }
+
     }
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
@@ -41,8 +47,6 @@ android {
         enabled = true
 
     }
-
-
 }
 
 dependencies {
@@ -52,7 +56,8 @@ dependencies {
     implementation 'com.google.android.material:material:1.7.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
     implementation 'com.google.android.gms:play-services-location:21.0.1'
-
+    implementation 'com.google.android.libraries.places:places:3.0.0'
+    implementation 'junit:junit:4.12'
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
@@ -68,19 +73,23 @@ dependencies {
     //draw the line here====================--------------------======================part_two
 
     implementation 'com.google.android.gms:play-services-maps:18.1.0'
-    implementation 'com.google.firebase:firebase-messaging:23.1.1'
+    implementation 'com.google.firebase:firebase-messaging:23.1.2'
     implementation platform('com.google.firebase:firebase-bom:30.1.0')
     implementation 'com.google.firebase:firebase-database-ktx:20.1.0'
     implementation 'com.google.firebase:firebase-storage-ktx:20.1.0'
     implementation 'com.google.firebase:firebase-auth-ktx'
+    implementation 'com.google.firebase:firebase-appcheck-safetynet:'
+    implementation 'com.google.firebase:firebase-appcheck-playintegrity:16.1.2'
+    implementation 'com.google.firebase:firebase-appcheck-debug:16.1.2'
+    androidTestImplementation 'com.google.firebase:firebase-appcheck-debug-testing:16.1.2'
     implementation('com.squareup.retrofit2:retrofit:2.9.0') {
-        // exclude Retrofit’s OkHttp dependency module and define your own module import
         exclude module: 'okhttp'
     }
     implementation 'com.google.code.gson:gson:2.9.0'
     implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
-    implementation 'com.squareup.okhttp3:logging-interceptor:4.9.0'
-    implementation 'com.squareup.okhttp3:okhttp:4.9.1'
+    implementation 'com.squareup.okhttp3:logging-interceptor:5.0.0-alpha.11'
+    implementation 'com.squareup.okhttp3:okhttp:5.0.0-alpha.11'
+
 
     implementation 'com.github.bumptech.glide:glide:4.13.0'
     //annotationProcessor 'com.github.bumptech.glide:compiler:4.13.0'
@@ -101,4 +110,7 @@ dependencies {
     implementation 'me.everything:providers-android:1.0.1'
     def work_version = "2.7.1"
     implementation "androidx.work:work-runtime-ktx:$work_version"
+    def lottieVersion = "5.2.0"
+    implementation "com.airbnb.android:lottie:$lottieVersion"
+    implementation 'com.github.lukedeighton:wheelview:0.4.2'
 }

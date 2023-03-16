@@ -9,7 +9,12 @@
         android:name="com.app.mndalakanm.ui.Home.HomeFragment"
         android:label="HomeFragment"
         tools:layout="@layout/fragment_home">
-
+        <action
+            android:id="@+id/home_nav_to_home_nav"
+            app:destination="@+id/home_nav"
+             app:popUpToInclusive="true"
+            app:launchSingleTop="true"
+            app:popUpTo="@navigation/home_navigation"/>
     </fragment>
     <fragment
         android:id="@+id/statistics_nav"

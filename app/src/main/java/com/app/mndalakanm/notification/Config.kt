@@ -12,4 +12,5 @@ object Config {
     const val NOTIFICATION_ID = 100
     const val NOTIFICATION_ID_BIG_IMAGE = 101
     const val GET_DATA_NOTIFICATION = "getDataPushNotification"
+    const val GET_DATA_LOCKDOWN= "getDataLockDown"
 }
