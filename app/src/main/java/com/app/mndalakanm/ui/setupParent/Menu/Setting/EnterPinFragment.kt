@@ -1,9 +1,11 @@
 package com.app.mndalakanm.ui.setupParent.Menu.Setting
 
-import android.content.ContentValues
+import android.content.Intent
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextUtils
+import android.text.TextWatcher
+import android.util.Log
 import android.view.KeyEvent
 import android.view.LayoutInflater
 import android.view.View
@@ -15,18 +17,11 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.navigation.Navigation
 import com.app.mndalakanm.retrofit.ProviderInterface
-import com.app.mndalakanm.utils.DataManager
+import com.app.mndalakanm.ui.Home.SuperviseHomeActivity
 import com.app.mndalakanm.utils.SharedPref
 import com.techno.mndalakanm.R
 import com.techno.mndalakanm.databinding.FragmentEnterPinBinding
-import com.techno.mndalakanm.databinding.FragmentSetPinBinding
 import com.vilborgtower.user.utils.Constant
-import okhttp3.ResponseBody
-import org.json.JSONObject
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
-import timber.log.Timber
 
 
 class EnterPinFragment : Fragment() {
@@ -70,6 +65,20 @@ class EnterPinFragment : Fragment() {
 
 
         }
+
+        binding.et4.addTextChangedListener(object : TextWatcher {
+            override fun afterTextChanged(s: Editable?) {
+                if (!s.toString().equals("", true)) {
+                    binding.btnSignIn.performClick()
+                }
+            }
+
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+            }
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+            }
+        })
         binding.btnSignIn.setOnClickListener {
             val et1txt = binding.et1.text.toString()
             val et2txt = binding.et2.text.toString()
@@ -85,13 +94,45 @@ class EnterPinFragment : Fragment() {
                 binding.et4.error = getString(R.string.empty)
             } else {
                 val otp = et1txt + et2txt + et3txt + et4txt
-                if (otp.equals(sharedPref.getStringValue(Constant.CODE))){
-                    val bundle = Bundle()
-                    bundle.putString("type", "parent")
-                    Navigation.findNavController(binding.root).navigate(
-                        R.id.action_splash_to_provider, bundle
-                    )
-                }else{
+                if (otp.equals(sharedPref.getStringValue(Constant.CODE))) {
+                    if (!sharedPref.getStringValue(Constant.USER_TYPE).equals("provider", true)) {
+
+                        Log.e(
+                            "TAG",
+                            "sharedPref.getStringValue(Constant.CHILD_NAME): " + sharedPref.getStringValue(
+                                Constant.CHILD_NAME
+                            )
+                        )
+                        if (sharedPref.getStringValue(Constant.CHILD_NAME).equals("", true)) {
+
+                            val bundle = Bundle()
+                            bundle.putString("type", "child")
+                            bundle.putString("from", "splash")
+                            Navigation.findNavController(binding.root).navigate(
+                                R.id.action_splash_to_child_details_fragment, bundle
+                            )
+                            //  navController.navigate(R.id.action_splash_to_provider)
+
+                        } else {
+                            // navController.navigate(R.id.action_splash_to_provider)
+                            requireActivity().startActivity(
+                                Intent(
+                                    requireContext(),
+                                    SuperviseHomeActivity::class.java
+                                )
+                            )
+                            requireActivity().finish()
+
+                        }
+                    } else {
+
+                        val bundle = Bundle()
+                        bundle.putString("type", "parent")
+                        Navigation.findNavController(binding.root).navigate(
+                            R.id.action_splash_to_provider, bundle
+                        )
+                    }
+                } else {
                     Toast.makeText(context, " Wrong Code ", Toast.LENGTH_SHORT).show()
 
                 }

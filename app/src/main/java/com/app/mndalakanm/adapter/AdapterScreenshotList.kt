@@ -15,7 +15,8 @@ import com.techno.mndalakanm.databinding.ItemScreenshotsBinding
 
 class AdapterScreenshotList(
     val mContext: Context,
-    var transList: ArrayList<SuccessScreenshotRes.ScreenshotList>?, val listener: ScreenShotClickListener
+    var transList: ArrayList<SuccessScreenshotRes.ScreenshotList>?,
+    val listener: ScreenShotClickListener
 ) : RecyclerView.Adapter<AdapterScreenshotList.TransViewHolder>() {
 
     lateinit var sharedPref: SharedPref
@@ -23,7 +24,7 @@ class AdapterScreenshotList(
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TransViewHolder {
-        var binding: ItemScreenshotsBinding = DataBindingUtil.inflate (
+        var binding: ItemScreenshotsBinding = DataBindingUtil.inflate(
             LayoutInflater.from(mContext), R.layout.item_screenshots, parent, false
         )
         sharedPref = SharedPref(mContext)
@@ -33,11 +34,11 @@ class AdapterScreenshotList(
 
     override fun onBindViewHolder(holder: TransViewHolder, position: Int) {
         var data: SuccessScreenshotRes.ScreenshotList = transList!!.get(position)
-       // holder.binding.name.text = data.name
+        // holder.binding.name.text = data.name
         holder.binding.desc.text = data.timeAgo
         Glide.with(mContext).load(data.image).placeholder(R.drawable.ic_baseline_image_search_)
             .error(R.drawable.ic_baseline_broken_image_)
-            .into(holder.binding.screen);
+            .into(holder.binding.screen)
 
         holder.binding.parentCard.setOnClickListener {
             listener.onClick(position, data)
@@ -52,10 +53,14 @@ class AdapterScreenshotList(
     }
 
     override fun getItemCount(): Int {
-        return if (transList == null) 0 else transList!!.size
+        val limit = 5
+        return if (transList == null) 0 else Math.min(transList!!.size, limit)
+
+
+        // return if (transList == null) 0 else transList!!.size
     }
 
     class TransViewHolder(var binding: ItemScreenshotsBinding) :
-        RecyclerView.ViewHolder(binding.root) {}
+        RecyclerView.ViewHolder(binding.root)
 
 }

@@ -22,12 +22,13 @@ import java.net.HttpURLConnection
 import java.net.URL
 import java.text.ParseException
 import java.text.SimpleDateFormat
+import java.util.*
 
 
 class NotificationUtils(private val mContext: Context) {
-  //  private lateinit var mediaPlayer: MediaPlayer
+    //  private lateinit var mediaPlayer: MediaPlayer
 
-    fun showNotificationMessage(pushNotificationModel: PushNotificationModel) {
+    fun showNotificationMessage(pushNotificationModel: PushNotificationModel.Message) {
         // Check for empty push message
 //        if (TextUtils.isEmpty(pushNotificationModel.job_id)) return
         try {
@@ -43,11 +44,11 @@ class NotificationUtils(private val mContext: Context) {
                 PendingIntent.FLAG_CANCEL_CURRENT or PendingIntent.FLAG_IMMUTABLE
             val resultPendingIntent =
                 PendingIntent.getActivity(
-                mContext,
-                0,
-                intent,
+                    mContext,
+                    0,
+                    intent,
                     flag
-            )
+                )
             val mBuilder = NotificationCompat.Builder(
                 mContext
             )
@@ -81,25 +82,25 @@ class NotificationUtils(private val mContext: Context) {
 
     private fun showSmallNotification(
         mBuilder: NotificationCompat.Builder,
-        pushNotificationModel: PushNotificationModel,
+        pushNotificationModel: PushNotificationModel.Message,
         resultPendingIntent: PendingIntent,
         alarmSound: Uri
     ) {
-        var imageUrl=""
-        if(pushNotificationModel.driver_image !=null) {
-            if (isImageAvailable(pushNotificationModel.driver_image!!)) {
-                imageUrl = pushNotificationModel.driver_image!!
+        var imageUrl = ""
+        if (pushNotificationModel.parentImage != null) {
+            if (isImageAvailable(pushNotificationModel.parentImage!!)) {
+                imageUrl = pushNotificationModel.parentImage!!
             } else {
                 imageUrl = ""
             }
         }
         //        int icon=R.drawable.ic_launcher_background;
         val title =
-            pushNotificationModel.driver_firstname //pushNotificationModel.getKey().equals("")?mContext.getString(R.string.app_name):pushNotificationModel.getKey();
+            pushNotificationModel.parentName //pushNotificationModel.getKey().equals("")?mContext.getString(R.string.app_name):pushNotificationModel.getKey();
         val message = pushNotificationModel.key //pushNotificationModel.getMessage();
 
-       // mediaPlayer = MediaPlayer.create(mContext,R.raw.doogee_ringtone)
-       // mediaPlayer.start()
+        // mediaPlayer = MediaPlayer.create(mContext,R.raw.doogee_ringtone)
+        // mediaPlayer.start()
 
 //        playNotificationSound();
 //        NotificationCompat.InboxStyle inboxStyle = new NotificationCompat.InboxStyle();
@@ -109,20 +110,18 @@ class NotificationUtils(private val mContext: Context) {
         val NOTIFICATION_CHANNEL_ID = "1"
         val notificationManager =
             mContext.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            val notificationChannel = NotificationChannel(
-                NOTIFICATION_CHANNEL_ID,
-                "My Notifications",
-                NotificationManager.IMPORTANCE_DEFAULT
-            )
-            // Configure the notification channel.
-            notificationChannel.description = "Channel description"
-            notificationChannel.enableLights(true)
-            notificationChannel.lightColor = Color.RED
-            notificationChannel.vibrationPattern = longArrayOf(0, 1000, 500, 1000)
-            notificationChannel.enableVibration(true)
-            notificationManager.createNotificationChannel(notificationChannel)
-        }
+        val notificationChannel = NotificationChannel(
+            NOTIFICATION_CHANNEL_ID,
+            "My Notifications",
+            NotificationManager.IMPORTANCE_DEFAULT
+        )
+        // Configure the notification channel.
+        notificationChannel.description = "Channel description"
+        notificationChannel.enableLights(true)
+        notificationChannel.lightColor = Color.RED
+        notificationChannel.vibrationPattern = longArrayOf(0, 1000, 500, 1000)
+        notificationChannel.enableVibration(true)
+        notificationManager.createNotificationChannel(notificationChannel)
         val builder = NotificationCompat.Builder(mContext, NOTIFICATION_CHANNEL_ID)
             .setVibrate(longArrayOf(0, 100, 100, 100, 100, 100))
             .setSound(RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION))
@@ -134,7 +133,7 @@ class NotificationUtils(private val mContext: Context) {
             .setStyle(bigTextStyle)
             .setSound(alarmSound)
             .setAutoCancel(true)
-            .setWhen(getTimeMilliSec(pushNotificationModel.req_datetime)) //timeStamp))
+            .setWhen(Calendar.getInstance().timeInMillis) //timeStamp))
             .setContentIntent(resultPendingIntent) //                .addAction(android.R.drawable.ic_delete, "Ignore", resultPendingIntent)
             //                .addAction(android.R.drawable.ic_media_next, "Agree", resultPendingIntent)
             .setLargeIcon((getBitmapFromURL(imageUrl)))//BitmapFactory.decodeResource(mContext.getResources(), icon)))
@@ -144,7 +143,7 @@ class NotificationUtils(private val mContext: Context) {
 
     private fun showBigNotification( /*Bitmap bitmap,*/
         mBuilder: NotificationCompat.Builder,
-        pushNotificationModel: PushNotificationModel,
+        pushNotificationModel: PushNotificationModel.Message,
         resultPendingIntent: PendingIntent,
         alarmSound: Uri
     ) {
@@ -166,10 +165,15 @@ class NotificationUtils(private val mContext: Context) {
                 .setContentTitle(title)
                 .setContentIntent(resultPendingIntent) //                .setSound(RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION))
                 .setSound(alarmSound)
-                .setWhen(getTimeMilliSec(pushNotificationModel.req_datetime)) //timeStamp))
+                // .setWhen(getTimeMilliSec(pushNotificationModel.req_datetime)) //timeStamp))
+                .setWhen(Calendar.getInstance().timeInMillis) //timeStamp))
                 .setStyle(bigPictureStyle) //                .setSmallIcon(icon)
                 .setLargeIcon(
-                    BitmapFactory.decodeResource(mContext.resources, R.drawable.ic_launcher_background))
+                    BitmapFactory.decodeResource(
+                        mContext.resources,
+                        R.drawable.ic_launcher_background
+                    )
+                )
                 .setContentText(message)
                 .build()
         val notificationManager =
@@ -184,12 +188,12 @@ class NotificationUtils(private val mContext: Context) {
     fun getBitmapFromURL(strURL: String?): Bitmap? {
         try {
 
-            if(strURL.equals("")){
+            if (strURL.equals("")) {
                 return BitmapFactory.decodeResource(
-                    mContext.getResources(),
+                    mContext.resources,
                     R.drawable.logo_inside
                 )
-            }else {
+            } else {
                 val url = URL(strURL)
                 val connection = url.openConnection() as HttpURLConnection
                 connection.doInput = true
@@ -201,7 +205,7 @@ class NotificationUtils(private val mContext: Context) {
         } catch (e: IOException) {
             e.printStackTrace()
             return BitmapFactory.decodeResource(
-                mContext.getResources(),
+                mContext.resources,
                 R.drawable.logo_inside
             )
         }

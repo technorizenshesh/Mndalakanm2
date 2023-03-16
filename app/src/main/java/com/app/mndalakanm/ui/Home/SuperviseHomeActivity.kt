@@ -1,22 +1,15 @@
 package com.app.mndalakanm.ui.Home
 
-import android.app.Activity
-import android.content.ContentValues.TAG
-import android.content.Context
 import android.content.Intent
-import android.media.projection.MediaProjectionManager
 import android.os.Bundle
 import android.provider.Settings
-import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.NavigationUI.setupWithNavController
-import androidx.work.*
 import com.app.mndalakanm.MainActivity
 import com.app.mndalakanm.model.ChildData
-import com.app.mndalakanm.service.ScreenshotWork
 import com.app.mndalakanm.utils.SharedPref
 import com.techno.mndalakanm.R
 import com.techno.mndalakanm.databinding.ActivitySuperviseHomeBinding
@@ -57,6 +50,7 @@ class SuperviseHomeActivity : AppCompatActivity() {
 
         }
     }
+
     fun checkAccessibilityPermission(): Boolean {
         var accessEnabled = 0
         try {
@@ -76,16 +70,21 @@ class SuperviseHomeActivity : AppCompatActivity() {
             true
         }
     }
+
     override fun onResume() {
         getTimerApi()
-
+        if (sharedPref.getStringValue(Constant.USER_TYPE).equals("child", true)) {
+            addChildDatatoserver()
+        }
         super.onResume()
+    }
+
+    private fun addChildDatatoserver() {
+
     }
 
     private fun getTimerApi() {
     }
-
-
 
 
 }

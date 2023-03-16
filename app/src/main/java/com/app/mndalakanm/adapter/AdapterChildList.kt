@@ -6,7 +6,6 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.app.mndalakanm.model.ChildData
-import com.app.mndalakanm.model.SuccessChildsListRes
 import com.app.mndalakanm.utils.ChildClickListener
 import com.app.mndalakanm.utils.SharedPref
 import com.techno.mndalakanm.R
@@ -23,7 +22,7 @@ class AdapterChildList(
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TransViewHolder {
-        var binding: ItemChildBinding = DataBindingUtil.inflate (
+        var binding: ItemChildBinding = DataBindingUtil.inflate(
             LayoutInflater.from(mContext), R.layout.item_child, parent, false
         )
         sharedPref = SharedPref(mContext)
@@ -59,6 +58,6 @@ class AdapterChildList(
     }
 
     class TransViewHolder(var binding: ItemChildBinding) :
-        RecyclerView.ViewHolder(binding.root) {}
+        RecyclerView.ViewHolder(binding.root)
 
 }

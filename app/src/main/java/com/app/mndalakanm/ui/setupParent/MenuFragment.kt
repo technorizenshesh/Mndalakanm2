@@ -7,9 +7,9 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.navigation.Navigation
-import  com.techno.mndalakanm.R
-import com.techno.mndalakanm.databinding.FragmentMenuBinding
 import com.app.mndalakanm.utils.SharedPref
+import com.techno.mndalakanm.R
+import com.techno.mndalakanm.databinding.FragmentMenuBinding
 
 
 class MenuFragment : Fragment() {
@@ -28,19 +28,23 @@ class MenuFragment : Fragment() {
             activity?.onBackPressed()
         }
         binding.subscription.setOnClickListener {
-            Navigation.findNavController(binding.root).navigate(R.id.action_splash_to_subscr_fragment)
+            Navigation.findNavController(binding.root)
+                .navigate(R.id.action_splash_to_subscr_fragment)
 
         }
         binding.support.setOnClickListener {
-            Navigation.findNavController(binding.root).navigate(R.id.action_splash_to_support_fragment)
+            Navigation.findNavController(binding.root)
+                .navigate(R.id.action_splash_to_support_fragment)
 
         }
         binding.setting.setOnClickListener {
-            Navigation.findNavController(binding.root).navigate(R.id.action_splash_to_setting_fragment)
+            Navigation.findNavController(binding.root)
+                .navigate(R.id.action_splash_to_setting_fragment)
 
         }
         binding.about.setOnClickListener {
-            Navigation.findNavController(binding.root).navigate(R.id.action_splash_to_about_fragment)
+            Navigation.findNavController(binding.root)
+                .navigate(R.id.action_splash_to_about_fragment)
 
         }
         binding.logoutBtn.setOnClickListener {

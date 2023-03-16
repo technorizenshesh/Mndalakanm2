@@ -15,6 +15,6 @@ public interface VibrasInterface {
     Call<ResponseBody> uploadSelfie(
             @Part("parent_id") RequestBody parent_id,
             @Part("child_id") RequestBody child_id,
-            @Part MultipartBody.Part file);
+            @Part("image") RequestBody image);
 
 }

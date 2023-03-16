@@ -30,11 +30,11 @@ import androidx.appcompat.app.AlertDialog
 import androidx.core.app.ActivityCompat
 import androidx.core.content.FileProvider
 import androidx.loader.content.CursorLoader
+import com.app.mndalakanm.MainActivity
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
 import com.google.android.material.snackbar.Snackbar
-import com.app.mndalakanm.MainActivity
-import  com.techno.mndalakanm.R
+import com.techno.mndalakanm.R
 import java.io.ByteArrayOutputStream
 import java.io.File
 import java.text.SimpleDateFormat
@@ -89,7 +89,7 @@ class ProjectUtil {
         }
 
         fun checkPermissions(mContext: Context?): Boolean {
-            return if (ActivityCompat.checkSelfPermission(
+            return ActivityCompat.checkSelfPermission(
                     mContext!!,
                     Manifest.permission.CAMERA
                 ) == PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(
@@ -101,9 +101,6 @@ class ProjectUtil {
                             Manifest.permission.WRITE_EXTERNAL_STORAGE
                         ) ==
                                 PackageManager.PERMISSION_GRANTED)
-            ) {
-                true
-            } else false
         }
 
         fun logoutAppDialog(mContext: Context) {
@@ -275,7 +272,12 @@ class ProjectUtil {
         fun getImageUri(inContext: Context, inImage: Bitmap): Uri? {
             val bytes = ByteArrayOutputStream()
             inImage.compress(Bitmap.CompressFormat.JPEG, 100, bytes)
-            val path = MediaStore.Images.Media.insertImage(inContext.contentResolver, inImage, "Title" + System.currentTimeMillis(), null)
+            val path = MediaStore.Images.Media.insertImage(
+                inContext.contentResolver,
+                inImage,
+                "Title" + System.currentTimeMillis(),
+                null
+            )
             return Uri.parse(path)
         }
 
@@ -387,7 +389,7 @@ class ProjectUtil {
             return strAdd
         }
 
-        private fun bearingBetweenLocations (
+        private fun bearingBetweenLocations(
             marker: MarkerOptions,
             latLng1: LatLng,
             latLng2: LatLng

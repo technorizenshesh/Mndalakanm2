@@ -7,7 +7,7 @@ import java.io.Serializable
 /**
  * Created by Ravindra Birla on 09,February,2023
  */
-  public  data class ChildData  (
+data class ChildData(
     @SerializedName("id") var id: String? = null,
     @SerializedName("parent_id") var parentId: String? = null,
     @SerializedName("pairing_code") var pairingCode: String? = null,

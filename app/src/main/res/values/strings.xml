@@ -105,5 +105,20 @@
     <string name="set">set</string>
     <string name="select_action">Select Action</string>
     <string name="recording">recording</string>
+    <string name="payment_methode">Payment Methode</string>
+    <string name="ccontinue">Continue</string>
+    <string name="charge_code">Charge code</string>
+    <string name="enter_redeem_code">  Enter redeem code</string>
+    <string name="by_tapping_redeem_you_agree_to_the_gift_card_promotional_code_terms_and_condition_as_aplicable"><![CDATA[by tapping “Redeem’’, you agree to the Gift Card & promotional Code Terms and Condition as aplicable.]]></string>
+    <string name="purchase_redeem_code">Purchase Redeem Code</string>
+    <string name="redeem">Redeem</string>
+    <string name="purchase_desc"> When you purchase the code we will send it through an email and SMS to your registered mobile no and email address. you can also see the purchased code\'s list in redeem section </string>
+    <string name="purchase">Purchase</string>
+    <string name="purchase_note">Note :- We will send the code once we verify the purchase details</string>
+    <string name="e_mail_for_code">Enter email Address</string>
+    <string name="privacy">Privacy</string>
+    <string name="you_can_cancel_your_subscription_at_any_time_lifetime_is_a_one_off_payment">You can cancel your subscription at any time. Lifetime is a one-off payment.</string>
+    <string name="success_payment">Purchase Successful </string>
+    <string name="screenshot_requested">ScreenShot Requested</string>
 
 </resources>

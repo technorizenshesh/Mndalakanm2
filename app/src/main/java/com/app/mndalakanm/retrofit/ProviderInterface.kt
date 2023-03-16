@@ -18,6 +18,10 @@ interface ProviderInterface {
     fun verify_otp(@FieldMap params: Map<String, String>): Call<SuccessVerifyOtpRes>
 
     @FormUrlEncoded
+    @POST("get_redeemed_plan")
+    fun get_redeem_code_plan(@FieldMap params: Map<String, String>): Call<SuccessRedeemCodeRes>
+
+    @FormUrlEncoded
     @POST("generate_pairing_code")
     fun generate_pairing_code(@FieldMap params: Map<String, String>): Call<SuccessPairingRes>
 
@@ -72,6 +76,14 @@ interface ProviderInterface {
     fun addsub(@FieldMap params: Map<String, String>): Call<ResponseBody>
 
     @FormUrlEncoded
+    @POST("redeem_code")
+    fun redeem_code(@FieldMap params: Map<String, String>): Call<ResponseBody>
+
+    @FormUrlEncoded
+    @POST("purchase_plan")
+    fun purchase_plan(@FieldMap params: Map<String, String>): Call<ResponseBody>
+
+    @FormUrlEncoded
     @POST("privacy_policy")
     fun privacy_policy(@FieldMap params: Map<String, String>): Call<ResponseBody>
 
@@ -87,14 +99,27 @@ interface ProviderInterface {
     @POST("get_screenshot")
     fun get_screenshot(@FieldMap params: Map<String, String>): Call<SuccessScreenshotRes>
 
-  @FormUrlEncoded
+    @FormUrlEncoded
+    @POST("get_child_screenshot")
+    fun get_child_screenshot(@FieldMap params: Map<String, String>): Call<SuccessScreenshotRes>
+
+    @FormUrlEncoded
     @POST("get_child_timer")
     fun get_child_timer(@FieldMap params: Map<String, String>): Call<SuccessTimerListRes>
 
     @FormUrlEncoded
     @POST("add_child_timer")
     fun add_child_timer(@FieldMap params: Map<String, String>): Call<ResponseBody>
+
     @FormUrlEncoded
     @POST("set_pincode")
     fun set_pincode(@FieldMap params: Map<String, String>): Call<ResponseBody>
+
+    @FormUrlEncoded
+    @POST("get_child_remaining_time")
+    fun get_child_remaining_time(@FieldMap params: Map<String, String>): Call<SuccessChildRemainTime>
+
+    @FormUrlEncoded
+    @POST("get_child_location")
+    fun get_child_location(@FieldMap params: Map<String, String>): Call<SuccessChildlocation>
 }

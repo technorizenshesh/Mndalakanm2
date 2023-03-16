@@ -27,7 +27,7 @@ class OtherPairingOptionFragment : Fragment() {
         if (container != null) {
             navController = container.findNavController()
         }
-        if (getArguments() != null) {
+        if (arguments != null) {
             type = arguments?.getString("type").toString()
         }
         binding.header.imgHeader.setOnClickListener {

@@ -22,7 +22,7 @@ class AdapterSubscriptionList(
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TransViewHolder {
-        var binding: ItemSubscriptionBinding = DataBindingUtil.inflate (
+        var binding: ItemSubscriptionBinding = DataBindingUtil.inflate(
             LayoutInflater.from(mContext), R.layout.item_subscription, parent, false
         )
         sharedPref = SharedPref(mContext)
@@ -54,6 +54,6 @@ class AdapterSubscriptionList(
     }
 
     class TransViewHolder(var binding: ItemSubscriptionBinding) :
-        RecyclerView.ViewHolder(binding.root) {}
+        RecyclerView.ViewHolder(binding.root)
 
 }

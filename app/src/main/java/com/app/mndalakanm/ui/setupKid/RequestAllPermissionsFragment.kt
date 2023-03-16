@@ -2,6 +2,7 @@ package com.app.mndalakanm.ui.setupKid
 
 import android.app.Activity
 import android.app.admin.DevicePolicyManager
+import android.content.ComponentName
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
@@ -10,11 +11,10 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
-import  com.techno.mndalakanm.R
 import com.app.mndalakanm.ui.Home.SuperviseHomeActivity
-import com.techno.mndalakanm.databinding.FragmentRequestAllPermissionsBinding
 import com.app.mndalakanm.utils.DeviceAdmin
-import android.content.ComponentName;
+import com.techno.mndalakanm.R
+import com.techno.mndalakanm.databinding.FragmentRequestAllPermissionsBinding
 
 class RequestAllPermissionsFragment : Fragment() {
     lateinit var binding: FragmentRequestAllPermissionsBinding
@@ -64,7 +64,7 @@ class RequestAllPermissionsFragment : Fragment() {
                 startActivityForResult(intent, REQUEST_CODE)
             } else {
                 // Already is a device administrator, can do security operations now.
-              //  mDPM!!.lockNow()
+                //  mDPM!!.lockNow()
             }
         } catch (e: Exception) {
             e.printStackTrace()

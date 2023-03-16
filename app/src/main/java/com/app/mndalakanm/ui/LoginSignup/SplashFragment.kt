@@ -2,12 +2,10 @@ package com.app.mndalakanm.ui.LoginSignup
 
 import android.Manifest
 import android.content.ContentValues.TAG
-import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -16,14 +14,13 @@ import androidx.core.app.ActivityCompat
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.navigation.NavController
-import androidx.navigation.Navigation
 import androidx.navigation.findNavController
-import com.app.mndalakanm.ui.Home.SuperviseHomeActivity
 import com.app.mndalakanm.utils.SharedPref
 import com.techno.mndalakanm.R
 import com.techno.mndalakanm.databinding.FragmentSplashBinding
 import com.vilborgtower.user.utils.Constant
 import com.vilborgtower.user.utils.Utils
+import timber.log.Timber
 
 class SplashFragment : Fragment() {
 
@@ -102,14 +99,37 @@ class SplashFragment : Fragment() {
     fun handlerMethod() {
         Handler(Looper.getMainLooper()).postDelayed({
             if (sharedPref.getBooleanValue(Constant.IS_LOGIN)) {
+                Timber.tag("TAG").e(
+                    "FIREBASETOKENFIREBASETOKENFIREBASETOKEN: %s",
+                    sharedPref.getStringValue(Constant.FIREBASETOKEN)
+                )
+
                 if (sharedPref.getStringValue(Constant.USER_TYPE)
                         .equals("provider", true)
                 ) {
-                    Log.e(TAG, "handlerMethod: "+sharedPref.getStringValue(Constant.LOCK) )
-                    if (sharedPref.getStringValue(Constant.LOCK).equals("1")) {
-                      //  action_splash_to_pin
+                    Timber.tag(TAG).e("handlerMethod: %s", sharedPref.getStringValue(Constant.LOCK))
 
-                     //   navController.navigate(R.id.action_splash_to_provider)
+                    /* if (!sharedPref.getStringValue(Constant.LOCK).equals("1")){
+
+                    }else {*/
+                    if (sharedPref.getStringValue(Constant.LOCK).equals("1")) {
+                        //  action_splash_to_pin
+
+                        //   navController.navigate(R.id.action_splash_to_provider)
+                        navController.navigate(R.id.action_splash_to_pin)
+
+                    } else {
+                        navController.navigate(R.id.action_login_no_to_set_pin)
+
+                    }
+                    // }
+
+                } else {
+                    Timber.tag(TAG)
+                        .e("handlerMethod: %s", sharedPref.getStringValue(Constant.CHILD_NAME))
+
+
+                    if (sharedPref.getStringValue(Constant.LOCK).equals("1")) {
                         navController.navigate(R.id.action_splash_to_pin)
 
                     } else {
@@ -117,9 +137,7 @@ class SplashFragment : Fragment() {
 
                     }
 
-                } else {
-                    Log.e(TAG, "handlerMethod: " + sharedPref.getStringValue(Constant.CHILD_NAME))
-                    if (sharedPref.getStringValue(Constant.CHILD_NAME).equals("", true)) {
+                    /*     if (sharedPref.getStringValue(Constant.CHILD_NAME).equals("", true)) {
 
                         val bundle = Bundle()
                         bundle.putString("type", "child")
@@ -139,7 +157,7 @@ class SplashFragment : Fragment() {
                         )
                         requireActivity().finish()
 
-                    }
+                    }*/
                 }
 
 

@@ -21,13 +21,13 @@ import java.nio.charset.Charset
 import java.text.SimpleDateFormat
 import java.util.*
 
- public  class DataManager private constructor() {
+class DataManager private constructor() {
     private var mDialog: Dialog? = null
     private var isProgressDialogRunning = false
 
     //        WP10ProgressBar progressBar;
     var progressBar: ProgressBar? = null
-     public  fun showProgressMessage(dialogActivity: Activity?, msg: String?) {
+    fun showProgressMessage(dialogActivity: Activity?, msg: String?) {
         try {
             if (isProgressDialogRunning) {
                 hideProgressMessage()

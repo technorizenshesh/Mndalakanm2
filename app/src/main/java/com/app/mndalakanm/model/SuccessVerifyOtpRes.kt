@@ -5,7 +5,7 @@ import com.google.gson.annotations.SerializedName
 import java.io.Serializable
 
 
-  public class SuccessVerifyOtpRes : Serializable {
+class SuccessVerifyOtpRes : Serializable {
 
     @SerializedName("result")
     @Expose
@@ -42,6 +42,7 @@ import java.io.Serializable
     fun setStatus(status: String?) {
         this.status = status
     }
+
     class Result : Serializable {
         @SerializedName("id")
         @Expose

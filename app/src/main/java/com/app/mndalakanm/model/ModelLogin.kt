@@ -81,8 +81,6 @@ class ModelLogin : Serializable {
         var social_status: String? = null
 
 
-
-
     }
 
 }

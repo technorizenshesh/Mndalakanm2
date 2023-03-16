@@ -14,16 +14,17 @@ class CrashReportingTree : Timber.Tree() {
     }
 
     override fun log(priority: Int, tag: String?, message: String, t: Throwable?) {
-        if (priority == Log.VERBOSE || priority == Log.DEBUG || t is SocketTimeoutException || t is UnknownHostException)
+        if (priority == Log.VERBOSE || priority == Log.DEBUG || t is SocketTimeoutException || t
+                    is UnknownHostException)
             return
 
         FakeCrashLibrary.log(priority, tag ?: "", message)
 
         if (t != null) {
             if (priority == Log.ERROR) {
-                FakeCrashLibrary.logError(t);
+                FakeCrashLibrary.logError(t)
             } else if (priority == Log.WARN) {
-                FakeCrashLibrary.logWarning(t);
+                FakeCrashLibrary.logWarning(t)
             }
         }
     }

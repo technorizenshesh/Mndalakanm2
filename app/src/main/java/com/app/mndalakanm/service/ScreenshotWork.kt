@@ -35,7 +35,7 @@ import java.io.FileOutputStream
 import java.io.IOException
 
 
-class ScreenshotWork (context: Context, params: WorkerParameters) : Worker(context, params) {
+class ScreenshotWork(context: Context, params: WorkerParameters) : Worker(context, params) {
     lateinit var sharedPref: SharedPref
     private val TAG = "ScreenCaptureService"
     private val RESULT_CODE = "RESULT_CODE"
@@ -59,7 +59,7 @@ class ScreenshotWork (context: Context, params: WorkerParameters) : Worker(conte
 
 
     override fun doWork(): Result {
-        Log.e(ContentValues.TAG, "doWorkdoWorkdoWorkdoWork: ", )
+        Log.e(ContentValues.TAG, "doWorkdoWorkdoWorkdoWork: ")
         sharedPref = SharedPref(applicationContext)
         // create store dir
         // create store dir
@@ -95,7 +95,7 @@ class ScreenshotWork (context: Context, params: WorkerParameters) : Worker(conte
         startProjection()
         Thread.sleep(20000)
         //sendLetLong(sharedPref, applicationContext)
-       // scheduleRecurringFetchWeatherSyncUsingWorker()
+        // scheduleRecurringFetchWeatherSyncUsingWorker()
 
         return Result.success()
     }
@@ -108,6 +108,7 @@ class ScreenshotWork (context: Context, params: WorkerParameters) : Worker(conte
     override fun getWorkerFactory(): WorkerFactory {
         return super.getWorkerFactory()
     }
+
     fun scheduleRecurringFetchWeatherSyncUsingWorker() {
         val workInstance = WorkManager.getInstance(applicationContext)
 
@@ -135,7 +136,8 @@ class ScreenshotWork (context: Context, params: WorkerParameters) : Worker(conte
         val mpManager = applicationContext.getSystemService(Context.MEDIA_PROJECTION_SERVICE)
                 as MediaProjectionManager
         if (mMediaProjection == null) {
-            mMediaProjection = mpManager.getMediaProjection(-1,mProjectionManager.createScreenCaptureIntent() )
+            mMediaProjection =
+                mpManager.getMediaProjection(-1, mProjectionManager.createScreenCaptureIntent())
             if (mMediaProjection != null) {
                 // display metrics
                 mDensity = Resources.getSystem().displayMetrics.densityDpi
@@ -174,12 +176,12 @@ class ScreenshotWork (context: Context, params: WorkerParameters) : Worker(conte
         // start capture reader
         mImageReader = ImageReader.newInstance(mWidth, mHeight, PixelFormat.RGBA_8888, 2)
         mVirtualDisplay = mMediaProjection!!.createVirtualDisplay(
-           SCREENCAP_NAME,
+            SCREENCAP_NAME,
             mWidth,
             mHeight,
             mDensity,
-          getVirtualDisplayFlags(),
-            mImageReader!!.getSurface(),
+            getVirtualDisplayFlags(),
+            mImageReader!!.surface,
             null,
             mHandler
         )
@@ -187,7 +189,7 @@ class ScreenshotWork (context: Context, params: WorkerParameters) : Worker(conte
     }
 
 
-     fun getVirtualDisplayFlags(): Int {
+    fun getVirtualDisplayFlags(): Int {
         return DisplayManager.VIRTUAL_DISPLAY_FLAG_OWN_CONTENT_ONLY or DisplayManager.VIRTUAL_DISPLAY_FLAG_PUBLIC
     }
 
@@ -198,7 +200,7 @@ class ScreenshotWork (context: Context, params: WorkerParameters) : Worker(conte
             try {
                 mImageReader?.acquireLatestImage().use { image ->
                     if (image != null) {
-                        val planes: Array<Plane> = image.getPlanes()
+                        val planes: Array<Plane> = image.planes
                         val buffer = planes[0].buffer
                         val pixelStride = planes[0].pixelStride
                         val rowStride = planes[0].rowStride
@@ -241,7 +243,7 @@ class ScreenshotWork (context: Context, params: WorkerParameters) : Worker(conte
     inner class OrientationChangeCallback internal constructor(context: Context?) :
         OrientationEventListener(context) {
         override fun onOrientationChanged(orientation: Int) {
-            val rotation: Int = mDisplay!!.getRotation()
+            val rotation: Int = mDisplay!!.rotation
             if (rotation != mRotation) {
                 mRotation = rotation
                 try {
@@ -274,23 +276,24 @@ class ScreenshotWork (context: Context, params: WorkerParameters) : Worker(conte
     private fun sendLetLong(sharedPref: SharedPref, context: Context) {
         val map = HashMap<String, String>()
         /*parent_id=1&child_id=1&address=&lat=22.7196&lon*/
-        map["parent_id"]=sharedPref.getStringValue(Constant.USER_ID).toString()
-        map["child_id"]=sharedPref.getStringValue(Constant.CHILD_ID).toString()
-        map["lat"]=sharedPref.getStringValue(Constant.LATITUDE).toString()
-        map["lon"]=sharedPref.getStringValue(Constant.LONGITUDE).toString()
-        map["date"]=getCurrentDate().toString()
+        map["parent_id"] = sharedPref.getStringValue(Constant.USER_ID).toString()
+        map["child_id"] = sharedPref.getStringValue(Constant.CHILD_ID).toString()
+        map["lat"] = sharedPref.getStringValue(Constant.LATITUDE).toString()
+        map["lon"] = sharedPref.getStringValue(Constant.LONGITUDE).toString()
+        map["date"] = getCurrentDate().toString()
         //   map["address"]=ProjectUtil.getCompleteAddressString(context)
         map["address"] = "demo"
-        Timber.tag("ContentValues.TAG").e("sendLetLongsendLetLongsendLetLong"+ map)
+        Timber.tag("ContentValues.TAG").e("sendLetLongsendLetLongsendLetLong" + map)
         Mndalakanm.loadInterface()?.update_chlid_lat_lon(map)?.enqueue(object :
             Callback<ResponseBody?> {
             override fun onResponse(call: Call<ResponseBody?>, response: Response<ResponseBody?>) {
                 try {
-            //        Timber.tag("Exception").e("Exception = %s", response.body().toString())
+                    //        Timber.tag("Exception").e("Exception = %s", response.body().toString())
 
                 } catch (e: Exception) {
                 }
             }
+
             override fun onFailure(call: Call<ResponseBody?>, t: Throwable) {
                 Timber.tag(ContentValues.TAG).e("onFailure: %s", t.message.toString())
             }

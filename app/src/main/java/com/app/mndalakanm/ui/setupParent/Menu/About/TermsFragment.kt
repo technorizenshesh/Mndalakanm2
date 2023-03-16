@@ -2,17 +2,16 @@ package com.app.mndalakanm.ui.setupParent.Menu.About
 
 import android.content.ContentValues
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.Fragment
 import com.app.mndalakanm.retrofit.ApiClient
-import com.app.mndalakanm.utils.DataManager
 import com.app.mndalakanm.retrofit.ProviderInterface
-import  com.techno.mndalakanm.R
-import com.techno.mndalakanm.databinding.FragmentPrivacyBinding
+import com.app.mndalakanm.utils.DataManager
+import com.techno.mndalakanm.R
 import com.techno.mndalakanm.databinding.FragmentTermsBinding
 import okhttp3.ResponseBody
 import org.json.JSONObject
@@ -30,7 +29,7 @@ class TermsFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        binding= DataBindingUtil.inflate(inflater,R.layout.fragment_terms, container, false)
+        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_terms, container, false)
         apiInterface = ApiClient.getClient(requireContext())!!.create(ProviderInterface::class.java)
         addSub()
         return binding.root
@@ -67,7 +66,7 @@ class TermsFragment : Fragment() {
     }
 
     private fun setWebView(description: String) {
-        binding.webView.getSettings().setJavaScriptEnabled(true)
+        binding.webView.settings.javaScriptEnabled = true
         binding.webView.loadData(description, "text/html; charset=utf-8", "UTF-8")
     }
 }

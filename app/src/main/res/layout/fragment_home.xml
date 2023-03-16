@@ -85,7 +85,7 @@
                 android:textStyle="bold"
                 android:gravity="center"
                 android:padding="@dimen/_2sdp"
-                android:text=" 03 : 00 "
+                android:text=" 00 : 00 "
                 android:textColor="@color/colorPrimaryYellow"
                 android:textSize="@dimen/_25sdp" />
 

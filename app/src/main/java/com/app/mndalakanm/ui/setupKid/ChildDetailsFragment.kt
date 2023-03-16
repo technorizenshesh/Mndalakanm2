@@ -19,22 +19,25 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.navigation.Navigation
-import com.app.mndalakanm.retrofit.ProviderInterface
 import com.app.mndalakanm.model.SuccessAddChildRes
-import  com.techno.mndalakanm.R
-import com.techno.mndalakanm.databinding.FragmentChildDetailsBinding
 import com.app.mndalakanm.retrofit.ApiClient
+import com.app.mndalakanm.retrofit.ProviderInterface
 import com.app.mndalakanm.utils.DataManager
 import com.app.mndalakanm.utils.ProjectUtil
 import com.app.mndalakanm.utils.SharedPref
+import com.techno.mndalakanm.R
+import com.techno.mndalakanm.databinding.FragmentChildDetailsBinding
 import com.vilborgtower.user.utils.Constant
 import com.vilborgtower.user.utils.RealPathUtil
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
+import okhttp3.RequestBody.Companion.asRequestBody
+import okhttp3.RequestBody.Companion.toRequestBody
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import timber.log.Timber
 import java.io.File
 
 
@@ -44,8 +47,8 @@ class ChildDetailsFragment : Fragment() {
     lateinit var binding: FragmentChildDetailsBinding
     var profileImage: File? = null
 
-    private val GALLERY = 0;
-    private val CAMERA = 1;
+    private val GALLERY = 0
+    private val CAMERA = 1
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -56,6 +59,7 @@ class ChildDetailsFragment : Fragment() {
         )
 
         sharedPref = SharedPref(requireContext())
+
         apiInterface = ApiClient.getClient(requireContext())!!.create(ProviderInterface::class.java)
 
         binding.header.imgHeader.setOnClickListener {
@@ -75,7 +79,7 @@ class ChildDetailsFragment : Fragment() {
             } else if (profileImage == null) {
                 Toast.makeText(requireContext(), "Please Add Image", Toast.LENGTH_SHORT).show()
             } else {
-                AddDetails(name, age);
+                AddDetails(name, age)
 
             }
         }
@@ -90,21 +94,25 @@ class ChildDetailsFragment : Fragment() {
                 ProjectUtil.requestPermissions(requireActivity())
             }
         }
+
+
+        binding.editName.setText(sharedPref.getStringValue(Constant.CHILD_NAME))
+        // binding.editName.setText(sharedPref.getStringValue(Constant.CHILD_NAME))
         return binding.root
     }
 
     fun openPicker() {
         val dialog = Dialog(requireContext())
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
-        dialog.getWindow()?.getAttributes()?.windowAnimations =
+        dialog.window?.attributes?.windowAnimations =
             android.R.style.Widget_Material_ListPopupWindow
         dialog.setContentView(R.layout.number_picker_dialog)
         val lp = WindowManager.LayoutParams()
-        val window: Window = dialog.getWindow()!!
-        lp.copyFrom(window.getAttributes())
+        val window: Window = dialog.window!!
+        lp.copyFrom(window.attributes)
         lp.width = WindowManager.LayoutParams.WRAP_CONTENT
         lp.height = WindowManager.LayoutParams.WRAP_CONTENT
-        window.setAttributes(lp)
+        window.attributes = lp
         val no_btn: TextView = dialog.findViewById(R.id.no_btn)
         val yes_btn: TextView = dialog.findViewById(R.id.yes_btn)
         val numberPicker: NumberPicker = dialog.findViewById(R.id.dialog_number_picker)
@@ -123,7 +131,7 @@ class ChildDetailsFragment : Fragment() {
             binding.agePick.setText(numberPicker.value.toString())
             dialog.dismiss()
         }
-        dialog.getWindow()?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+        dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
         dialog.show()
     }
 
@@ -135,7 +143,7 @@ class ChildDetailsFragment : Fragment() {
         val profileFilePart: MultipartBody.Part
         val attachmentEmpty: RequestBody
         if (profileImage == null) {
-            attachmentEmpty = RequestBody.create("text/plain".toMediaTypeOrNull(), "")
+            attachmentEmpty = "".toRequestBody("text/plain".toMediaTypeOrNull())
             profileFilePart = MultipartBody.Part.createFormData(
                 "attachment",
                 "", attachmentEmpty
@@ -143,17 +151,14 @@ class ChildDetailsFragment : Fragment() {
         } else {
             profileFilePart = MultipartBody.Part.createFormData(
                 "image",
-                profileImage!!.name, RequestBody.create(
-                    "image/*".toMediaTypeOrNull(), profileImage!!
-                )
+                profileImage!!.name, profileImage!!
+                    .asRequestBody("image/*".toMediaTypeOrNull())
             )
         }
-        val agedata = RequestBody.create("text/plain".toMediaTypeOrNull(), age)
-        val namedata = RequestBody.create("text/plain".toMediaTypeOrNull(), name)
-        val register = RequestBody.create(
-            "text/plain".toMediaTypeOrNull(),
-            sharedPref.getStringValue(Constant.CHILD_ID).toString()
-        )
+        val agedata = age.toRequestBody("text/plain".toMediaTypeOrNull())
+        val namedata = name.toRequestBody("text/plain".toMediaTypeOrNull())
+        val register = sharedPref.getStringValue(Constant.CHILD_ID).toString()
+            .toRequestBody("text/plain".toMediaTypeOrNull())
         apiInterface.add_child(
             register, agedata,
             namedata, profileFilePart
@@ -174,7 +179,7 @@ class ChildDetailsFragment : Fragment() {
                     }
                 } catch (e: Exception) {
                     Toast.makeText(context, "Exception = " + e.message, Toast.LENGTH_SHORT).show()
-                    Log.e("Exception", "Exception = " + e.message)
+                    Timber.tag("Exception").e("Exception = %s", e.message)
                 }
             }
 
@@ -228,7 +233,7 @@ class ChildDetailsFragment : Fragment() {
                         val extras = data.extras
                         val bitmapNew = extras!!["data"] as Bitmap
                         val imageBitmap: Bitmap =
-                            BITMAP_RE_SIZER(bitmapNew, bitmapNew!!.width, bitmapNew!!.height)!!
+                            BITMAP_RE_SIZER(bitmapNew, bitmapNew.width, bitmapNew.height)!!
                         val tempUri: Uri = ProjectUtil.getImageUri(requireContext(), imageBitmap)!!
                         val image = RealPathUtil.getRealPath(requireContext(), tempUri)
                         profileImage = File(image)

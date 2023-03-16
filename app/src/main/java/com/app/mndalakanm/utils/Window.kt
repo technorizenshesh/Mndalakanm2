@@ -9,8 +9,7 @@ import android.view.*
 import com.techno.mndalakanm.R
 
 
-
- public class Window {
+class Window {
     private var context: Context? = null
     private var mView: View? = null
     private var mParams: WindowManager.LayoutParams? = null
@@ -37,12 +36,14 @@ import com.techno.mndalakanm.R
         // set onClickListener on the remove button, which removes
         // the view from the window
         mView!!.findViewById<View>(R.id.window_close).setOnClickListener {
-            close() }
+            close()
+        }
         // Define the position of the
         // window within the screen
         mParams!!.gravity = Gravity.CENTER
         mWindowManager = context.getSystemService(WINDOW_SERVICE) as WindowManager
     }
+
     fun open() {
         try {
             // check if the view is already
@@ -56,6 +57,7 @@ import com.techno.mndalakanm.R
             Log.d("Error1", e.toString())
         }
     }
+
     fun close() {
         try {
             // remove the view from the window

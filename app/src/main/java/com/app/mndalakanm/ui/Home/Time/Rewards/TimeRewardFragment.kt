@@ -5,10 +5,10 @@ import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.view.*
-import androidx.fragment.app.Fragment
 import android.widget.TextView
 import androidx.databinding.DataBindingUtil
-import  com.techno.mndalakanm.R
+import androidx.fragment.app.Fragment
+import com.techno.mndalakanm.R
 import com.techno.mndalakanm.databinding.FragmentTimeRewardBinding
 
 class TimeRewardFragment : Fragment() {
@@ -31,22 +31,22 @@ class TimeRewardFragment : Fragment() {
     private fun addDailyTime() {
         val dialog = Dialog(requireContext())
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
-        dialog.getWindow()?.getAttributes()?.windowAnimations =
+        dialog.window?.attributes?.windowAnimations =
             android.R.style.Widget_Material_ListPopupWindow
         dialog.setContentView(R.layout.add_time_reward_dialog)
         val lp = WindowManager.LayoutParams()
-        val window: Window = dialog.getWindow()!!
-        lp.copyFrom(window.getAttributes())
+        val window: Window = dialog.window!!
+        lp.copyFrom(window.attributes)
         lp.width = WindowManager.LayoutParams.MATCH_PARENT
         lp.height = WindowManager.LayoutParams.MATCH_PARENT
-        window.setAttributes(lp)
+        window.attributes = lp
         val no_btn: TextView = dialog.findViewById(R.id.no_btn)
         val yes_btn: TextView = dialog.findViewById(R.id.yes_btn)
         no_btn.setOnClickListener { v1: View? -> dialog.dismiss() }
         yes_btn.setOnClickListener { v1: View? ->
             dialog.dismiss()
         }
-        dialog.getWindow()?.setBackgroundDrawable(ColorDrawable(Color.WHITE))
+        dialog.window?.setBackgroundDrawable(ColorDrawable(Color.WHITE))
         dialog.show()
     }
 
