@@ -28,7 +28,7 @@ import com.techno.mndalakanm.R
 import com.techno.mndalakanm.databinding.AddTimeRewardDialogBinding
 import com.techno.mndalakanm.databinding.FragmentTimeRewardBinding
 import com.techno.mndalakanm.databinding.ItemChildRewardsRequestBinding
-import com.vilborgtower.user.utils.Constant
+import com.app.mndalakanm.utils.Constant
 import okhttp3.ResponseBody
 import org.json.JSONObject
 import retrofit2.Call
@@ -484,13 +484,14 @@ class TimeRewardFragment : Fragment(), ParentRewardListClickListener,
 
     private fun requestForReward(model: SucessRewardList.Result, status: String) {
         DataManager.instance.showProgressMessage(requireActivity(), getString(R.string.please_wait))
-        val tz = TimeZone.getDefault()
-        val id = tz.id
+
         val map = HashMap<String, String>()
         map["parent_id"] = sharedPref.getStringValue(Constant.USER_ID).toString()
         map["child_id"] = sharedPref.getStringValue(Constant.CHILD_ID).toString()
         map["reward_id"] = model.id
         map["plus_time"] = model.time
+        val tz = TimeZone.getDefault()
+        val id = tz.id
         map["time_zone"] = id.toString()
         //time_zone=&reward_id=1&plus_time=60
         Timber.tag(ContentValues.TAG).e("get_plus_time_request = %s", map)

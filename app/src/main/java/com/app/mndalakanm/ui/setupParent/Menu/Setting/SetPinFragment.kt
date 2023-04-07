@@ -21,7 +21,7 @@ import com.app.mndalakanm.utils.DataManager
 import com.app.mndalakanm.utils.SharedPref
 import com.techno.mndalakanm.R
 import com.techno.mndalakanm.databinding.FragmentSetPinBinding
-import com.vilborgtower.user.utils.Constant
+import com.app.mndalakanm.utils.Constant
 import okhttp3.ResponseBody
 import org.json.JSONObject
 import retrofit2.Call
@@ -34,8 +34,9 @@ class SetPinFragment : Fragment() {
 
     lateinit var binding: FragmentSetPinBinding
     lateinit var sharedPref: SharedPref
-    private val editTexts: Array<EditText>? = null
     private lateinit var apiInterface: ProviderInterface
+
+    private val editTexts: Array<EditText>? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

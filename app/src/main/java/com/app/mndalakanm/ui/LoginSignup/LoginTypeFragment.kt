@@ -30,7 +30,7 @@ import com.google.firebase.FirebaseApp
 import com.google.firebase.messaging.FirebaseMessaging
 import com.techno.mndalakanm.R
 import com.techno.mndalakanm.databinding.FragmentLoginTypeBinding
-import com.vilborgtower.user.utils.Constant
+import com.app.mndalakanm.utils.Constant
 import timber.log.Timber
 
 

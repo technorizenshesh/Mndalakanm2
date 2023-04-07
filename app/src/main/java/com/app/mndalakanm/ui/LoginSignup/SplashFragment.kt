@@ -18,7 +18,7 @@ import androidx.navigation.findNavController
 import com.app.mndalakanm.utils.SharedPref
 import com.techno.mndalakanm.R
 import com.techno.mndalakanm.databinding.FragmentSplashBinding
-import com.vilborgtower.user.utils.Constant
+import com.app.mndalakanm.utils.Constant
 import com.vilborgtower.user.utils.Utils
 import timber.log.Timber
 

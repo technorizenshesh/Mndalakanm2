@@ -39,10 +39,13 @@ import com.google.android.gms.common.api.ResolvableApiException
 import com.google.android.gms.location.LocationServices
 import com.google.android.gms.location.LocationSettingsRequest
 import com.google.android.gms.location.LocationSettingsResponse
+import com.google.firebase.FirebaseApp
+import com.google.firebase.appcheck.FirebaseAppCheck
+import com.google.firebase.appcheck.safetynet.SafetyNetAppCheckProviderFactory
 import com.techno.mndalakanm.R
 import com.techno.mndalakanm.databinding.ActivitySuperviseHomeBinding
 import com.techno.mndalakanm.databinding.ChildRequestsBinding
-import com.vilborgtower.user.utils.Constant
+import com.app.mndalakanm.utils.Constant
 import okhttp3.ResponseBody
 import org.json.JSONObject
 import retrofit2.Call
@@ -71,6 +74,22 @@ class SuperviseHomeActivity : AppCompatActivity(), ChildRequestListClickListener
         dialog = Dialog(this@SuperviseHomeActivity)
         setupWithNavController(binding.navView, navController)
         sharedPref = SharedPref(this)
+        FirebaseApp.initializeApp(this)
+        FirebaseAppCheck.getInstance().installAppCheckProviderFactory(
+            SafetyNetAppCheckProviderFactory.getInstance()
+        )
+//        val database = Firebase.database.reference
+//        database.useAppCheck(AppCheckInterceptor())
+//        val appCheckTokenListener = object : AppCheckTokenListener {
+//            override fun onAppCheckTokenChanged(token: AppCheckToken) {
+//                // Implement your logic to refresh the AppCheck token here
+//            }
+//
+//            override fun onAppCheckTokenError(error: Throwable) {
+//                // Handle any errors that occur while refreshing the AppCheck token here
+//            }
+//        }
+//        database.useAppCheck(AppCheckInterceptor(appCheckTokenListener))
         apiInterface = ApiClient.getClient(this)!!.create(ProviderInterface::class.java)
         model = sharedPref.getChildDetails(Constant.CHILD_Data)
         if (sharedPref.getStringValue(Constant.USER_TYPE).equals("child", true)) {

@@ -10,7 +10,7 @@ import androidx.navigation.Navigation
 import com.app.mndalakanm.utils.SharedPref
 import com.techno.mndalakanm.R
 import com.techno.mndalakanm.databinding.FragmentTimeBinding
-import com.vilborgtower.user.utils.Constant
+import com.app.mndalakanm.utils.Constant
 
 
 class TimeFragment : Fragment() {

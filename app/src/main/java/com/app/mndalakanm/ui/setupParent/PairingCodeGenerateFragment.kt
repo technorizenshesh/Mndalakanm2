@@ -17,7 +17,7 @@ import com.app.mndalakanm.utils.DataManager
 import com.app.mndalakanm.utils.SharedPref
 import com.techno.mndalakanm.R
 import com.techno.mndalakanm.databinding.FragmentPairingCodeGenerateBinding
-import com.vilborgtower.user.utils.Constant
+import com.app.mndalakanm.utils.Constant
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response

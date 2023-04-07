@@ -46,7 +46,7 @@ import com.google.android.libraries.places.widget.Autocomplete
 import com.techno.mndalakanm.R
 import com.techno.mndalakanm.databinding.BottemSheeetDetailsBinding
 import com.techno.mndalakanm.databinding.FragmentGeoBinding
-import com.vilborgtower.user.utils.Constant
+import com.app.mndalakanm.utils.Constant
 import okhttp3.ResponseBody
 import org.json.JSONObject
 import retrofit2.Call

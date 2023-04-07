@@ -46,58 +46,59 @@ public class MainService extends Service implements View.OnTouchListener {
     }
 
     private void addOverlayView() {
-        Log.e(TAG, "addOverlayView: JAva Code Workig");
-        final LayoutParams params;
-        int layoutParamsType;
-        layoutParamsType = LayoutParams.TYPE_APPLICATION_OVERLAY;
-        params = new LayoutParams(
-                LayoutParams.MATCH_PARENT,
-                LayoutParams.MATCH_PARENT,
-                layoutParamsType,
-                0,
-                PixelFormat.TRANSLUCENT);
+        try {
+            Log.e(TAG, "addOverlayView: JAva Code Workig");
+            final LayoutParams params;
+            int layoutParamsType;
+            layoutParamsType = LayoutParams.TYPE_APPLICATION_OVERLAY;
+            params = new LayoutParams(
+                    LayoutParams.MATCH_PARENT,
+                    LayoutParams.MATCH_PARENT,
+                    layoutParamsType,
+                    0,
+                    PixelFormat.TRANSLUCENT);
 
-        params.gravity = Gravity.CENTER | Gravity.START;
-        params.x = 0;
-        params.y = 0;
+            params.gravity = Gravity.CENTER | Gravity.START;
+            params.x = 0;
+            params.y = 0;
 
-        FrameLayout interceptorLayout = new FrameLayout(this) {
+            FrameLayout interceptorLayout = new FrameLayout(this) {
 
-            @Override
-            public boolean dispatchKeyEvent(KeyEvent event) {
+                @Override
+                public boolean dispatchKeyEvent(KeyEvent event) {
 
-                // Only fire on the ACTION_DOWN event, or you'll get two events (one for _DOWN, one for _UP)
-                if (event.getAction() == KeyEvent.ACTION_DOWN) {
+                    // Only fire on the ACTION_DOWN event, or you'll get two events (one for _DOWN, one for _UP)
+                    if (event.getAction() == KeyEvent.ACTION_DOWN) {
 
-                    // Check if the HOME button is pressed
-                    if (event.getKeyCode() == KeyEvent.KEYCODE_BACK) {
+                        // Check if the HOME button is pressed
+                        if (event.getKeyCode() == KeyEvent.KEYCODE_BACK) {
 
-                        Log.v(TAG, "BACK Button Pressed");
+                            Log.v(TAG, "BACK Button Pressed");
 
-                        // As we've taken action, we'll return true to prevent other apps from consuming the event as well
-                        return true;
+                            // As we've taken action, we'll return true to prevent other apps from consuming the event as well
+                            return true;
+                        }
                     }
+
+                    // Otherwise don't intercept the event
+                    return super.dispatchKeyEvent(event);
                 }
+            };
 
-                // Otherwise don't intercept the event
-                return super.dispatchKeyEvent(event);
-            }
-        };
+            LayoutInflater inflater = ((LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE));
 
-        LayoutInflater inflater = ((LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE));
+            if (inflater != null) {
 
-        if (inflater != null) {
+                floatyView = inflater.inflate(R.layout.floating_view, interceptorLayout);
+                ImageView img = floatyView.findViewById(R.id.img);
+                TextView text = floatyView.findViewById(R.id.text);
+                text.setOnClickListener(v -> {
+                    c++;
+                    if (c == 5) {
+                        onDestroy();
 
-            floatyView = inflater.inflate(R.layout.floating_view, interceptorLayout);
-            ImageView img = floatyView.findViewById(R.id.img);
-            TextView text = floatyView.findViewById(R.id.text);
-            text.setOnClickListener(v -> {
-                c++;
-                if (c == 5) {
-                    onDestroy();
-
-                }
-            });
+                    }
+                });
           /*  img.setOnTouchListener(new View.OnTouchListener() {
                 @SuppressLint("ClickableViewAccessibility")
                 @Override
@@ -106,9 +107,15 @@ public class MainService extends Service implements View.OnTouchListener {
                     return false;
                 }
             });*/
-            windowManager.addView(floatyView, params);
-        } else {
-            Log.e("SAW-example", "Layout Inflater Service is null; can't inflate and display R.layout.floating_view");
+                windowManager.addView(floatyView, params);
+            } else {
+                Log.e("SAW-example", "Layout Inflater Service is null; can't inflate and display R.layout.floating_view");
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+            Log.e("SAW-example", e.getLocalizedMessage());
+            Log.e("SAW-example", e.getMessage());
+
         }
     }
 
@@ -118,10 +125,9 @@ public class MainService extends Service implements View.OnTouchListener {
         super.onDestroy();
 
         if (floatyView != null) {
-
             windowManager.removeView(floatyView);
-
             floatyView = null;
+
         }
     }
 

@@ -7,7 +7,7 @@ import androidx.work.*
 import com.app.mndalakanm.Mndalakanm
 import com.app.mndalakanm.utils.ProjectUtil.Companion.getCurrentDate
 import com.app.mndalakanm.utils.SharedPref
-import com.vilborgtower.user.utils.Constant
+import com.app.mndalakanm.utils.Constant
 import okhttp3.ResponseBody
 import retrofit2.Call
 import retrofit2.Callback

@@ -9,8 +9,10 @@ import android.content.ContentValues.TAG
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.media.projection.MediaProjectionManager
+import android.net.Uri
 import android.os.Bundle
 import android.os.CountDownTimer
+import android.provider.Settings
 import android.text.Editable
 import android.text.TextWatcher
 import android.util.Log
@@ -23,27 +25,24 @@ import androidx.localbroadcastmanager.content.LocalBroadcastManager
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.GridLayoutManager
 import com.app.mndalakanm.adapter.AdapterScreenshotList
+import com.app.mndalakanm.model.SuccessChildProfile
 import com.app.mndalakanm.model.SuccessChildRemainTime
 import com.app.mndalakanm.model.SuccessScreenshotRes
 import com.app.mndalakanm.notification.Config
 import com.app.mndalakanm.notification.NotifyUserReceiver
 import com.app.mndalakanm.retrofit.ApiClient
 import com.app.mndalakanm.retrofit.ProviderInterface
+import com.app.mndalakanm.utils.Constant
 import com.app.mndalakanm.utils.DataManager
 import com.app.mndalakanm.utils.ScreenShotClickListener
 import com.app.mndalakanm.utils.SharedPref
 import com.bumptech.glide.Glide
-import com.google.firebase.database.DataSnapshot
-import com.google.firebase.database.DatabaseError
-import com.google.firebase.database.DatabaseReference
-import com.google.firebase.database.FirebaseDatabase
-import com.google.firebase.database.ValueEventListener
+import com.google.firebase.database.*
 import com.mtsahakis.mediaprojectiondemo.ScreenCaptureService
 import com.mtsahakis.mediaprojectiondemo.SharedPreferenceUtility
 import com.techno.mndalakanm.R
 import com.techno.mndalakanm.databinding.FragmentHomeBinding
 import com.techno.mndalakanm.databinding.RequestTimeDialogBinding
-import com.vilborgtower.user.utils.Constant
 import okhttp3.ResponseBody
 import org.json.JSONObject
 import retrofit2.Call
@@ -67,6 +66,7 @@ class HomeFragment : Fragment(), ScreenShotClickListener {
     private var startTime: Long = 0
     private var first: Boolean = false
     private val REQUEST_CODE = 100
+    private var Lockdown_mode = ""
     private val mServiceReceiver: BroadcastReceiver = object : BroadcastReceiver() {
         override fun onReceive(context: Context, intent: Intent) {
             //Extract your data - better to use constants...
@@ -117,14 +117,16 @@ class HomeFragment : Fragment(), ScreenShotClickListener {
         // Inflate the layout for this fragment
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_home, container, false)
         sharedPref = SharedPref(requireContext())
-        val str= "https://mndalakanm-53f36-default-rtdb.firebaseio.com/LockDown/"+sharedPref.getStringValue(Constant.USER_ID).toString()+"/"+sharedPref.getStringValue(Constant.CHILD_ID).toString()+"/Status"
+        val str= "https://mndalakanm-53f36-default-rtdb.firebaseio.com/LockDown/"+sharedPref.getStringValue(
+            Constant.USER_ID).toString()+"/"+sharedPref.getStringValue(Constant.CHILD_ID).toString()+"/Status"
         Log.e(TAG, "onCreateView:----  "+str )
-        Log.e(TAG, "onCreateView:----  "+str )
-        myRef = FirebaseDatabase.getInstance().getReferenceFromUrl(( str))
-       /* myRef.child("LockDown")
-            .child(sharedPref.getStringValue(Constant.USER_ID).toString())
-            .child(sharedPref.getStringValue(Constant.CHILD_ID).toString())
-            .child("Status")*/
+        myRef = FirebaseDatabase.getInstance().reference
+
+        getLockdownOnOff()
+        /* myRef.child("LockDown")
+             .child(sharedPref.getStringValue(Constant.USER_ID).toString())
+             .child(sharedPref.getStringValue(Constant.CHILD_ID).toString())
+             .child("Status")*/
         apiInterface = ApiClient.getClient(requireContext())!!.create(ProviderInterface::class.java)
         ActivityCompat.requestPermissions(
             requireActivity(),
@@ -136,6 +138,7 @@ class HomeFragment : Fragment(), ScreenShotClickListener {
             arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE),
             1
         )
+
         binding.btn.setOnClickListener {
             if (sharedPref.getStringValue(Constant.USER_TYPE).equals("Child", true)) {
 
@@ -320,49 +323,81 @@ class HomeFragment : Fragment(), ScreenShotClickListener {
 
 
         }
-        //checkOverlayPermission()
-        //  getScreenShots();
         getChildRemainingTime()
-        //  getChildTime()
         if (sharedPref.getStringValue("Screenshot").equals("true")) {
-            startProjection(requireActivity())
-
-        }
+            startProjection(requireActivity()) }
         binding.refresh.setOnClickListener {
-            get_child_screenshotClicked()
-        }
-        if (sharedPref.getStringValue(Constant.USER_TYPE)=="child") {
+            get_child_screenshotClicked() }
+        if (sharedPref.getStringValue(Constant.USER_TYPE).equals("Child", true)) {
             binding.switchBackLay.isClickable = false
            binding.customSwitch.isClickable = false
             binding.switchBackLay.isFocusable = false
             binding.customSwitch.isFocusable = false
+            if (!Settings.canDrawOverlays(context)) {
+                val intent = Intent(
+                    Settings.ACTION_MANAGE_OVERLAY_PERMISSION,
+                    Uri.parse("package:" + context?.getPackageName())
+                )
+                ActivityCompat.startActivityForResult(requireActivity(), intent,1233,null)
+            }else{
+                if (binding.customSwitch.isChecked){
+
+                    live(requireActivity(),"1")
+                }
+            }
+        }else{
+
         }
-         binding.switchBackLay.setOnClickListener{
-//             if (binding.customSwitch.isChecked){
-//                 binding.customSwitch.isChecked = false
-//                 myRef.setValue("0")
-//
-//             }else{
-//                 binding.customSwitch.isChecked = true
-//                 myRef.setValue("1")
-//             }
-             if (binding.customSwitch.isChecked) {
-                 myRef.setValue("1")
-                 update_lockdown_modeAPI("1")
+
+
+         binding.customSwitch.setOnClickListener {
+             Log.e("TAG", "onCreateView: clicked" )
+             Log.e("TAG", "onCreateView: clicked"+sharedPref.getStringValue(Constant.USER_TYPE)  )
+             if (sharedPref.getStringValue(Constant.USER_TYPE) == "child") {
+
              } else {
-                 myRef.setValue("0")
-                 update_lockdown_modeAPI("0") }
+                 if (binding.customSwitch.isChecked) {
+
+                     myRef.child("LockDown")
+                         .child(sharedPref.getStringValue(Constant.USER_ID).toString())
+                         .child(sharedPref.getStringValue(Constant.CHILD_ID).toString())
+                         .child("Status")
+                     .setValue("1").addOnCompleteListener {
+                             println("completed")
+                             Toast.makeText(context, "completed = " , Toast.LENGTH_SHORT).show()
+
+                         }
+                         .addOnFailureListener {
+                             println("failed")
+                             Toast.makeText(context, "failed = " , Toast.LENGTH_SHORT).show()
+                         }
+                     update_lockdown_modeAPI("1")
+                 } else {
+                     myRef.child("LockDown")
+                         .child(sharedPref.getStringValue(Constant.USER_ID).toString())
+                         .child(sharedPref.getStringValue(Constant.CHILD_ID).toString())
+                         .child("Status")
+                         .setValue("0").addOnCompleteListener {
+                             println("completed")
+                             Toast.makeText(context, "completed = " , Toast.LENGTH_SHORT).show()
+
+                         }
+                         .addOnFailureListener {
+                             println("failed")
+                             Toast.makeText(context, "failed = " , Toast.LENGTH_SHORT).show()
+                         }
+                     update_lockdown_modeAPI("0")
+                 }
+             }
          }
    /* binding.customSwitch.setOnCheckedChangeListener { buttonView, isChecked ->
                 }*/
 
 
-        getLockdownOnOff()
         return binding.root
     }
 
     private fun getLockdownOnOff() {
-
         // Attach a ValueEventListener to the "users" reference
         val usersListener = object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
@@ -389,13 +424,21 @@ class HomeFragment : Fragment(), ScreenShotClickListener {
                 Log.w(TAG, "Failed to read value.", error.toException())
             }
         }
-        myRef.addValueEventListener(usersListener)
+        myRef.child("LockDown")
+            .child(sharedPref.getStringValue(Constant.USER_ID).toString())
+            .child(sharedPref.getStringValue(Constant.CHILD_ID).toString())
+            .child("Status")
+            .addValueEventListener(usersListener)
     }
     private fun live(context: Context,status:String) {
+        try {
         val intent = Intent(Config.GET_DATA_LOCKDOWN)
         intent.putExtra("pushNotificationModel", "1")
         intent.putExtra("status", status)
         LocalBroadcastManager.getInstance(context).sendBroadcast(intent)
+        }catch (e:Exception){
+         e.printStackTrace()
+        }
     }
     private fun requestScreenshot() {
         DataManager.instance.showProgressMessage(requireActivity(), getString(R.string.please_wait))
@@ -514,7 +557,7 @@ class HomeFragment : Fragment(), ScreenShotClickListener {
     private fun get_child_screenshotClicked() {
         val map = HashMap<String, String>()
         map["parent_id"] = sharedPref.getStringValue(Constant.USER_ID).toString()
-        map["child_id"] = sharedPref.getStringValue(Constant.CHILD_ID).toString()
+        map["child_id"]  = sharedPref.getStringValue(Constant.CHILD_ID).toString()
         Timber.tag(TAG).e("Login user Request = %s", map)
         apiInterface.get_child_screenshot(map).enqueue(object : Callback<SuccessScreenshotRes?> {
             override fun onResponse(
@@ -559,7 +602,7 @@ class HomeFragment : Fragment(), ScreenShotClickListener {
         DataManager.instance.showProgressMessage(requireActivity(), getString(R.string.please_wait))
         val map = HashMap<String, String>()
         map["parent_id"] = sharedPref.getStringValue(Constant.USER_ID).toString()
-        map["child_id"] = sharedPref.getStringValue(Constant.CHILD_ID).toString()
+        map["child_id"]  = sharedPref.getStringValue(Constant.CHILD_ID).toString()
         Timber.tag(TAG).e("Login user Request = %s", map)
         apiInterface.get_child_remaining_time(map)
             .enqueue(object : Callback<SuccessChildRemainTime?> {
@@ -767,6 +810,7 @@ class HomeFragment : Fragment(), ScreenShotClickListener {
 
     override fun onResume() {
         super.onResume()
+        getChildProfile()
         val filter = IntentFilter()
         filter.addAction("TimeAdded")
         requireActivity().registerReceiver(mServiceReceiver, filter)
@@ -778,7 +822,7 @@ class HomeFragment : Fragment(), ScreenShotClickListener {
         map["child_id"] = sharedPref.getStringValue(Constant.CHILD_ID).toString()
         map["lockdown"] = value
         //parent_id=23&child_id=2&lockdown=0
-        Timber.tag(ContentValues.TAG).e("get_plus_time_request = %s", map)
+        Timber.tag(ContentValues.TAG).e("lockedlockedlockedlocked = %s", map)
         apiInterface.update_lockdown_mode(map).enqueue(
             object : Callback<ResponseBody?> {
                 override fun onResponse(
@@ -787,6 +831,35 @@ class HomeFragment : Fragment(), ScreenShotClickListener {
                 ) {
                 }
                 override fun onFailure(call: Call<ResponseBody?>, t: Throwable) {
+                    DataManager.instance.hideProgressMessage()
+                    Timber.tag(ContentValues.TAG).e("onFailure: %s", t.localizedMessage)
+                    Timber.tag(ContentValues.TAG).e("onFailure: %s", t.cause.toString())
+                    Timber.tag(ContentValues.TAG).e("onFailure: %s", t.message.toString())
+                }
+            })
+    }
+    private fun getChildProfile() {
+        val map = HashMap<String, String>()
+        map["parent_id"] = sharedPref.getStringValue(Constant.USER_ID).toString()
+        map["child_id"] = sharedPref.getStringValue(Constant.CHILD_ID).toString()
+        //parent_id=23&child_id=2&lockdown=0
+        Timber.tag(ContentValues.TAG).e("get_plus_time_request = %s", map)
+        apiInterface.get_child_profile(map).enqueue(
+            object : Callback<SuccessChildProfile?> {
+                override fun onResponse(
+                    call: Call<SuccessChildProfile?>,
+                    response: Response<SuccessChildProfile?>
+                ) {
+                    Lockdown_mode= response.body()?.result?.lockdown.toString()
+                    Toast.makeText(
+                        requireActivity(),
+                        Lockdown_mode,
+                        Toast.LENGTH_SHORT
+                    ).show()
+
+                }
+                override fun onFailure(call: Call<SuccessChildProfile?>, t: Throwable) {
+                    call.cancel()
                     DataManager.instance.hideProgressMessage()
                     Timber.tag(ContentValues.TAG).e("onFailure: %s", t.localizedMessage)
                     Timber.tag(ContentValues.TAG).e("onFailure: %s", t.cause.toString())

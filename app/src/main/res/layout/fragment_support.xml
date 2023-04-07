@@ -55,7 +55,7 @@
                         android:layout_margin="@dimen/_5sdp">
 
                         <TextView
-                            android:id="@+id/subscription"
+                            android:id="@+id/faq"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:drawableLeft="@drawable/faq"
@@ -68,6 +68,7 @@
                             android:textSize="@dimen/_14sdp" />
 
                         <TextView
+                            android:id="@+id/delete_ac"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:drawableLeft="@drawable/delete_ac"

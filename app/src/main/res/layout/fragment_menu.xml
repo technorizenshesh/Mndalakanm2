@@ -46,7 +46,6 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/_15sdp"
                         android:fontFamily="@font/poppins_bold"
-                        android:text="Mahir Jain"
                         android:gravity="start"
                         android:textColor="@color/texts"
                         android:textSize="@dimen/_13sdp" />
@@ -63,7 +62,7 @@
                         android:textColor="@color/texts"
                         android:textSize="@dimen/_12sdp"
                         android:layout_marginBottom="@dimen/_15sdp"
-                        android:text="jainmahir@321gmail.com" />
+                        />
                 </LinearLayout>
 
                 <androidx.core.widget.NestedScrollView

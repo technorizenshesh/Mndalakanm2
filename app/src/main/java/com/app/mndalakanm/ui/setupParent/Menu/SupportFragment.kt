@@ -28,6 +28,14 @@ class SupportFragment : Fragment() {
             Navigation.findNavController(binding.root)
                 .navigate(R.id.action_splash_to_support_chat_fragment)
         }
+        binding.faq.setOnClickListener {
+            Navigation.findNavController(binding.root)
+                .navigate(R.id.action_splash_to_support_faq_fragment)
+        }
+        binding.deleteAc.setOnClickListener {
+            Navigation.findNavController(binding.root)
+                .navigate(R.id.action_splash_to_delete_ac_fragment)
+        }
         return binding.root
     }
 

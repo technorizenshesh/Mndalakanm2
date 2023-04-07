@@ -26,7 +26,7 @@ import com.app.mndalakanm.utils.SharedPref
 import com.google.firebase.database.*
 import com.techno.mndalakanm.BuildConfig
 import com.techno.mndalakanm.R
-import com.vilborgtower.user.utils.Constant
+import com.app.mndalakanm.utils.Constant
 import com.vilborgtower.user.utils.Utils
 import timber.log.Timber
 import java.util.concurrent.TimeUnit

@@ -25,7 +25,7 @@ import com.app.mndalakanm.utils.DataManager
 import com.app.mndalakanm.utils.SharedPref
 import com.techno.mndalakanm.R
 import com.techno.mndalakanm.databinding.FragmentNodeviceParentBinding
-import com.vilborgtower.user.utils.Constant
+import com.app.mndalakanm.utils.Constant
 import okhttp3.ResponseBody
 import retrofit2.Call
 import retrofit2.Callback

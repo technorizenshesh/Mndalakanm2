@@ -21,7 +21,7 @@ import com.app.mndalakanm.ui.Home.SuperviseHomeActivity
 import com.app.mndalakanm.utils.SharedPref
 import com.techno.mndalakanm.R
 import com.techno.mndalakanm.databinding.FragmentEnterPinBinding
-import com.vilborgtower.user.utils.Constant
+import com.app.mndalakanm.utils.Constant
 
 
 class EnterPinFragment : Fragment() {

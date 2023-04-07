@@ -39,7 +39,7 @@ import com.google.android.gms.maps.model.*
 import com.naqdi.chart.model.Line
 import com.techno.mndalakanm.R
 import com.techno.mndalakanm.databinding.FragmentStatisticsBinding
-import com.vilborgtower.user.utils.Constant
+import com.app.mndalakanm.utils.Constant
 import me.everything.providers.android.browser.BrowserProvider
 import retrofit2.Call
 import retrofit2.Callback

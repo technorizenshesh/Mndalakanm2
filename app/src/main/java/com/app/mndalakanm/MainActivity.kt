@@ -12,7 +12,6 @@ import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupWithNavController
-import com.airbnb.lottie.utils.Logger.debug
 import com.app.mndalakanm.utils.SharedPref
 import com.google.android.material.navigation.NavigationView
 import com.google.firebase.FirebaseApp
@@ -20,7 +19,7 @@ import com.google.firebase.appcheck.FirebaseAppCheck
 import com.google.firebase.appcheck.debug.DebugAppCheckProviderFactory
 import com.techno.mndalakanm.R
 import com.techno.mndalakanm.databinding.ActivityMainBinding
-import com.vilborgtower.user.utils.Constant
+import com.app.mndalakanm.utils.Constant
 import java.util.*
 
 class MainActivity : AppCompatActivity() {

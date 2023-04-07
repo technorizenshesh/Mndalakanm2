@@ -52,6 +52,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Mndalakanm"
+        android:requestLegacyExternalStorage="true"
+
         tools:targetApi="32">
         <activity android:name="com.app.mndalakanm.LockscreenActivity"
             android:exported="true"

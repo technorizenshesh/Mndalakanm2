@@ -2,22 +2,17 @@ package com.app.mndalakanm.adapter
 
 import android.annotation.SuppressLint
 import android.content.Context
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.appcompat.content.res.AppCompatResources.getDrawable
 import androidx.databinding.DataBindingUtil
-import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.app.mndalakanm.model.SuccessScheduleTime
-import com.app.mndalakanm.model.SucessRewardList
-import com.app.mndalakanm.utils.ParentRewardListClickListener
 import com.app.mndalakanm.utils.ParentScheduleListClickListener
 import com.app.mndalakanm.utils.SharedPref
 import com.techno.mndalakanm.R
-import com.techno.mndalakanm.databinding.ItemParentRewardBinding
 import com.techno.mndalakanm.databinding.ItemParentSechduleBinding
-import com.vilborgtower.user.utils.Constant
+import com.app.mndalakanm.utils.Constant
 
 
 class AdapterScheduleList(

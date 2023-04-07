@@ -29,11 +29,13 @@ import com.app.mndalakanm.utils.SharedPref
 import com.blikoon.qrcodescanner.QrCodeActivity
 import com.techno.mndalakanm.R
 import com.techno.mndalakanm.databinding.FragmentScanQrBinding
-import com.vilborgtower.user.utils.Constant
+import com.app.mndalakanm.utils.Constant
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import timber.log.Timber
+import java.util.*
+import kotlin.collections.HashMap
 
 
 class ScanQrCodeFragment : Fragment() {
@@ -182,7 +184,9 @@ class ScanQrCodeFragment : Fragment() {
         map["register_id"] = sharedPref.getStringValue(Constant.FIREBASETOKEN).toString()
         map["lat"] = sharedPref.getStringValue(Constant.LATITUDE).toString()
         map["lon"] = sharedPref.getStringValue(Constant.LONGITUDE).toString()
-
+        val tz = TimeZone.getDefault()
+        val id = tz.id
+        map["time_zone"] = id.toString()
         Timber.tag(TAG).e("Login user Request = %s", map)
         apiInterface.pairing_code(map).enqueue(object : Callback<SuccessPairRes?> {
             override fun onResponse(

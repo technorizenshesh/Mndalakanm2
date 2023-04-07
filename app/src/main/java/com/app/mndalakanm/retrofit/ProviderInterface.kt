@@ -35,7 +35,7 @@ interface ProviderInterface {
 
     @FormUrlEncoded
     @POST("get_child_profile")
-    fun get_child_profile(@FieldMap params: Map<String, String>): Call<SuccessPairRes>
+    fun get_child_profile(@FieldMap params: Map<String, String>): Call<SuccessChildProfile>
 
     @FormUrlEncoded
     @POST("get_parent_child")
@@ -264,6 +264,26 @@ interface ProviderInterface {
     @POST("get_schedul_category")
     fun get_schedul_category(
         @FieldMap params: Map<String, String>
-    )
-            : Call<SuccesSchedulCategory>
+    ): Call<SuccesSchedulCategory>
+    @FormUrlEncoded
+    @POST("insert_chat")
+    fun insert_chat(
+        @FieldMap params: Map<String, String>
+    ): Call<SuccesInsertChatRes>
+    @FormUrlEncoded
+    @POST("get_chat")
+    fun getChat(
+        @FieldMap params: Map<String, String>
+    ): Call<SuccesChatListRes>
+
+    @FormUrlEncoded
+    @POST("get_faqs")
+    fun get_faqs(
+        @FieldMap params: Map<String, String>
+    ): Call<successFAQres>
+    @FormUrlEncoded
+    @POST("delete_parent")
+    fun delete_parent(
+        @FieldMap params: Map<String, String>
+    ): Call<ResponseBody>
 }

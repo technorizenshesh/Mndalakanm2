@@ -18,7 +18,7 @@ import com.app.mndalakanm.utils.SharedPref
 import com.google.zxing.WriterException
 import com.techno.mndalakanm.R
 import com.techno.mndalakanm.databinding.FragmentShowQRBinding
-import com.vilborgtower.user.utils.Constant
+import com.app.mndalakanm.utils.Constant
 
 
 class ShowQRFragment : Fragment() {
@@ -58,7 +58,8 @@ class ShowQRFragment : Fragment() {
         }
 // Initializing the QR Encoder with your value to be encoded, type you required and Dimension
         // Initializing the QR Encoder with your value to be encoded, type you required and Dimension
-        val qrgEncoder = QRGEncoder(requireActivity().getString(R.string.app_name) + " Code:- ~~" + sharedPref.getStringValue(Constant.PAIRINGCODE), null, QRGContents.Type.TEXT, 2048)
+        val qrgEncoder = QRGEncoder(requireActivity().getString(R.string.app_name) + " Code:- ~~" + sharedPref.getStringValue(
+            Constant.PAIRINGCODE), null, QRGContents.Type.TEXT, 2048)
         qrgEncoder.colorBlack = Color.BLACK
         qrgEncoder.colorWhite = Color.WHITE
         try {

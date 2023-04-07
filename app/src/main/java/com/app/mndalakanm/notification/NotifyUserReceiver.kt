@@ -3,7 +3,12 @@ package com.app.mndalakanm.notification
 import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
+import android.net.Uri
+import android.os.Build
+import android.provider.Settings
 import android.util.Log
+import androidx.browser.customtabs.CustomTabsClient.getPackageName
+import androidx.core.app.ActivityCompat.startActivityForResult
 import com.app.mndalakanm.ui.Home.SuperviseHomeActivity
 import com.app.mndalakanm.utils.SharedPref
 import com.mtsahakis.mediaprojectiondemo.MainService
@@ -30,8 +35,11 @@ class NotifyUserReceiver : BroadcastReceiver() {
             val pushNotificationModel = intent.getSerializableExtra("pushNotificationModel")
              try {
 
-            val status = intent.getSerializableExtra("status")
-            val svc = Intent( context, MainService::class.java)
+                 val status = intent.getSerializableExtra("status")
+
+                 Log.e("TAG", "onReceive: GET_DATA_LOCKDOWN  status " +status)
+
+                 val svc = Intent( context, MainService::class.java)
 
             if( status =="1"){
                 context!!.stopService(svc)

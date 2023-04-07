@@ -1,7 +1,6 @@
 package com.app.mndalakanm.ui.setupKid
 
 import android.annotation.SuppressLint
-import android.content.ContentValues
 import android.content.ContentValues.TAG
 import android.os.Bundle
 import android.provider.Settings
@@ -24,11 +23,13 @@ import com.app.mndalakanm.utils.DataManager
 import com.app.mndalakanm.utils.SharedPref
 import com.techno.mndalakanm.R
 import com.techno.mndalakanm.databinding.FragmentEnterPairingCodeBinding
-import com.vilborgtower.user.utils.Constant
+import com.app.mndalakanm.utils.Constant
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import timber.log.Timber
+import java.util.*
+import kotlin.collections.HashMap
 
 class EnterPairingCodeFragment : Fragment() {
     lateinit var binding: FragmentEnterPairingCodeBinding
@@ -120,7 +121,10 @@ class EnterPairingCodeFragment : Fragment() {
         map["register_id"] = sharedPref.getStringValue(Constant.FIREBASETOKEN).toString()
         map["lat"] = sharedPref.getStringValue(Constant.LATITUDE).toString()
         map["lon"] = sharedPref.getStringValue(Constant.LONGITUDE).toString()
-        Timber.tag(ContentValues.TAG).e("Login user Request = %s", map)
+        val tz = TimeZone.getDefault()
+        val id = tz.id
+        map["time_zone"] = id.toString()
+        Timber.tag(TAG).e("Login user Request = %s", map)
         apiInterface.pairing_code(map).enqueue(object : Callback<SuccessPairRes?> {
             override fun onResponse(
                 call: Call<SuccessPairRes?>,
