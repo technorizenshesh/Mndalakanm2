@@ -1,4 +1,4 @@
-package com.app.mndalakanm.ui.LoginSignup
+package com.app.mndalakanm.ui.loginSignup
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -7,8 +7,9 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.navigation.Navigation
-import com.techno.mndalakanm.R
-import com.techno.mndalakanm.databinding.FragmentOldAcOrNotBinding
+import com.app.mndalakanm.R
+import com.app.mndalakanm
+.databinding.FragmentOldAcOrNotBinding
 
 class OldAcOrNotFragment : Fragment() {
     lateinit var binding: FragmentOldAcOrNotBinding

@@ -6,5 +6,8 @@
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
     </style>
+<style name="WhiteAccent">
+<item name="colorAccent">@color/white</item> <!-- Whatever color you want-->
+</style>
 
 </resources>

@@ -1,4 +1,4 @@
-package com.app.mndalakanm.ui.LoginSignup
+package com.app.mndalakanm.ui.loginSignup
 
 import android.Manifest
 import android.content.ContentValues.TAG
@@ -16,8 +16,9 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import com.app.mndalakanm.utils.SharedPref
-import com.techno.mndalakanm.R
-import com.techno.mndalakanm.databinding.FragmentSplashBinding
+import com.app.mndalakanm.R
+import com.app.mndalakanm
+.databinding.FragmentSplashBinding
 import com.app.mndalakanm.utils.Constant
 import com.vilborgtower.user.utils.Utils
 import timber.log.Timber

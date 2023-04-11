@@ -9,7 +9,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.app.mndalakanm.model.SuccesChatListRes
 import com.app.mndalakanm.utils.SharedPref
-import com.techno.mndalakanm.R
+import com.app.mndalakanm.R
 import com.app.mndalakanm.utils.Constant
 
 

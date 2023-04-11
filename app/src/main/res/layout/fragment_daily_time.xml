@@ -38,7 +38,7 @@
                         android:layout_marginBottom="@dimen/_10sdp"
                         android:fontFamily="@font/poppins_bold"
                         android:gravity="start"
-                        android:text="Daily Limit"
+                        android:text="@string/daily_limit"
                         android:textColor="@color/black"
                         android:textSize="@dimen/_16sdp" />
 

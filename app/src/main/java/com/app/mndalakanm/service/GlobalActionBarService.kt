@@ -16,7 +16,7 @@ import android.view.accessibility.AccessibilityNodeInfo
 import android.widget.Button
 import android.widget.FrameLayout
 import androidx.annotation.RequiresApi
-import com.techno.mndalakanm.R
+import com.app.mndalakanm.R
 import java.util.*
 import kotlin.collections.ArrayDeque
 

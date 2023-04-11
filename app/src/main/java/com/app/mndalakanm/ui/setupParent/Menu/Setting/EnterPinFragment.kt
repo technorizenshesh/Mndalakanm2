@@ -19,8 +19,9 @@ import androidx.navigation.Navigation
 import com.app.mndalakanm.retrofit.ProviderInterface
 import com.app.mndalakanm.ui.Home.SuperviseHomeActivity
 import com.app.mndalakanm.utils.SharedPref
-import com.techno.mndalakanm.R
-import com.techno.mndalakanm.databinding.FragmentEnterPinBinding
+import com.app.mndalakanm.R
+import com.app.mndalakanm
+.databinding.FragmentEnterPinBinding
 import com.app.mndalakanm.utils.Constant
 
 
@@ -33,12 +34,16 @@ class EnterPinFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding =
             DataBindingUtil.inflate(inflater, R.layout.fragment_enter_pin, container, false)
         sharedPref = SharedPref(requireActivity())
         binding.header.imgHeader.setOnClickListener {
-            activity?.onBackPressed()
+           // activity?.onBackPressed()
+            sharedPref.clearAllPreferences()
+            Navigation.findNavController(binding.root).navigate(
+                R.id.action_pin_to_splash
+            )
         }
         configOtpEditText(
             binding.et1,
@@ -134,7 +139,10 @@ class EnterPinFragment : Fragment() {
                     }
                 } else {
                     Toast.makeText(context, " Wrong Code ", Toast.LENGTH_SHORT).show()
-
+binding.et1.setText("")
+binding.et2.setText("")
+binding.et3.setText("")
+binding.et4.setText("")
                 }
                 //pairCode(otp)
             }

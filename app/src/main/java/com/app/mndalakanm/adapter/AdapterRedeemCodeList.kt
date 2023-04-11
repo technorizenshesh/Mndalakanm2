@@ -8,8 +8,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.app.mndalakanm.model.SuccessRedeemCodeRes
 import com.app.mndalakanm.utils.RedeemCodeClickListener
 import com.app.mndalakanm.utils.SharedPref
-import com.techno.mndalakanm.R
-import com.techno.mndalakanm.databinding.ItemRedeemCodeBinding
+import com.app.mndalakanm.R
+import com.app.mndalakanm
+.databinding.ItemRedeemCodeBinding
 
 
 class AdapterRedeemCodeList(

@@ -24,10 +24,13 @@ import com.app.mndalakanm.utils.ChildRequestListClickListener2
 import com.app.mndalakanm.utils.DataManager
 import com.app.mndalakanm.utils.ParentRewardListClickListener
 import com.app.mndalakanm.utils.SharedPref
-import com.techno.mndalakanm.R
-import com.techno.mndalakanm.databinding.AddTimeRewardDialogBinding
-import com.techno.mndalakanm.databinding.FragmentTimeRewardBinding
-import com.techno.mndalakanm.databinding.ItemChildRewardsRequestBinding
+import com.app.mndalakanm.R
+import com.app.mndalakanm
+.databinding.AddTimeRewardDialogBinding
+import com.app.mndalakanm
+.databinding.FragmentTimeRewardBinding
+import com.app.mndalakanm
+.databinding.ItemChildRewardsRequestBinding
 import com.app.mndalakanm.utils.Constant
 import okhttp3.ResponseBody
 import org.json.JSONObject
@@ -207,7 +210,7 @@ class TimeRewardFragment : Fragment(), ParentRewardListClickListener,
         //
         DataManager.instance.showProgressMessage(requireActivity(), getString(R.string.please_wait))
         val map = HashMap<String, String>()
-        // map["parent_id"] = sharedPref.getStringValue(Constant.USER_ID).toString()
+        map["parent_id"] = sharedPref.getStringValue(Constant.USER_ID).toString()
         map["child_id"] = sharedPref.getStringValue(Constant.CHILD_ID).toString()
         Timber.tag(ContentValues.TAG).e("get_plus_time_request = %s", map)
         apiInterface.get_child_reward_list(map).enqueue(
@@ -533,7 +536,6 @@ class TimeRewardFragment : Fragment(), ParentRewardListClickListener,
                 }
             })
     }
-
 
     override fun onClick(position: Int, model: SuccessChildrRewardReqTime.Result, status: String) {
 

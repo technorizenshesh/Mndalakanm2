@@ -46,7 +46,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/_10sdp"
-                android:text="Filter bad websites"
+                android:text="@string/filter_bad_websites"
                 android:textColor="@color/texts"
                 android:textSize="@dimen/_10sdp"
                 android:fontFamily="@font/poppins_bold" />
@@ -57,7 +57,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/_10sdp"
-                android:text="Block inappropriate apps"
+                android:text="@string/block_inappropriate_apps"
                 android:textColor="@color/texts"
                 android:textSize="@dimen/_10sdp"
                 android:fontFamily="@font/poppins_bold" />
@@ -68,7 +68,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/_10sdp"
-                android:text="See online activity"
+                android:text="@string/see_online_activity"
                 android:textColor="@color/texts"
                 android:textSize="@dimen/_10sdp"
                 android:fontFamily="@font/poppins_bold" />
@@ -95,7 +95,7 @@
                         android:paddingLeft="5sp"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Continue Without an Plan"
+                        android:text="@string/continue_without_an_plan"
                         android:textColor="@color/white"
                         android:fontFamily="@font/poppins_bold"
                         android:textSize="@dimen/_14sdp" />
@@ -110,7 +110,7 @@
                             android:textAlignment="center"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="NO payment for now"
+                            android:text="@string/no_payment_for_now"
                             android:maxLines="1"
                             android:fontFamily="@font/poppinsregular"
                             android:textColor="@color/white"
@@ -416,7 +416,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/_1sdp"
-            android:text="Privacy"
+            android:text="@string/privacy"
             android:textColor="@color/texts"
             android:gravity="center"
             android:textSize="@dimen/_10sdp"

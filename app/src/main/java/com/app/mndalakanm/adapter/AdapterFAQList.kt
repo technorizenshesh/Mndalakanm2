@@ -10,9 +10,11 @@ import com.app.mndalakanm.model.ChildData
 import com.app.mndalakanm.model.successFAQres
 import com.app.mndalakanm.utils.ChildClickListener
 import com.app.mndalakanm.utils.SharedPref
-import com.techno.mndalakanm.R
-import com.techno.mndalakanm.databinding.ItemChildBinding
-import com.techno.mndalakanm.databinding.ItemFaqBinding
+import com.app.mndalakanm.R
+import com.app.mndalakanm
+.databinding.ItemChildBinding
+import com.app.mndalakanm
+.databinding.ItemFaqBinding
 
 
 class AdapterFAQList(

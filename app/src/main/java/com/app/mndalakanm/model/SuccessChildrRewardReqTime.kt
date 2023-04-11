@@ -1,39 +1,68 @@
 package com.app.mndalakanm.model
 
+import com.google.gson.annotations.Expose
+import com.google.gson.annotations.SerializedName
+
 data class SuccessChildrRewardReqTime(
-    val message: String,
+    @Expose
+    @SerializedName("result")
     val result: ArrayList<Result>,
+    @Expose
+    @SerializedName("message")
+    val message: String,
+    @Expose
+    @SerializedName("status")
     val status: String
-):java.io.Serializable {
+) {
 
     data class Result(
-        val child_id: String,
-        val childdetails: Childdetails,
-        val date_time: String,
+        @Expose
+        @SerializedName("id")
         val id: String,
-        val parent_id: String,
-        val plus_time: String,
+        @Expose
+        @SerializedName("parent_id")
+        val parentId: String,
+        @Expose
+        @SerializedName("child_id")
+        val childId: String,
+        @Expose
+        @SerializedName("reward_id")
+        val rewardId: String,
+        @Expose
+        @SerializedName("plus_time")
+        val plusTime: String,
+        @Expose
+        @SerializedName("status")
         val status: String,
-        val time_ago: String,
-        val time_zone: String
+        @Expose
+        @SerializedName("time_ago")
+        val timeAgo: String,
+        @Expose
+        @SerializedName("childdetails")
+        val childdetails: Childdetails
     )
 
     data class Childdetails(
-        val address: String,
-        val age: String,
-        val date_time: String,
-        val final_time: String,
+        @Expose
+        @SerializedName("id")
         val id: String,
-        val image: String,
-        val lat: String,
-        val lockdown: String,
-        val lon: String,
-        val mobile_id: String,
-        val name: String,
-        val pairing_code: String,
-        val parent_id: String,
-        val register_id: String,
+        @Expose
+        @SerializedName("parent_id")
+        val parentId: String,
+        @Expose
+        @SerializedName("child_id")
+        val childId: String,
+        @Expose
+        @SerializedName("reward_id")
+        val rewardId: String,
+        @Expose
+        @SerializedName("plus_time")
+        val plusTime: String,
+        @Expose
+        @SerializedName("status")
         val status: String,
-        val time_zone: String
+        @Expose
+        @SerializedName("time_ago")
+        val timeAgo: String
     )
 }

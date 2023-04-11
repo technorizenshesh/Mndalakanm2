@@ -9,13 +9,13 @@ plugins {
 }
 
 android {
-    namespace 'com.techno.mndalakanm'
-    compileSdk 32
+    namespace 'com.app.mndalakanm'
+    compileSdk 33
 
     defaultConfig {
         applicationId "com.app.mndalakanm"
         minSdk 26
-        targetSdk 32
+        targetSdk 33
         versionCode 1
         versionName "1.0"
       //multiDexEnabled true
@@ -58,6 +58,7 @@ dependencies {
     implementation 'com.google.android.gms:play-services-location:21.0.1'
     implementation 'com.google.android.libraries.places:places:3.0.0'
     implementation 'junit:junit:4.12'
+    implementation 'com.google.firebase:firebase-firestore-ktx:24.4.5'
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
@@ -69,6 +70,8 @@ dependencies {
     implementation "androidx.lifecycle:lifecycle-livedata-ktx:2.5.1"
   //  implementation 'com.android.support:multidex:1.0.3'
     implementation 'com.intuit.sdp:sdp-android:1.1.0'
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.5.2"
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.5.2"
 
     //draw the line here====================--------------------======================part_two
 
@@ -81,6 +84,7 @@ dependencies {
     implementation 'com.google.firebase:firebase-appcheck-safetynet:'
     implementation 'com.google.firebase:firebase-appcheck-playintegrity:16.1.2'
     implementation 'com.google.firebase:firebase-appcheck-debug:16.1.2'
+    implementation 'com.google.android.play:integrity:1.1.0'
     androidTestImplementation 'com.google.firebase:firebase-appcheck-debug-testing:16.1.2'
     implementation('com.squareup.retrofit2:retrofit:2.9.0') {
         exclude module: 'okhttp'
@@ -113,4 +117,7 @@ dependencies {
     def lottieVersion = "5.2.0"
     implementation "com.airbnb.android:lottie:$lottieVersion"
     implementation 'com.github.lukedeighton:wheelview:0.4.2'
+    implementation 'com.github.PhilJay:MPAndroidChart:v3.1.0'
+
+
 }

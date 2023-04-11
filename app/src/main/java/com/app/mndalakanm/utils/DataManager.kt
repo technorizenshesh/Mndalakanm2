@@ -14,7 +14,8 @@ import android.util.Base64
 import android.view.Window
 import android.view.WindowManager
 import android.widget.ProgressBar
-import  com.techno.mndalakanm.R
+import com.app.mndalakanm
+.R
 import timber.log.Timber
 import java.io.*
 import java.nio.charset.Charset
@@ -35,10 +36,10 @@ class DataManager private constructor() {
             isProgressDialogRunning = true
             mDialog = Dialog(dialogActivity!!)
             mDialog!!.requestWindowFeature(Window.FEATURE_NO_TITLE)
-            mDialog!!.setContentView(R.layout.dialog_loading)
+            mDialog!!.setContentView(com.app.mndalakanm.R.layout.dialog_loading)
             mDialog!!.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
             //TextView textView = mDialog.findViewById(R.id.textView);
-            progressBar = mDialog!!.findViewById(R.id.progressBar)
+            progressBar = mDialog!!.findViewById(com.app.mndalakanm.R.id.progressBar)
             // textView.setText(msg);
             val lp = mDialog!!.window!!.attributes
             lp.dimAmount = 0.8f

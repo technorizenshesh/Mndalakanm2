@@ -35,7 +35,7 @@
                         android:layout_height="wrap_content"
                         android:layout_margin="@dimen/_2sdp"
                         android:fontFamily="@font/poppins_bold"
-                        android:text="Privacy Policy"
+                        android:text="@string/privacy_policy"
                         android:gravity="start"
                         android:textColor="@color/texts"
                         android:textSize="@dimen/_16sdp" />

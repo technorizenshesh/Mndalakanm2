@@ -15,8 +15,10 @@ import android.webkit.WebView
 import android.webkit.WebViewClient
 import android.widget.Toast
 import androidx.core.content.ContextCompat
-import com.techno.mndalakanm.BuildConfig
-import  com.techno.mndalakanm.R
+import com.app.mndalakanm
+.BuildConfig
+import com.app.mndalakanm
+.R
 import java.text.DateFormat
 import java.text.NumberFormat
 import java.text.ParseException

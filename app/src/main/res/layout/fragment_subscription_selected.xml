@@ -171,7 +171,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="@dimen/_10sdp"
-                        android:text="Filter bad websites"
+                        android:text="@string/filter_bad_websites"
                         android:textColor="@color/texts"
                         android:textSize="@dimen/_10sdp"
                         android:fontFamily="@font/poppins_bold" />
@@ -182,7 +182,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="@dimen/_10sdp"
-                        android:text="Block inappropriate apps"
+                        android:text="@string/block_inappropriate_apps"
                         android:textColor="@color/texts"
                         android:textSize="@dimen/_10sdp"
                         android:fontFamily="@font/poppins_bold" />

@@ -4,6 +4,8 @@ import com.app.mndalakanm.model.*
 
 interface ChildClickListener {
     fun onClick(position: Int, model: ChildData,type:String)
+}interface AppClickListener {
+    fun onClick(position: Int, model: PInfo,type:String)
 }
 interface DayClickListener {
     fun onClick(position: Int, model: WeekDays)
@@ -25,7 +27,7 @@ interface ScreenShotClickListener {
 }
 
 interface TimerListClickListener {
-    fun onClick(position: Int, model: SuccessTimerListRes.TimerList)
+    fun onClick(position: Int, model: SuccessTimerListRes.Result)
 }
 interface ChildRequestListClickListener {
     fun onClick(position: Int, model: SuccessChildrReqTime.Result,status:String)

@@ -3,4 +3,11 @@
     <color name="colorPrimary">#5856F2</color>
     <color name="colorPrimaryDark">#3700B3</color>
     <color name="colorAccent">#03DAC5</color>
+    <color name="primary">#5856F2</color>
+    <color name="colorPrimarysemi">#575856F2</color>
+    <color name="colorPrimaryYellow">#FFB800</color>
+    <color name="colorPrimaryYellow2">#FF9800</color>
+    <color name="colorPrimaryYellow_semi">#9AFFB800</color>
+    <color name="secondery">#FFE5A1</color>
+    <color name="white">#FFFFFF</color>
 </resources>

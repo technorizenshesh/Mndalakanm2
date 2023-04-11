@@ -8,8 +8,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.app.mndalakanm.model.ChildData
 import com.app.mndalakanm.utils.ChildClickListener
 import com.app.mndalakanm.utils.SharedPref
-import com.techno.mndalakanm.R
-import com.techno.mndalakanm.databinding.ItemChildBinding
+import com.app.mndalakanm.R
+import com.app.mndalakanm
+.databinding.ItemChildBinding
 
 
 class AdapterChildList(

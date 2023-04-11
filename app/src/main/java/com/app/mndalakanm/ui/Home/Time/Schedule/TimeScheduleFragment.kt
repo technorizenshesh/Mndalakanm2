@@ -17,8 +17,9 @@ import com.app.mndalakanm.retrofit.ProviderInterface
 import com.app.mndalakanm.utils.DataManager
 import com.app.mndalakanm.utils.ParentScheduleListClickListener
 import com.app.mndalakanm.utils.SharedPref
-import com.techno.mndalakanm.R
-import com.techno.mndalakanm.databinding.FragmentTimeScheduleBinding
+import com.app.mndalakanm.R
+import com.app.mndalakanm
+.databinding.FragmentTimeScheduleBinding
 import com.app.mndalakanm.utils.Constant
 import okhttp3.ResponseBody
 import org.json.JSONObject

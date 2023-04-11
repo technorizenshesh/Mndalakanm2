@@ -41,10 +41,11 @@ import com.google.android.gms.location.LocationSettingsRequest
 import com.google.android.gms.location.LocationSettingsResponse
 import com.google.firebase.FirebaseApp
 import com.google.firebase.appcheck.FirebaseAppCheck
-import com.google.firebase.appcheck.safetynet.SafetyNetAppCheckProviderFactory
-import com.techno.mndalakanm.R
-import com.techno.mndalakanm.databinding.ActivitySuperviseHomeBinding
-import com.techno.mndalakanm.databinding.ChildRequestsBinding
+import com.app.mndalakanm.R
+import com.app.mndalakanm
+.databinding.ActivitySuperviseHomeBinding
+import com.app.mndalakanm
+.databinding.ChildRequestsBinding
 import com.app.mndalakanm.utils.Constant
 import okhttp3.ResponseBody
 import org.json.JSONObject
@@ -75,9 +76,7 @@ class SuperviseHomeActivity : AppCompatActivity(), ChildRequestListClickListener
         setupWithNavController(binding.navView, navController)
         sharedPref = SharedPref(this)
         FirebaseApp.initializeApp(this)
-        FirebaseAppCheck.getInstance().installAppCheckProviderFactory(
-            SafetyNetAppCheckProviderFactory.getInstance()
-        )
+
 //        val database = Firebase.database.reference
 //        database.useAppCheck(AppCheckInterceptor())
 //        val appCheckTokenListener = object : AppCheckTokenListener {

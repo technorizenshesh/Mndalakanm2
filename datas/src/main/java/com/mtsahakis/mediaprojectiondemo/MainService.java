@@ -1,11 +1,13 @@
 package com.mtsahakis.mediaprojectiondemo;
 
-
-import android.annotation.SuppressLint;
+import android.app.Activity;
+import android.app.Dialog;
 import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.graphics.PixelFormat;
+import android.graphics.drawable.ColorDrawable;
 import android.os.IBinder;
 import android.util.Log;
 import android.view.Gravity;
@@ -13,11 +15,21 @@ import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.Window;
 import android.view.WindowManager;
 import android.view.WindowManager.LayoutParams;
+import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import java.util.HashMap;
+
+import okhttp3.ResponseBody;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 
 public class MainService extends Service implements View.OnTouchListener {
@@ -91,13 +103,11 @@ public class MainService extends Service implements View.OnTouchListener {
 
                 floatyView = inflater.inflate(R.layout.floating_view, interceptorLayout);
                 ImageView img = floatyView.findViewById(R.id.img);
+                Button request_btn = floatyView.findViewById(R.id.request_btn);
                 TextView text = floatyView.findViewById(R.id.text);
-                text.setOnClickListener(v -> {
-                    c++;
-                    if (c == 5) {
-                        onDestroy();
+                request_btn.setOnClickListener(v -> {
+                    requestForUnlock(this, "Please Unlock My phone");
 
-                    }
                 });
           /*  img.setOnTouchListener(new View.OnTouchListener() {
                 @SuppressLint("ClickableViewAccessibility")
@@ -111,12 +121,51 @@ public class MainService extends Service implements View.OnTouchListener {
             } else {
                 Log.e("SAW-example", "Layout Inflater Service is null; can't inflate and display R.layout.floating_view");
             }
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
             Log.e("SAW-example", e.getLocalizedMessage());
             Log.e("SAW-example", e.getMessage());
 
         }
+    }
+
+    private void requestForUnlock(Context context, String message) {
+        try {
+
+            VibrasInterface apiInterface = ApiClient.getClient().create(VibrasInterface.class);
+            String parent_id = SharedPreferenceUtility.getInstance(getApplicationContext()).getString("parent_id");
+            String child_id = SharedPreferenceUtility.getInstance(getApplicationContext()).getString("child_id");
+            HashMap<String, String> map = new HashMap<>();
+            map.put("parent_id", parent_id);
+            map.put("child_id", child_id);
+            map.put("message", message);
+            Call<ResponseBody> loginCall = apiInterface.request_remove_lockdown(map);
+            loginCall.enqueue(new Callback<ResponseBody>() {
+                @Override
+                public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                    try {
+
+                        startChecking(context);
+
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                }
+
+                @Override
+                public void onFailure(Call<ResponseBody> call, Throwable t) {
+                    call.cancel();
+                }
+            });
+        } catch (Exception e) {
+
+        }
+
+    }
+
+    private void startChecking(Context context) {
+        Toast.makeText(context, R.string.checking_please_wait, Toast.LENGTH_SHORT).show();
+        //showProgressMessage(context,"");
     }
 
     @Override
@@ -142,4 +191,46 @@ public class MainService extends Service implements View.OnTouchListener {
 
         return true;
     }
+
+
+    private Dialog mDialog;
+    private boolean isProgressDialogRunning = false;
+
+    public void showProgressMessage(Context context, String msg) {
+        try {
+            if (isProgressDialogRunning) {
+                hideProgressMessage();
+            }
+            isProgressDialogRunning = true;
+            mDialog = new Dialog(context);
+            mDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+            mDialog.setContentView(R.layout.dialog_loading);
+            mDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+         //   TextView textView = mDialog.findViewById(R.id.textView);
+           // textView.setText(msg);
+            WindowManager.LayoutParams lp = mDialog.getWindow().getAttributes();
+            lp.dimAmount = 0.8f;
+            mDialog.getWindow().setAttributes(lp);
+            mDialog.getWindow().addFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND);
+            mDialog.setCancelable(false);
+            mDialog.setCanceledOnTouchOutside(true);
+            mDialog.show();
+
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    }
+
+    public void hideProgressMessage() {
+        isProgressDialogRunning = true;
+        try {
+            if (mDialog != null) {
+                mDialog.dismiss();
+            }
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+
+    }
+
 }

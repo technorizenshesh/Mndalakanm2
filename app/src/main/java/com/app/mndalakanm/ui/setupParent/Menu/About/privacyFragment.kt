@@ -11,8 +11,9 @@ import androidx.fragment.app.Fragment
 import com.app.mndalakanm.retrofit.ApiClient
 import com.app.mndalakanm.retrofit.ProviderInterface
 import com.app.mndalakanm.utils.DataManager
-import com.techno.mndalakanm.R
-import com.techno.mndalakanm.databinding.FragmentPrivacyBinding
+import com.app.mndalakanm.R
+import com.app.mndalakanm
+.databinding.FragmentPrivacyBinding
 import okhttp3.ResponseBody
 import org.json.JSONObject
 import retrofit2.Call

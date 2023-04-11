@@ -9,9 +9,7 @@ import android.content.IntentFilter
 import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatDelegate
-import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
-import androidx.core.content.res.ResourcesCompat
 import androidx.localbroadcastmanager.content.LocalBroadcastManager
 import androidx.work.*
 import com.app.mndalakanm.notification.Config
@@ -20,14 +18,15 @@ import com.app.mndalakanm.retrofit.ApiClient
 import com.app.mndalakanm.retrofit.ProviderInterface
 import com.app.mndalakanm.service.GPSTracker
 import com.app.mndalakanm.service.GpsWork
-import com.app.mndalakanm.utils.CrashReportingTree
-import com.app.mndalakanm.utils.InternetConnection
-import com.app.mndalakanm.utils.SharedPref
+import com.app.mndalakanm.service.SensorService
+import com.app.mndalakanm.utils.*
 import com.google.firebase.database.*
-import com.techno.mndalakanm.BuildConfig
-import com.techno.mndalakanm.R
-import com.app.mndalakanm.utils.Constant
+import com.mtsahakis.mediaprojectiondemo.SharedPreferenceUtility
 import com.vilborgtower.user.utils.Utils
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.cancel
+import kotlinx.coroutines.launch
 import timber.log.Timber
 import java.util.concurrent.TimeUnit
 
@@ -41,15 +40,20 @@ class Mndalakanm : Application() {
     lateinit var database:FirebaseDatabase
     lateinit var myRef: DatabaseReference
     private val notificationManager by lazy { NotificationManagerCompat.from(this) }
-
+    var mServiceIntent: Intent? = null
+    private var mSensorService: SensorService? = null
+    var ctx: Context? = null
+    @JvmName("getCtx1")
+    fun getCtx(): Context? {
+        return ctx
+    }
     override fun attachBaseContext(base: Context) {
         super.attachBaseContext(base)
     }
 
     override fun onCreate() {
         super.onCreate()
-        // createNotificationChannel()
-        //  notificationManager.notify(1, createNotification())
+        ctx = applicationContext
         Timber.plant(if (BuildConfig.DEBUG) Timber.DebugTree() else CrashReportingTree())
         manager = SharedPref(applicationContext)
         utils = Utils(applicationContext)
@@ -57,27 +61,66 @@ class Mndalakanm : Application() {
         context = applicationContext
          database = FirebaseDatabase.getInstance()
          myRef = database.reference
-        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO) //to disable dark mode
-        if (!InternetConnection.checkConnection(applicationContext)) {
-            showToast(this, "No Internet")
+
+             SharedPreferenceUtility.getInstance(applicationContext).putString("parent_id", manager!!.getStringValue(Constant.USER_ID).toString())
+            SharedPreferenceUtility.getInstance(applicationContext).putString("child_id", manager!!.getStringValue(Constant.CHILD_ID).toString())
+        val myScope = CoroutineScope(Dispatchers.Default)
+
+        myScope.launch {
+            try {
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO) //to disable dark mode
+                mSensorService = SensorService(getCtx())
+                mServiceIntent = Intent(getCtx(), SensorService::class.java)
+                if (!isMyServiceRunning( SensorService::class.java)) {
+                    startService(mServiceIntent)
+                }
+
+
+
+                if (!InternetConnection.checkConnection(applicationContext)) {
+                    showToast(applicationContext, "No Internet")
+                }
+                LocalBroadcastManager.getInstance(applicationContext).registerReceiver(
+                    NotifyUserReceiver(),
+                    IntentFilter(Config.GET_DATA_NOTIFICATION)
+                )
+                getLockdownOnOff()
+
+
+                if (manager?.getStringValue(Constant.USER_TYPE).equals("child", true)) {
+                    scheduleRecurringFetchWeatherSyncUsingWorker()
+                } else {
+                }
+
+                myScope.cancel()
+
+            }catch (e:Exception){
+                myScope.cancel()
+
+            }
         }
-        LocalBroadcastManager.getInstance(this).registerReceiver(
-            NotifyUserReceiver(),
-            IntentFilter(Config.GET_DATA_NOTIFICATION)
-        )
-        getLockdownOnOff()
+
+    }
+    private fun isMyServiceRunning(serviceClass: Class<*>): Boolean {
+        val manager = getSystemService(ACTIVITY_SERVICE) as ActivityManager
+        for (service in manager.getRunningServices(Int.MAX_VALUE)) {
+            if (serviceClass.name == service.service.className) {
+                Log.e("isMyServiceRunning?", true.toString() + "")
+                return true
+            }
+        }
+        Log.e("isMyServiceRunning?", false.toString() + "")
+        return false
     }
 
     fun scheduleRecurringFetchWeatherSyncUsingWorker() {
         val workInstance = WorkManager.getInstance(this)
-
         val constraints = Constraints.Builder()
             .setRequiredNetworkType(NetworkType.CONNECTED)
             .setRequiresCharging(true)
             .build()
-
         val data = workDataOf("WORK_DATA" to "YOUR MESSAGE.")
-        val workRequest = PeriodicWorkRequestBuilder<GpsWork>(10, TimeUnit.MINUTES)
+        val workRequest = PeriodicWorkRequestBuilder<GpsWork>(5, TimeUnit.MINUTES)
             .setInputData(data)
             .setConstraints(constraints)
             .build()
@@ -117,55 +160,11 @@ class Mndalakanm : Application() {
     }
 
     private fun live(context: Context,status:String) {
-        val intent = Intent(Config.GET_DATA_LOCKDOWN)
+       /* val intent = Intent(Config.GET_DATA_LOCKDOWN)
         intent.putExtra("pushNotificationModel", "1")
         intent.putExtra("staus", "1")
-        LocalBroadcastManager.getInstance(context).sendBroadcast(intent)
+        LocalBroadcastManager.getInstance(context).sendBroadcast(intent)*/
     }
-
-    private fun createNotificationChannel() {
-
-        val channel = NotificationChannel(
-            CHANNEL_ID, CHANNEL_NAME, NotificationManager.IMPORTANCE_HIGH
-        ).apply {
-            lockscreenVisibility = Notification.VISIBILITY_PUBLIC
-        }
-
-        notificationManager.createNotificationChannel(channel)
-    }
-
-    private fun createNotification(): Notification {
-        val contentIntent = Intent(this, MainActivity::class.java)
-        val contentPendingIntent =
-            PendingIntent.getActivity(
-                this,
-                0,
-                contentIntent,
-                PendingIntent.FLAG_IMMUTABLE or PendingIntent.FLAG_UPDATE_CURRENT
-            )
-
-        val fullScreenIntent = Intent(this, LockscreenActivity::class.java)
-        val fullScreenPendingIntent =
-            PendingIntent.getActivity(
-                this,
-                0,
-                fullScreenIntent,
-                PendingIntent.FLAG_IMMUTABLE or PendingIntent.FLAG_UPDATE_CURRENT
-            )
-
-        return NotificationCompat.Builder(this, CHANNEL_ID)
-            .setSmallIcon(R.drawable.logo)
-            .setColor(ResourcesCompat.getColor(resources, R.color.colorPrimary, null))
-            .setContentTitle("Heads Up Notification")
-            .setAutoCancel(true)
-            .setContentIntent(contentPendingIntent)
-            .setFullScreenIntent(fullScreenPendingIntent, true)
-            .setPriority(NotificationCompat.PRIORITY_HIGH)
-            .setCategory(NotificationCompat.CATEGORY_ALARM)
-            .build()
-    }
-
-
     companion object {
         var apiInterface: ProviderInterface? = null
 

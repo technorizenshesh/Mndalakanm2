@@ -6,7 +6,7 @@ import android.graphics.PixelFormat
 import android.os.Build
 import android.util.Log
 import android.view.*
-import com.techno.mndalakanm.R
+import com.app.mndalakanm.R
 
 
 class Window {
@@ -17,18 +17,16 @@ class Window {
     private var layoutInflater: LayoutInflater? = null
     fun getWindow(context: Context) {
         this.context = context
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            // set the layout parameters of the window
-            mParams = WindowManager.LayoutParams( // Shrink the window to wrap the content rather
-                // than filling the screen
-                WindowManager.LayoutParams.WRAP_CONTENT,
-                WindowManager.LayoutParams.WRAP_CONTENT,  // Display it on top of other application windows
-                WindowManager.LayoutParams.TYPE_APPLICATION_OVERLAY,  // Don't let it grab the input focus
-                WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE,  // Make the underlying application window visible
-                // through any transparent parts
-                PixelFormat.TRANSLUCENT
-            )
-        }
+        // set the layout parameters of the window
+        mParams = WindowManager.LayoutParams( // Shrink the window to wrap the content rather
+            // than filling the screen
+            WindowManager.LayoutParams.MATCH_PARENT,
+            WindowManager.LayoutParams.MATCH_PARENT,  // Display it on top of other application windows
+            WindowManager.LayoutParams.TYPE_APPLICATION_OVERLAY,  // Don't let it grab the input focus
+            WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE,  // Make the underlying application window visible
+            // through any transparent parts
+            PixelFormat.TRANSLUCENT
+        )
         // getting a LayoutInflater
         layoutInflater = context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
         // inflating the view with the custom layout we created

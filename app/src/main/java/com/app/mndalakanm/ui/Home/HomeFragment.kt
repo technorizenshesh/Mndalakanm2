@@ -21,9 +21,11 @@ import android.widget.*
 import androidx.core.app.ActivityCompat
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.lifecycleScope
 import androidx.localbroadcastmanager.content.LocalBroadcastManager
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.GridLayoutManager
+import com.app.mndalakanm.Mndalakanm
 import com.app.mndalakanm.adapter.AdapterScreenshotList
 import com.app.mndalakanm.model.SuccessChildProfile
 import com.app.mndalakanm.model.SuccessChildRemainTime
@@ -40,9 +42,10 @@ import com.bumptech.glide.Glide
 import com.google.firebase.database.*
 import com.mtsahakis.mediaprojectiondemo.ScreenCaptureService
 import com.mtsahakis.mediaprojectiondemo.SharedPreferenceUtility
-import com.techno.mndalakanm.R
-import com.techno.mndalakanm.databinding.FragmentHomeBinding
-import com.techno.mndalakanm.databinding.RequestTimeDialogBinding
+import com.app.mndalakanm.R
+import com.app.mndalakanm.databinding.FragmentHomeBinding
+import com.app.mndalakanm.databinding.RequestTimeDialogBinding
+import kotlinx.coroutines.launch
 import okhttp3.ResponseBody
 import org.json.JSONObject
 import retrofit2.Call
@@ -74,7 +77,6 @@ class HomeFragment : Fragment(), ScreenShotClickListener {
                 val IncomingSms = intent.getStringExtra("pushNotificationModel")
                 if (IncomingSms.equals("1", true)) {
 
-
                     //  val phoneNumber = intent.getStringExtra("incomingPhoneNumber")
                     Timber.tag("TAG").e("onMessageReceived: " + "21222342141343432")
                     if (sharedPref.getStringValue(Constant.USER_TYPE).equals("Child", true)) {
@@ -96,7 +98,14 @@ class HomeFragment : Fragment(), ScreenShotClickListener {
                             )
                             SharedPreferenceUtility.getInstance(requireActivity())
                                 .putString("request", "1")
-                            startProjection(context)
+                            lifecycleScope.launch {
+                                try {
+                                    startProjection(context)
+
+                                } catch (e: Exception) {
+                                    // handle the exception
+                                }
+                            }
                             /* val i = Intent(requireActivity(), ScreenCaptureActivity::class.java)
                          i.putExtra("parent_id", sharedPref.getStringValue(Constant.USER_ID).toString())
                          i.putExtra("child_id", sharedPref.getStringValue(Constant.CHILD_ID).toString())
@@ -117,12 +126,11 @@ class HomeFragment : Fragment(), ScreenShotClickListener {
         // Inflate the layout for this fragment
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_home, container, false)
         sharedPref = SharedPref(requireContext())
-        val str= "https://mndalakanm-53f36-default-rtdb.firebaseio.com/LockDown/"+sharedPref.getStringValue(
+       /* val str= "https://mndalakanm-53f36-default-rtdb.firebaseio.com/LockDown/"+sharedPref.getStringValue(
             Constant.USER_ID).toString()+"/"+sharedPref.getStringValue(Constant.CHILD_ID).toString()+"/Status"
         Log.e(TAG, "onCreateView:----  "+str )
-        myRef = FirebaseDatabase.getInstance().reference
+      */  myRef = FirebaseDatabase.getInstance().reference
 
-        getLockdownOnOff()
         /* myRef.child("LockDown")
              .child(sharedPref.getStringValue(Constant.USER_ID).toString())
              .child(sharedPref.getStringValue(Constant.CHILD_ID).toString())
@@ -146,8 +154,14 @@ class HomeFragment : Fragment(), ScreenShotClickListener {
                     .putString("parent_id", sharedPref.getStringValue(Constant.USER_ID).toString())
                 SharedPreferenceUtility.getInstance(requireActivity())
                     .putString("child_id", sharedPref.getStringValue(Constant.CHILD_ID).toString())
+                lifecycleScope.launch {
+                    try {
+                        startProjection(requireContext())
 
-                startProjection(requireContext())
+                    } catch (e: Exception) {
+                        // handle the exception
+                    }
+                }
                 /* val i = Intent(requireActivity(), ScreenCaptureActivity::class.java)
                  i.putExtra("parent_id", sharedPref.getStringValue(Constant.USER_ID).toString())
                  i.putExtra("child_id", sharedPref.getStringValue(Constant.CHILD_ID).toString())
@@ -323,9 +337,15 @@ class HomeFragment : Fragment(), ScreenShotClickListener {
 
 
         }
-        getChildRemainingTime()
         if (sharedPref.getStringValue("Screenshot").equals("true")) {
-            startProjection(requireActivity()) }
+            lifecycleScope.launch {
+                try {
+                    startProjection(requireActivity())
+                } catch (e: Exception) {
+                    // handle the exception
+                }
+            }
+            }
         binding.refresh.setOnClickListener {
             get_child_screenshotClicked() }
         if (sharedPref.getStringValue(Constant.USER_TYPE).equals("Child", true)) {
@@ -341,8 +361,13 @@ class HomeFragment : Fragment(), ScreenShotClickListener {
                 ActivityCompat.startActivityForResult(requireActivity(), intent,1233,null)
             }else{
                 if (binding.customSwitch.isChecked){
-
-                    live(requireActivity(),"1")
+                    lifecycleScope.launch {
+                        try {
+                            Mndalakanm.context?.let { live(it,"1") }
+                        } catch (e: Exception) {
+                            // handle the exception
+                        }
+                    }
                 }
             }
         }else{
@@ -371,7 +396,13 @@ class HomeFragment : Fragment(), ScreenShotClickListener {
                              println("failed")
                              Toast.makeText(context, "failed = " , Toast.LENGTH_SHORT).show()
                          }
-                     update_lockdown_modeAPI("1")
+                     lifecycleScope.launch {
+                         try {
+                             update_lockdown_modeAPI("1")
+                         } catch (e: Exception) {
+                             // handle the exception
+                         }
+                     }
                  } else {
                      myRef.child("LockDown")
                          .child(sharedPref.getStringValue(Constant.USER_ID).toString())
@@ -386,13 +417,26 @@ class HomeFragment : Fragment(), ScreenShotClickListener {
                              println("failed")
                              Toast.makeText(context, "failed = " , Toast.LENGTH_SHORT).show()
                          }
-                     update_lockdown_modeAPI("0")
-                 }
+                     lifecycleScope.launch {
+                         try {
+                             update_lockdown_modeAPI("0")
+                         } catch (e: Exception) {
+                             // handle the exception
+                         }
+                     }                 }
              }
          }
    /* binding.customSwitch.setOnCheckedChangeListener { buttonView, isChecked ->
                 }*/
+        lifecycleScope.launch {
+            try {
+                getLockdownOnOff()
+                getChildRemainingTime()
 
+            } catch (e: Exception) {
+                // handle the exception
+            }
+        }
 
         return binding.root
     }
@@ -408,12 +452,24 @@ class HomeFragment : Fragment(), ScreenShotClickListener {
                 if (dataSnapshot.value.toString() == "1") {
                     binding.customSwitch.isChecked = true
                     if (sharedPref.getStringValue(Constant.USER_TYPE).equals("Child", true)) {
-                        live(requireActivity(),dataSnapshot.value.toString())
+
+                        lifecycleScope.launch {
+                            try {
+                                Mndalakanm.context?.let { live(it,dataSnapshot.value.toString()) }
+                            } catch (e: Exception) {
+                                // handle the exception
+                            }
+                        }
                     }
                 } else {
                     binding.customSwitch.isChecked = false
-                    live(requireActivity(),dataSnapshot.value.toString())
-
+                    lifecycleScope.launch {
+                        try {
+                    Mndalakanm.context?.let { live(it,dataSnapshot.value.toString()) }
+                        } catch (e: Exception) {
+                            // handle the exception
+                        }
+                    }
                 }
 
 
@@ -430,13 +486,16 @@ class HomeFragment : Fragment(), ScreenShotClickListener {
             .child("Status")
             .addValueEventListener(usersListener)
     }
-    private fun live(context: Context,status:String) {
+    private suspend fun live(context: Context,status:String) {
         try {
         val intent = Intent(Config.GET_DATA_LOCKDOWN)
         intent.putExtra("pushNotificationModel", "1")
         intent.putExtra("status", status)
         LocalBroadcastManager.getInstance(context).sendBroadcast(intent)
         }catch (e:Exception){
+            Log.e(TAG, "live: Exception"+e.message )
+            Log.e(TAG, "live: Exception"+e.localizedMessage )
+            Log.e(TAG, "live: Exception"+e.cause )
          e.printStackTrace()
         }
     }
@@ -698,6 +757,9 @@ class HomeFragment : Fragment(), ScreenShotClickListener {
         map["parent_id"] = sharedPref.getStringValue(Constant.USER_ID).toString()
         map["child_id"] = sharedPref.getStringValue(Constant.CHILD_ID).toString()
         map["plus_time"] = minuts.toString()
+        val tz = TimeZone.getDefault()
+        val id = tz.id
+        map["time_zone"] = id.toString()
         Timber.tag(TAG).e("Login userget_plus_time_request  = %s", map)
         apiInterface.plus_time_request(map).enqueue(object : Callback<ResponseBody?> {
             override fun onResponse(call: Call<ResponseBody?>, response: Response<ResponseBody?>) {
@@ -789,7 +851,7 @@ class HomeFragment : Fragment(), ScreenShotClickListener {
         }
     }
 
-    fun startProjection(context: Context) {
+     suspend  fun startProjection(context: Context) {
         val mProjectionManager =
             context.getSystemService(Context.MEDIA_PROJECTION_SERVICE) as MediaProjectionManager
         startActivityForResult(mProjectionManager.createScreenCaptureIntent(), REQUEST_CODE)

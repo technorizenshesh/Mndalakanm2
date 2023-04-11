@@ -18,9 +18,11 @@ import com.app.mndalakanm.retrofit.ProviderInterface
 import com.app.mndalakanm.utils.DataManager
 import com.app.mndalakanm.utils.SechduleClickListener
 import com.app.mndalakanm.utils.SharedPref
-import com.techno.mndalakanm.R
-import com.techno.mndalakanm.databinding.CatScdDialogBinding
-import com.techno.mndalakanm.databinding.FragmentAddScheduleBinding
+import com.app.mndalakanm.R
+import com.app.mndalakanm
+.databinding.CatScdDialogBinding
+import com.app.mndalakanm
+.databinding.FragmentAddScheduleBinding
 import com.app.mndalakanm.utils.Constant
 import okhttp3.ResponseBody
 import org.json.JSONObject

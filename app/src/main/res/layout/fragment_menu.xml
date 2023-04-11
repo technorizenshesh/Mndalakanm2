@@ -35,7 +35,7 @@
                         android:layout_height="wrap_content"
                         android:layout_margin="@dimen/_2sdp"
                         android:fontFamily="@font/poppins_bold"
-                        android:text="Account"
+                        android:text="@string/account"
                         android:gravity="start"
                         android:textColor="@color/texts"
                         android:textSize="@dimen/_16sdp" />
@@ -86,7 +86,7 @@
                             android:drawablePadding="@dimen/_15sdp"
                             android:fontFamily="@font/poppins_medium"
                             android:padding="@dimen/_10sdp"
-                            android:text="Subscription"
+                            android:text="@string/subscription"
                             android:textColor="@color/texts"
                             android:textSize="@dimen/_14sdp" />
 
@@ -99,7 +99,7 @@
                             android:drawablePadding="@dimen/_15sdp"
                             android:fontFamily="@font/poppins_medium"
                             android:padding="@dimen/_10sdp"
-                            android:text="Support"
+                            android:text="@string/support"
                             android:textColor="@color/texts"
                             android:textSize="@dimen/_14sdp" />
                         <TextView
@@ -111,7 +111,7 @@
                             android:drawablePadding="@dimen/_15sdp"
                             android:fontFamily="@font/poppins_medium"
                             android:padding="@dimen/_10sdp"
-                            android:text="About"
+                            android:text="@string/about"
                             android:textColor="@color/texts"
                             android:textSize="@dimen/_14sdp" />
                         <TextView
@@ -123,7 +123,19 @@
                             android:drawablePadding="@dimen/_15sdp"
                             android:fontFamily="@font/poppins_medium"
                             android:padding="@dimen/_10sdp"
-                            android:text="Settings"
+                            android:text="@string/settings"
+                            android:textColor="@color/texts"
+                            android:textSize="@dimen/_14sdp" />
+                        <TextView
+                            android:id="@+id/change_language"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:drawableLeft="@drawable/change_language"
+                            android:drawableRight="@drawable/next_arrow"
+                            android:drawablePadding="@dimen/_15sdp"
+                            android:fontFamily="@font/poppins_medium"
+                            android:padding="@dimen/_10sdp"
+                            android:text="Change Language"
                             android:textColor="@color/texts"
                             android:textSize="@dimen/_14sdp" />
                         <TextView
@@ -136,7 +148,7 @@
                             android:drawablePadding="@dimen/_15sdp"
                             android:fontFamily="@font/poppins_medium"
                             android:padding="@dimen/_10sdp"
-                            android:text="Logout"
+                            android:text="@string/logout"
                             android:textColor="@color/texts"
                             android:textSize="@dimen/_14sdp" />
 

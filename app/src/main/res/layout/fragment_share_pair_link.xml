@@ -46,7 +46,7 @@
                         android:fontFamily="@font/poppins_bold"
                         android:gravity="center"
                         android:padding="@dimen/_5sdp"
-                        android:text="Only share the link with family members you want to add to Kidslox"
+                        android:text="@string/only_share_the_link_with_family_members_you_want_to_add_to_kidslox"
                         android:textAlignment="center"
                         android:textColor="@color/black"
                         android:textSize="@dimen/_16sdp" />
@@ -81,7 +81,7 @@
                     android:outlineProvider="background"
                     android:outlineSpotShadowColor="@color/white"
                     android:padding="@dimen/_10sdp"
-                    android:text="Share Link"
+                    android:text="@string/share_link"
                     android:textAllCaps="true"
                     android:textColor="@color/white"
                     android:textSize="@dimen/_12sdp"

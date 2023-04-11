@@ -36,7 +36,7 @@
                         android:layout_marginBottom="@dimen/_10sdp"
                         android:fontFamily="@font/poppins_bold"
                         android:gravity="start"
-                        android:text="System apps for Child Mode"
+                        android:text="@string/system_apps_for_child_mode"
                         android:textColor="@color/black"
                         android:textSize="@dimen/_16sdp" />
 

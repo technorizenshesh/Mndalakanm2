@@ -10,8 +10,9 @@ import com.app.mndalakanm.model.SuccessChildrRewardReqTime
 import com.app.mndalakanm.utils.ChildRequestListClickListener
 import com.app.mndalakanm.utils.ChildRequestListClickListener2
 import com.app.mndalakanm.utils.SharedPref
-import com.techno.mndalakanm.R
-import com.techno.mndalakanm.databinding.ItemRequestListBinding
+import com.app.mndalakanm.R
+import com.app.mndalakanm
+.databinding.ItemRequestListBinding
 
 
 class AdapterChildRewardRequestsList(val mContext: Context, var transList:
@@ -26,7 +27,7 @@ ArrayList<SuccessChildrRewardReqTime.Result>?, val listener: ChildRequestListCli
     }
     override fun onBindViewHolder(holder: TransViewHolder, position: Int) {
         var data: SuccessChildrRewardReqTime.Result = transList!!.get(position)
-        holder.binding.minuts.text = " +"+data.plus_time+" ms"
+        holder.binding.minuts.text = " +"+data.plusTime+" ms"
         holder.binding.type.text = "Home Work "
         /* Glide.with(mContext).load(data.timer).placeholder(R.drawable.ic_baseline_image_search_)
              .error(R.drawable.ic_baseline_broken_image_)

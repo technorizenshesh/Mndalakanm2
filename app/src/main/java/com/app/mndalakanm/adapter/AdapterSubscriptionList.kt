@@ -8,8 +8,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.app.mndalakanm.model.SuccessSubsRes
 import com.app.mndalakanm.utils.SharedPref
 import com.app.mndalakanm.utils.SubClickListener
-import com.techno.mndalakanm.R
-import com.techno.mndalakanm.databinding.ItemSubscriptionBinding
+import com.app.mndalakanm.R
+import com.app.mndalakanm
+.databinding.ItemSubscriptionBinding
 
 
 class AdapterSubscriptionList(

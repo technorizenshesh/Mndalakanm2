@@ -23,6 +23,7 @@ import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.GridLayoutManager
 import com.app.mndalakanm.Mndalakanm
 import com.app.mndalakanm.adapter.AdapterDaysList
@@ -43,10 +44,11 @@ import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.*
 import com.google.android.libraries.places.widget.Autocomplete
-import com.techno.mndalakanm.R
-import com.techno.mndalakanm.databinding.BottemSheeetDetailsBinding
-import com.techno.mndalakanm.databinding.FragmentGeoBinding
+import com.app.mndalakanm.R
+import com.app.mndalakanm.databinding.BottemSheeetDetailsBinding
+import com.app.mndalakanm.databinding.FragmentGeoBinding
 import com.app.mndalakanm.utils.Constant
+import kotlinx.coroutines.launch
 import okhttp3.ResponseBody
 import org.json.JSONObject
 import retrofit2.Call
@@ -112,7 +114,13 @@ class GeoFragment : Fragment(), OnMapReadyCallback, OnMarkerClickListener, DayCl
                 binding.addNewPlace.visibility = View.GONE
 
             } else {
+                lifecycleScope.launch {
+                    try {
                 getChildRemainingTime(today)
+                    } catch (e: Exception) {
+                        // handle the exception
+                    }
+                }
             }
             binding.addNewPlace.setOnClickListener {
                 if (placeLongitude == "") {
@@ -142,7 +150,7 @@ class GeoFragment : Fragment(), OnMapReadyCallback, OnMarkerClickListener, DayCl
         getChildPlaces()
         return binding.root
     }
-    private fun getChildRemainingTime(datee: String) {
+    private  suspend  fun getChildRemainingTime(datee: String) {
         DataManager.instance
             .showProgressMessage(requireActivity(), getString(R.string.please_wait))
         val map = HashMap<String, String>()
@@ -512,7 +520,7 @@ class GeoFragment : Fragment(), OnMapReadyCallback, OnMarkerClickListener, DayCl
     private fun getAddress(latlang: LatLng): String {
         var cityNames: String = ""
         var stateName: String = ""
-        val geocoder = Geocoder(context, Locale.getDefault())
+        val geocoder = Geocoder(requireActivity(), Locale.getDefault())
         val addresses = geocoder.getFromLocation(latlang.latitude, latlang.longitude, 1)
         if (addresses != null && addresses.size > 0) {
             //  val cityNamee = addresses[0].toString()
@@ -595,5 +603,12 @@ class GeoFragment : Fragment(), OnMapReadyCallback, OnMarkerClickListener, DayCl
     }
     override fun onClick(position: Int, model: WeekDays) {
         today = model.date.toString()
-        getChildRemainingTime(model.date.toString()) }
+        lifecycleScope.launch {
+            try {
+                getChildRemainingTime(model.date.toString())
+            }catch (e:Exception){
+            e.printStackTrace()}
+        }
+
+}
 }

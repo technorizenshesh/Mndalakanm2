@@ -5,7 +5,7 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".ui.LoginSignup.SplashFragment"
+        tools:context=".ui.loginSignup.SplashFragment"
         android:gravity="center"
         android:background="@color/white">
 

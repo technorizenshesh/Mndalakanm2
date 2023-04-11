@@ -1,4 +1,4 @@
-package com.app.mndalakanm.ui.LoginSignup
+package com.app.mndalakanm.ui.loginSignup
 
 import android.os.Bundle
 import android.text.Html
@@ -9,8 +9,9 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
-import com.techno.mndalakanm.R
-import com.techno.mndalakanm.databinding.FragmentLoginByBinding
+import com.app.mndalakanm.R
+import com.app.mndalakanm
+.databinding.FragmentLoginByBinding
 
 class LoginByFragment : Fragment() {
     private lateinit var binding: FragmentLoginByBinding

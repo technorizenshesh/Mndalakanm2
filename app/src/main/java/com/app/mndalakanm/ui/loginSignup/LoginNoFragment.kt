@@ -1,4 +1,5 @@
-package com.app.mndalakanm.ui.LoginSignup
+package com.app.mndalakanm.ui.loginSignup
+
 import android.content.ContentValues.TAG
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
@@ -22,6 +23,7 @@ import com.app.mndalakanm.model.SuccessLoginRes
 import com.app.mndalakanm.model.SuccessVerifyOtpRes
 import com.app.mndalakanm.retrofit.ApiClient
 import com.app.mndalakanm.retrofit.ProviderInterface
+import com.app.mndalakanm.utils.Constant
 import com.app.mndalakanm.utils.DataManager
 import com.app.mndalakanm.utils.InternetConnection
 import com.app.mndalakanm.utils.SharedPref
@@ -32,16 +34,16 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.PhoneAuthCredential
 import com.google.firebase.auth.PhoneAuthOptions
 import com.google.firebase.auth.PhoneAuthProvider
-import com.techno.mndalakanm.R
-import com.techno.mndalakanm.databinding.FragmentLoginNoBinding
-import com.app.mndalakanm.utils.Constant
+import com.app.mndalakanm.R
+import com.app.mndalakanm.databinding.FragmentLoginNoBinding
+import com.google.firebase.appcheck.FirebaseAppCheck
+import com.google.firebase.appcheck.playintegrity.PlayIntegrityAppCheckProviderFactory
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import timber.log.Timber
 import java.util.*
 import java.util.concurrent.TimeUnit
-import kotlin.collections.HashMap
 
 
 class LoginNoFragment : Fragment() {
@@ -54,7 +56,7 @@ class LoginNoFragment : Fragment() {
     private var countdown_timer: CountDownTimer? = null
     private var time_in_milliseconds = 60000L
     private var pauseOffSet = 0L
-    private lateinit var mAuth: FirebaseAuth
+    lateinit  var mAuth: FirebaseAuth
     private lateinit var count: CountDownTimer
     private lateinit var mBottomSheetDialog: RoundedBottomSheetDialog
 
@@ -67,20 +69,43 @@ class LoginNoFragment : Fragment() {
             type = arguments?.getString("type").toString()
         }
         FirebaseApp.initializeApp(requireActivity())
-        mAuth = FirebaseAuth.getInstance()
-       // val firebaseAppCheck = FirebaseAppCheck.getInstance()
-      //  firebaseAppCheck.installAppCheckProviderFactory(
-      //      PlayIntegrityAppCheckProviderFactory.getInstance()
-       // )
-      //  firebaseAppCheck.removeAppCheckListener { token ->
-     //       Timber.tag(TAG).e("onCreateView: %s", token.toString())
-    //        Timber.tag(TAG).e("onCreateView: %s", token.token)
-     //   }
-        // mAuth.firebaseAuthSettings.setAppVerificationDisabledForTesting(true);
-        //mAuth.firebaseAuthSettings.forceRecaptchaFlowForTesting(true)
-        mAuth.setLanguageCode("en")
+        val firebaseAppCheck = FirebaseAppCheck.getInstance()
+        firebaseAppCheck.installAppCheckProviderFactory(
+            PlayIntegrityAppCheckProviderFactory.getInstance()
+        )
         sharedPref = SharedPref(requireContext())
         apiInterface = ApiClient.getClient(requireContext())!!.create(ProviderInterface::class.java)
+        mAuth = FirebaseAuth.getInstance()
+       // mAuth.firebaseAuthSettings.forceRecaptchaFlowForTesting(true)
+      //  mAuth.firebaseAuthSettings.setAppVerificationDisabledForTesting(true)
+        mAuth.setLanguageCode(sharedPref.getStringValue(Constant.LANGUAGE).toString())
+    /*    val nonce: String = ""
+        val myScope = CoroutineScope(Dispatchers.Default)
+        myScope.launch {
+            val integrityManager =
+                IntegrityManagerFactory.create(requireActivity())
+            integrityManager.requestIntegrityToken(
+                IntegrityTokenRequest.builder()
+                    .setNonce(nonce)
+                    .build())
+
+             .addOnSuccessListener {
+                    Log.e(TAG, "Batch write succeeded.")
+                    myScope.cancel()
+
+
+                }
+                .addOnFailureListener { e ->
+                    myScope.cancel()
+
+                    Log.e(TAG, "Error writing batch", e)
+                }
+
+        }
+        myScope.cancel()*/
+
+
+
         binding.btnSignIn.setOnClickListener {
             var code = binding.ccp.selectedCountryCode.toString()
             var no = binding.editNo.text.toString()
@@ -96,8 +121,9 @@ class LoginNoFragment : Fragment() {
                         .setPhoneNumber(phoneNum)
                         .setTimeout(60L, TimeUnit.SECONDS)
                         .setActivity(requireActivity())
+                        .requireSmsValidation(false)
                         //.setCallbacks(callbacks)
-                       .setCallbacks(object :
+                        .setCallbacks(object :
                             PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
                             override fun onCodeSent(
                                 verificationd: String,
@@ -168,6 +194,7 @@ class LoginNoFragment : Fragment() {
         }
         return binding.root
     }
+
     private fun verifyCode(code: String, mBottomSheetDialog: RoundedBottomSheetDialog) {
         DataManager.instance
             .showProgressMessage(requireActivity(), getString(R.string.please_wait))
@@ -175,6 +202,7 @@ class LoginNoFragment : Fragment() {
         mBottomSheetDialog.dismiss()
         signInWithCredential(credential)
     }
+
     private fun signInWithCredential(
         credential: PhoneAuthCredential
     ) {
@@ -183,11 +211,17 @@ class LoginNoFragment : Fragment() {
                 if (task.isSuccessful) {
                     DataManager.instance.hideProgressMessage()
                     LoginSignupByUser(task.result.user?.uid.toString())
-                    Toast.makeText(requireContext(), "Verification Successfull", Toast.LENGTH_LONG).show()
+                    Toast.makeText(requireContext(), "Verification Successfull", Toast.LENGTH_LONG)
+                        .show()
                     Log.e(TAG, "signInWithCredential: uiddd " + task.result.user?.uid)
                 } else {
                     DataManager.instance.hideProgressMessage()
-                    Toast.makeText(requireContext(), task.exception?.message, Toast.LENGTH_LONG).show() } } }
+                    Toast.makeText(requireContext(), task.exception?.message, Toast.LENGTH_LONG)
+                        .show()
+                }
+            }
+    }
+
     private fun LoginSignupByUser(ud_id: String) {
         DataManager.instance
             .showProgressMessage(requireActivity(), getString(R.string.getting_user))
@@ -198,6 +232,13 @@ class LoginNoFragment : Fragment() {
         val tz = TimeZone.getDefault()
         val id = tz.id
         map["time_zone"] = id.toString()
+        if (sharedPref.getStringValue(Constant.LANGUAGE).toString() == "en") map["language"] =
+            "English"
+        if (sharedPref.getStringValue(Constant.LANGUAGE).toString() == "ar") map["language"] =
+            "Arabic"
+        if (sharedPref.getStringValue(Constant.LANGUAGE).toString() == "ku") map["language"] =
+            "Kurdish"
+        else map["language"] = "English"
         Log.e(TAG, "Login user Request = $map")
         apiInterface.login_signup(map).enqueue(object : Callback<SuccessLoginRes?> {
             override fun onResponse(
@@ -208,14 +249,19 @@ class LoginNoFragment : Fragment() {
                 try {
                     if (response.body() != null && response.body()!!.getStatus().equals("1")) {
                         val res: SuccessLoginRes = response.body()!!
-                        Log.e(TAG, "res.getResult()?.id .toString(): " + res.getResult()?.id.toString())
+                        Log.e(
+                            TAG,
+                            "res.getResult()?.id .toString(): " + res.getResult()?.id.toString()
+                        )
                         sharedPref.setStringValue(Constant.USER_ID, res.getResult()?.id.toString())
                         sharedPref.setStringValue(Constant.USER_TYPE, "provider")
                         sharedPref.setBooleanValue(Constant.IS_LOGIN, true)
                         sharedPref.setStringValue(Constant.LOCK, "0")
                         val bundle = Bundle()
                         bundle.putString("type", type)
-                        Navigation.findNavController(binding.root).navigate(R.id.action_login_no_to_set_pin, bundle) }
+                        Navigation.findNavController(binding.root)
+                            .navigate(R.id.action_login_no_to_set_pin, bundle)
+                    }
                 } catch (e: Exception) {
                     DataManager.instance.hideProgressMessage()
                     Toast.makeText(context, "Exception = " + e.message, Toast.LENGTH_SHORT).show()
@@ -227,7 +273,11 @@ class LoginNoFragment : Fragment() {
                 DataManager.instance.hideProgressMessage()
                 Log.e(TAG, "onFailure: " + t.localizedMessage)
                 Log.e(TAG, "onFailure: " + t.cause.toString())
-                Log.e(TAG, "onFailure: " + t.message.toString()) } }) }
+                Log.e(TAG, "onFailure: " + t.message.toString())
+            }
+        })
+    }
+
     private fun showDialog(otp: String?, mobile: String?) {
         mBottomSheetDialog = RoundedBottomSheetDialog(requireActivity())
         val sheetView: View = mBottomSheetDialog.layoutInflater.inflate(R.layout.otp_bottam, null)
@@ -322,6 +372,7 @@ class LoginNoFragment : Fragment() {
         }
         mBottomSheetDialog.show()
     }
+
     private fun VerifyOTP(
         otp: String,
         mobile: String?,
@@ -412,12 +463,18 @@ class LoginNoFragment : Fragment() {
     }
 
     override fun onDetach() {
-        if (count != null) {
-            count.cancel()
+        try{
+            count.cancel()}catch (e:Exception){
+            e.printStackTrace()
         }
-        super.onDetach() }
+        super.onDetach()
+    }
+
     override fun onDestroy() {
-        if (count != null) {
-            count.cancel() }
-        super.onDestroy() }
+        try{
+        count.cancel()}catch (e:Exception){
+            e.printStackTrace()
+        }
+        super.onDestroy()
+    }
 }

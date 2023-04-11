@@ -24,13 +24,6 @@
 
     </fragment>
     <fragment
-        android:id="@+id/modes_nav"
-        android:name="com.app.mndalakanm.ui.Home.Modes.ModesFragment"
-        android:label="ModesFragment"
-        tools:layout="@layout/fragment_modes">
-
-    </fragment>
-    <fragment
         android:id="@+id/apps_nav"
         android:name="com.app.mndalakanm.ui.Home.Apps.AppsFragment"
         android:label="AppsFragment"

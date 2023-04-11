@@ -1,6 +1,7 @@
 package com.app.mndalakanm.ui.Home.Statistics
 
 import android.Manifest
+import android.annotation.SuppressLint
 import android.app.Dialog
 import android.content.ContentValues
 import android.content.Context
@@ -19,6 +20,7 @@ import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.GridLayoutManager
 import com.app.mndalakanm.adapter.AdapterScreenshotList
 import com.app.mndalakanm.adapter.AdapterTimerList
@@ -26,6 +28,7 @@ import com.app.mndalakanm.model.SuccessScreenshotRes
 import com.app.mndalakanm.model.SuccessTimerListRes
 import com.app.mndalakanm.retrofit.ApiClient
 import com.app.mndalakanm.retrofit.ProviderInterface
+import com.app.mndalakanm.retrofit.SuccessChildHistory
 import com.app.mndalakanm.utils.DataManager
 import com.app.mndalakanm.utils.ScreenShotClickListener
 import com.app.mndalakanm.utils.SharedPref
@@ -37,14 +40,27 @@ import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.*
 import com.naqdi.chart.model.Line
-import com.techno.mndalakanm.R
-import com.techno.mndalakanm.databinding.FragmentStatisticsBinding
+import com.app.mndalakanm.R
+import com.app.mndalakanm
+.databinding.FragmentStatisticsBinding
 import com.app.mndalakanm.utils.Constant
+import com.github.mikephil.charting.charts.BarChart
+import com.github.mikephil.charting.data.BarData
+import com.github.mikephil.charting.data.BarDataSet
+import com.github.mikephil.charting.data.BarEntry
+import com.github.mikephil.charting.interfaces.datasets.IBarDataSet
+import com.github.mikephil.charting.utils.ColorTemplate
+import kotlinx.coroutines.launch
 import me.everything.providers.android.browser.BrowserProvider
+import okhttp3.ResponseBody
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import timber.log.Timber
+import java.text.SimpleDateFormat
+import java.util.*
+import kotlin.collections.ArrayList
+import kotlin.collections.HashMap
 
 
 class StatisticsFragment : Fragment(), ScreenShotClickListener, TimerListClickListener,
@@ -53,22 +69,24 @@ class StatisticsFragment : Fragment(), ScreenShotClickListener, TimerListClickLi
     lateinit var sharedPref: SharedPref
     private lateinit var apiInterface: ProviderInterface
     private var screenshotRes: ArrayList<SuccessScreenshotRes.ScreenshotList>? = null
-    private var timerList: ArrayList<SuccessTimerListRes.TimerList>? = null
+    private var timerList: ArrayList<SuccessTimerListRes.Result>? = null
     lateinit var googleMap: GoogleMap
+    private var chart: BarChart? = null
+    private val BAR_SPACE = 0.1f
+    private val BAR_WIDTH = 0.1f
+    private val GROUPS = 2
+    private val MAX_X_VALUE = 13
 
-    val intervalList = listOf("00:00", "06:00", "12:00", "18:00")
-    val rangeList = listOf("00", "30m", "60m")
-    val lineList = arrayListOf<Line>().apply {
-        add(Line("Time", Color.BLUE, listOf(10f, 280f, 88f, 70f)))
-        // add(Line("Line 2", Color.RED, listOf(300f, 40f, 38f, 180f, 403f, 201f)))
-    }
+    val sdf = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
+    lateinit var today: String
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
+    ): View {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_statistics, container, false)
+        today = sdf.format(Calendar.getInstance().time)
+        chart = binding.barChart //this is our barchart
 
         val mapFragment = childFragmentManager
             .findFragmentById(R.id.map) as SupportMapFragment?
@@ -79,17 +97,8 @@ class StatisticsFragment : Fragment(), ScreenShotClickListener, TimerListClickLi
         sharedPref = SharedPref(requireContext())
         apiInterface = ApiClient.getClient(requireContext())!!.create(ProviderInterface::class.java)
 
-        binding.chainChartView.setData(lineList, intervalList, rangeList)
-        binding.chainChartView.apply {
-            setLineSize(2f)    // size as dp
-            setNodeSize(6F)    //size as dp
-            setTextSize(10f)
-            setTextColor(R.color.colorPrimary)    //color as int
-            setFontFamily(Typeface.SANS_SERIF)    //font as typeface
-        }
+
         try {
-
-
             val browserProvider = BrowserProvider(context)
             val bookmarks = browserProvider.bookmarks.list
 
@@ -98,14 +107,146 @@ class StatisticsFragment : Fragment(), ScreenShotClickListener, TimerListClickLi
             Timber.tag("TAG").e("onCreateView: %s", e.message)
 
         }
-        getScreenShots()
-        getChildTime()
+        lifecycleScope.launch {
+            try {
+                getChildTime()
+                getScreenShots()
+                get_child_plus_time_history()
+                // do something with the posts
+            } catch (e: Exception) {
+                e.printStackTrace()
+                Log.e("TAG", "onCreateView: "+e.message)
+                Log.e("TAG", "onCreateView: "+e.localizedMessage)
+                Log.e("TAG", "onCreateView: "+e.cause)
+            }
+        }
+
         return binding.root
     }
 
-    private fun getScreenShots() {
-        DataManager.instance
-            .showProgressMessage(requireActivity(), getString(R.string.please_wait))
+     fun setBarChart(data :List<SuccessChildHistory.Result>) {
+        val entries = ArrayList<BarEntry>()
+         val labels = ArrayList<String>()
+
+    for ((i, da) in data.withIndex()){
+        entries.add(BarEntry(da.timer.toFloat(),  i.toFloat() ))
+        labels.add(da.date)
+
+}
+        val barDataSet = BarDataSet(entries, "Child Time Tracking")
+        val data = BarData( barDataSet)
+        chart!!.data = data
+         chart!!.barData.barWidth = BAR_WIDTH
+         barDataSet.color = resources.getColor(R.color.colorPrimary)
+         chart!!.setDrawBarShadow(true)
+        chart!!.animateY(2000)
+    }
+/*   fun  displayData(orderData: ArrayList<BarEntry>) {
+        val data: BarData = createChartData(orderData)
+       // configureBarChart()
+        prepareChartData(data)
+    }
+    private fun createChartData(orderData: ArrayList<BarEntry>): BarData {
+
+        val inventoryData = ArrayList<BarEntry>()
+        val set1 = BarDataSet(orderData, "Child Time Tracking")
+        val set2 = BarDataSet(
+            inventoryData,
+            "GROUP_2_LABEL"
+        ) //add other data to compare with: when backend is ready
+
+        @SuppressLint("ResourceType")
+        set1.color = ColorTemplate.rgb(getString(R.color.colorPrimary))
+
+        @SuppressLint("ResourceType")
+        set2.color = ColorTemplate.rgb(getString(R.color.colorPrimary))
+
+        val dataSets: ArrayList<IBarDataSet> = ArrayList()
+
+        dataSets.add(set1)
+        dataSets.add(set2)
+
+        return BarData(dataSets)
+    }
+    private fun prepareChartData(data: BarData) {
+        chart!!.data = data
+        chart!!.barData.barWidth = BAR_WIDTH
+        val groupSpace = 1f - (BAR_SPACE + BAR_WIDTH)
+        chart!!.groupBars(0f, groupSpace, BAR_SPACE)
+        chart!!.invalidate()
+    }*/
+    private fun get_child_plus_time_history()
+        {
+            val map = HashMap<String, String>()
+            map["parent_id"] = sharedPref.getStringValue(Constant.USER_ID).toString()
+            map["child_id"] = sharedPref.getStringValue(Constant.CHILD_ID).toString()
+            map["date"] = today
+            Timber.tag(ContentValues.TAG).e("Login user Request = %s", map)
+            apiInterface.get_child_plus_time_history(map).enqueue(object : Callback<SuccessChildHistory?> {
+                override fun onResponse(
+                    call: Call<SuccessChildHistory?>,
+                    response: Response<SuccessChildHistory?>
+                ) {
+                    try {
+                        if (response.body() != null && response.body()?.status.equals("1")) {
+                            Log.e("TAG", "SuccessChildHistorySuccessChildHistory: "+ response.body())
+                            var data  = response.body()!!.result
+
+                            setBarChart(data)
+
+                           /* val values1: ArrayList<BarEntry> = ArrayList()
+                            // statValues.clear()
+                            Log.e("TAG", "SuccessChildHistorySuccessChildHistory: "+data.size)
+
+                            for (i in data) {
+                                values1.add(
+                                    BarEntry(
+                                        i.timer.toFloat(),
+                                        i.timer.toFloat()
+                                    )
+                                )
+                            }*/
+                            //displayData(values1)
+
+                        } else {
+                            Toast.makeText(context, response.body()?.message, Toast.LENGTH_SHORT).show()
+
+                        }
+                        Log.e("TAG", "onResponse: "+response.body()!!.lat.toDouble() )
+                        Log.e("TAG", "onResponse: "+response.body()!!.lon.toDouble())
+                        binding.nevLocation.text = response.body()!!.address
+                        val sydney = LatLng(response.body()!!.lat.toDouble(), response.body()!!.lon.toDouble())
+
+                        val cameraPosition = CameraPosition.Builder()
+                            .target(sydney) // Sets the center of the map to location user
+                            .zoom(12f) // Sets the zoom// Sets the tilt of the camera to 30 degrees
+                            .build()
+                        googleMap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition))
+                        googleMap.addMarker(
+                            MarkerOptions()
+                                .position(sydney)
+                                .title("")
+                                .icon(bitmapDescriptorFromVector(requireContext(), R.drawable.pin))
+                        )
+
+                    } catch (e: Exception) {
+                        //  Toast.makeText(context, "Exception = " + e.message, Toast.LENGTH_SHORT).show()
+                        Timber.tag("Exception").e("Exception = %s", e.message)
+                    }
+                }
+
+                override fun onFailure(call: Call<SuccessChildHistory?>, t: Throwable) {
+                    call.cancel()
+                    Timber.tag(ContentValues.TAG).e("onFailure: %s", t.localizedMessage)
+                    Timber.tag(ContentValues.TAG).e("onFailure: %s", t.cause.toString())
+                    Timber.tag(ContentValues.TAG).e("onFailure: %s", t.message.toString())
+                }
+            })
+        }
+
+
+    private  fun getScreenShots() {
+
         val map = HashMap<String, String>()
         map["parent_id"] = sharedPref.getStringValue(Constant.USER_ID).toString()
         map["child_id"] = sharedPref.getStringValue(Constant.CHILD_ID).toString()
@@ -115,7 +256,6 @@ class StatisticsFragment : Fragment(), ScreenShotClickListener, TimerListClickLi
                 call: Call<SuccessScreenshotRes?>,
                 response: Response<SuccessScreenshotRes?>
             ) {
-                DataManager.instance.hideProgressMessage()
                 try {
                     if (response.body() != null && response.body()?.status.equals("1")) {
                         screenshotRes?.clear()
@@ -138,14 +278,13 @@ class StatisticsFragment : Fragment(), ScreenShotClickListener, TimerListClickLi
 
                     }
                 } catch (e: Exception) {
-                    DataManager.instance.hideProgressMessage()
                     //  Toast.makeText(context, "Exception = " + e.message, Toast.LENGTH_SHORT).show()
                     Timber.tag("Exception").e("Exception = %s", e.message)
                 }
             }
 
             override fun onFailure(call: Call<SuccessScreenshotRes?>, t: Throwable) {
-                DataManager.instance.hideProgressMessage()
+                call.cancel()
                 Timber.tag(ContentValues.TAG).e("onFailure: %s", t.localizedMessage)
                 Timber.tag(ContentValues.TAG).e("onFailure: %s", t.cause.toString())
                 Timber.tag(ContentValues.TAG).e("onFailure: %s", t.message.toString())
@@ -169,23 +308,22 @@ class StatisticsFragment : Fragment(), ScreenShotClickListener, TimerListClickLi
             .into(imagewshow)
     }
 
-    private fun getChildTime() {
-        DataManager.instance
-            .showProgressMessage(requireActivity(), getString(R.string.please_wait))
-        val map = HashMap<String, String>()
+    private  fun getChildTime() {
+          val map = HashMap<String, String>()
         map["parent_id"] = sharedPref.getStringValue(Constant.USER_ID).toString()
         map["child_id"] = sharedPref.getStringValue(Constant.CHILD_ID).toString()
+        map["date"] =  today
         Timber.tag(ContentValues.TAG).e("Login user Request = %s", map)
         apiInterface.get_child_timer(map).enqueue(object : Callback<SuccessTimerListRes?> {
+      //  apiInterface.get_child_active_reward(map).enqueue(object : Callback<ResponseBody?> {
             override fun onResponse(
                 call: Call<SuccessTimerListRes?>,
                 response: Response<SuccessTimerListRes?>
             ) {
-                DataManager.instance.hideProgressMessage()
                 try {
-                    if (response.body() != null && response.body()?.status.equals("1")) {
+                  if (response.body() != null && response.body()?.status.equals("1")) {
 
-                        Toast.makeText(context, response.body()?.message, Toast.LENGTH_SHORT).show()
+                     // Toast.makeText(context, response.body()?.message, Toast.LENGTH_SHORT).show()
                         timerList?.clear()
                         timerList = response.body()!!.result
                         val adapterRideOption =
@@ -194,24 +332,18 @@ class StatisticsFragment : Fragment(), ScreenShotClickListener, TimerListClickLi
                                 timerList, this@StatisticsFragment
                             )
                         val numberOfColumns = 1
-                        binding.timerList.layoutManager = GridLayoutManager(
-                            requireActivity(),
-                            numberOfColumns
-                        )
-
-
+                        binding.timerList.layoutManager = GridLayoutManager(requireActivity(), numberOfColumns)
                         binding.timerList.adapter = adapterRideOption
                     } else {
-                    }
+                  }
                 } catch (e: Exception) {
-                    DataManager.instance.hideProgressMessage()
                     Toast.makeText(context, "Exception = " + e.message, Toast.LENGTH_SHORT).show()
                     Timber.tag("Exception").e("Exception = %s", e.message)
                 }
             }
 
             override fun onFailure(call: Call<SuccessTimerListRes?>, t: Throwable) {
-                DataManager.instance.hideProgressMessage()
+                call.cancel()
                 Timber.tag(ContentValues.TAG).e("onFailure: %s", t.localizedMessage)
                 Timber.tag(ContentValues.TAG).e("onFailure: %s", t.cause.toString())
                 Timber.tag(ContentValues.TAG).e("onFailure: %s", t.message.toString())
@@ -220,7 +352,7 @@ class StatisticsFragment : Fragment(), ScreenShotClickListener, TimerListClickLi
 
     }
 
-    override fun onClick(position: Int, model: SuccessTimerListRes.TimerList) {
+    override fun onClick(position: Int, model: SuccessTimerListRes.Result) {
 
     }
 
@@ -240,19 +372,7 @@ class StatisticsFragment : Fragment(), ScreenShotClickListener, TimerListClickLi
         }
 
 
-        val sydney = LatLng(22.7196, 75.8577)
 
-        val cameraPosition = CameraPosition.Builder()
-            .target(sydney) // Sets the center of the map to location user
-            .zoom(12f) // Sets the zoom// Sets the tilt of the camera to 30 degrees
-            .build()
-        googleMap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition))
-        googleMap.addMarker(
-            MarkerOptions()
-                .position(sydney)
-                .title("")
-                .icon(bitmapDescriptorFromVector(requireContext(), R.drawable.pin))
-        )
         if (ActivityCompat.checkSelfPermission(
                 requireActivity(),
                 Manifest.permission.ACCESS_FINE_LOCATION
@@ -266,7 +386,7 @@ class StatisticsFragment : Fragment(), ScreenShotClickListener, TimerListClickLi
         //googleMap.isMyLocationEnabled = true
     }
 
-    private fun bitmapDescriptorFromVector(context: Context, vectorResId: Int): BitmapDescriptor? {
+    private fun bitmapDescriptorFromVector(context: Context, vectorResId: Int): BitmapDescriptor {
         val vectorDrawable = ContextCompat.getDrawable(context, vectorResId)
         vectorDrawable!!.setBounds(
             0,

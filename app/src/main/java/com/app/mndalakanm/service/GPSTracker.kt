@@ -22,28 +22,14 @@ import java.util.*
 
 class GPSTracker(private val mContext: Context) : Service(),
     LocationListener {
-    // Declaring a Location Manager
     protected var locationManager: LocationManager? = null
-
-    // flag for GPS status
     var isGPSEnabled = false
-
-    // flag for network status
     var isNetworkEnabled = false
-
-    // flag for GPS status
     var canGetLocation = false
-
-    // location
     var location: Location? = null
-    // latitude
-
     var latitude = 0.0
-
-    // longitude
     var longitude = 0.0
     lateinit var sharedPref: SharedPref
-
     @JvmName("getLocation1")
     fun getLocation(): Location? {
         try {
@@ -163,20 +149,10 @@ class GPSTracker(private val mContext: Context) : Service(),
 
         return longitude
     }
-
-    /**
-     * Function to check GPS/wifi enabled
-     *
-     * @return boolean
-     */
     fun canGetLocation(): Boolean {
         return canGetLocation
     }
 
-    /**
-     * Function to show settings alert dialog
-     * On pressing Settings button will lauch Settings Options
-     */
     fun showSettingsAlert() {
         val alertDialog = AlertDialog.Builder(mContext)
         alertDialog.setTitle("GPS settings")

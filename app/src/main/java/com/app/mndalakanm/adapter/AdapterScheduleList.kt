@@ -10,8 +10,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.app.mndalakanm.model.SuccessScheduleTime
 import com.app.mndalakanm.utils.ParentScheduleListClickListener
 import com.app.mndalakanm.utils.SharedPref
-import com.techno.mndalakanm.R
-import com.techno.mndalakanm.databinding.ItemParentSechduleBinding
+import com.app.mndalakanm.R
+import com.app.mndalakanm
+.databinding.ItemParentSechduleBinding
 import com.app.mndalakanm.utils.Constant
 
 

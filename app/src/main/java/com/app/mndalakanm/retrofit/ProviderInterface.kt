@@ -95,6 +95,10 @@ interface ProviderInterface {
     fun update_chlid_lat_lon(@FieldMap params: Map<String, String>): Call<ResponseBody>
 
     @FormUrlEncoded
+    @POST("add_child_location")
+    fun add_child_location(@FieldMap params: Map<String, String>): Call<ResponseBody>
+
+    @FormUrlEncoded
     @POST("get_screenshot")
     fun get_screenshot(@FieldMap params: Map<String, String>): Call<SuccessScreenshotRes>
 
@@ -103,7 +107,7 @@ interface ProviderInterface {
     fun get_child_screenshot(@FieldMap params: Map<String, String>): Call<SuccessScreenshotRes>
 
     @FormUrlEncoded
-    @POST("get_child_timer")
+    @POST("get_child_active_reward")
     fun get_child_timer(@FieldMap params: Map<String, String>): Call<SuccessTimerListRes>
 
     @FormUrlEncoded
@@ -137,7 +141,7 @@ interface ProviderInterface {
 
     @FormUrlEncoded
     @POST("get_child_location")
-    fun get_child_location(@FieldMap params: Map<String, String>):
+    suspend fun get_child_location(@FieldMap params: Map<String, String>):
             Call<SuccessChildlocation>
 
     @FormUrlEncoded
@@ -223,8 +227,6 @@ interface ProviderInterface {
     )
             : Call<ResponseBody>
 
-    //https://3tdrive.com/Mndalakanm/webservice/add_place?parent_id=23&child_id=2&type=Home&name=test&address=indore%20India&lat=22.7196
-    // &lon=75.8577&range=50&enter_notification=1&exit_notification=1
     @FormUrlEncoded
     @POST("get_reward_list")
     fun get_reward_list(
@@ -265,11 +267,13 @@ interface ProviderInterface {
     fun get_schedul_category(
         @FieldMap params: Map<String, String>
     ): Call<SuccesSchedulCategory>
+
     @FormUrlEncoded
     @POST("insert_chat")
     fun insert_chat(
         @FieldMap params: Map<String, String>
     ): Call<SuccesInsertChatRes>
+
     @FormUrlEncoded
     @POST("get_chat")
     fun getChat(
@@ -281,9 +285,21 @@ interface ProviderInterface {
     fun get_faqs(
         @FieldMap params: Map<String, String>
     ): Call<successFAQres>
+
     @FormUrlEncoded
     @POST("delete_parent")
     fun delete_parent(
         @FieldMap params: Map<String, String>
     ): Call<ResponseBody>
+
+    @FormUrlEncoded
+    @POST("get_child_plus_time_history")
+    fun get_child_plus_time_history(
+        @FieldMap params: Map<String, String>
+    ): Call<SuccessChildHistory>
+    @FormUrlEncoded
+    @POST("change_language")
+    fun change_language(
+        @FieldMap params: Map<String, String>
+    ): Call<SuccessChildHistory>
 }

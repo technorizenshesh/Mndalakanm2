@@ -118,7 +118,7 @@
             android:outlineProvider="background"
             android:outlineSpotShadowColor="@color/white"
             android:padding="@dimen/_10sdp"
-            android:text="Change"
+            android:text="@string/change"
             android:textAllCaps="true"
             android:textColor="@color/white"
             android:textSize="@dimen/_12sdp"

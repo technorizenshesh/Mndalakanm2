@@ -16,8 +16,9 @@ import com.app.mndalakanm.model.SuccesInsertChatRes
 import com.app.mndalakanm.retrofit.ApiClient
 import com.app.mndalakanm.retrofit.ProviderInterface
 import com.app.mndalakanm.utils.SharedPref
-import com.techno.mndalakanm.R
-import com.techno.mndalakanm.databinding.FragmentSupportChatBinding
+import com.app.mndalakanm.R
+import com.app.mndalakanm
+.databinding.FragmentSupportChatBinding
 import com.app.mndalakanm.utils.Constant
 import retrofit2.Call
 import retrofit2.Callback

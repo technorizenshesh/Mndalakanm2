@@ -8,13 +8,14 @@ import androidx.recyclerview.widget.RecyclerView
 import com.app.mndalakanm.model.SuccessTimerListRes
 import com.app.mndalakanm.utils.SharedPref
 import com.app.mndalakanm.utils.TimerListClickListener
-import com.techno.mndalakanm.R
-import com.techno.mndalakanm.databinding.ItemTimerListBinding
+import com.app.mndalakanm.R
+import com.app.mndalakanm
+.databinding.ItemTimerListBinding
 
 
 class AdapterTimerList(
     val mContext: Context,
-    var transList: ArrayList<SuccessTimerListRes.TimerList>?,
+    var transList: ArrayList<SuccessTimerListRes.Result>?,
     val listener: TimerListClickListener
 ) : RecyclerView.Adapter<AdapterTimerList.TransViewHolder>() {
     lateinit var sharedPref: SharedPref
@@ -28,9 +29,10 @@ class AdapterTimerList(
     }
 
     override fun onBindViewHolder(holder: TransViewHolder, position: Int) {
-        var data: SuccessTimerListRes.TimerList = transList!!.get(position)
-        holder.binding.minuts.text = data.timer
+        var data: SuccessTimerListRes.Result = transList!!.get(position)
+        holder.binding.minuts.text = "+ "+data.plusTime+"min"
         holder.binding.status.text = data.timeAgo
+        holder.binding.type.text = data.status
         /* Glide.with(mContext).load(data.timer).placeholder(R.drawable.ic_baseline_image_search_)
              .error(R.drawable.ic_baseline_broken_image_)
              .into(holder.binding.screen);*/

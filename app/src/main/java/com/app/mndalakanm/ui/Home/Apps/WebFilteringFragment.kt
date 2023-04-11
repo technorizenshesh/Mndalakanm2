@@ -6,8 +6,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
-import com.techno.mndalakanm.R
-import com.techno.mndalakanm.databinding.FragmentWebFilteringBinding
+import com.app.mndalakanm.R
+import com.app.mndalakanm
+.databinding.FragmentWebFilteringBinding
 
 
 class WebFilteringFragment : Fragment() {

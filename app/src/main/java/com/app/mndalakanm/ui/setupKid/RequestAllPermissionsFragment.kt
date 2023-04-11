@@ -13,8 +13,9 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import com.app.mndalakanm.ui.Home.SuperviseHomeActivity
 import com.app.mndalakanm.utils.DeviceAdmin
-import com.techno.mndalakanm.R
-import com.techno.mndalakanm.databinding.FragmentRequestAllPermissionsBinding
+import com.app.mndalakanm.R
+import com.app.mndalakanm
+.databinding.FragmentRequestAllPermissionsBinding
 
 class RequestAllPermissionsFragment : Fragment() {
     lateinit var binding: FragmentRequestAllPermissionsBinding

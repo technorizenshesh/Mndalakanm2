@@ -6,7 +6,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:fillViewport="true"
-        tools:context=".ui.LoginSignup.LoginTypeFragment">
+        tools:context=".ui.loginSignup.LoginTypeFragment">
 
 <LinearLayout
     android:layout_marginTop="@dimen/_15sdp"
@@ -17,16 +17,19 @@
 
     >
     <TextView
+        android:id="@+id/language_select"
         android:padding="@dimen/_10sdp"
+        android:layout_margin="@dimen/_3sdp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textAlignment="center"
         android:gravity="center"
-        android:text="Whose phone is this ?"
+        android:drawablePadding="@dimen/_15sdp"
+        android:text="@string/whose_phone_is_this"
         android:fontFamily="@font/poppins_bold"
         android:textColor="@color/texts"
         android:textSize="@dimen/_14sdp"
-        />
+        app:drawableRightCompat="@drawable/change_language" />
     <androidx.cardview.widget.CardView
         android:id="@+id/parent_card"
         android:layout_width="match_parent"
@@ -74,14 +77,14 @@
                     android:orientation="vertical">
 
                     <TextView
-                        android:gravity="center"
-                        android:layout_marginTop="@dimen/_5sdp"
-                        android:paddingLeft="5sp"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_5sdp"
+                        android:fontFamily="@font/poppins_bold"
+                        android:gravity="center"
+                        android:paddingLeft="5sp"
                         android:text="@string/parent_phone"
                         android:textColor="@color/white"
-                        android:fontFamily="@font/poppins_bold"
                         android:textSize="@dimen/_18sdp" />
 
                     <RelativeLayout
@@ -94,7 +97,7 @@
                             android:textAlignment="center"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="I like to monitor from this device"
+                            android:text="@string/i_like_to_monitor_from_this_device"
                             android:maxLines="1"
                             android:fontFamily="@font/poppins_bold"
                             android:textColor="@color/white"
@@ -167,7 +170,7 @@
                         android:paddingLeft="5sp"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Child phone "
+                        android:text="@string/child_phone"
                         android:textColor="@color/white"
                         android:fontFamily="@font/poppins_bold"
                         android:textSize="@dimen/_18sdp" />
@@ -183,7 +186,7 @@
                             android:id="@+id/tv_Address_"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="I like to monitor  this device"
+                            android:text="@string/i_like_to_monitor_this_device"
                             android:maxLines="1"
                             android:fontFamily="@font/poppins_bold"
                             android:textColor="@color/white"

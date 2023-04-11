@@ -15,7 +15,7 @@ import android.util.Patterns
 import androidx.core.app.NotificationCompat
 import com.app.mndalakanm.MainActivity
 import com.app.mndalakanm.model.PushNotificationModel
-import com.techno.mndalakanm.R
+import com.app.mndalakanm.R
 import java.io.IOException
 import java.net.HttpURLConnection
 import java.net.URL

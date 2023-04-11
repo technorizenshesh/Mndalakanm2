@@ -16,8 +16,9 @@ import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import com.app.mndalakanm.utils.SharedPref
 import com.google.zxing.WriterException
-import com.techno.mndalakanm.R
-import com.techno.mndalakanm.databinding.FragmentShowQRBinding
+import com.app.mndalakanm.R
+import com.app.mndalakanm
+.databinding.FragmentShowQRBinding
 import com.app.mndalakanm.utils.Constant
 
 

@@ -39,13 +39,18 @@
                         android:textColor="@color/black"
                         android:textSize="@dimen/_16sdp" />
 
-
-                    <com.naqdi.chart.ChainChartView
+                    <com.github.mikephil.charting.charts.BarChart
+                        android:id="@+id/barChart"
+                        android:layout_marginTop="1dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="200dp"
+                        />
+                   <!-- <com.naqdi.chart.ChainChartView
                         android:id="@+id/chainChartView"
                         android:layout_width="match_parent"
                         android:layout_height="300dp"
                         android:layout_gravity="center"
-                        android:layout_margin="@dimen/_5sdp" />
+                        android:layout_margin="@dimen/_5sdp" />-->
 
                 </LinearLayout>
                 <LinearLayout
@@ -196,6 +201,7 @@
                             android:textColor="@color/black"
                             android:textSize="@dimen/_14sdp" />
                         <TextView
+                            android:id="@+id/nev_location"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_margin="@dimen/_5sdp"

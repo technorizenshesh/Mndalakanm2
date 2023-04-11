@@ -1,8 +1,10 @@
-package com.app.mndalakanm.ui.LoginSignup
+package com.app.mndalakanm.ui.loginSignup
 
 import android.Manifest.permission
 import android.content.DialogInterface
 import android.content.pm.PackageManager
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.location.Location
 import android.os.Build
 import android.os.Bundle
@@ -28,10 +30,15 @@ import com.google.android.gms.tasks.OnFailureListener
 import com.google.android.gms.tasks.OnSuccessListener
 import com.google.firebase.FirebaseApp
 import com.google.firebase.messaging.FirebaseMessaging
-import com.techno.mndalakanm.R
-import com.techno.mndalakanm.databinding.FragmentLoginTypeBinding
+import com.app.mndalakanm.R
+import com.app.mndalakanm
+.databinding.FragmentLoginTypeBinding
 import com.app.mndalakanm.utils.Constant
+import com.deishelon.roundedbottomsheet.RoundedBottomSheetDialog
+import com.app.mndalakanm
+.databinding.BottemSheeetLanguageBinding
 import timber.log.Timber
+import java.util.*
 
 
 class LoginTypeFragment : Fragment() {
@@ -45,7 +52,7 @@ class LoginTypeFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding = DataBindingUtil.inflate(
             inflater, R.layout.fragment_login_type,
             container, false
@@ -66,10 +73,13 @@ class LoginTypeFragment : Fragment() {
             navController.navigate(R.id.action_splash_to_login_by, bundle)
 
         }
+        binding.languageSelect.setOnClickListener {
+            openLanguageBottomSheet()
+        }
         FirebaseApp.initializeApp(requireContext())
         FirebaseMessaging.getInstance().token.addOnCompleteListener(OnCompleteListener { task ->
             if (!task.isSuccessful) {
-                Log.w("TAG", "Fetching FCM registration token failed", task.exception)
+                Log.e("TAG", "Fetching FCM registration token failed", task.exception)
                 return@OnCompleteListener
             }
 
@@ -90,6 +100,60 @@ class LoginTypeFragment : Fragment() {
         return binding.root
     }
 
+    private fun openLanguageBottomSheet() {
+        val bottomSheetBinding: BottemSheeetLanguageBinding =
+            DataBindingUtil.inflate(
+                LayoutInflater.from(requireActivity()), R.layout.bottem_sheeet_language,
+                null, false
+            )
+        val bottomSheetDialog = RoundedBottomSheetDialog(requireActivity())
+        bottomSheetDialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+        bottomSheetDialog.setContentView(bottomSheetBinding.root)
+        bottomSheetDialog.show()
+        if (sharedPref.getStringValue(Constant.LANGUAGE) == "ar") {
+            bottomSheetBinding.arb.isChecked = true
+        } else if (sharedPref.getStringValue(Constant.LANGUAGE) == "en") {
+            bottomSheetBinding.eng.isChecked = true
+        } else {
+            bottomSheetBinding.kur.isChecked = true
+
+        }
+        bottomSheetBinding.englishRela.setOnClickListener {
+            sharedPref.setStringValue(Constant.LANGUAGE, "en")
+            val language = "English"
+          //  changeLanguageAPI(language)
+            setLocale(sharedPref.getStringValue(Constant.LANGUAGE))
+            bottomSheetDialog.dismiss()
+            activity?.recreate()
+        }
+        bottomSheetBinding.arabicRela.setOnClickListener {
+            sharedPref.setStringValue(Constant.LANGUAGE, "ar")
+            val language = "Arabic"
+            //changeLanguageAPI(language)
+
+            setLocale(sharedPref.getStringValue(Constant.LANGUAGE))
+            bottomSheetDialog.dismiss()
+            activity?.recreate()
+
+        }
+        bottomSheetBinding.kurdicRela.setOnClickListener {
+            sharedPref.setStringValue(Constant.LANGUAGE, "ku")
+            val language = "Kurdish"
+         //   changeLanguageAPI(language)
+
+            setLocale(sharedPref.getStringValue(Constant.LANGUAGE))
+            bottomSheetDialog.dismiss()
+            activity?.recreate()
+
+        }
+    }
+    fun setLocale(lang: String?) {
+        val myLocale = Locale(lang)
+        val res = resources
+        val conf = res.configuration
+        conf.locale = myLocale
+        res.updateConfiguration(conf, res.displayMetrics)
+    }
     private fun requestPermission() {
         ActivityCompat.requestPermissions(
             requireActivity(),

@@ -11,9 +11,11 @@ import com.app.mndalakanm.model.WeekDays
 import com.app.mndalakanm.utils.DayClickListener
 import com.app.mndalakanm.utils.SechduleClickListener
 import com.app.mndalakanm.utils.SharedPref
-import com.techno.mndalakanm.R
-import com.techno.mndalakanm.databinding.ItemCatListBinding
-import com.techno.mndalakanm.databinding.ItemDaysListBinding
+import com.app.mndalakanm.R
+import com.app.mndalakanm
+.databinding.ItemCatListBinding
+import com.app.mndalakanm
+.databinding.ItemDaysListBinding
 import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.collections.ArrayList

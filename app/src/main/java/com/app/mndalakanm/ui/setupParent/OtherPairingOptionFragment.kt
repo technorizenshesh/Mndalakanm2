@@ -8,8 +8,10 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
-import  com.techno.mndalakanm.R
-import com.techno.mndalakanm.databinding.FragmentOtherPairingOptionBinding
+import com.app.mndalakanm
+.R
+import com.app.mndalakanm
+.databinding.FragmentOtherPairingOptionBinding
 
 
 class OtherPairingOptionFragment : Fragment() {

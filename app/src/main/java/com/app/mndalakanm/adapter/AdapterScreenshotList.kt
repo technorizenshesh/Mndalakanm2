@@ -9,8 +9,9 @@ import com.app.mndalakanm.model.SuccessScreenshotRes
 import com.app.mndalakanm.utils.ScreenShotClickListener
 import com.app.mndalakanm.utils.SharedPref
 import com.bumptech.glide.Glide
-import com.techno.mndalakanm.R
-import com.techno.mndalakanm.databinding.ItemScreenshotsBinding
+import com.app.mndalakanm.R
+import com.app.mndalakanm
+.databinding.ItemScreenshotsBinding
 
 
 class AdapterScreenshotList(

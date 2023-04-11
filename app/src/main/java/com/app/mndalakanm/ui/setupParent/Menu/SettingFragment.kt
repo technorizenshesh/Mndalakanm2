@@ -7,8 +7,9 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.navigation.Navigation
-import  com.techno.mndalakanm.R
-import com.techno.mndalakanm.databinding.FragmentSettingBinding
+import com.app.mndalakanm.R
+import com.app.mndalakanm
+.databinding.FragmentSettingBinding
 
 class SettingFragment : Fragment() {
 
@@ -16,7 +17,7 @@ class SettingFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding =
             DataBindingUtil.inflate(inflater, R.layout.fragment_setting, container, false)
         binding.header.imgHeader.setOnClickListener {
