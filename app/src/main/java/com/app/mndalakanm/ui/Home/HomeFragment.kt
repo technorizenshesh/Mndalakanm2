@@ -486,7 +486,7 @@ class HomeFragment : Fragment(), ScreenShotClickListener {
             .child("Status")
             .addValueEventListener(usersListener)
     }
-    private suspend fun live(context: Context,status:String) {
+    private  fun live(context: Context,status:String) {
         try {
         val intent = Intent(Config.GET_DATA_LOCKDOWN)
         intent.putExtra("pushNotificationModel", "1")

@@ -1,5 +1,4 @@
 package com.app.mndalakanm.adapter
-
 import android.annotation.SuppressLint
 import android.content.Context
 import android.view.LayoutInflater
@@ -12,8 +11,6 @@ import com.app.mndalakanm.utils.SharedPref
 import com.app.mndalakanm.R
 import com.app.mndalakanm
 .databinding.ItemParentRewardBinding
-
-
 class AdapterChildRewardList(
     val mContext: Context,
     var transList: ArrayList<SucessRewardList.Result>?, val listener: ParentRewardListClickListener
@@ -37,8 +34,7 @@ class AdapterChildRewardList(
         var data: SucessRewardList.Result = transList!!.get(position)
         holder.binding.nameTxt.text = data.name
         holder.binding.timeTxt.text = "+ "+data.time+mContext.getString(R.string.min)
-         if(data.status =="Active")  holder.binding.switchActive.isChecked= true
-        else  holder.binding.switchActive.isChecked= false
+        holder.binding.switchActive.isChecked = data.status =="Active"
         holder.binding.switchActive.setOnCheckedChangeListener { _, isChecked ->
             if (isChecked) {
                 listener.onClick(position, data, "Active", "1")

@@ -203,5 +203,17 @@
     <string name="telescope">Lûla dûrdîtinê</string>
     <string name="take_a_snapshot">BİXWÎNE BİXWÎNE</string>
     <string name="enter_pairing_code">Code Pairing binivîse</string>
+    <string name="child_apps">Apps Zarokan</string>
+    <string name="blocked_apps">Apps Astengkirin</string>
+    <string name="web_filtering">Parzûnkirina Webê</string>
+    <string name="doyou_want">Ma hûn dixwazin bi karanîna vê sepanê forma zarokan sînordar bikin</string>
+    <string-array name="image_loader">
+        <item>app_logo</item><!--app logo 0 -->
+        <item>flag</item><!--flag  1 -->
+        <item>girl</item><!--flag  2 -->
+        <item>man</item><!--flag  3 -->
+        <item>user</item><!--flag  4 -->
+        <item>other image</item><!--other image-->
+    </string-array>
 </resources>
 

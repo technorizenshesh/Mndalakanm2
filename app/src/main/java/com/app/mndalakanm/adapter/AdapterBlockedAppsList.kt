@@ -1,22 +1,19 @@
 package com.app.mndalakanm.adapter
 
 import android.content.Context
+import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.util.Base64
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
-import com.app.mndalakanm.model.ChildData
+import com.app.mndalakanm.R
+import com.app.mndalakanm.databinding.ItemAppBinding
 import com.app.mndalakanm.utils.AppClickListener
-import com.app.mndalakanm.utils.ChildClickListener
 import com.app.mndalakanm.utils.PInfo
 import com.app.mndalakanm.utils.SharedPref
-import com.app.mndalakanm.R
-import com.app.mndalakanm
-.databinding.ItemAppBinding
-import com.app.mndalakanm
-.databinding.ItemChildBinding
 
 
 class AdapterBlockedAppsList(
@@ -33,7 +30,12 @@ class AdapterBlockedAppsList(
     override fun onBindViewHolder(holder: TransViewHolder, position: Int) {
         var data: PInfo = transList.get(position)
         holder.binding.tvCarName.text = data.appname
-        holder.binding.timeAgo.text = data.cat
+        holder.binding.timeAgo.text = data.pname
+
+
+        holder.binding.root.setOnClickListener{
+            Log.e("TAG", "onBindViewHolderonBindViewHolder: "+data.toString() )
+        }
         try {
 
 
@@ -43,8 +45,12 @@ class AdapterBlockedAppsList(
         }catch (e:Exception){
             e.printStackTrace()
         }
-        holder.binding.root.setOnClickListener {
-            listener.onClick(position, data,"2") }
+        holder.binding.editBtn.setOnClickListener {
+            holder.binding.ivCar.isDrawingCacheEnabled = true
+            holder.run { binding.ivCar.buildDrawingCache() }
+            val bitmap: Bitmap = Bitmap.createBitmap(   holder.binding.ivCar.drawingCache)
+            holder.binding.ivCar.isDrawingCacheEnabled = false
+            listener.onClick(position, data,"2",bitmap) }
     }
     override fun getItemCount(): Int {
         return transList.size

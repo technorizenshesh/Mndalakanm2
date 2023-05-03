@@ -204,5 +204,16 @@
     <string name="telescope">تلسكوب</string>
     <string name="take_a_snapshot">خذ لقطة</string>
     <string name="enter_pairing_code">أدخل رمز الاقتران</string>
-
+    <string name="child_apps">تطبيقات الأطفال</string>
+    <string name="blocked_apps">التطبيقات المحظورة</string>
+    <string name="web_filtering">تصفية الويب</string>
+    <string name="doyou_want">هل تريد تقييد النموذج الفرعي باستخدام هذا التطبيق</string>
+    <string-array name="image_loader">
+        <item>app_logo</item><!--app logo 0 -->
+        <item>flag</item><!--flag  1 -->
+        <item>girl</item><!--flag  2 -->
+        <item>man</item><!--flag  3 -->
+        <item>user</item><!--flag  4 -->
+        <item>other image</item><!--other image-->
+    </string-array>
 </resources><!---->

@@ -63,6 +63,16 @@ interface ProviderInterface {
     ): Call<SuccessUserProfile>
 
     @Multipart
+    @POST("add_child_apps")
+    fun add_child_apps(
+        @Part("parent_id") user_id: RequestBody,
+        @Part("child_id") child_id: RequestBody,
+        @Part("appid") appid: RequestBody,
+        @Part("name") name: RequestBody,
+        @Part file1: MultipartBody.Part
+    ): Call<ResponseBody>
+
+    @Multipart
     @POST("add_screenshot")
     fun add_screenshot(
         @Part("parent_id") parent_id: RequestBody,
@@ -302,4 +312,15 @@ interface ProviderInterface {
     fun change_language(
         @FieldMap params: Map<String, String>
     ): Call<SuccessChildHistory>
+    @FormUrlEncoded
+    @POST("get_child_apps")
+    fun get_child_apps(
+        @FieldMap params: Map<String, String>
+    ): Call<SuccessChildApps>
+   @FormUrlEncoded
+    @POST("remove_child_apps")
+    fun remove_child_apps(
+        @FieldMap params: Map<String, String>
+    ): Call<ResponseBody>
+
 }

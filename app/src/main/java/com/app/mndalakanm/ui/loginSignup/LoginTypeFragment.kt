@@ -19,8 +19,13 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
+import com.app.mndalakanm.R
+import com.app.mndalakanm.databinding.BottemSheeetLanguageBinding
+import com.app.mndalakanm.databinding.FragmentLoginTypeBinding
+import com.app.mndalakanm.utils.Constant
 import com.app.mndalakanm.utils.LocationHandler
 import com.app.mndalakanm.utils.SharedPref
+import com.deishelon.roundedbottomsheet.RoundedBottomSheetDialog
 import com.google.android.gms.common.api.ResolvableApiException
 import com.google.android.gms.location.LocationServices
 import com.google.android.gms.location.LocationSettingsRequest
@@ -30,13 +35,6 @@ import com.google.android.gms.tasks.OnFailureListener
 import com.google.android.gms.tasks.OnSuccessListener
 import com.google.firebase.FirebaseApp
 import com.google.firebase.messaging.FirebaseMessaging
-import com.app.mndalakanm.R
-import com.app.mndalakanm
-.databinding.FragmentLoginTypeBinding
-import com.app.mndalakanm.utils.Constant
-import com.deishelon.roundedbottomsheet.RoundedBottomSheetDialog
-import com.app.mndalakanm
-.databinding.BottemSheeetLanguageBinding
 import timber.log.Timber
 import java.util.*
 
@@ -121,7 +119,7 @@ class LoginTypeFragment : Fragment() {
         bottomSheetBinding.englishRela.setOnClickListener {
             sharedPref.setStringValue(Constant.LANGUAGE, "en")
             val language = "English"
-          //  changeLanguageAPI(language)
+            //  changeLanguageAPI(language)
             setLocale(sharedPref.getStringValue(Constant.LANGUAGE))
             bottomSheetDialog.dismiss()
             activity?.recreate()
@@ -139,7 +137,7 @@ class LoginTypeFragment : Fragment() {
         bottomSheetBinding.kurdicRela.setOnClickListener {
             sharedPref.setStringValue(Constant.LANGUAGE, "ku")
             val language = "Kurdish"
-         //   changeLanguageAPI(language)
+            //   changeLanguageAPI(language)
 
             setLocale(sharedPref.getStringValue(Constant.LANGUAGE))
             bottomSheetDialog.dismiss()
@@ -147,6 +145,7 @@ class LoginTypeFragment : Fragment() {
 
         }
     }
+
     fun setLocale(lang: String?) {
         val myLocale = Locale(lang)
         val res = resources
@@ -154,6 +153,7 @@ class LoginTypeFragment : Fragment() {
         conf.locale = myLocale
         res.updateConfiguration(conf, res.displayMetrics)
     }
+
     private fun requestPermission() {
         ActivityCompat.requestPermissions(
             requireActivity(),
