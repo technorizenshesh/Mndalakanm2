@@ -16,10 +16,10 @@ import com.app.mndalakanm.utils.PInfo
 import com.app.mndalakanm.utils.SharedPref
 
 
-class AdapterBlockedAppsList(
+class AdapterBlockedAppsFireStoreList(
     val mContext: Context,
     var transList: ArrayList<PInfo>, val listener: AppClickListener
-) : RecyclerView.Adapter<AdapterBlockedAppsList.TransViewHolder>() {
+) : RecyclerView.Adapter<AdapterBlockedAppsFireStoreList.TransViewHolder>() {
     lateinit var sharedPref: SharedPref
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TransViewHolder {
         var binding: ItemAppBinding = DataBindingUtil.inflate(LayoutInflater.from(mContext), R.layout.item_app, parent, false)

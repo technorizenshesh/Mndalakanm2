@@ -12,7 +12,7 @@ interface AppClickListener {
 }
 
 interface OnBlockedAppListItemClickListener {
-    fun onClick(position: Int, model: PInfo, type: String, bitmap: Bitmap)
+    fun onClick(position: Int, model: SuccessChildApps.Result)
 }
 
 interface DayClickListener {

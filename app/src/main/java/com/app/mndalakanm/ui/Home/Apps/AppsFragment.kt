@@ -12,8 +12,7 @@ import androidx.navigation.Navigation
 import com.app.mndalakanm.Mndalakanm
 import com.app.mndalakanm.utils.PInfo
 import com.app.mndalakanm.R
-import com.app.mndalakanm
-.databinding.FragmentAppsBinding
+import com.app.mndalakanm.databinding.FragmentAppsBinding
 import com.app.mndalakanm.utils.Constant
 import com.app.mndalakanm.utils.SharedPref
 import kotlin.math.log

@@ -34,6 +34,7 @@
                         <ImageView
                             android:layout_gravity="center"
                             android:id="@+id/ivCar"
+                            android:background="@color/white"
                             android:layout_width="@dimen/_40sdp"
                             android:layout_height="@dimen/_40sdp"
                             />
@@ -58,7 +59,6 @@
                                 android:layout_gravity="start"
                                 android:fontFamily="@font/poppins_bold"
                                 android:padding="@dimen/_2sdp"
-                                android:text="Sudan"
                                 android:textColor="@color/black"
                                 android:textSize="@dimen/_11sdp" />
                             <TextView
@@ -88,9 +88,10 @@
                         <ImageView
                             android:layout_gravity="center"
                             android:layout_width="@dimen/_35sdp"
+                            android:id="@+id/status_image"
                             android:layout_height="@dimen/_35sdp"
-                            android:layout_margin="@dimen/_2sdp"
-                            android:background="@drawable/locked" />
+                            android:layout_margin="@dimen/_5sdp"
+                            android:background="@drawable/unlocked_state" />
                     </LinearLayout>
 
                 </LinearLayout>

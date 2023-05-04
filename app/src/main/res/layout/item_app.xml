@@ -32,6 +32,8 @@
                         android:orientation="vertical">
 
                         <ImageView
+                            android:backgroundTint="@color/white"
+                            android:background="@color/white"
                             android:layout_gravity="center"
                             android:id="@+id/ivCar"
                             android:layout_width="@dimen/_40sdp"

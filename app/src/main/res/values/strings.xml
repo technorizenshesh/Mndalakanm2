@@ -169,7 +169,8 @@
     <string name="time_schedules">Time Schedules</string>
     <string name="web_filtering_for_child_mode">Web filtering for Child Mode</string>
     <string name="datal"><![CDATA[<p><font color=#666666> Continue if you agree </font><font color=#5856F2>  <b><u>Terms and Conditions</u></b></font><font color=#666666>and the <u></font><b><font color=#5856F2>privacy policy</font></u></b></font></p>]]></string>
-    <string name="by_tapping_redeem_you_agree_to_the_gift_card_promotional_code_terms_and_condition_as_aplicable"><![CDATA[بالنقر على "استرداد" ، فإنك توافق على بنود وشروط بطاقة الهدايا والرمز الترويجي حسب الاقتضاء.]]></string>
+    <string name="by_tapping_redeem_you_agree_to_the_gift_card_promotional_code_terms_and_condition_as_aplicable">
+        <![CDATA[By clicking "Redeem", you agree to the Gift Card and Promo Code Terms and Conditions as applicable.]]></string>
     <string name="logout">Logout</string>
     <string name="settings">Settings</string>
     <string name="subscription">Subscription</string>

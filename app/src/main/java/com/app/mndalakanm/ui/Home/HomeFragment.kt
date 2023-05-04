@@ -89,7 +89,7 @@ class HomeFragment : Fragment(), ScreenShotClickListener {
                     if (IncomingSms.equals("2", true)) {
 
                         Timber.tag(TAG).e("onReceive: 22222")
-                        if (sharedPref.getStringValue(Constant.USER_TYPE).equals("Child", true)) {
+                        if (sharedPref.getStringValue(Constant.USER_TYPE).equals("child", true)) {
                             SharedPreferenceUtility.getInstance(requireActivity()).putString(
                                 "parent_id", sharedPref.getStringValue(Constant.USER_ID).toString()
                             )

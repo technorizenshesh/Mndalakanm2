@@ -15,7 +15,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.Navigation
 import com.app.mndalakanm.R
-import com.app.mndalakanm.adapter.AdapterBlockedAppsList
+import com.app.mndalakanm.adapter.AdapterBlockedAppsFireStoreList
 import com.app.mndalakanm.databinding.FragmentBockedAppsBinding
 import com.app.mndalakanm.model.SuccessAddChildRes
 import com.app.mndalakanm.retrofit.ApiClient
@@ -75,7 +75,7 @@ class BockedAppsFragment : Fragment(), AppClickListener {
                             //   if (p.cat=="-1") else myList.add(p)
                             myList.add(p)
                         }
-                        val adapterRideOption = AdapterBlockedAppsList(
+                        val adapterRideOption = AdapterBlockedAppsFireStoreList(
                             requireActivity(),
                             myList,
                             this@BockedAppsFragment

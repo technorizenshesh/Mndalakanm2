@@ -2,6 +2,7 @@ package com.app.mndalakanm.adapter
 
 import android.annotation.SuppressLint
 import android.content.Context
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
@@ -9,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.app.mndalakanm.R
 import com.app.mndalakanm.databinding.ItemBlockedAppBinding
 import com.app.mndalakanm.model.SuccessChildApps
+import com.app.mndalakanm.utils.Constant
 import com.app.mndalakanm.utils.OnBlockedAppListItemClickListener
 import com.app.mndalakanm.utils.SharedPref
 import com.bumptech.glide.Glide
@@ -33,9 +35,22 @@ class AdapterBlockedAppList(
     override fun onBindViewHolder(holder: TransViewHolder, position: Int) {
         val data: SuccessChildApps.Result = transList?.get(position)!!
         var show = false
-        holder.binding.tvCarName.text = data.name
-        holder.binding.timeAgo.text = data.appid
+        Log.e("TAG", "onBindViewHolder: "+data.toString() )
+        holder.binding.tvCarName.text = data.appid
+        holder.binding.timeAgo.text = data.name
         Glide.with(mContext).load(data.image).into(holder.binding.ivCar)
+         if (data.status =="Active"){ holder.binding.statusImage.setImageDrawable(mContext.getDrawable(R.drawable.unlocked_state)) }
+         else{
+             holder.binding.statusImage.setImageDrawable(mContext.getDrawable(R.drawable.locked_state))
+         }
+
+holder.binding.statusImage.setOnClickListener {
+     if (sharedPref.getStringValue(Constant.USER_TYPE)=="child"){
+         return@setOnClickListener
+     }else{
+    listener.onClick(position, data, )}
+
+}
 
     }
 

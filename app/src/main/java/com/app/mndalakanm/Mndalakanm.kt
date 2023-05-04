@@ -22,6 +22,7 @@ import com.app.mndalakanm.service.SensorService
 import com.app.mndalakanm.utils.*
 import com.google.firebase.database.*
 import com.mtsahakis.mediaprojectiondemo.SharedPreferenceUtility
+import com.mtsahakis.mediaprojectiondemo.SharedPreferenceUtility.*
 import com.vilborgtower.user.utils.Utils
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -56,15 +57,15 @@ class Mndalakanm : Application() {
         ctx = applicationContext
         Timber.plant(if (BuildConfig.DEBUG) Timber.DebugTree() else CrashReportingTree())
         manager = SharedPref(applicationContext)
+        getInstance(applicationContext).putString("parent_id", manager!!.getStringValue(Constant.USER_ID).toString())
+        getInstance(applicationContext).putString("child_id", manager!!.getStringValue(Constant.CHILD_ID).toString())
+
         utils = Utils(applicationContext)
         gpsTracker = GPSTracker(applicationContext)
         context = applicationContext
          database = FirebaseDatabase.getInstance()
          myRef = database.reference
-
-             SharedPreferenceUtility.getInstance(applicationContext).putString("parent_id", manager!!.getStringValue(Constant.USER_ID).toString())
-            SharedPreferenceUtility.getInstance(applicationContext).putString("child_id", manager!!.getStringValue(Constant.CHILD_ID).toString())
-        val myScope = CoroutineScope(Dispatchers.Default)
+            val myScope = CoroutineScope(Dispatchers.Default)
 
         myScope.launch {
             try {
