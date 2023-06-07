@@ -77,8 +77,8 @@ class LoginNoFragment : Fragment() {
         apiInterface = ApiClient.getClient(requireContext())!!.create(ProviderInterface::class.java)
         mAuth = FirebaseAuth.getInstance()
        // mAuth.firebaseAuthSettings.forceRecaptchaFlowForTesting(true)
-      //  mAuth.firebaseAuthSettings.setAppVerificationDisabledForTesting(true)
-        mAuth.setLanguageCode(sharedPref.getStringValue(Constant.LANGUAGE).toString())
+       mAuth.firebaseAuthSettings.setAppVerificationDisabledForTesting(true)
+     //   mAuth.setLanguageCode(sharedPref.getStringValue(Constant.LANGUAGE).toString())
     /*    val nonce: String = ""
         val myScope = CoroutineScope(Dispatchers.Default)
         myScope.launch {

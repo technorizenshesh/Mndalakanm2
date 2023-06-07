@@ -1,7 +1,7 @@
 {
   "project_info": {
     "project_number": "691174726373",
-    "firebase_url": "https://mndalakanm-53f36-default-rtdb.firebaseio.com" ,
+    "firebase_url": "https://mndalakanm-53f36-default-rtdb.firebaseio.com",
     "project_id": "mndalakanm-53f36",
     "storage_bucket": "mndalakanm-53f36.appspot.com"
   },
@@ -15,6 +15,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "691174726373-21svlvrcgfc6fp4sv8mb7ipee8i648sc.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.app.mndalakanm",
+            "certificate_hash": "36043bb3653f02f1394943928a6ae4901b01e2e9"
+          }
+        },
+        {
           "client_id": "691174726373-3mlhd19s92ve6nkm02lev4u3nq6ggpf0.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
@@ -23,7 +31,15 @@
           }
         },
         {
-          "client_id": "691174726373-rm6pi6l9kfnpoihsi18irh4976v2fdoo.apps.googleusercontent.com",
+          "client_id": "691174726373-uun66s4jkuha387bcbsl9r7uk3t47t7r.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.app.mndalakanm",
+            "certificate_hash": "d8cb6f84c8e25d4cbf5f9b394e45704e1005aba5"
+          }
+        },
+        {
+          "client_id": "691174726373-pbjtmb2rsr3tmje2b7m20r9roehkd2ap.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
@@ -36,7 +52,7 @@
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "691174726373-rm6pi6l9kfnpoihsi18irh4976v2fdoo.apps.googleusercontent.com",
+              "client_id": "691174726373-pbjtmb2rsr3tmje2b7m20r9roehkd2ap.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

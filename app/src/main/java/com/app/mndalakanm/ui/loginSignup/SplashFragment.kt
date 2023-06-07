@@ -138,27 +138,6 @@ class SplashFragment : Fragment() {
 
                     }
 
-                    /*     if (sharedPref.getStringValue(Constant.CHILD_NAME).equals("", true)) {
-
-                        val bundle = Bundle()
-                        bundle.putString("type", "child")
-                        bundle.putString("from", "splash")
-                        Navigation.findNavController(binding.root).navigate(
-                            R.id.action_splash_to_child_details_fragment, bundle
-                        )
-                        //  navController.navigate(R.id.action_splash_to_provider)
-
-                    } else {
-                        // navController.navigate(R.id.action_splash_to_provider)
-                        requireActivity().startActivity(
-                            Intent(
-                                requireContext(),
-                                SuperviseHomeActivity::class.java
-                            )
-                        )
-                        requireActivity().finish()
-
-                    }*/
                 }
 
 

@@ -208,6 +208,7 @@
     <string name="blocked_apps">التطبيقات المحظورة</string>
     <string name="web_filtering">تصفية الويب</string>
     <string name="doyou_want">هل تريد تقييد النموذج الفرعي باستخدام هذا التطبيق</string>
+    <string name="firebase_status_fmt">Firebase UID: %s</string>
     <string-array name="image_loader">
         <item>app_logo</item><!--app logo 0 -->
         <item>flag</item><!--flag  1 -->

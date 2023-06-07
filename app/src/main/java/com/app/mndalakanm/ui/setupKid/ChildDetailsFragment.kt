@@ -4,12 +4,15 @@ import android.annotation.SuppressLint
 import android.app.Activity.RESULT_OK
 import android.app.Dialog
 import android.content.ContentValues.TAG
+import android.content.Context
 import android.content.Intent
+import android.content.pm.LauncherApps
 import android.content.pm.PackageInfo
 import android.graphics.*
 import android.graphics.drawable.ColorDrawable
 import android.net.Uri
 import android.os.Bundle
+import android.os.UserManager
 import android.provider.MediaStore
 import android.util.Base64
 import android.util.Log
@@ -22,7 +25,9 @@ import androidx.appcompat.app.AlertDialog
 import androidx.core.graphics.drawable.toBitmap
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.MutableLiveData
 import androidx.navigation.Navigation
+import com.app.mndalakanm.BuildConfig
 import com.app.mndalakanm.Mndalakanm
 import com.app.mndalakanm.model.SuccessAddChildRes
 import com.app.mndalakanm.retrofit.ApiClient
@@ -36,6 +41,7 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.cancel
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
@@ -47,6 +53,7 @@ import retrofit2.Response
 import timber.log.Timber
 import java.io.ByteArrayOutputStream
 import java.io.File
+import java.text.Collator
 
 
 class ChildDetailsFragment : Fragment() {
@@ -55,18 +62,15 @@ class ChildDetailsFragment : Fragment() {
     lateinit var binding: FragmentChildDetailsBinding
 
     var profileImage: File? = null
-    lateinit var apps: ArrayList<PInfo>
+    var apps = ArrayList<PInfo>()
+
     private val GALLERY = 0
     private val CAMERA = 1
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = DataBindingUtil.inflate(
-            inflater,
-            R.layout.fragment_child_details, container, false
-        )
-
+        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_child_details, container, false)
         sharedPref = SharedPref(requireContext())
 
         apiInterface = ApiClient.getClient(requireContext())!!.create(ProviderInterface::class.java)
@@ -107,11 +111,11 @@ class ChildDetailsFragment : Fragment() {
 
         binding.editName.setText(sharedPref.getStringValue(Constant.CHILD_NAME))
         // binding.editName.setText(sharedPref.getStringValue(Constant.CHILD_NAME))
-        try {
+
             val myScope = CoroutineScope(Dispatchers.Default)
             myScope.launch {
                 // do some background work here
-                apps = getPackages()
+                try {   apps = getPackages(requireContext())
                 val db = FirebaseFirestore.getInstance()
                 val collectionRef = db.collection("Apps_"+sharedPref.getStringValue(Constant.USER_ID)+"_"+sharedPref.getStringValue(Constant.CHILD_ID))
                 val batch = db.batch()
@@ -131,7 +135,14 @@ class ChildDetailsFragment : Fragment() {
 
                         Log.e(TAG, "Error writing batch", e)
                     }
+                } catch (e: Exception) {
+                    myScope.cancel()
+                    Log.e(TAG, "Error writing batch", e)
+                    Log.e(TAG, "Error writing batch"+ e.message)
+                    Log.e(TAG, "Error writing batch"+ e.localizedMessage)
 
+                    e.printStackTrace()
+                }
             }
 
 /*
@@ -145,10 +156,8 @@ class ChildDetailsFragment : Fragment() {
                     }
             }
 */
-            Log.e(TAG, "onCreateView:   flagsflagsflags " + apps.size)
-        } catch (e: Exception) {
-            e.printStackTrace()
-        }
+          // Log.e(TAG, "onCreateView:   flagsflagsflags " + apps.size)
+
 
         return binding.root
     }
@@ -249,7 +258,41 @@ class ChildDetailsFragment : Fragment() {
 
     }
 
-    private fun getPackages(): ArrayList<PInfo> {
+
+        suspend fun getPackages(context: Context):
+             ArrayList<PInfo> {
+            return withContext(Dispatchers.IO) {
+                val appList: ArrayList<PInfo> = arrayListOf()
+
+                try {
+                    val userManager = context.getSystemService(Context.USER_SERVICE) as UserManager
+                    val launcherApps = context.getSystemService(Context.LAUNCHER_APPS_SERVICE) as LauncherApps
+                    var iss = 0
+                    for (profile in userManager.userProfiles) {
+                        for (app in launcherApps.getActivityList(null, profile)) {
+                            val newInfo = PInfo()
+                            newInfo.id = iss.toString()
+                            newInfo.appname =
+                                app.applicationInfo.loadLabel(Mndalakanm.context!!.packageManager).toString()
+                            newInfo.pname =  app.applicationInfo.packageName
+                            newInfo.versionName =  app.applicationInfo.className
+                            newInfo.versionCode =  app.applicationInfo.className.toString()
+                            newInfo.icon =  showPictureDialogbash(  app.applicationInfo.loadIcon(Mndalakanm.context!!.packageManager).toBitmap(124,124,Bitmap.Config.ARGB_8888))
+                            newInfo.cat = app.applicationInfo.category.toString()
+                            appList.add(newInfo)
+                            iss++
+                        }
+                    }
+                    appList.sortBy { it.appname.lowercase() }
+
+                } catch (e: Exception) {
+                    e.printStackTrace()
+                }
+                appList
+            }
+        }
+
+    private fun getPackages2(): ArrayList<PInfo> {
         val apps: ArrayList<PInfo> = getInstalledApps(true) /* false = no system packages */
         val max: Int = apps.size
         for (i in 0 until max) {
@@ -262,11 +305,12 @@ class ChildDetailsFragment : Fragment() {
 
     private fun getInstalledApps(getSysPackages: Boolean): ArrayList<PInfo> {
         val res = ArrayList<PInfo>()
-        val packs: List<PackageInfo> = Mndalakanm.context!!.packageManager.getInstalledPackages(0)
+        val packs: List<PackageInfo> =
+            Mndalakanm.context!!.packageManager.getInstalledPackages(0)
         var iss = 0
-        DataManager.instance
+       /* DataManager.instance
             .showProgressMessage(requireActivity(), getString(R.string.please_wait))
-        for (i in packs.indices) {
+     */   for (i in packs.indices) {
 
             val p = packs[i]
             if (!getSysPackages && p.versionName == null) {
@@ -299,7 +343,7 @@ class ChildDetailsFragment : Fragment() {
             res.add(newInfo)
             iss++
         }
-        DataManager.instance.hideProgressMessage()
+     //   DataManager.instance.hideProgressMessage()
 
         return res
     }

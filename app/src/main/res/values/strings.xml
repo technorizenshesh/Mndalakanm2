@@ -207,6 +207,7 @@
     <string name="blocked_apps">Blocked Apps</string>
     <string name="web_filtering">Web Filtering</string>
     <string name="doyou_want">Do you want to Restrict child form using this app</string>
+    <string name="firebase_status_fmt">Firebase UID: %s</string>
     <string-array name="image_loader">
         <item>app_logo</item><!--app logo 0 -->
         <item>flag</item><!--flag  1 -->
