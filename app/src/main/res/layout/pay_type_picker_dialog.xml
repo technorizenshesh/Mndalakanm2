@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:cardCornerRadius="@dimen/_1sdp"
+    app:cardUseCompatPadding="true"
+    app:cardBackgroundColor="@color/white"
+    app:cardElevation="@dimen/_1sdp">
+    <LinearLayout
+        android:layout_margin=".5dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:padding="@dimen/_5sdp"
+        android:orientation="vertical"
+        android:gravity="center_horizontal">
+        <TextView
+            android:padding="@dimen/_10sdp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/payment_methode"
+            android:textColor="@color/texts"
+            android:textSize="@dimen/_14sdp"
+            android:layout_margin="@dimen/_5sdp"
+            android:fontFamily="@font/poppins_bold"
+            />
+<RadioGroup
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="@dimen/_5sdp"
+    android:id="@+id/types"
+    >
+    <RadioButton
+        android:buttonTint="@color/colorPrimaryYellow"
+        android:id="@+id/google_play"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:layout_margin="@dimen/_5sdp"
+        android:drawablePadding="@dimen/_10sdp"
+        android:drawableLeft="@drawable/code_sign"
+        android:layoutDirection="rtl"
+        android:textAlignment="center"
+        android:layout_gravity="center"
+        android:text="Google pay"
+        android:fontFamily="@font/poppins_medium"
+        android:textColor="@color/black"
+        android:textSize="@dimen/_14sdp" />
+    <RadioButton
+        android:buttonTint="@color/colorPrimaryYellow"
+        android:id="@+id/code_radio"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:layout_margin="@dimen/_5sdp"
+        android:drawablePadding="@dimen/_10sdp"
+        android:drawableLeft="@drawable/code_sign"
+        android:layoutDirection="rtl"
+        android:textAlignment="center"
+        android:layout_gravity="center"
+        android:text="@string/charge_code"
+        android:fontFamily="@font/poppins_medium"
+        android:textColor="@color/black"
+        android:textSize="@dimen/_14sdp" />
+
+</RadioGroup>
+        <RelativeLayout
+            android:layout_margin="@dimen/_5sdp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            >
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/pay_now"
+                android:layout_weight="1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_70sdp"
+                android:layout_marginTop="@dimen/_20sdp"
+                android:layout_marginEnd="@dimen/_70sdp"
+                android:layout_marginBottom="@dimen/_20sdp"
+                android:elevation="@dimen/_3sdp"
+                android:fontFamily="@font/poppins_bold"
+                android:outlineProvider="background"
+                android:outlineSpotShadowColor="@color/white"
+                android:padding="@dimen/_10sdp"
+                android:text=" 100 $"
+                android:textAllCaps="true"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_12sdp"
+                android:textStyle="bold"
+                app:backgroundTint="@color/colorPrimary"
+                app:cornerRadius="@dimen/_10sdp"
+                app:rippleColor="@color/black" />
+
+
+        </RelativeLayout>
+    </LinearLayout>
+</androidx.cardview.widget.CardView>

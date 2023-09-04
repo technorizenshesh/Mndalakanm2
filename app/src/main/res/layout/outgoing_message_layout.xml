@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout >
+    <RelativeLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_margin="@dimen/_2sdp"
+        android:padding="@dimen/_2sdp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:id="@+id/usermessagelayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="end"
+            android:orientation="vertical"
+            >
+
+
+            <TextView
+                android:background="@drawable/right_message_background"
+                android:id="@+id/userTextSHow"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/_15sdp"
+                android:layout_marginTop="5dp"
+                android:layout_marginRight="@dimen/_15sdp"
+                android:layout_marginBottom="5dp"
+                android:layout_weight="1"
+                android:padding="@dimen/_5sdp"
+                android:fontFamily="@font/poppins_medium"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_12sdp" />
+        </LinearLayout>
+        <RelativeLayout
+            android:layout_below="@+id/usermessagelayout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="3dp"
+            android:layout_weight="1"
+            android:gravity="left">
+
+            <TextView
+                android:visibility="visible"
+                android:layout_marginRight="@dimen/_25sdp"
+                android:id="@+id/usertime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="right"
+                android:text="2pm"
+                android:textSize="10dp"
+                />
+        </RelativeLayout>
+    </RelativeLayout>
+
+</layout>
