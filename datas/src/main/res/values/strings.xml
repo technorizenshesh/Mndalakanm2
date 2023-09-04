@@ -5,5 +5,7 @@
      <string name="stop_recording">Stop Recording</string>
           <string name="recording">Recording</string>
     <string name="checking_please_wait">Checking please wait ...</string>
+    <string name="request_parent_for_unlock_device">Request Parent For Unlock Device</string>
+    <string name="lockdown_mode_is_active">Lockdown Mode Is Active</string>
 
 </resources>

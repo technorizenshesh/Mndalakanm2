@@ -9,8 +9,7 @@ import com.app.mndalakanm.model.SuccessChildrReqTime
 import com.app.mndalakanm.utils.ChildRequestListClickListener
 import com.app.mndalakanm.utils.SharedPref
 import com.app.mndalakanm.R
-import com.app.mndalakanm
-.databinding.ItemRequestListBinding
+import com.app.mndalakanm.databinding.ItemRequestListBinding
 
 
 class AdapterChildRequestsList(val mContext: Context, var transList:

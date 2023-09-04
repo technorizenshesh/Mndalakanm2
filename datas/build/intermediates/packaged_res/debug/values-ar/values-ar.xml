@@ -3,7 +3,9 @@
     <string name="action_settings">إعدادات</string>
     <string name="app_name">MediaProjectDemo</string>
     <string name="checking_please_wait">جاري التحقق من فضلك انتظر ...</string>
+    <string name="lockdown_mode_is_active">Lockdown Mode Is Active</string>
     <string name="recording">تسجيل</string>
+    <string name="request_parent_for_unlock_device">Request Parent For Unlock Device</string>
     <string name="start_recording">ابدأ التسجيل</string>
     <string name="stop_recording">إيقاف التسجيل</string>
 </resources>

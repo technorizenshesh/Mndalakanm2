@@ -9,8 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import com.app.mndalakanm.R
-import com.app.mndalakanm
-.databinding.FragmentPhoneBinding
+import com.app.mndalakanm.databinding.FragmentPhoneBinding
 
 class PhoneFragment : Fragment() {
 

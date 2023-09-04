@@ -28,7 +28,9 @@ int mipmap ic_launcher_round 0x0
 int string action_settings 0x0
 int string app_name 0x0
 int string checking_please_wait 0x0
+int string lockdown_mode_is_active 0x0
 int string recording 0x0
+int string request_parent_for_unlock_device 0x0
 int string start_recording 0x0
 int string stop_recording 0x0
 int style AppTheme 0x0

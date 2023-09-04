@@ -30,7 +30,9 @@ mipmap ic_launcher_round
 string action_settings
 string app_name
 string checking_please_wait
+string lockdown_mode_is_active
 string recording
+string request_parent_for_unlock_device
 string start_recording
 string stop_recording
 style AppTheme
