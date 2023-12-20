@@ -208,6 +208,14 @@
     <string name="web_filtering">Web Filtering</string>
     <string name="doyou_want">Do you want to Restrict child form using this app</string>
     <string name="firebase_status_fmt">Firebase UID: %s</string>
+    <string name="m"> M</string>
+    <string name="accessibility">Accessibility</string>
+    <string name="web_search">Web search</string>
+    <string name="no_data_yet">No data yet</string>
+    <string name="youtube">YouTube</string>
+    <string name="location">Location</string>
+    <string name="schedules">Schedules</string>
+    <string name="time_reward_s">Time Reward\'s</string>
     <string-array name="image_loader">
         <item>app_logo</item><!--app logo 0 -->
         <item>flag</item><!--flag  1 -->

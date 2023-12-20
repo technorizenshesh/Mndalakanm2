@@ -21,7 +21,7 @@ public class ApiClient {
                     .addInterceptor(interceptor)
                     .readTimeout(300, TimeUnit.SECONDS).build();
             retrofit = new Retrofit.Builder()
-                    .baseUrl("https://3tdrive.com/Mndalakanm/webservice/")
+                    .baseUrl("https://server-php-7-3.technorizen.com/Mndalakanm/webservice/")
                     .client(client)
                     .addConverterFactory(GsonConverterFactory.create())
                     .build();

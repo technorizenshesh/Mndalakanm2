@@ -51,6 +51,11 @@ class SplashFragment : Fragment() {
         if (container != null) {
             navController = container.findNavController()
         }
+
+        return binding.root
+    }
+
+    override fun onResume() {
         sharedPref = SharedPref(requireContext())
         //utils = Utils(requireContext())
         // utils?.getFirebaseRegisterId()
@@ -59,9 +64,8 @@ class SplashFragment : Fragment() {
         // checkForPermission()
         //   askNotificationPermission()
 
-        return binding.root
+        super.onResume()
     }
-
     fun checkForPermission() {
         if (ActivityCompat.checkSelfPermission(
                 requireActivity(),

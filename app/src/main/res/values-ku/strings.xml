@@ -208,6 +208,14 @@
     <string name="web_filtering">Parzûnkirina Webê</string>
     <string name="doyou_want">Ma hûn dixwazin bi karanîna vê sepanê forma zarokan sînordar bikin</string>
     <string name="firebase_status_fmt">Firebase UID: %s</string>
+    <string name="m"> M</string>
+    <string name="accessibility">Gihîştina</string>
+    <string name="web_search">Lêgerîna Webê</string>
+    <string name="no_data_yet">Hîn agahî nînin</string>
+    <string name="youtube">YouTube</string>
+    <string name="location">Cîh</string>
+    <string name="schedules">Bername</string>
+    <string name="time_reward_s">Dem Xelat\'s</string>
     <string-array name="image_loader">
         <item>app_logo</item><!--app logo 0 -->
         <item>flag</item><!--flag  1 -->

@@ -271,6 +271,7 @@ class ChildDetailsFragment : Fragment() {
                     for (profile in userManager.userProfiles) {
                         for (app in launcherApps.getActivityList(null, profile)) {
                             val newInfo = PInfo()
+                            newInfo.blocked=false
                             newInfo.id = iss.toString()
                             newInfo.appname =
                                 app.applicationInfo.loadLabel(Mndalakanm.context!!.packageManager).toString()

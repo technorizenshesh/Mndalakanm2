@@ -34,31 +34,56 @@
                         android:fontFamily="@font/poppins_bold"
                         android:gravity="start"
                         android:padding="@dimen/_5sdp"
-                        android:text=" Accessibility"
+                        android:text="@string/accessibility"
                         android:textAlignment="textStart"
                         android:textColor="@color/black"
                         android:textSize="@dimen/_16sdp" />
-
-                    <com.github.mikephil.charting.charts.BarChart
-                        android:id="@+id/barChart"
-                        android:layout_marginTop="1dp"
+                    <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="200dp"
-                        />
-                   <!-- <com.naqdi.chart.ChainChartView
-                        android:id="@+id/chainChartView"
-                        android:layout_width="match_parent"
-                        android:layout_height="300dp"
+                        android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:layout_margin="@dimen/_5sdp" />-->
+                        android:gravity="center"
+                        android:paddingBottom="@dimen/_5sdp"
+                        >
+                        <TextView
+                            android:background="@drawable/background_time_graph"
+                            android:id="@+id/lineChartValue"
+                            android:layout_width="wrap_content"
+                            android:gravity="center"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/poppins_bold" android:textColor="@color/white"
+                            android:textSize="@dimen/_12sdp" />
+                    </LinearLayout>
+                    <com.db.williamchart.view.LineChartView
+                         android:id="@+id/liner_chart"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_160sdp"
+                        app:chart_lineColor="@color/colorPrimary"
+                        app:chart_pointsDrawable="@drawable/ellipse"
+                        app:chart_lineThickness="4dp"
+                        app:chart_smoothLine="true"
+                        app:chart_axis="x"
+                        app:chart_grid="vertical"
+                        app:chart_gridColor="@color/back_two"
+                        app:chart_gridStrokeWidth="2dp"
+                        app:chart_gridEffect="dotted"
+                        app:chart_labelsColor="@color/colorPrimary"
+                        app:chart_labelsSize="10sp"
+
+                        android:scrollbarAlwaysDrawHorizontalTrack="true"
+
+                        />
+
+
 
                 </LinearLayout>
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical"
                     android:layout_below="@id/top"
-                    >
+                    android:orientation="vertical">
+
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -69,23 +94,24 @@
                         android:fontFamily="@font/poppins_bold"
                         android:gravity="start"
                         android:padding="@dimen/_5sdp"
-                        android:text=" Telescope"
+                        android:text="@string/telescope"
                         android:textAlignment="textStart"
                         android:textColor="@color/black"
                         android:textSize="@dimen/_16sdp" />
+
                     <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/child_list"
-                        android:layout_below="@+id/top"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_below="@+id/top"
                         android:layout_marginTop="@dimen/_3sdp"
-                        android:layout_marginBottom="@dimen/_3sdp"
-                        />
+                        android:layout_marginBottom="@dimen/_3sdp" />
+
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:orientation="vertical"
-                        >
+                        android:orientation="vertical">
+
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -96,22 +122,22 @@
                             android:fontFamily="@font/poppins_medium"
                             android:gravity="start"
                             android:padding="@dimen/_5sdp"
-                            android:text=" Web search"
+                            android:text="@string/web_search"
                             android:textAlignment="textStart"
                             android:textColor="@color/black"
                             android:textSize="@dimen/_14sdp" />
+
                         <TextView
-                            android:visibility="visible"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_margin="@dimen/_5sdp"
                             android:fontFamily="@font/poppins_bold"
                             android:gravity="center"
                             android:padding="@dimen/_5sdp"
-                            android:text=" No data yet"
+                            android:text="@string/no_data_yet"
                             android:textColor="@color/texts"
-                            android:textSize="@dimen/_12sdp" />
-
+                            android:textSize="@dimen/_12sdp"
+                            android:visibility="visible" />
 
 
                     </LinearLayout>
@@ -119,8 +145,8 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:orientation="vertical"
-                        >
+                        android:orientation="vertical">
+
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -130,10 +156,11 @@
                             android:fontFamily="@font/poppins_medium"
                             android:gravity="start"
                             android:padding="@dimen/_5sdp"
-                            android:text="YouTube"
+                            android:text="@string/youtube"
                             android:textAlignment="textStart"
                             android:textColor="@color/black"
                             android:textSize="@dimen/_14sdp" />
+
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -141,18 +168,18 @@
                             android:fontFamily="@font/poppins_bold"
                             android:gravity="center"
                             android:padding="@dimen/_5sdp"
-                            android:text=" No data yet"
+                            android:text="@string/no_data_yet"
                             android:textColor="@color/texts"
                             android:textSize="@dimen/_12sdp" />
 
 
-
                     </LinearLayout>
+
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:orientation="vertical"
-                        >
+                        android:orientation="vertical">
+
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -167,6 +194,7 @@
                             android:textAlignment="textStart"
                             android:textColor="@color/black"
                             android:textSize="@dimen/_14sdp" />
+
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -179,13 +207,13 @@
                             android:textSize="@dimen/_12sdp" />
 
 
-
                     </LinearLayout>
+
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:orientation="vertical"
-                        >
+                        android:orientation="vertical">
+
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -196,10 +224,11 @@
                             android:fontFamily="@font/poppins_medium"
                             android:gravity="start"
                             android:padding="@dimen/_5sdp"
-                            android:text=" Location"
+                            android:text="@string/location"
                             android:textAlignment="textStart"
                             android:textColor="@color/black"
                             android:textSize="@dimen/_14sdp" />
+
                         <TextView
                             android:id="@+id/nev_location"
                             android:layout_width="wrap_content"
@@ -212,8 +241,7 @@
                             android:textColor="@color/texts"
                             android:textSize="@dimen/_16sdp" />
 
-               <TextView
-                   android:visibility="gone"
+                        <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_margin="@dimen/_5sdp"
@@ -222,24 +250,25 @@
                             android:padding="@dimen/_5sdp"
                             android:text=" No data yet"
                             android:textColor="@color/texts"
-                            android:textSize="@dimen/_12sdp" />
+                            android:textSize="@dimen/_12sdp"
+                            android:visibility="gone" />
+
                         <fragment
                             android:id="@+id/map"
                             android:name="com.google.android.gms.maps.SupportMapFragment"
                             android:layout_width="match_parent"
                             android:layout_height="@dimen/_150sdp"
-                            android:src="@drawable/map_map"
                             android:layout_margin="@dimen/_5sdp"
-                            />
-
+                            android:src="@drawable/map_map" />
 
 
                     </LinearLayout>
+
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:orientation="vertical"
-                        >
+                        android:orientation="vertical">
+
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -250,10 +279,11 @@
                             android:fontFamily="@font/poppins_medium"
                             android:gravity="start"
                             android:padding="@dimen/_5sdp"
-                            android:text=" Schedules"
+                            android:text="@string/schedules"
                             android:textAlignment="textStart"
                             android:textColor="@color/black"
                             android:textSize="@dimen/_14sdp" />
+
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -261,18 +291,18 @@
                             android:fontFamily="@font/poppins_bold"
                             android:gravity="center"
                             android:padding="@dimen/_5sdp"
-                            android:text=" No data yet"
+                            android:text="@string/no_data_yet"
                             android:textColor="@color/texts"
                             android:textSize="@dimen/_12sdp" />
 
 
-
                     </LinearLayout>
+
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:orientation="vertical"
-                        >
+                        android:orientation="vertical">
+
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -283,7 +313,7 @@
                             android:fontFamily="@font/poppins_medium"
                             android:gravity="start"
                             android:padding="@dimen/_5sdp"
-                            android:text=" Time Reward's"
+                            android:text="@string/time_reward_s"
                             android:textAlignment="textStart"
                             android:textColor="@color/black"
                             android:textSize="@dimen/_14sdp" />
@@ -299,72 +329,72 @@
                             android:text="+2h 30m"
                             android:textColor="@color/black"
                             android:textSize="@dimen/_16sdp" />
+
                         <androidx.recyclerview.widget.RecyclerView
                             android:id="@+id/timer_list"
-                            android:layout_below="@+id/top"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:layout_below="@+id/top"
                             android:layout_marginTop="@dimen/_3sdp"
-                            android:layout_marginBottom="@dimen/_3sdp"
-                            />
-                       <!--                        <androidx.cardview.widget.CardView
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            app:cardElevation="@dimen/_3sdp"
-                            app:cardUseCompatPadding="true"
-                            app:cardCornerRadius="@dimen/_15sdp"
-                            >
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:orientation="vertical"
-                                >
-                                <LinearLayout
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:orientation="horizontal"
-                                    android:weightSum="2"
-                                    >
-                                    <TextView
-                                        android:layout_weight="1"
-                                        android:layout_width="match_parent"
-                                        android:layout_height="wrap_content"
-                                        android:layout_margin="@dimen/_2sdp"
-                                        android:fontFamily="@font/poppins_medium"
-                                        android:gravity="start"
-                                        android:padding="@dimen/_5sdp"
-                                        android:text=" Homework"
-                                        android:textAlignment="textStart"
-                                        android:textColor="@color/black"
-                                        android:textSize="@dimen/_14sdp" />
-                                    <TextView
-                                        android:layout_weight="1"
-                                        android:layout_width="match_parent"
-                                        android:layout_height="wrap_content"
-                                        android:layout_margin="@dimen/_2sdp"
-                                        android:fontFamily="@font/poppinsregular"
-                                        android:gravity="end"
-                                        android:padding="@dimen/_5sdp"
-                                        android:text=" + 30m"
-                                        android:textAlignment="textEnd"
-                                        android:textColor="@color/colorPrimary"
-                                        android:textSize="@dimen/_10sdp" />
-                                </LinearLayout>
+                            android:layout_marginBottom="@dimen/_3sdp" />
+                        <!--                        <androidx.cardview.widget.CardView
+                             android:layout_width="match_parent"
+                             android:layout_height="match_parent"
+                             app:cardElevation="@dimen/_3sdp"
+                             app:cardUseCompatPadding="true"
+                             app:cardCornerRadius="@dimen/_15sdp"
+                             >
+                             <LinearLayout
+                                 android:layout_width="match_parent"
+                                 android:layout_height="wrap_content"
+                                 android:orientation="vertical"
+                                 >
+                                 <LinearLayout
+                                     android:layout_width="match_parent"
+                                     android:layout_height="wrap_content"
+                                     android:orientation="horizontal"
+                                     android:weightSum="2"
+                                     >
+                                     <TextView
+                                         android:layout_weight="1"
+                                         android:layout_width="match_parent"
+                                         android:layout_height="wrap_content"
+                                         android:layout_margin="@dimen/_2sdp"
+                                         android:fontFamily="@font/poppins_medium"
+                                         android:gravity="start"
+                                         android:padding="@dimen/_5sdp"
+                                         android:text=" Homework"
+                                         android:textAlignment="textStart"
+                                         android:textColor="@color/black"
+                                         android:textSize="@dimen/_14sdp" />
+                                     <TextView
+                                         android:layout_weight="1"
+                                         android:layout_width="match_parent"
+                                         android:layout_height="wrap_content"
+                                         android:layout_margin="@dimen/_2sdp"
+                                         android:fontFamily="@font/poppinsregular"
+                                         android:gravity="end"
+                                         android:padding="@dimen/_5sdp"
+                                         android:text=" + 30m"
+                                         android:textAlignment="textEnd"
+                                         android:textColor="@color/colorPrimary"
+                                         android:textSize="@dimen/_10sdp" />
+                                 </LinearLayout>
 
-                                <TextView
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:layout_margin="@dimen/_5sdp"
-                                    android:fontFamily="@font/poppinsregular"
-                                    android:gravity="center"
-                                    android:padding="@dimen/_5sdp"
-                                    android:text="Approved"
-                                    android:textColor="@color/colorPrimary"
-                                    android:textSize="@dimen/_12sdp" />
-                            </LinearLayout>
+                                 <TextView
+                                     android:layout_width="match_parent"
+                                     android:layout_height="wrap_content"
+                                     android:layout_margin="@dimen/_5sdp"
+                                     android:fontFamily="@font/poppinsregular"
+                                     android:gravity="center"
+                                     android:padding="@dimen/_5sdp"
+                                     android:text="Approved"
+                                     android:textColor="@color/colorPrimary"
+                                     android:textSize="@dimen/_12sdp" />
+                             </LinearLayout>
 
-                        </androidx.cardview.widget.CardView>
--->
+                         </androidx.cardview.widget.CardView>
+ -->
                     </LinearLayout>
 
                 </LinearLayout>

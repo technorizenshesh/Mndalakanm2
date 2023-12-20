@@ -71,9 +71,19 @@ class BockedAppsFragment : Fragment(), AppClickListener {
                             val id = document.data["id"].toString()
                             val versionName = document.data["versionName"].toString()
                             val versionCode = document.data["versionCode"].toString()
-                            var p = PInfo(id, appname, pname, versionName, versionCode, iconw, cat)
+                            val blocked = document.data["blocked"].toString()
+                             if (blocked == "true"){
+                            val p = PInfo( true, appname, pname, versionName, versionCode, iconw, cat)
+                                 myList.add(p)
+
+                             }else{
+                                 val p = PInfo( false, appname, pname, versionName, versionCode, iconw, cat)
+                                 myList.add(p)
+
+
+                             }
+
                             //   if (p.cat=="-1") else myList.add(p)
-                            myList.add(p)
                         }
                         val adapterRideOption = AdapterBlockedAppsFireStoreList(
                             requireActivity(),

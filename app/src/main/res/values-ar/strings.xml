@@ -209,6 +209,14 @@
     <string name="web_filtering">تصفية الويب</string>
     <string name="doyou_want">هل تريد تقييد النموذج الفرعي باستخدام هذا التطبيق</string>
     <string name="firebase_status_fmt">Firebase UID: %s</string>
+    <string name="m"> م</string>
+    <string name="accessibility">إمكانية الوصول</string>
+    <string name="web_search">البحث في الويب</string>
+    <string name="no_data_yet">لا توجد بيانات حتى الآن</string>
+    <string name="youtube">موقع </string>
+    <string name="location">موقع</string>
+    <string name="schedules">جداول</string>
+    <string name="time_reward_s">مكافأة الوقت</string>
     <string-array name="image_loader">
         <item>app_logo</item><!--app logo 0 -->
         <item>flag</item><!--flag  1 -->

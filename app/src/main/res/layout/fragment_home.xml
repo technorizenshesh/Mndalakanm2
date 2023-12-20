@@ -14,7 +14,7 @@
             tools:context=".ui.Home.HomeFragment">
 
             <LinearLayout
-android:id="@+id/switch_back_lay"
+                android:id="@+id/switch_back_lay"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_margin="@dimen/_10sdp"
@@ -26,18 +26,16 @@ android:id="@+id/switch_back_lay"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/_10sdp"
                     android:checked="false"
-                     android:focusable="true"
+                    android:focusable="false"
+                    android:clickable="false"
                     android:fontFamily="@font/poppins_bold"
                     android:padding="@dimen/_5sdp"
                     android:text="@string/child_phone_lockdown"
                     android:textColor="@color/texts"
                     android:textSize="@dimen/_14sdp"
                     android:thumb="@drawable/thumb"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintLeft_toLeftOf="parent"
-                    app:layout_constraintRight_toRightOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:track="@drawable/track" />
+                  app:track="@drawable/track"
+                    tools:ignore="UseSwitchCompatOrMaterialXml" />
 
             </LinearLayout>
 
@@ -286,7 +284,7 @@ android:id="@+id/switch_back_lay"
                             android:textSize="@dimen/_12sdp" />
 
                         <TextView
-                             android:id="@+id/refresh"
+                            android:id="@+id/refresh"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_alignParentStart="true"

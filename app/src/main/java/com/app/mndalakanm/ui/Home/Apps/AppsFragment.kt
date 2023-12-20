@@ -74,6 +74,7 @@ class AppsFragment : Fragment() {
                 continue
             }
             val newInfo = PInfo()
+            newInfo.blocked = false
             newInfo.id = iaa.toString()
             newInfo.appname = p.applicationInfo.loadLabel(Mndalakanm.context!!.packageManager).toString()
             newInfo.pname = p.packageName

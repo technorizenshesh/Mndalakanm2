@@ -21,7 +21,6 @@ import com.app.mndalakanm.service.GpsWork
 import com.app.mndalakanm.service.SensorService
 import com.app.mndalakanm.utils.*
 import com.google.firebase.database.*
-import com.mtsahakis.mediaprojectiondemo.SharedPreferenceUtility
 import com.mtsahakis.mediaprojectiondemo.SharedPreferenceUtility.*
 import com.vilborgtower.user.utils.Utils
 import kotlinx.coroutines.CoroutineScope

@@ -8,6 +8,7 @@ import android.content.pm.PackageManager
 import android.content.res.Resources
 import android.graphics.Bitmap
 import android.graphics.Canvas
+import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
 import android.view.*
@@ -33,10 +34,8 @@ import com.app.mndalakanm.utils.ScreenShotClickListener
 import com.app.mndalakanm.utils.SharedPref
 import com.app.mndalakanm.utils.TimerListClickListener
 import com.bumptech.glide.Glide
-import com.github.mikephil.charting.charts.BarChart
-import com.github.mikephil.charting.data.BarData
-import com.github.mikephil.charting.data.BarDataSet
-import com.github.mikephil.charting.data.BarEntry
+import com.db.williamchart.ExperimentalFeature
+import com.db.williamchart.slidertooltip.SliderTooltip
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
@@ -60,22 +59,19 @@ class StatisticsFragment : Fragment(), ScreenShotClickListener, TimerListClickLi
     private var screenshotRes: ArrayList<SuccessScreenshotRes.ScreenshotList>? = null
     private var timerList: ArrayList<SuccessTimerListRes.Result>? = null
     lateinit var googleMap: GoogleMap
-    private var chart: BarChart? = null
-    private val BAR_SPACE = 0.1f
-    private val BAR_WIDTH = 0.1f
-    private val GROUPS = 2
-    private val MAX_X_VALUE = 13
+    //private var chart: BarChart? = null
 
     val sdf = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
     lateinit var today: String
 
+    @OptIn(ExperimentalFeature::class)
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_statistics, container, false)
         today = sdf.format(Calendar.getInstance().time)
-        chart = binding.barChart //this is our barchart
+        //    chart = binding.barChart //this is our barchart
 
         val mapFragment = childFragmentManager
             .findFragmentById(R.id.map) as SupportMapFragment?
@@ -109,10 +105,21 @@ class StatisticsFragment : Fragment(), ScreenShotClickListener, TimerListClickLi
                 Log.e("TAG", "onCreateView: " + e.cause)
             }
         }
+        binding.linerChart.gradientFillColors =
+            intArrayOf(
+                Color.parseColor("#81FFFFFF"),
+                Color.TRANSPARENT
+            )
+        binding.linerChart.animation.duration = animationDuration
+        binding.linerChart.tooltip =
+            SliderTooltip().also {
+                it.color = Color.TRANSPARENT
+            }
 
         return binding.root
     }
 
+    /*
     fun setBarChart(data: List<SuccessChildHistory.Result>) {
         val entries = ArrayList<BarEntry>()
         val labels = ArrayList<String>()
@@ -130,41 +137,9 @@ class StatisticsFragment : Fragment(), ScreenShotClickListener, TimerListClickLi
         chart!!.setDrawBarShadow(true)
         chart!!.animateY(2000)
     }
+*/
 
-    /*   fun  displayData(orderData: ArrayList<BarEntry>) {
-            val data: BarData = createChartData(orderData)
-           // configureBarChart()
-            prepareChartData(data)
-        }
-        private fun createChartData(orderData: ArrayList<BarEntry>): BarData {
-
-            val inventoryData = ArrayList<BarEntry>()
-            val set1 = BarDataSet(orderData, "Child Time Tracking")
-            val set2 = BarDataSet(
-                inventoryData,
-                "GROUP_2_LABEL"
-            ) //add other data to compare with: when backend is ready
-
-            @SuppressLint("ResourceType")
-            set1.color = ColorTemplate.rgb(getString(R.color.colorPrimary))
-
-            @SuppressLint("ResourceType")
-            set2.color = ColorTemplate.rgb(getString(R.color.colorPrimary))
-
-            val dataSets: ArrayList<IBarDataSet> = ArrayList()
-
-            dataSets.add(set1)
-            dataSets.add(set2)
-
-            return BarData(dataSets)
-        }
-        private fun prepareChartData(data: BarData) {
-            chart!!.data = data
-            chart!!.barData.barWidth = BAR_WIDTH
-            val groupSpace = 1f - (BAR_SPACE + BAR_WIDTH)
-            chart!!.groupBars(0f, groupSpace, BAR_SPACE)
-            chart!!.invalidate()
-        }*/
+    @OptIn(ExperimentalFeature::class)
     private fun get_child_plus_time_history() {
         val map = HashMap<String, String>()
         map["parent_id"] = sharedPref.getStringValue(Constant.USER_ID).toString()
@@ -183,23 +158,25 @@ class StatisticsFragment : Fragment(), ScreenShotClickListener, TimerListClickLi
                                 "TAG",
                                 "SuccessChildHistorySuccessChildHistory: " + response.body()
                             )
-                            var data = response.body()!!.result
+                            val data = response.body()!!.result
+                            val lineSet = LinkedHashMap<String, Float>()
 
-                            setBarChart(data)
+                            Log.e(
+                                "TAG",
+                                "SuccessChildHistorySuccessChildHistory: " + data.size
+                            )
+                            for (d in data) {
+                                val daa: Float = d.timer.toFloat()
+                                lineSet[d.time] = daa
+                            }
 
-                            /* val values1: ArrayList<BarEntry> = ArrayList()
-                             // statValues.clear()
-                             Log.e("TAG", "SuccessChildHistorySuccessChildHistory: "+data.size)
-
-                             for (i in data) {
-                                 values1.add(
-                                     BarEntry(
-                                         i.timer.toFloat(),
-                                         i.timer.toFloat()
-                                     )
-                                 )
-                             }*/
-                            //displayData(values1)
+                            Timber.tag("TAG").e("onResponse: %s", lineSet.toString())
+                            binding.linerChart.onDataPointTouchListener = { index, _, _ ->
+                                binding.lineChartValue.text =
+                                    lineSet.toList()[index].second.toString() + getString(R.string.m)
+                            }
+                            binding.linerChart.animate(lineSet)
+                            //  setBarChart(data)
 
                         } else {
                             Toast.makeText(context, response.body()?.message, Toast.LENGTH_SHORT)
@@ -404,5 +381,10 @@ class StatisticsFragment : Fragment(), ScreenShotClickListener, TimerListClickLi
         val canvas = Canvas(bitmap)
         vectorDrawable.draw(canvas)
         return BitmapDescriptorFactory.fromBitmap(bitmap)
+    }
+
+    companion object {
+
+        private const val animationDuration = 1000L
     }
 }

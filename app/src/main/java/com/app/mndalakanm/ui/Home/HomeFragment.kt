@@ -72,12 +72,10 @@ class HomeFragment : Fragment(), ScreenShotClickListener {
     private var Lockdown_mode = ""
     private val mServiceReceiver: BroadcastReceiver = object : BroadcastReceiver() {
         override fun onReceive(context: Context, intent: Intent) {
-            //Extract your data - better to use constants...
             try {
                 val IncomingSms = intent.getStringExtra("pushNotificationModel")
                 if (IncomingSms.equals("1", true)) {
 
-                    //  val phoneNumber = intent.getStringExtra("incomingPhoneNumber")
                     Timber.tag("TAG").e("onMessageReceived: " + "21222342141343432")
                     if (sharedPref.getStringValue(Constant.USER_TYPE).equals("Child", true)) {
                         Toast.makeText(context, "Time Received", Toast.LENGTH_SHORT).show()
@@ -106,10 +104,6 @@ class HomeFragment : Fragment(), ScreenShotClickListener {
                                     // handle the exception
                                 }
                             }
-                            /* val i = Intent(requireActivity(), ScreenCaptureActivity::class.java)
-                         i.putExtra("parent_id", sharedPref.getStringValue(Constant.USER_ID).toString())
-                         i.putExtra("child_id", sharedPref.getStringValue(Constant.CHILD_ID).toString())
-                         startActivity(i)*/
                         }
                     }
                 }
@@ -123,9 +117,9 @@ class HomeFragment : Fragment(), ScreenShotClickListener {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View {
-        // Inflate the layout for this fragment
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_home, container, false)
         sharedPref = SharedPref(requireContext())
+        Log.e(TAG, "onCreateView:------------------------- "+sharedPref.getStringValue(Constant.USER_TYPE))
        /* val str= "https://mndalakanm-53f36-default-rtdb.firebaseio.com/LockDown/"+sharedPref.getStringValue(
             Constant.USER_ID).toString()+"/"+sharedPref.getStringValue(Constant.CHILD_ID).toString()+"/Status"
         Log.e(TAG, "onCreateView:----  "+str )
@@ -148,7 +142,7 @@ class HomeFragment : Fragment(), ScreenShotClickListener {
         )
 
         binding.btn.setOnClickListener {
-            if (sharedPref.getStringValue(Constant.USER_TYPE).equals("Child", true)) {
+            if (sharedPref.getStringValue(Constant.USER_TYPE).toString().equals("Child", true)) {
 
                 SharedPreferenceUtility.getInstance(requireActivity())
                     .putString("parent_id", sharedPref.getStringValue(Constant.USER_ID).toString())
@@ -348,10 +342,14 @@ class HomeFragment : Fragment(), ScreenShotClickListener {
             }
         binding.refresh.setOnClickListener {
             get_child_screenshotClicked() }
+        Log.e(TAG, "onCreateView: dsdmkls;dgfsmd;lxdmkldgfsmklmklbdgfdgf-------------"+sharedPref.getStringValue(Constant.USER_TYPE))
+
         if (sharedPref.getStringValue(Constant.USER_TYPE).equals("Child", true)) {
-            binding.switchBackLay.isClickable = false
-           binding.customSwitch.isClickable = false
-            binding.switchBackLay.isFocusable = false
+
+            Log.e(TAG, "onCreateView: dsdmkls;dgfsmd;lxdmkldgfsmklmklbdgfdgf" )
+            binding.switchBackLay.isClickable = true
+           binding.customSwitch.isClickable= false
+            binding.switchBackLay.isFocusable = true
             binding.customSwitch.isFocusable = false
             if (!Settings.canDrawOverlays(context)) {
                 val intent = Intent(
@@ -829,13 +827,6 @@ class HomeFragment : Fragment(), ScreenShotClickListener {
                 Log.e(TAG, "onActivityResult: resultCode  " + resultCode)
                 Log.e(TAG, "onActivityResult: data  " + data.toString())
                 Log.e(TAG, "onActivityResult: data  " + data!!.extras)
-                Log.e(
-                    TAG,
-                    "onActivityResult: sharedPref.getStringValue(\"Screenshot\")  " + sharedPref.getStringValue(
-                        "Screenshot"
-                    )
-                )
-
                 requireActivity().startService(
                     ScreenCaptureService.getStartIntent(
                         requireActivity(),
@@ -870,6 +861,7 @@ class HomeFragment : Fragment(), ScreenShotClickListener {
         }
     }
 
+    @SuppressLint("UnspecifiedRegisterReceiverFlag")
     override fun onResume() {
         super.onResume()
         getChildProfile()
@@ -894,9 +886,9 @@ class HomeFragment : Fragment(), ScreenShotClickListener {
                 }
                 override fun onFailure(call: Call<ResponseBody?>, t: Throwable) {
                     DataManager.instance.hideProgressMessage()
-                    Timber.tag(ContentValues.TAG).e("onFailure: %s", t.localizedMessage)
-                    Timber.tag(ContentValues.TAG).e("onFailure: %s", t.cause.toString())
-                    Timber.tag(ContentValues.TAG).e("onFailure: %s", t.message.toString())
+                    Timber.tag(TAG).e("onFailure: %s", t.localizedMessage)
+                    Timber.tag(TAG).e("onFailure: %s", t.cause.toString())
+                    Timber.tag(TAG).e("onFailure: %s", t.message.toString())
                 }
             })
     }
@@ -923,9 +915,9 @@ class HomeFragment : Fragment(), ScreenShotClickListener {
                 override fun onFailure(call: Call<SuccessChildProfile?>, t: Throwable) {
                     call.cancel()
                     DataManager.instance.hideProgressMessage()
-                    Timber.tag(ContentValues.TAG).e("onFailure: %s", t.localizedMessage)
-                    Timber.tag(ContentValues.TAG).e("onFailure: %s", t.cause.toString())
-                    Timber.tag(ContentValues.TAG).e("onFailure: %s", t.message.toString())
+                    Timber.tag(TAG).e("onFailure: %s", t.localizedMessage)
+                    Timber.tag(TAG).e("onFailure: %s", t.cause.toString())
+                    Timber.tag(TAG).e("onFailure: %s", t.message.toString())
                 }
             })
     }
