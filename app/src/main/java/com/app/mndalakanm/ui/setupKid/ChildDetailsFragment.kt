@@ -359,14 +359,14 @@ class ChildDetailsFragment : Fragment() {
     private fun showPictureDialog() {
         val pictureDialog = AlertDialog.Builder(requireContext())
         pictureDialog.setTitle(getString(R.string.select_action))
+
+
         val pictureDialogItems = arrayOf("Select photo from gallery", "Capture photo from camera")
         pictureDialog.setItems(
             pictureDialogItems
         ) { dialog, which ->
             when (which) {
                 0 -> {
-
-
                     val gallery =
                         Intent(Intent.ACTION_PICK, MediaStore.Images.Media.INTERNAL_CONTENT_URI)
                     startActivityForResult(gallery, GALLERY)

@@ -89,18 +89,28 @@ class ProjectUtil {
         }
 
         fun checkPermissions(mContext: Context?): Boolean {
-            return ActivityCompat.checkSelfPermission(
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+                return ActivityCompat.checkSelfPermission(
+                    mContext!!,
+                    Manifest.permission.CAMERA
+                ) == PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(
+                    mContext, Manifest.permission.READ_MEDIA_IMAGES
+                ) == PackageManager.PERMISSION_GRANTED
+            }else{
+                return ActivityCompat.checkSelfPermission(
                     mContext!!,
                     Manifest.permission.CAMERA
                 ) == PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(
                     mContext, Manifest.permission.READ_EXTERNAL_STORAGE
                 ) ==
-                PackageManager.PERMISSION_GRANTED && (
+                        PackageManager.PERMISSION_GRANTED && (
                         ActivityCompat.checkSelfPermission(
                             (mContext),
                             Manifest.permission.WRITE_EXTERNAL_STORAGE
                         ) ==
                                 PackageManager.PERMISSION_GRANTED)
+            }
+
         }
 
         fun logoutAppDialog(mContext: Context) {
@@ -127,13 +137,23 @@ class ProjectUtil {
         }
 
         fun requestPermissions(mContext: Context?) {
-            ActivityCompat.requestPermissions(
-                (mContext as Activity?)!!, arrayOf(
-                    Manifest.permission.CAMERA,
-                    Manifest.permission.WRITE_EXTERNAL_STORAGE,
-                    Manifest.permission.READ_EXTERNAL_STORAGE
-                ), 101
-            )
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+                ActivityCompat.requestPermissions(
+                    (mContext as Activity?)!!, arrayOf(
+                        Manifest.permission.CAMERA,
+                        Manifest.permission.READ_MEDIA_IMAGES,
+                    ), 101
+                )
+            }else {
+
+                ActivityCompat.requestPermissions(
+                    (mContext as Activity?)!!, arrayOf(
+                        Manifest.permission.CAMERA,
+                        Manifest.permission.WRITE_EXTERNAL_STORAGE,
+                        Manifest.permission.READ_EXTERNAL_STORAGE
+                    ), 101
+                )
+            }
         }
 
         fun openGallery(mContext: Context, GALLERY: Int) {
@@ -324,12 +344,8 @@ class ProjectUtil {
         }
 
         fun changeStatusBarColor(activity: Activity) {
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                activity.window.statusBarColor =
-                    activity.resources.getColor(R.color.colorPrimary, activity.theme)
-            } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                activity.window.statusBarColor = activity.resources.getColor(R.color.colorPrimary)
-            }
+            activity.window.statusBarColor =
+                activity.resources.getColor(R.color.colorPrimary, activity.theme)
         }
 
         fun getCurrentDate(): String? {
